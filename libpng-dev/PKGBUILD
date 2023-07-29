@@ -1,0 +1,30 @@
+pkgname=libpng-dev
+pkgver=1.6.40
+pkgrel=1
+pkgdesc='A collection of routines used to create PNG format graphics'
+arch=('x86_64')
+url="http://www.libpng.org/pub/png/libpng.html"
+makedepends=('zlib')
+license=('custom')
+source=("git+https://github.com/glennrp/libpng.git")
+md5sums=('SKIP')
+
+build() {
+  export PATH="/github/home/cross/bin:$PATH"
+  export PKG_CONFIG_LIBDIR="/github/home/opt/lib/pkgconfig"
+  export PKG_CONFIG="pkgconf --static"
+  cd $srcdir/libpng
+  CFLAGS+=' -fno-asynchronous-unwind-tables'
+  autoreconf -ivf
+  ./configure \
+    --host=x86_64-w64-mingw32 \
+    --prefix=/github/home/opt \
+    --disable-shared \
+    --enable-static
+  make
+}
+
+package() {
+  cd $srcdir/libpng
+  make DESTDIR=$pkgdir install
+}

@@ -1,0 +1,29 @@
+pkgname=brotli-dev
+pkgver=1.0.9
+pkgrel=1
+pkgdesc='Generic-purpose lossless compression algorithm'
+arch=('x86_64')
+url="https://github.com/google/brotli/"
+license=('MIT')
+source=("git+https://github.com/google/brotli")
+md5sums=('SKIP')
+
+build() {
+  export PATH="/github/home/cross/bin:$PATH"
+  export PKG_CONFIG_LIBDIR="/github/home/opt/lib/pkgconfig"
+  export PKG_CONFIG="pkgconf --static"
+  cd $srcdir/brotli
+  rm -rf out && mkdir out && cd out
+  cmake .. -G Ninja \
+    -DCMAKE_INSTALL_PREFIX=/github/home/opt \
+    -DCMAKE_TOOLCHAIN_FILE=/github/home/toolchain-test/toolchain.cmake \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBROTLI_EMSCRIPTEN=OFF
+  ninja
+} 
+  
+package() {
+  cd $srcdir/brotli/out  
+  DESTDIR=$pkgdir ninja install
+}

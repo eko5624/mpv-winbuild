@@ -1,0 +1,33 @@
+pkgname=highway-dev
+pkgver=1.0.5
+pkgrel=1
+pkgdesc='C++ library for SIMD (Single Instruction, Multiple Data)'
+arch=('x86_64')
+url="https://github.com/google/highway/"
+license=('Apache-2.0')
+source=("git+https://github.com/google/highway.git")
+md5sums=('SKIP')
+
+build() {
+  export PATH="/github/home/cross/bin:$PATH"
+  export PKG_CONFIG_LIBDIR="/github/home/opt/lib/pkgconfig"
+  export PKG_CONFIG="pkgconf --static"
+  cd $srcdir/highway
+  rm -rf build && mkdir build && cd build
+  cmake .. -G Ninja \
+    -DCMAKE_INSTALL_PREFIX=/github/home/opt \
+    -DCMAKE_TOOLCHAIN_FILE=/github/home/toolchain-test/toolchain.cmake \
+    -DBUILD_TESTING=OFF \
+    -DCMAKE_GNUtoMS=OFF \
+    -DHWY_CMAKE_ARM7=OFF \
+    -DHWY_ENABLE_CONTRIB=OFF \
+    -DHWY_ENABLE_EXAMPLES=OFF \
+    -DHWY_ENABLE_INSTALL=ON \
+    -DHWY_WARNINGS_ARE_ERRORS=OFF 
+  ninja
+}  
+  
+package() {
+  cd $srcdir/highway/build
+  DESTDIR=$pkgdir ninja install
+}  

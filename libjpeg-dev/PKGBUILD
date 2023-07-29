@@ -1,0 +1,29 @@
+pkgname=libjpeg-dev
+pkgver=3.0.0
+pkgrel=1
+pkgdesc='JPEG image codec with accelerated baseline compression and decompression'
+arch=('x86_64')
+url="https://libjpeg-turbo.virtualgl.org/"
+license=('custom')
+source=("git+https://github.com/libjpeg-turbo/libjpeg-turbo.git")
+md5sums=('SKIP')
+
+build() {
+  export PATH="/github/home/cross/bin:$PATH"
+  export PKG_CONFIG_LIBDIR="/github/home/opt/lib/pkgconfig"
+  export PKG_CONFIG="pkgconf --static"
+  cd $srcdir/libjpeg-turbo
+  rm -rf build && mkdir build && cd build
+  cmake .. -G Ninja \
+    -DCMAKE_INSTALL_PREFIX=/github/home/opt \
+    -DCMAKE_TOOLCHAIN_FILE=/github/home/toolchain-test/toolchain.cmake \
+    -DENABLE_SHARED=OFF \
+    -DENABLE_STATIC=ON \
+    -DCMAKE_BUILD_TYPE=Release   
+  ninja
+}
+
+package() {
+  cd $srcdir/libjpeg-turbo/build
+  DESTDIR=$pkgdir ninja install
+}
