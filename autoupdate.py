@@ -16,15 +16,7 @@ with in_place.InPlace('.github/workflows/toolchain.yml', newline='') as f:
     f.write(l)
     
 pkgs = {} 
-pkgs['libsixel'] = x['libsixel']
-for p in ['freetype2', 'fribidi', 'harfbuzz', 'libjxl', 'opus', 'spirv-cross']:
-  pkgs['%s-dev' % p] = x[p]
-for p in pkgs:
-  with in_place.InPlace('%s/PKGBUILD-new' % p, newline='') as f:
-    for l in f:
-      if l.startswith('pkgver'):
-        l = 'pkgver=%s\n' % pkgs[p]
-      f.write(l)        
+pkgs['libsixel'] = x['libsixel']     
 pkgs['vapoursynth'] = x['VapourSynth'][1:]
 for p in ['curl', 'mpv', 'ffmpeg', 'luajit2', 'mujs', 'rubberband']:
   pkgs['%s' % p] = x[p]
@@ -38,6 +30,9 @@ for p in [
   'dav1d',
   'davs2',
   'ffnvcodec',
+  'freetype2',
+  'fribidi',
+  'harfbuzz',
   'highway',
   'lame',
   'lcms2',
@@ -51,6 +46,7 @@ for p in [
   'libdvdnav',
   'libdvdread',
   'libiconv',
+  'libjxl',
   'libudfread',
   'libunibreak',
   'libjpeg',
@@ -72,7 +68,9 @@ for p in [
   'libzvbi',
   'mbedtls',
   'openal-soft',
+  'opus',
   'shaderc',
+  'spirv-cross',
   'uavs3d',
   'vulkan', 
   'zlib',
@@ -86,8 +84,7 @@ for p in pkgs:
       f.write(l)
 pkgs['amf-headers-dev'] = x['amf']
 pkgs['angle-headers-dev'] = x['angle']
-pkgs['libsixel-dev'] = x['libsixel']
-pkgs['luajit-dev'] = x['LuaJIT']      
+pkgs['libsixel-dev'] = x['libsixel']     
 pkgs['luajit2-dev'] = x['luajit2']
 pkgs['mujs-dev'] = x['mujs']
 pkgs['rubberband-dev'] = x['rubberband']
@@ -97,7 +94,7 @@ pkgs['ffmpeg-git'] = x['ffmpeg']
 pkgs['libmpv-git'] = x['mpv']
 pkgs['mpv-git'] = x['mpv']
 
-for t in ['curl.yml', 'ffmpeg.yml', 'libplacebo.yml', 'shaderc.yml', 'vulkan.yml', 'mpv-meson.yml', 'build-weekly.yml', 'package.yml']:
+for t in ['build-weekly.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
     for l in f:
       if (i:=l.find('key: mcf_')) > -1:
