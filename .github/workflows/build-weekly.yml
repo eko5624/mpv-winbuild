@@ -1098,6 +1098,13 @@ jobs:
           key: cross-gcc-mcf-${{ github.run_id }}
           restore-keys: |
             cross-gcc-mcf-
+      - name: Loading rust cache
+        uses: actions/cache/restore@main
+        with:
+          path: ${{ env.top_dir }}/rust
+          key: rust-${{ github.run_id }}
+          restore-keys: |
+            rust-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
