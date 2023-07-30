@@ -10,13 +10,13 @@ source=("git+https://github.com/madler/zlib.git#tag=v$pkgver"
 md5sums=('SKIP' 'SKIP')
 
 build() {
-  export PATH="/github/home/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="/github/home/opt/lib/pkgconfig"
+  export PATH="${TOP_DIR}/cross/bin:$PATH"
+  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
   cd $srcdir/zlib
   patch -p1 -i $srcdir/zlib-1-win32-static.patch
   CHOST=x86_64-w64-mingw32 ./configure \
-    --prefix=/github/home/opt \
+    --prefix="${MINGW_PREFIX}" \
     --static
   make
 }

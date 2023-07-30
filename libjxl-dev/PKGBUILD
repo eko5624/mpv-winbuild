@@ -10,8 +10,8 @@ source=("git+https://github.com/libjxl/libjxl")
 md5sums=('SKIP')
 
 build() {
-  export PATH="/github/home/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="/github/home/opt/lib/pkgconfig"
+  export PATH="${TOP_DIR}/cross/bin:$PATH"
+  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
   # Fix AVX2 related crash due to unaligned stack memory
   export CXXFLAGS="$CXXFLAGS -Wa,-muse-unaligned-vector-move"
@@ -21,8 +21,8 @@ build() {
   git submodule update --init --recursive --depth 1 --recommend-shallow third_party/libjpeg-turbo
   rm -rf build && mkdir build && cd build
   cmake .. -G Ninja \
-    -DCMAKE_INSTALL_PREFIX=/github/home/opt \
-    -DCMAKE_TOOLCHAIN_FILE=/github/home/toolchain-test/toolchain.cmake \
+    -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
+    -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DBUILD_SHARED_LIBS=OFF \
     -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
     -DJPEGXL_STATIC=ON \

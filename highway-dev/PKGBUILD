@@ -9,14 +9,14 @@ source=("git+https://github.com/google/highway.git")
 md5sums=('SKIP')
 
 build() {
-  export PATH="/github/home/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="/github/home/opt/lib/pkgconfig"
+  export PATH="${TOP_DIR}/cross/bin:$PATH"
+  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
   cd $srcdir/highway
   rm -rf build && mkdir build && cd build
   cmake .. -G Ninja \
-    -DCMAKE_INSTALL_PREFIX=/github/home/opt \
-    -DCMAKE_TOOLCHAIN_FILE=/github/home/toolchain-test/toolchain.cmake \
+    -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
+    -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DBUILD_TESTING=OFF \
     -DCMAKE_GNUtoMS=OFF \
     -DHWY_CMAKE_ARM7=OFF \
