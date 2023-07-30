@@ -15,7 +15,7 @@ build() {
   export PKG_CONFIG="pkgconf --static"
   cd $srcdir/Little-CMS
   ./configure \
-    --host=x86_64-w64-mingw32 \
+    --host=${TARGET_ARCH} \
     --prefix="${MINGW_PREFIX}" \
     --disable-shared
   make
