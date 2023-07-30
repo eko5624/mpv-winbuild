@@ -2915,7 +2915,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          chmod +x ./release-package.sh
           ./release-package.sh
 
   rubberband:
