@@ -17,7 +17,7 @@ build() {
   CFLAGS+=' -fno-asynchronous-unwind-tables'
   autoreconf -ivf
   ./configure \
-    --host=x86_64-w64-mingw32 \
+    --host=${TARGET_ARCH} \
     --prefix="${MINGW_PREFIX}" \
     --disable-shared \
     --enable-static
