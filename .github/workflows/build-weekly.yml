@@ -1,7 +1,10 @@
 name: build-weekly
-
+defaults:
+  run:
+    shell: bash
 on:
   workflow_dispatch:
+
   #schedule:
   #- cron: '30 0 * * MON'
     
