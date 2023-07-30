@@ -1223,10 +1223,10 @@ jobs:
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh libiconv-dev libiconv-dev
+        run: |
+          cd ${{ env.top_dir }}/toolchain-test
+          chmod +x ./release-dev.sh
+          ./release-dev.sh libiconv-dev libiconv-dev
 
   libjpeg:
     runs-on: ubuntu-latest
@@ -1317,9 +1317,9 @@ jobs:
           sudo chmod 777 -R ${{ env.top_dir }}
           cd ${{ env.top_dir }}/toolchain-test/libjxl-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
-    - name: Release
-      env:
-        GH_TOKEN: ${{ github.token }}    
+      - name: Release
+        env:
+          GH_TOKEN: ${{ github.token }}    
         run: |
           cd ${{ env.top_dir }}/toolchain-test
           chmod +x ./release-dev.sh
@@ -1609,17 +1609,17 @@ jobs:
           key: cross-gcc-mcf-${{ github.run_id }}
           restore-keys: |
             cross-gcc-mcf-
-    - name: Build
-      run: |
-        cd ${{ env.top_dir }}
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst     
-        pacman -U *.zst --noconfirm         
+      - name: Build
+        run: |
+          cd ${{ env.top_dir }}
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst     
+          pacman -U *.zst --noconfirm         
           sudo chmod 777 -R ${{ env.top_dir }}
           cd ${{ env.top_dir }}/toolchain-test/libpng-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
-    - name: Release
-      env:
-        GH_TOKEN: ${{ github.token }}    
+      - name: Release
+        env:
+          GH_TOKEN: ${{ github.token }}    
         run: |
           cd ${{ env.top_dir }}/toolchain-test
           chmod +x ./release-dev.sh
@@ -1708,14 +1708,14 @@ jobs:
             cross-gcc-mcf-
       - name: Build
         run: |
-        cd ${{ env.top_dir }}
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.0.0-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
-        curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst 
-        pacman -U *.zst --noconfirm        
-        sudo chmod 777 -R ${{ env.top_dir }}
-        cd ${{ env.top_dir }}/toolchain-test/libsixel-dev
-        sudo -H -u builder makepkg-cross -sC --noconfirm
+          cd ${{ env.top_dir }}
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.0.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst 
+          pacman -U *.zst --noconfirm        
+          sudo chmod 777 -R ${{ env.top_dir }}
+          cd ${{ env.top_dir }}/toolchain-test/libsixel-dev
+          sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
