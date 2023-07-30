@@ -1,0 +1,28 @@
+# Maintainer: nyfair <nyfair2012@gmail.com>
+pkgname=libass-dev
+pkgver=0.17.1
+pkgrel=1
+pkgdesc='A portable library for SSA/ASS subtitles rendering'
+arch=('x86_64')
+url="https://github.com/libass/libass/"
+makedepends=('freetype2-dev' 'fribidi-dev' 'harfbuzz-dev' 'libunibreak-dev')
+license=('BSD')
+source=("git+https://github.com/libass/libass")
+md5sums=('SKIP')
+
+build() {
+  export PATH="${TOP_DIR}/cross/bin:$PATH"
+  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
+  export PKG_CONFIG="pkgconf --static"
+  cd $srcdir/libass
+  ./configure \
+    --host=${TARGET_ARCH} \
+    --prefix=${MINGW_PREFIX} \
+    --disable-shared
+  make
+}
+
+package() {
+  cd $srcdir/libass
+  make DESTDIR=$pkgdir install
+}

@@ -1,0 +1,32 @@
+pkgname=libxml2-dev
+pkgver=2.11.4
+pkgrel=1
+pkgdesc='XML parsing library, version 2'
+arch=('x86_64')
+url="http://www.xmlsoft.org/"
+license=('spdx:MIT')
+source=("git+https://github.com/GNOME/libxml2.git")
+md5sums=('SKIP')
+
+build() {
+  export PATH="${TOP_DIR}/cross/bin:$PATH"
+  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
+  export PKG_CONFIG="pkgconf --static"
+  cd $srcdir/libxml2
+  ./autogen.sh
+  ./configure \
+    --host=${TARGET_ARCH} \
+    --prefix=${MINGW_INSTALL_PREFIX} \
+    --disable-shared \
+    --enable-static \
+    --with-minimum \
+    --with-threads \
+    --with-tree \
+    --without-lzma
+  make
+}
+
+package() {
+  cd $srcdir/libxml2
+  make DESTDIR=$pkgdir install
+}

@@ -1,0 +1,28 @@
+pkgname=avisynth-dev
+pkgver=3.7.3
+pkgrel=1
+pkgdesc='A powerful tool for video post-production'
+arch=('x86_64')
+url="https://github.com/AviSynth/AviSynthPlus"
+license=('custom')
+source=("git+https://github.com/AviSynth/AviSynthPlus.git")
+md5sums=('SKIP')
+
+build() {
+  export PATH="${TOP_DIR}/cross/bin:$PATH"
+  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
+  export PKG_CONFIG="pkgconf --static"  
+  cd $srcdir/AviSynthPlus
+  git submodule update --init --recursive
+  rm -rf build && mkdir build && cd build
+  cmake .. -G Ninja \
+    -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
+    -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DHEADERS_ONLY=ON 
+}
+
+package() {
+  cd $srcdir/AviSynthPlus/build
+  make DESTDIR=$pkgdir VersionGen install
+} 

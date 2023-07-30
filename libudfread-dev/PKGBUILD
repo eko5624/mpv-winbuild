@@ -1,0 +1,27 @@
+pkgname=libudfread-dev
+pkgver=1.1.2
+pkgrel=1
+pkgdesc='Library to access Blu-Ray disks for video playback'
+arch=('x86_64')
+url="https://code.videolan.org/videolan/libudfread"
+license=('LGPL')
+source=("git+https://code.videolan.org/videolan/libudfread.git")
+md5sums=('SKIP')
+
+build() {
+  export PATH="${TOP_DIR}/cross/bin:$PATH"
+  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
+  export PKG_CONFIG="pkgconf --static"
+  cd $srcdir/libudfread
+  ./configure \
+    --host=${TARGET_ARCH} \
+    --prefix=${MINGW_PREFIX} \
+    --disable-shared 
+  make
+}
+
+package() {
+  cd $srcdir/libudfread
+  make DESTDIR=$pkgdir install
+  rm -rf $pkgdir${MINGW_PREFIX}/share $pkgdir${MINGW_PREFIX}/bin
+}

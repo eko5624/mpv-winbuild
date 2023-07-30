@@ -1,0 +1,7 @@
+libdir=@MINGW_PREFIX@/lib
+includedir=@MINGW_PREFIX@/include
+
+Name: vapoursynth
+Description:
+Version: _ver
+Libs: -L${libdir} -lVapourSynth

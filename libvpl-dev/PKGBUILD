@@ -1,0 +1,37 @@
+pkgname=libvpl-dev
+pkgver=2023.3.1
+pkgrel=1
+pkgdesc='the successor to Intel® Media SDK'
+arch=('x86_64')
+url="https://github.com/oneapi-src/oneVPL"
+license=('MIT')
+source=("git+https://github.com/oneapi-src/oneVPL.git")
+md5sums=('SKIP')
+
+build() {
+  export PATH="${TOP_DIR}/cross/bin:$PATH"
+  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
+  export PKG_CONFIG="pkgconf --static"
+  cd $srcdir/oneVPL
+  rm -rf build && mkdir build && cd build
+  cmake .. -G Ninja \
+    -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
+    -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_DISPATCHER=ON \
+    -DBUILD_DEV=ON \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DBUILD_TESTS=OFF \
+    -DBUILD_PREVIEW=OFF \
+    -DBUILD_TOOLS=OFF \
+    -DBUILD_TOOLS_ONEVPL_EXPERIMENTAL=OFF \
+    -DINSTALL_EXAMPLE_CODE=OFF 
+  ninja
+}  
+  
+package() {
+  cd $srcdir/oneVPL/build
+  DESTDIR=$pkgdir ninja install
+  rm -rf $pkgdir${MINGW_PREFIX}/etc
+  rm -rf $pkgdir${MINGW_PREFIX}/share
+} 

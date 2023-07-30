@@ -1,0 +1,27 @@
+pkgname=libmodplug-dev
+pkgver=0.8.9.0
+pkgrel=1
+pkgdesc='A MOD playing library'
+arch=('x86_64')
+url="https://modplug-xmms.sourceforge.io/"
+license=('custom')
+source=("git+https://github.com/Konstanty/libmodplug.git")
+md5sums=('SKIP')
+
+build() {
+  export PATH="${TOP_DIR}/cross/bin:$PATH"
+  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
+  export PKG_CONFIG="pkgconf --static"
+  cd $srcdir/libmodplug
+  echo "Cflags.private: -DMODPLUG_STATIC" >> libmodplug.pc.in
+  ./configure \
+    --host=${TARGET_ARCH} \
+    --prefix=${MINGW_INSTALL_PREFIX} \
+    --disable-shared
+  make
+}
+
+package() {
+  cd $srcdir/libmodplug
+  make DESTDIR=$pkgdir install
+}

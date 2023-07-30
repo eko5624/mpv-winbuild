@@ -1,0 +1,34 @@
+pkgname=freetype2-dev
+pkgver=2_13_0
+pkgrel=1
+pkgdesc='Font rasterization library'
+arch=('x86_64')
+url="https://www.freetype.org/"
+makedepends=('libpng-dev' 'zlib-dev')
+license=('GPL')
+source=("git+https://github.com/freetype/freetype.git#tag=VER-${pkgver//_/-}")
+md5sums=('SKIP') 
+
+build() {
+  export PATH="${TOP_DIR}/cross/bin:$PATH"
+  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
+  export PKG_CONFIG="pkgconf --static"
+  cd $srcdir/freetype
+  meson setup build \
+    --prefix="${MINGW_PREFIX}" \
+    --libdir=${MINGW_PREFIX}/lib \
+    --cross-file=../../cross.meson \
+    --buildtype=release \
+    --default-library=static \
+    -Dharfbuzz=disabled \
+    -Dtests=disabled \
+    -Dbrotli=disabled \
+    -Dpng=enabled \
+    -Dzlib=enabled
+  meson compile -C build      
+}
+
+package() {
+  cd $srcdir/freetype
+  DESTDIR=$pkgdir meson install -C build
+}

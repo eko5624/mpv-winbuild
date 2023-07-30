@@ -1,0 +1,32 @@
+# Maintainer: nyfair <nyfair2012@gmail.com>
+pkgname=vapoursynth-dev
+pkgver=63
+pkgrel=1
+pkgdesc='A video processing framework with the future in mind'
+arch=('x86_64')
+url="http://www.vapoursynth.com/"
+license=('LGPL')
+source=("https://github.com/vapoursynth/vapoursynth/releases/download/R$pkgver/VapourSynth64-Portable-R$pkgver.7z")
+md5sums=('SKIP')
+
+package() {
+  export PATH="${TOP_DIR}/cross/bin:$PATH"
+  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
+  export PKG_CONFIG="pkgconf --static"
+  cd $srcdir
+  set -x
+  gendef VSScript.dll
+  gendef VapourSynth.dll
+  dlltool -d VSScript.def -y libvsscript.a 
+  dlltool -d VapourSynth.def -y libvapoursynth.a 
+  mkdir -p $pkgdir${MINGW_PREFIX}/lib/pkgconfig
+  mkdir -p $pkgdir${MINGW_PREFIX}/include
+  mv sdk/include/VapourSynth.h $pkgdir${MINGW_PREFIX}/include
+  mv sdk/include/VSScript.h $pkgdir${MINGW_PREFIX}/include
+  mv sdk/include/VSHelper.h $pkgdir${MINGW_PREFIX}/include
+  cp libvsscript.a $pkgdir${MINGW_PREFIX}/lib
+  cp libvapoursynth.a $pkgdir${MINGW_PREFIX}/lib   
+  cp ../*.pc $pkgdir${MINGW_PREFIX}/lib/pkgconfig
+  sed -i "s/_ver/$pkgver/" $pkgdir${MINGW_PREFIX}/lib/pkgconfig/vapoursynth.pc
+  sed -i "s/_ver/$pkgver/" $pkgdir${MINGW_PREFIX}/lib/pkgconfig/vapoursynth-script.pc
+}

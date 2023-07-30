@@ -1,0 +1,92 @@
+# Maintainer: nyfair <nyfair2012@gmail.com>
+pkgname=(libmpv-git mpv-git)
+pkgver=0.35.1
+pkgrel=1
+pkgdesc='a free, open source, and cross-platform media player'
+arch=('x86_64')
+url='https://mpv.io/'
+makedepends=("libjpeg-dev"
+             "libpng-dev"
+             "libsdl2-dev"
+             "libsixel-dev"
+             "angle-headers-dev"
+             "ffmpeg-dev"
+             "mujs-dev"
+             "rubberband-dev"
+             "luajit2-dev" 
+             "freetype2-dev"
+             "fribidi-dev"
+             "harfbuzz-dev"
+             "libass-dev"
+             "lcms2-dev"
+             "libbluray-dev"
+             "libdvdnav-dev"
+             "libplacebo-dev"
+             "shaderc-dev"
+             "spirv-cross-dev"
+             "vapoursynth-dev"
+             "vulkan-dev"
+             "zlib-dev")
+license=('GPL3')
+source=("git+https://github.com/mpv-player/mpv.git")
+md5sums=('SKIP')
+
+build() {
+  export PATH="${TOP_DIR}/cross/bin:$PATH"
+  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
+  export PKG_CONFIG="pkgconf --static"
+  cd $srcdir/mpv
+  meson setup build \
+    --prefix="${MINGW_PREFIX}" \
+    --libdir=${MINGW_PREFIX}/lib \
+    --cross-file=../../cross.meson \
+    --buildtype=release \
+    --default-library=shared \
+    --prefer-static \
+    -Db_lto=true \
+    -Db_ndebug=true \
+    -Dlibmpv=true \
+    -Dlua=enabled \
+    -Djavascript=enabled \
+    -Dsdl2=enabled \
+    -Dlibbluray=enabled \
+    -Ddvdnav=enabled \
+    -Drubberband=enabled \
+    -Dlcms2=enabled \
+    -Dopenal=enabled \
+    -Dspirv-cross=enabled \
+    -Dvulkan=enabled \
+    -Dlibplacebo=enabled \
+    -Dvapoursynth=enabled \
+    -Degl-angle=enabled
+  meson compile -C build
+  
+  # get latest commit sha
+  short_sha=$(git rev-parse --short HEAD)
+  echo $short_sha > SHORT_SHA
+}
+
+package_libmpv-git() {
+  export PKGEXT='.pkg.tar.xz'
+  mkdir -p $pkgdir${MINGW_PREFIX}/libmpv/include/mpv
+  cd $srcdir/mpv/build
+  strip -s libmpv-2.dll
+  mv libmpv-2.dll $pkgdir${MINGW_PREFIX}/libmpv
+  mv libmpv.dll.a $pkgdir${MINGW_PREFIX}/libmpv
+  mv ../libmpv/mpv.def $pkgdir${MINGW_PREFIX}/libmpv
+  mv ../libmpv/client.h $pkgdir${MINGW_PREFIX}/libmpv/include/mpv
+  mv ../libmpv/stream_cb.h $pkgdir${MINGW_PREFIX}/libmpv/include/mpv
+  mv ../libmpv/render.h $pkgdir${MINGW_PREFIX}/libmpv/include/mpv
+  mv ../libmpv/render_gl.h $pkgdir${MINGW_PREFIX}/libmpv/include/mpv
+}
+
+package_mpv-git() {
+  export PKGEXT='.pkg.tar.xz'
+  mkdir -p $pkgdir${MINGW_PREFIX}/mpv
+  cd $srcdir/mpv/build
+  mv mpv.exe $pkgdir${MINGW_PREFIX}/mpv
+  mv generated/mpv.com $pkgdir${MINGW_PREFIX}/mpv
+  strip -s $pkgdir${MINGW_PREFIX}/mpv/mpv.*
+  mv ../SHORT_SHA $pkgdir${MINGW_PREFIX}/mpv
+  #mv ${MINGW_PREFIX}/bin/vulkan-1.dll $pkgdir${MINGW_PREFIX}/mpv
+}

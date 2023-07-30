@@ -1,0 +1,35 @@
+# Maintainer: nyfair <nyfair2012@gmail.com>
+pkgname=libbluray-dev
+pkgver=1.3.4
+pkgrel=1
+pkgdesc='Library to access Blu-Ray disks for video playback'
+arch=('x86_64')
+url="https://www.videolan.org/developers/libbluray.html"
+makedepends=('freetype2-dev' 'libpng-dev' 'libudfread-dev' 'zlib-dev')
+license=('GPL')
+source=("https://download.videolan.org/pub/videolan/libbluray/$pkgver/libbluray-$pkgver.tar.bz2")
+md5sums=('SKIP')
+
+build() {
+  export PATH="${TOP_DIR}/cross/bin:$PATH"
+  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
+  export PKG_CONFIG="pkgconf --static"
+  cd $srcdir/libbluray-$pkgver
+  ./configure \
+    --host=${TARGET_ARCH} \
+    --prefix=${MINGW_PREFIX}
+    --disable-shared \
+    --disable-examples \
+    --disable-doxygen-doc \
+    --disable-bdjava-jar \
+    --without-libxml2 \
+    --without-fontconfig
+  make
+}
+
+package() {
+  cd $srcdir/libbluray-$pkgver
+  make DESTDIR=$pkgdir install
+  sed -i 's/Requires.private/Requires/' $pkgdir${MINGW_PREFIX}/lib/pkgconfig/*.pc
+  rm -rf $pkgdir${MINGW_PREFIX}/share $pkgdir${MINGW_PREFIX}/bin
+}

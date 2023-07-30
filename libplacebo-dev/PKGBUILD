@@ -1,0 +1,33 @@
+# Maintainer: nyfair <nyfair2012@gmail.com>
+pkgname=libplacebo-dev
+pkgver=6.292.0
+pkgrel=1
+pkgdesc='A Free Implementation of the Unicode Bidirectional Algorithm'
+arch=('x86_64')
+url="https://github.com/haasn/libplacebo/"
+makedepends=('libdovi-dev' 'lcms2-dev' 'vulkan-dev' 'shaderc-dev')
+license=('LGPL')
+source=("git+https://github.com/haasn/libplacebo.git")
+md5sums=('SKIP')
+
+build() {
+  export PATH="${TOP_DIR}/cross/bin:$PATH"
+  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
+  export PKG_CONFIG="pkgconf --static"
+  cd $srcdir/libplacebo
+  git submodule update --init --recursive
+  meson setup build \
+    --prefix="${MINGW_PREFIX}" \
+    --libdir=${MINGW_PREFIX}/lib \
+    --cross-file=../../cross.meson \
+    --buildtype=release \
+    --default-library=static \
+    -Ddemos=false \
+    -Dvulkan-registry="${MINGW_PREFIX}/share/vulkan/registry/vk.xml"
+  meson compile -C build
+}
+
+package() {
+  cd $srcdir/libplacebo
+  DESTDIR=$pkgdir meson install -C build
+}
