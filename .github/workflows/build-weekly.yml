@@ -78,9 +78,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -1288,9 +1286,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -1338,9 +1334,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -1389,9 +1383,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -1443,9 +1435,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -1494,9 +1484,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -1547,9 +1535,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -1598,9 +1584,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -1656,9 +1640,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -1714,9 +1696,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -1767,9 +1747,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -1819,9 +1797,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -1874,9 +1850,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -1924,9 +1898,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -1975,9 +1947,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -2029,9 +1999,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -2083,9 +2051,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -2133,9 +2099,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -2184,9 +2148,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -2237,9 +2199,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -2287,9 +2247,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -2337,9 +2295,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -2387,9 +2343,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -2437,9 +2391,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -2487,9 +2439,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -2538,9 +2488,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -2592,9 +2540,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -2642,9 +2588,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -2694,9 +2638,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -2812,9 +2754,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -2862,9 +2802,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -2912,9 +2850,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -2963,9 +2899,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -3031,9 +2965,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -3081,9 +3013,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -3131,9 +3061,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -3181,9 +3109,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -3230,9 +3156,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -3280,9 +3204,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
@@ -3330,9 +3252,7 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test
+        uses: actions/checkout@main
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
