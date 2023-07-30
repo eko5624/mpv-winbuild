@@ -4,18 +4,9 @@ import in_place
 
 resp = request.urlopen('https://github.com/eko5624/nginx-nosni/raw/master/old.json')
 x = json.loads(resp.read().decode('utf-8'))
-
-mingw = x['Mingw-w64'][:x['Mingw-w64'].find('ucrt')+4]
-curl = x['curl']
-with in_place.InPlace('.github/workflows/toolchain.yml', newline='') as f:
-  for l in f:
-    if (i:=l.find('key: mcf_')) > -1:
-      l = '%s%s\n' % (l[:i+9], mingw)
-    elif (i:=l.find('mingw-w64-gcc-mcf_')) > -1:
-      l = '%s%s.7z\n' % (l[:i+18], x['Mingw-w64'])
-    f.write(l)
     
 pkgs = {} 
+curl = x['curl']
 pkgs['libsixel'] = x['libsixel']     
 pkgs['vapoursynth'] = x['VapourSynth'][1:]
 for p in ['curl', 'mpv', 'ffmpeg', 'luajit2', 'mujs', 'rubberband']:
