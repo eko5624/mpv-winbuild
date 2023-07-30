@@ -11,7 +11,6 @@ pkgs['libsixel'] = x['libsixel']
 pkgs['vapoursynth'] = x['VapourSynth'][1:]
 for p in ['curl', 'mpv', 'ffmpeg', 'luajit2', 'mujs', 'rubberband']:
   pkgs['%s' % p] = x[p]
-pkgs['mcfgthread'] = mingw[:8]
 pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
 for p in [
   'amf',
@@ -88,9 +87,7 @@ pkgs['mpv-git'] = x['mpv']
 for t in ['build-weekly.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
     for l in f:
-      if (i:=l.find('key: mcf_')) > -1:
-        l = '%s%s\n' % (l[:i+9], mingw)
-      elif (i:=l.find('/dev/')) > -1:
+      if (i:=l.find('/dev/')) > -1:
         r = l.find('-1-x86_64')
         rr = l.rfind('-', i, r)
         p = l[i+5:rr]
