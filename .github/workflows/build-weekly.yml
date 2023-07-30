@@ -16,6 +16,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -24,14 +30,11 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -42,14 +45,13 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/amf-dev
+          sudo chmod 777 -R .
+          cd amf-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          cd ${{ env.top_dir }}/toolchain-test
-          chmod +x ./release-dev.sh
           ./release-dev.sh amf-headers-dev amf-dev
 
   angle:
@@ -62,6 +64,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -75,9 +83,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -88,14 +95,13 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/angle-headers-dev
+          sudo chmod 777 -R .
+          cd angle-headers-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          cd ${{ env.top_dir }}/toolchain-test
-          chmod +x ./release-dev.sh
           ./release-dev.sh angle-headers-dev angle-dev
 
   avisynth:
@@ -108,6 +114,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -116,14 +128,11 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -134,14 +143,13 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/amf-dev
+          sudo chmod 777 -R .
+          cd amf-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          cd ${{ env.top_dir }}/toolchain-test
-          chmod +x ./release-dev.sh
           ./release-dev.sh avisynth-dev avisynth-dev
 
   brotli:
@@ -154,6 +162,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -162,14 +176,11 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -180,14 +191,13 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/brotli-dev
+          sudo chmod 777 -R .
+          cd brotli-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          cd ${{ env.top_dir }}/toolchain-test
-          chmod +x ./release-dev.sh
           ./release-dev.sh brotli-dev brotli-dev
 
   config:
@@ -200,6 +210,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -208,14 +224,11 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -226,14 +239,13 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/mpv-config
+          sudo chmod 777 -R .
+          cd mpv-config
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          cd ${{ env.top_dir }}/toolchain-test
-          chmod +x ./release-dev.sh
           ./release-latest.sh config mpv-config
 
   ffmpeg:
@@ -247,6 +259,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -255,14 +273,11 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -311,14 +326,13 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/ffmpeg
+          sudo chmod 777 -R .
+          cd ffmpeg
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          cd ${{ env.top_dir }}/toolchain-test
-          chmod +x ./release-dev.sh
           ./release-latest.sh ffmpeg-git ffmpeg
           ./release-dev.sh ffmpeg-dev ffmpeg
 
@@ -333,6 +347,12 @@ jobs:
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq
           pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -341,14 +361,11 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -359,14 +376,13 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/dav1d-dev
+          sudo chmod 777 -R .
+          cd dav1d-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          cd ${{ env.top_dir }}/toolchain-test
-          chmod +x ./release-dev.sh
           ./release-dev.sh dav1d-dev dav1d-dev
 
   davs2:
@@ -386,19 +402,22 @@ jobs:
           git config --global fetch.prune true
           git config --global --add safe.directory $PWD
 
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -409,14 +428,13 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/davs2-dev
+          sudo chmod 777 -R .
+          cd davs2-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          cd ${{ env.top_dir }}/toolchain-test
-          chmod +x ./release-dev.sh
           ./release-dev.sh davs2-dev davs2-dev
 
   ffnvcodec:
@@ -429,19 +447,22 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -452,7 +473,8 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/ffnvcodec-dev
+          sudo chmod 777 -R .
+          cd ffnvcodec-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
@@ -473,19 +495,22 @@ jobs:
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq
           pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -500,7 +525,8 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm 
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/freetype2-dev
+          sudo chmod 777 -R .
+          cd freetype2-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
@@ -520,19 +546,22 @@ jobs:
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq
           pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -543,7 +572,8 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/fribidi-dev
+          sudo chmod 777 -R .
+          cd fribidi-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
@@ -562,19 +592,22 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -585,7 +618,8 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/gmp-dev
+          sudo chmod 777 -R .
+          cd gmp-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
@@ -606,19 +640,22 @@ jobs:
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq
           pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -633,7 +670,8 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst     
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/harfbuzz-dev
+          sudo chmod 777 -R .
+          cd harfbuzz-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
@@ -652,19 +690,22 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -675,7 +716,8 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/highway-dev
+          sudo chmod 777 -R .
+          cd highway-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
@@ -694,19 +736,22 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -717,7 +762,8 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/lame-dev
+          sudo chmod 777 -R .
+          cd lame-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
@@ -736,19 +782,22 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -759,7 +808,8 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/lcms2-dev
+          sudo chmod 777 -R .
+          cd lcms2-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm 
       - name: Release
         env:
@@ -779,19 +829,22 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -810,7 +863,8 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst       
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libass-dev
+          sudo chmod 777 -R .
+          cd libass-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
@@ -830,19 +884,22 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -860,7 +917,8 @@ jobs:
           curl -OL https://raw.githubusercontent.com/BtbN/FFmpeg-Builds/master/patches/aribb24/17.patch
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libaribb24-dev
+          sudo chmod 777 -R .
+          cd libaribb24-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
@@ -880,19 +938,22 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -909,14 +970,13 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst        
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libbluray-dev
+          sudo chmod 777 -R .
+          cd libbluray-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          cd ${{ env.top_dir }}/toolchain-test
-          chmod +x ./release-dev.sh
           ./release-dev.sh libbluray-dev libbluray-dev
 
   libbs2b:
@@ -929,19 +989,22 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -952,14 +1015,13 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libbs2b-dev
+          sudo chmod 777 -R .
+          cd libbs2b-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          cd ${{ env.top_dir }}/toolchain-test
-          chmod +x ./release-dev.sh
           ./release-dev.sh libbs2b-dev libbs2b-dev
 
   libcaca:
@@ -972,19 +1034,22 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -995,7 +1060,8 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libcaca-dev
+          sudo chmod 777 -R .
+          cd libcaca-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
@@ -1015,19 +1081,22 @@ jobs:
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq
           pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1038,7 +1107,8 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libdovi-dev
+          sudo chmod 777 -R .
+          cd libdovi-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm    
       - name: Release
         env:
@@ -1057,19 +1127,22 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1080,7 +1153,8 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libdvdcss-dev
+          sudo chmod 777 -R .
+          cd libdvdcss-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
@@ -1100,19 +1174,22 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1127,7 +1204,8 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libdvdnav-dev
+          sudo chmod 777 -R .
+          cd libdvdnav-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
@@ -1147,19 +1225,22 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
       - name: Checkout
-        run: |
-          cd ${{ env.top_dir }}
-          git clone https://github.com/eko5624/toolchain-test        
+        uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1173,7 +1254,8 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libdvdread-dev
+          sudo chmod 777 -R .
+          cd libdvdread-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
@@ -1192,6 +1274,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1205,9 +1293,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1218,14 +1305,13 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libiconv-dev
+          sudo chmod 777 -R .
+          cd libiconv-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          cd ${{ env.top_dir }}/toolchain-test
-          chmod +x ./release-dev.sh
           ./release-dev.sh libiconv-dev libiconv-dev
 
   libjpeg:
@@ -1238,6 +1324,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1251,9 +1343,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1264,15 +1355,14 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libjxl-dev
+          sudo chmod 777 -R .
+          cd libjxl-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh libjpeg-dev libjpeg-dev
+        run: |
+          ./release-dev.sh libjpeg-dev libjpeg-dev
         
   libjxl:
     needs: [lcms2, libjpeg]
@@ -1285,6 +1375,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1298,9 +1394,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1315,14 +1410,13 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.0.0-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm        
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libjxl-dev
+          sudo chmod 777 -R .
+          cd libjxl-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          cd ${{ env.top_dir }}/toolchain-test
-          chmod +x ./release-dev.sh
           ./release-dev.sh libjxl-dev libjxl-dev         
 
   libmodplug:
@@ -1335,6 +1429,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1348,9 +1448,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1361,15 +1460,14 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libmodplug-dev
+          sudo chmod 777 -R .
+          cd libmodplug-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh libmodplug-dev libmodplug-dev 
+        run: |
+          ./release-dev.sh libmodplug-dev libmodplug-dev 
 
   libmysofa:
     needs: [zlib]
@@ -1382,6 +1480,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1395,9 +1499,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1411,15 +1514,14 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm                   
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libmysofa-dev
+          sudo chmod 777 -R .
+          cd libmysofa-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm 
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh libmysofa-dev libmysofa-dev                           
+        run: |
+          ./release-dev.sh libmysofa-dev libmysofa-dev                           
 
   libogg:
     runs-on: ubuntu-latest
@@ -1431,6 +1533,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1444,9 +1552,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1457,15 +1564,14 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libogg-dev
+          sudo chmod 777 -R .
+          cd libogg-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh libogg-dev libogg-dev 
+        run: |
+          ./release-dev.sh libogg-dev libogg-dev 
         
   libopenmpt:
     needs: [zlib, libogg, libsdl2, libvorbis_aotuv]
@@ -1478,6 +1584,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1491,9 +1603,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1510,15 +1621,14 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm         
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libopenmpt-dev
+          sudo chmod 777 -R .
+          cd libopenmpt-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh libopenmpt-dev libopenmpt-dev                
+        run: |
+          ./release-dev.sh libopenmpt-dev libopenmpt-dev                
 
   libplacebo:
     needs: [libdovi, lcms2, vulkan, shaderc, spirv-cross]
@@ -1532,6 +1642,12 @@ jobs:
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git ninja Jinja2 cmake yasm nasm unzip p7zip python-pip python-cairo curl jq
           pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1545,9 +1661,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1565,15 +1680,14 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.250.1-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm 
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libplacebo-dev
+          sudo chmod 777 -R .
+          cd libplacebo-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh libplacebo-dev libplacebo-dev
+        run: |
+          ./release-dev.sh libplacebo-dev libplacebo-dev
         
   libpng:
     needs: [zlib]
@@ -1586,6 +1700,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1599,9 +1719,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1615,14 +1734,13 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst     
           pacman -U *.zst --noconfirm         
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libpng-dev
+          sudo chmod 777 -R .
+          cd libpng-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          cd ${{ env.top_dir }}/toolchain-test
-          chmod +x ./release-dev.sh
           ./release-dev.sh libpng-dev libpng-dev      
         
   libsdl2:
@@ -1635,6 +1753,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1648,9 +1772,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1661,15 +1784,14 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libsdl2-dev
+          sudo chmod 777 -R .
+          cd libsdl2-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh libsdl2-dev libsdl2-dev 
+        run: |
+          ./release-dev.sh libsdl2-dev libsdl2-dev 
 
   libsixel:
     needs: [libjpeg, libpng]
@@ -1683,6 +1805,12 @@ jobs:
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq
           pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1696,9 +1824,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1714,15 +1841,14 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst 
           pacman -U *.zst --noconfirm        
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libsixel-dev
+          sudo chmod 777 -R .
+          cd libsixel-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh libsixel-dev libsixel 
+        run: |
+          ./release-dev.sh libsixel-dev libsixel 
 
   libsoxr:
     runs-on: ubuntu-latest
@@ -1734,6 +1860,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1747,9 +1879,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1760,15 +1891,14 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libsoxr-dev
+          sudo chmod 777 -R .
+          cd libsoxr-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm 
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh libsoxr-dev libsoxr-dev                   
+        run: |
+          ./release-dev.sh libsoxr-dev libsoxr-dev                   
 
   libspeex:
     runs-on: ubuntu-latest
@@ -1780,6 +1910,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1793,9 +1929,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1806,15 +1941,14 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libspeex-dev
+          sudo chmod 777 -R .
+          cd libspeex-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh libspeex-dev libspeex-dev 
+        run: |
+          ./release-dev.sh libspeex-dev libspeex-dev 
 
   libsrt:
     needs: [mbedtls]
@@ -1827,6 +1961,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1840,9 +1980,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1856,15 +1995,14 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/mbedtls-dev-3.4.0-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm                   
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libsrt-dev
+          sudo chmod 777 -R .
+          cd libsrt-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm 
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh libsrt-dev libsrt-dev 
+        run: |
+          ./release-dev.sh libsrt-dev libsrt-dev 
 
   libssh:
     needs: [mbedtls, zlib]
@@ -1877,6 +2015,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1890,9 +2034,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1907,15 +2050,14 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/mbedtls-dev-3.4.0-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm                   
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libssh-dev
+          sudo chmod 777 -R .
+          cd libssh-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm 
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh libssh-dev libssh-dev 
+        run: |
+          ./release-dev.sh libssh-dev libssh-dev 
 
   libudfread:
     runs-on: ubuntu-latest
@@ -1927,6 +2069,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1940,9 +2088,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1953,15 +2100,14 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libudfread-dev
+          sudo chmod 777 -R .
+          cd libudfread-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh libudfread-dev libudfread-dev
+        run: |
+          ./release-dev.sh libudfread-dev libudfread-dev
 
   libunibreak:
     runs-on: ubuntu-latest
@@ -1973,6 +2119,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1986,9 +2138,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1999,15 +2150,14 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libunibreak-dev
+          sudo chmod 777 -R .
+          cd libunibreak-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh libunibreak-dev libunibreak-dev                             
+        run: |
+          ./release-dev.sh libunibreak-dev libunibreak-dev                             
 
   libvorbis_aotuv:
     needs: [libogg]
@@ -2020,6 +2170,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2033,9 +2189,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2049,15 +2204,14 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libvorbis_aotuv-dev
+          sudo chmod 777 -R .
+          cd libvorbis_aotuv-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh libvorbis_aotuv-dev libvorbis_aotuv-dev
+        run: |
+          ./release-dev.sh libvorbis_aotuv-dev libvorbis_aotuv-dev
 
   libvpl:
     runs-on: ubuntu-latest
@@ -2069,6 +2223,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2082,9 +2242,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2095,14 +2254,13 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libvpl-dev
+          sudo chmod 777 -R .
+          cd libvpl-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm 
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          cd ${{ env.top_dir }}/toolchain-test
-          chmod +x ./release-dev.sh
           ./release-dev.sh libvpl-dev libvpl-dev         
 
   libvpx:
@@ -2115,6 +2273,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2128,9 +2292,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2141,15 +2304,14 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libvpx-dev
+          sudo chmod 777 -R .
+          cd libvpx-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh libvpx-dev libvpx-dev
+        run: |
+          ./release-dev.sh libvpx-dev libvpx-dev
 
   libwebp:
     runs-on: ubuntu-latest
@@ -2161,6 +2323,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2174,9 +2342,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2187,15 +2354,14 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libwebp-dev
+          sudo chmod 777 -R .
+          cd libwebp-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh libwebp-dev libwebp-dev
+        run: |
+          ./release-dev.sh libwebp-dev libwebp-dev
 
   libxml2:
     runs-on: ubuntu-latest
@@ -2207,6 +2373,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2220,9 +2392,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2233,15 +2404,14 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libxml2-dev
+          sudo chmod 777 -R .
+          cd libxml2-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh libxml2-dev libxml2-dev        
+        run: |
+          ./release-dev.sh libxml2-dev libxml2-dev        
         
   libxvid:
     runs-on: ubuntu-latest
@@ -2253,6 +2423,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2266,9 +2442,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2279,15 +2454,14 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libxvid-dev
+          sudo chmod 777 -R .
+          cd libxvid-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh libxvid-dev libxvid-dev  
+        run: |
+          ./release-dev.sh libxvid-dev libxvid-dev  
         
   libzimg:
     runs-on: ubuntu-latest
@@ -2299,6 +2473,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2312,9 +2492,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2325,15 +2504,14 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libzimg-dev
+          sudo chmod 777 -R .
+          cd libzimg-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh libzimg-dev libzimg-dev  
+        run: |
+          ./release-dev.sh libzimg-dev libzimg-dev  
 
   libzvbi:
     needs: [libpng]
@@ -2346,6 +2524,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2359,9 +2543,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2376,15 +2559,14 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst        
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/libzvbi-dev
+          sudo chmod 777 -R .
+          cd libzvbi-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh libzvbi-dev libzvbi-dev
+        run: |
+          ./release-dev.sh libzvbi-dev libzvbi-dev
 
   luajit2:
     runs-on: ubuntu-latest
@@ -2396,6 +2578,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2409,9 +2597,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2422,15 +2609,14 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/luajit2-dev
+          sudo chmod 777 -R .
+          cd luajit2-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh luajit2-dev luajit2 
+        run: |
+          ./release-dev.sh luajit2-dev luajit2 
 
   mbedtls:
     runs-on: ubuntu-latest
@@ -2442,6 +2628,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2455,9 +2647,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2468,15 +2659,14 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/mbedtls-dev
+          sudo chmod 777 -R .
+          cd mbedtls-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh mbedtls-dev mbedtls-dev               
+        run: |
+          ./release-dev.sh mbedtls-dev mbedtls-dev               
 
   mpv:
     needs: [libcaca, libjpeg, libpng, libsdl2, libsixel, openal-soft, ffmpeg, luajit2, libass, lcms2, libbluray, libudfread, libdvdnav, libplacebo, angle, mujs, rubberband, spirv-cross, vulkan]
@@ -2490,6 +2680,12 @@ jobs:
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq
           pip3 install -U --break-system-packages setuptools rst2pdf mako meson
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2503,9 +2699,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2577,7 +2772,8 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/mpv
+          sudo chmod 777 -R .
+          cd mpv
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Delete old libmpv
         env:
@@ -2602,6 +2798,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2615,9 +2817,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2628,15 +2829,14 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/mujs-dev
+          sudo chmod 777 -R .
+          cd mujs-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh mujs-dev mujs
+        run: |
+          ./release-dev.sh mujs-dev mujs
 
   openal-soft:
     runs-on: ubuntu-latest
@@ -2648,6 +2848,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2661,9 +2867,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2674,15 +2879,14 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/openal-soft-dev
+          sudo chmod 777 -R .
+          cd openal-soft-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh openal-soft-dev openal-soft-dev              
+        run: |
+          ./release-dev.sh openal-soft-dev openal-soft-dev              
 
   opus:
     runs-on: ubuntu-latest
@@ -2694,6 +2898,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2707,9 +2917,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2720,15 +2929,14 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/opus-dev
+          sudo chmod 777 -R .
+          cd opus-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh opus-dev opus-dev
+        run: |
+          ./release-dev.sh opus-dev opus-dev
 
   package:
     needs: [mpv, config]
@@ -2741,6 +2949,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2754,9 +2968,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2804,6 +3017,12 @@ jobs:
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq
           pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2817,9 +3036,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2830,15 +3048,14 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/rubberband-dev
+          sudo chmod 777 -R .
+          cd rubberband-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh rubberband-dev rubberband        
+        run: |
+          ./release-dev.sh rubberband-dev rubberband        
   
   shaderc:
     runs-on: ubuntu-latest
@@ -2850,6 +3067,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2863,9 +3086,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2876,15 +3098,14 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/shaderc-dev
+          sudo chmod 777 -R .
+          cd shaderc-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh shaderc-dev shaderc-dev
+        run: |
+          ./release-dev.sh shaderc-dev shaderc-dev
 
   spirv-cross:
     runs-on: ubuntu-latest
@@ -2896,6 +3117,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2909,9 +3136,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2920,17 +3146,16 @@ jobs:
           restore-keys: |
             cross-gcc-mcf-
       - name: Build
-          run: |
+        run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/spirv-cross-dev
+          sudo chmod 777 -R .
+          cd spirv-cross-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh spirv-cross-dev spirv-cross-dev
+        run: |
+          ./release-dev.sh spirv-cross-dev spirv-cross-dev
 
   uavs3d:
     runs-on: ubuntu-latest
@@ -2942,6 +3167,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2955,9 +3186,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2967,15 +3197,14 @@ jobs:
             cross-gcc-mcf-
       - name: Build
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/uavs3d-dev
+          sudo chmod 777 -R .
+          cd uavs3d-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh uavs3d-dev uavs3d-dev        
+        run: |
+          ./release-dev.sh uavs3d-dev uavs3d-dev        
 
   vapoursynth:
     runs-on: ubuntu-latest
@@ -2987,6 +3216,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -3000,9 +3235,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -3013,15 +3247,14 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/vapoursynth-dev
+          sudo chmod 777 -R .
+          cd vapoursynth-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh vapoursynth-dev vapoursynth
+        run: |
+          ./release-dev.sh vapoursynth-dev vapoursynth
 
   vulkan:
     runs-on: ubuntu-latest
@@ -3033,6 +3266,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -3046,9 +3285,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -3059,15 +3297,14 @@ jobs:
       - name: Build
           run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/vulkan-dev
+          sudo chmod 777 -R .
+          cd vulkan-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh vulkan-dev vulkan-dev
+        run: |
+          ./release-dev.sh vulkan-dev vulkan-dev
         
   zlib:
     runs-on: ubuntu-latest
@@ -3079,6 +3316,12 @@ jobs:
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
           sudo pacman -S --noconfirm --needed git cmake yasm nasm unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
@@ -3092,9 +3335,8 @@ jobs:
           git clone https://github.com/eko5624/toolchain-test
       - name: Setting makepkg etc
         run: |
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg_cross.conf /etc
-          sudo cp ${{ env.top_dir }}/toolchain-test/pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -3105,12 +3347,11 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
-          cd ${{ env.top_dir }}/toolchain-test/zlib-dev
+          sudo chmod 777 -R .
+          cd zlib-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
-          run: |
-            cd ${{ env.top_dir }}/toolchain-test
-            chmod +x ./release-dev.sh
-            ./release-dev.sh zlib-dev zlib-dev
+        run: |
+          ./release-dev.sh zlib-dev zlib-dev
