@@ -3099,6 +3099,7 @@ jobs:
           restore-keys: |
             cross-gcc-mcf-
       - name: Build
+        run: |
           sudo chmod 777 -R ${{ env.top_dir }}
           sudo chmod 777 -R .
           cd uavs3d-dev
