@@ -4,6 +4,7 @@ defaults:
     shell: bash
 on:
   workflow_dispatch:
+
   #schedule:
   #- cron: '30 0 * * MON'
     
@@ -30,7 +31,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
@@ -78,7 +79,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -126,7 +127,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
@@ -174,7 +175,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
@@ -222,7 +223,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
@@ -271,7 +272,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
@@ -360,7 +361,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
@@ -481,7 +482,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          chmod +x ./release-dev.sh
           ./release-dev.sh ffnvcodec-dev ffnvcodec-dev
 
   freetype2:
@@ -532,7 +532,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          chmod +x ./release-dev.sh
           ./release-dev.sh freetype2-dev freetype2-dev
 
   fribidi:
@@ -579,7 +578,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          chmod +x ./release-dev.sh
           ./release-dev.sh fribidi-dev fribidi-dev
 
   gmp:
@@ -625,7 +623,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          chmod +x ./release-dev.sh
           ./release-dev.sh gmp-dev gmp-dev       
 
   harfbuzz:
@@ -676,7 +673,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          chmod +x ./release-dev.sh
           ./release-dev.sh harfbuzz-dev harfbuzz-dev 
 
   highway:
@@ -722,7 +718,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          chmod +x ./release-dev.sh
           ./release-dev.sh highway-dev highway-dev 
 
   lame:
@@ -768,7 +763,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          chmod +x ./release-dev.sh
           ./release-dev.sh lame-dev lame-dev 
 
   lcms2:
@@ -814,7 +808,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          chmod +x ./release-dev.sh
           ./release-dev.sh lcms2-dev lcms2-dev 
 
   libass:
@@ -868,7 +861,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          chmod +x ./release-dev.sh
           ./release-dev.sh libass-dev libass-dev
 
   libaribb24:
@@ -921,7 +913,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          chmod +x ./release-dev.sh
           ./release-dev.sh libaribb24-dev libaribb24-dev        
 
   libbluray:
@@ -1063,7 +1054,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          chmod +x ./release-dev.sh
           ./release-dev.sh libcaca-dev libcaca-dev
 
   libdovi:
@@ -1117,7 +1107,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          chmod +x ./release-dev.sh
           ./release-dev.sh libdovi-dev libdovi-dev                     
 
   libdvdcss:
@@ -1163,7 +1152,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          chmod +x ./release-dev.sh
           ./release-dev.sh libdvdcss-dev libdvdcss-dev
 
   libdvdnav:
@@ -1213,7 +1201,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          chmod +x ./release-dev.sh
           ./release-dev.sh libdvdnav-dev libdvdnav-dev
 
   libdvdread:
@@ -1262,7 +1249,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          chmod +x ./release-dev.sh
           ./release-dev.sh libdvdread-dev libdvdread-dev
 
   libiconv:
@@ -1287,7 +1273,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -1335,7 +1321,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -1384,7 +1370,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -1437,7 +1423,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -1486,7 +1472,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -1536,7 +1522,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -1585,7 +1571,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -1640,7 +1626,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -1695,7 +1681,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -1745,7 +1731,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -1795,7 +1781,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -1847,7 +1833,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -1895,7 +1881,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -1944,7 +1930,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -1995,7 +1981,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -2046,7 +2032,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -2094,7 +2080,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -2143,7 +2129,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -2193,7 +2179,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -2241,7 +2227,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -2289,7 +2275,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -2337,7 +2323,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -2385,7 +2371,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -2433,7 +2419,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -2482,7 +2468,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -2533,7 +2519,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -2581,7 +2567,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -2631,7 +2617,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -2717,13 +2703,11 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          chmod +x ./release-latest.sh
           ./release-latest.sh libmpv-git
       - name: Release mpv and libmpv
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          chmod +x ./release-latest.sh
           ./release-latest.sh mpv-git mpv 
 
   mujs:
@@ -2748,7 +2732,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -2796,7 +2780,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -2844,7 +2828,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -2893,7 +2877,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -2923,10 +2907,10 @@ jobs:
       - name: Zip Packages    
         run: |
           curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2023.07.06/yt-dlp.exe
-          mv yt-dlp.exe opt/mpv
-          7z a static-mpv-${{ env.date }}.7z opt/mpv/*
-          7z a git-libmpv-${{ env.date }}.7z opt/libmpv/*
-          7z a git-ffmpeg-${{ env.date }}-${{ env.ffmpeg_sha }}.7z opt/ffmpeg/*
+          mv yt-dlp.exe ${{ env.top_dir }}/opt/mpv
+          7z a static-mpv-${{ env.date }}.7z ${{ env.top_dir }}/opt/mpv/*
+          7z a git-libmpv-${{ env.date }}.7z ${{ env.top_dir }}/opt/libmpv/*
+          7z a git-ffmpeg-${{ env.date }}-${{ env.ffmpeg_sha }}.7z ${{ env.top_dir }}/opt/ffmpeg/*
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}
@@ -2957,7 +2941,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -3005,7 +2989,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -3053,7 +3037,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -3101,7 +3085,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -3148,7 +3132,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -3196,7 +3180,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
@@ -3244,7 +3228,7 @@ jobs:
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       - name: Setting top_dir env
         run: |
-           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
       - name: Setting makepkg etc
