@@ -1,3 +1,4 @@
+
 name: avisynth
 defaults:
   run:
@@ -54,4 +55,5 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          chmod +x ./release-dev.sh
           ./release-dev.sh avisynth-dev avisynth-dev
