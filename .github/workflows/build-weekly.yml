@@ -1887,7 +1887,7 @@ jobs:
           pacman -U *.zst --noconfirm        
           sudo chmod 777 -R ${{ env.top_dir }}
           sudo chmod 777 -R .
-          cd libsixel-dev
+          cd libsixel
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:

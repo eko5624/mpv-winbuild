@@ -9,11 +9,11 @@ source=()
 md5sums=()
 
 package() {
-  export PATH="${TOP_DIR}/cross/bin:${TOP_DIR}/rustup/.cargo/bin:$PATH"
+  export PATH="${TOP_DIR}/cross/bin:${TOP_DIR}/rust/.cargo/bin:$PATH"
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
-  export RUSTUP_HOME="${TOP_DIR}/rustup/.rustup"
-  export CARGO_HOME="${TOP_DIR}/rustup/.cargo"
+  export RUSTUP_HOME="${TOP_DIR}/rust/.rustup"
+  export CARGO_HOME="${TOP_DIR}/rust/.cargo"
   cd $srcdir
   git clone \
     --depth 1 \
