@@ -9,6 +9,9 @@ source=("git+https://github.com/uavs3/uavs3d.git")
 md5sums=('SKIP')
 
 build() {
+  export PATH="${TOP_DIR}/cross/bin:$PATH"
+  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
+  export PKG_CONFIG="pkgconf --static"
   cd $srcdir/uavs3d
   mkdir out && cd out
   cmake .. -G Ninja \

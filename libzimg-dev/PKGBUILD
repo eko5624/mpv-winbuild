@@ -18,6 +18,7 @@ build() {
   rm -rf graphengine 
   mv $srcdir/graphengine ./
   #patch -p1 -i $srcdir/0001-libm_wrapper-define.patch
+  ./autogen.sh
   ./configure \
     --host=${TARGET_ARCH} \
     --prefix=${MINGW_PREFIX} \

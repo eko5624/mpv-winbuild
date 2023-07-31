@@ -14,7 +14,6 @@ build() {
   export PKG_CONFIG="pkgconf --static"  
   cd $srcdir/libiconv-$pkgver
   ./configure \
-    --build=${TARGET_ARCH} \
     --host=${TARGET_ARCH} \
     --prefix=${MINGW_PREFIX} \
     --disable-nls \

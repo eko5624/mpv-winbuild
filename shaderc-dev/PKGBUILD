@@ -32,7 +32,7 @@ build() {
   rm -rf build && mkdir build && cd build
   cmake .. \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
-    -DCMAKE_TOOLCHAIN_FILE=../../cmake/linux-mingw-toolchain.cmake \
+    -DCMAKE_TOOLCHAIN_FILE=../cmake/linux-mingw-toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DSHADERC_SKIP_TESTS=ON \
     -DSHADERC_SKIP_SPVC=ON \

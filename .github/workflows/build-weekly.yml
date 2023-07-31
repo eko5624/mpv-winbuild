@@ -1416,7 +1416,7 @@ jobs:
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
           sudo chmod 777 -R .
-          cd libjxl-dev
+          cd libjpeg-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
@@ -2636,7 +2636,7 @@ jobs:
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
           sudo chmod 777 -R .
-          cd luajit2-dev
+          cd luajit2
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
@@ -2851,7 +2851,7 @@ jobs:
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
           sudo chmod 777 -R .
-          cd mujs-dev
+          cd mujs
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
@@ -3061,7 +3061,7 @@ jobs:
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
           sudo chmod 777 -R .
-          cd rubberband-dev
+          cd rubberband
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
@@ -3257,7 +3257,7 @@ jobs:
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
           sudo chmod 777 -R .
-          cd vapoursynth-dev
+          cd vapoursynth
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:

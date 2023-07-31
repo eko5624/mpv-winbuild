@@ -13,6 +13,7 @@ build() {
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
   cd $srcdir/libmodplug
+  autoreconf -ivf
   echo "Cflags.private: -DMODPLUG_STATIC" >> libmodplug.pc.in
   ./configure \
     --host=${TARGET_ARCH} \

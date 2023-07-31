@@ -23,6 +23,7 @@ build() {
       echo "Applying $patch"
       patch -p1 < "$patch"
   done
+  autoreconf -fvi
   ./configure \
     --host=${TARGET_ARCH} \
     --prefix=${MINGW_PREFIX} \

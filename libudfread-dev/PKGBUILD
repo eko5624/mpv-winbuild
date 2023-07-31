@@ -13,6 +13,7 @@ build() {
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
   cd $srcdir/libudfread
+  autoreconf -ivf
   ./configure \
     --host=${TARGET_ARCH} \
     --prefix=${MINGW_PREFIX} \
