@@ -15,7 +15,7 @@ build() {
   cd $srcdir/AviSynthPlus
   git submodule update --init --recursive
   rm -rf build && mkdir build && cd build
-  cmake .. -G Ninja \
+  cmake .. \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
