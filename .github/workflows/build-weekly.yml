@@ -39,7 +39,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -89,7 +88,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -101,7 +99,7 @@ jobs:
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
           sudo chmod 777 -R .
-          cd angle-headers-dev
+          cd angle-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
@@ -139,7 +137,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -200,7 +197,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -250,7 +246,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -301,7 +296,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -391,7 +385,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -438,14 +431,16 @@ jobs:
       - name: Add builder user
         run: |
           useradd builder -m
-          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+      - name: Setting top_dir env
+        run: |
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -485,14 +480,16 @@ jobs:
       - name: Add builder user
         run: |
           useradd builder -m
-          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+      - name: Setting top_dir env
+        run: |
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -533,14 +530,16 @@ jobs:
       - name: Add builder user
         run: |
           useradd builder -m
-          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+      - name: Setting top_dir env
+        run: |
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -583,14 +582,16 @@ jobs:
       - name: Add builder user
         run: |
           useradd builder -m
-          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+      - name: Setting top_dir env
+        run: |
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -630,14 +631,16 @@ jobs:
       - name: Add builder user
         run: |
           useradd builder -m
-          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+      - name: Setting top_dir env
+        run: |
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -678,14 +681,16 @@ jobs:
       - name: Add builder user
         run: |
           useradd builder -m
-          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+      - name: Setting top_dir env
+        run: |
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -728,14 +733,16 @@ jobs:
       - name: Add builder user
         run: |
           useradd builder -m
-          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+      - name: Setting top_dir env
+        run: |
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -775,14 +782,16 @@ jobs:
       - name: Add builder user
         run: |
           useradd builder -m
-          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+      - name: Setting top_dir env
+        run: |
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -822,14 +831,16 @@ jobs:
       - name: Add builder user
         run: |
           useradd builder -m
-          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+      - name: Setting top_dir env
+        run: |
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -870,14 +881,16 @@ jobs:
       - name: Add builder user
         run: |
           useradd builder -m
-          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+      - name: Setting top_dir env
+        run: |
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -925,14 +938,16 @@ jobs:
       - name: Add builder user
         run: |
           useradd builder -m
-          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+      - name: Setting top_dir env
+        run: |
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -979,14 +994,16 @@ jobs:
       - name: Add builder user
         run: |
           useradd builder -m
-          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+      - name: Setting top_dir env
+        run: |
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1031,14 +1048,16 @@ jobs:
       - name: Add builder user
         run: |
           useradd builder -m
-          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+      - name: Setting top_dir env
+        run: |
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1078,14 +1097,16 @@ jobs:
       - name: Add builder user
         run: |
           useradd builder -m
-          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+      - name: Setting top_dir env
+        run: |
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1125,14 +1146,16 @@ jobs:
       - name: Add builder user
         run: |
           useradd builder -m
-          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+      - name: Setting top_dir env
+        run: |
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1179,14 +1202,16 @@ jobs:
       - name: Add builder user
         run: |
           useradd builder -m
-          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+      - name: Setting top_dir env
+        run: |
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1227,14 +1252,16 @@ jobs:
       - name: Add builder user
         run: |
           useradd builder -m
-          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+      - name: Setting top_dir env
+        run: |
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1278,14 +1305,16 @@ jobs:
       - name: Add builder user
         run: |
           useradd builder -m
-          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers   
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+      - name: Setting top_dir env
+        run: |
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@main       
       - name: Setting makepkg etc
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1337,7 +1366,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1387,7 +1415,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1438,7 +1465,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1493,7 +1519,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1544,7 +1569,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1596,7 +1620,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1647,7 +1670,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1703,7 +1725,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1760,7 +1781,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1812,7 +1832,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1863,7 +1882,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1917,7 +1935,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1967,7 +1984,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2018,7 +2034,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2071,7 +2086,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2124,7 +2138,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2174,7 +2187,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2225,7 +2237,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2277,7 +2288,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2327,7 +2337,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2377,7 +2386,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2427,7 +2435,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2477,7 +2484,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2527,7 +2533,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2578,7 +2583,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2631,7 +2635,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2681,7 +2684,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2732,7 +2734,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2849,7 +2850,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2899,7 +2899,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2949,7 +2948,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2999,7 +2997,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -3063,7 +3060,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -3113,7 +3109,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -3163,7 +3158,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -3213,7 +3207,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -3263,7 +3256,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -3313,7 +3305,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -3363,7 +3354,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:

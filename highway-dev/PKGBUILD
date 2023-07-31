@@ -14,7 +14,7 @@ build() {
   export PKG_CONFIG="pkgconf --static"
   cd $srcdir/highway
   rm -rf build && mkdir build && cd build
-  cmake .. -G Ninja \
+  cmake .. \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DBUILD_TESTING=OFF \
@@ -24,10 +24,10 @@ build() {
     -DHWY_ENABLE_EXAMPLES=OFF \
     -DHWY_ENABLE_INSTALL=ON \
     -DHWY_WARNINGS_ARE_ERRORS=OFF 
-  ninja
+  make
 }  
   
 package() {
   cd $srcdir/highway/build
-  DESTDIR=$pkgdir ninja install
+  DESTDIR=$pkgdir make install
 }  

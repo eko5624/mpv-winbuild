@@ -14,16 +14,16 @@ build() {
   export PKG_CONFIG="pkgconf --static"
   cd $srcdir/brotli
   rm -rf out && mkdir out && cd out
-  cmake .. -G Ninja \
+  cmake .. \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DBUILD_SHARED_LIBS=OFF \
     -DCMAKE_BUILD_TYPE=Release \
     -DBROTLI_EMSCRIPTEN=OFF
-  ninja
+  make
 } 
   
 package() {
   cd $srcdir/brotli/out  
-  DESTDIR=$pkgdir ninja install
+  DESTDIR=$pkgdir make install
 }
