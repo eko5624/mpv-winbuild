@@ -14,7 +14,7 @@ build() {
   export PKG_CONFIG="pkgconf --static"
   cd $srcdir/SDL
   rm -rf build && mkdir build && cd build
-  cmake .. -G Ninja \
+  cmake .. \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \

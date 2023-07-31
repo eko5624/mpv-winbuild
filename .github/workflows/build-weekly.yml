@@ -150,22 +150,12 @@ jobs:
           sudo chmod 777 -R .
           cd avisynth-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
-      - name: Delete
-        uses: mknejp/delete-release-assets@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag: dev
-          assets: avisynth*
-          fail-if-no-assets: false
-          fail-if-no-release: false
-      - name: Upload
-        uses: svenstaro/upload-release-action@master
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: avisynth-dev/*.zst
-          tag: dev
-          overwrite: true
-          file_glob: true
+      - name: Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ./release-dev.sh avisynth-dev avisynth-dev
+
 
   brotli:
     runs-on: ubuntu-latest

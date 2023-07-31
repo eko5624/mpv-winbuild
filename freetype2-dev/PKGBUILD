@@ -17,7 +17,7 @@ build() {
   meson setup build \
     --prefix="${MINGW_PREFIX}" \
     --libdir=${MINGW_PREFIX}/lib \
-    --cross-file=../../cross.meson \
+    --cross-file=../../../cross.meson \
     --buildtype=release \
     --default-library=static \
     -Dharfbuzz=disabled \

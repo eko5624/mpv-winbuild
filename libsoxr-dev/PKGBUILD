@@ -16,7 +16,7 @@ build() {
   cd $srcdir/code
   patch -p1 -i $srcdir/0001-libsoxr-fix-pc-file-installation.patch
   rm -rf build && mkdir build && cd build
-  cmake .. -G Ninja \
+  cmake .. \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
@@ -30,5 +30,5 @@ build() {
 
 package() {
   cd $srcdir/code/build
-  DESTDIR=$pkgdir cmake --install .
+  DESTDIR=$pkgdir${MINGW_PREFIX} cmake --install .
 }

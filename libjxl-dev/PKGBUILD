@@ -20,7 +20,7 @@ build() {
   cd $srcdir/libjxl
   git submodule update --init --recursive --depth 1 --recommend-shallow third_party/libjpeg-turbo
   rm -rf build && mkdir build && cd build
-  cmake .. -G Ninja \
+  cmake .. \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DBUILD_SHARED_LIBS=OFF \
@@ -40,10 +40,10 @@ build() {
     -DJPEGXL_ENABLE_DEVTOOLS=OFF \
     -DJPEGXL_ENABLE_BENCHMARK=OFF \
     -DJPEGXL_ENABLE_SJPEG=OFF  
-  ninja
+  make
 }
 
 package() {
   cd $srcdir/libjxl/build
-  DESTDIR=$pkgdir ninja install
+  DESTDIR=$pkgdir make install
 }
