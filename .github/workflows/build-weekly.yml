@@ -39,6 +39,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -88,6 +89,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -137,6 +139,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -186,6 +189,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -235,6 +239,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -285,6 +290,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -374,6 +380,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -427,6 +434,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -473,6 +481,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -520,6 +529,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -569,6 +579,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -615,6 +626,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -662,6 +674,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -711,6 +724,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -757,6 +771,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -803,6 +818,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -850,6 +866,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -904,6 +921,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -957,6 +975,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1008,6 +1027,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1054,6 +1074,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1100,6 +1121,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1153,6 +1175,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1200,6 +1223,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1250,6 +1274,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1301,6 +1326,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1350,6 +1376,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1400,6 +1427,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1454,6 +1482,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1504,6 +1533,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1555,6 +1585,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1605,6 +1636,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1660,6 +1692,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1716,6 +1749,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1767,6 +1801,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1817,6 +1852,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1870,6 +1906,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1919,6 +1956,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -1969,6 +2007,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2021,6 +2060,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2073,6 +2113,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2122,6 +2163,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2172,6 +2214,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2223,6 +2266,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2272,6 +2316,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2321,6 +2366,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2370,6 +2416,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2419,6 +2466,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2468,6 +2516,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2518,6 +2567,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2570,6 +2620,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2619,6 +2670,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2669,6 +2721,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2785,6 +2838,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2834,6 +2888,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2883,6 +2938,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2932,6 +2988,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -2995,6 +3052,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -3044,6 +3102,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -3093,6 +3152,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -3142,6 +3202,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -3191,6 +3252,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -3240,6 +3302,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -3289,6 +3352,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod +x /usr/local/bin/makepkg-cross
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
