@@ -14,7 +14,7 @@ jobs:
       - name: Install Dependencies
         run: |
           pacman -Syu --noconfirm
-          pacman -S --noconfirm --needed git yasm nasm ninja cmake python-pip curl python-cairo unzip p7zip curl jq
+          pacman -S --noconfirm --needed git unzip p7zip curl jq
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
@@ -38,6 +38,7 @@ jobs:
           if [[ ! -d "cross/bin" ]]; then
             curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-gcc-mcf.7z
             7z x cross-gcc-mcf.7z
+            find cross/x86_64-w64-mingw32/lib -type f -name "*.la" -print0 | xargs -0 -I {} rm {}
             rm cross-gcc-mcf.7z
           fi  
 
