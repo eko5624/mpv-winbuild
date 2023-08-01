@@ -13,6 +13,7 @@ package() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
+  export dlltool="x86_64-w64-mingw32-dlltool"
   cd $srcdir
   set -x
   gendef VSScript.dll

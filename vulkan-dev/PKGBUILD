@@ -16,6 +16,10 @@ build() {
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
 
+  export CFLAGS="${CFLAGS} -D_WIN32_WINNT=0x0600 -D__STDC_FORMAT_MACROS -DSTRSAFE_NO_DEPRECATE -Dparse_number=cjson_parse_number"
+  export CPPFLAGS="${CPPFLAGS} -D__STDC_FORMAT_MACROS"
+  export CXXFLAGS="${CXXFLAGS} -D__USE_MINGW_ANSI_STDIO -D__STDC_FORMAT_MACROS -fpermissive -Wno-unused-function"
+
   cd $srcdir/Vulkan-Headers
   rm -rf build && mkdir build && cd build
   cmake .. \
@@ -34,9 +38,7 @@ build() {
     -DVULKAN_HEADERS_INSTALL_DIR="${srcdir}/opt" \
     -DBUILD_STATIC_LOADER=ON \
     -DBUILD_TESTS=OFF \
-    -DENABLE_WERROR=OFF \
-    -DCMAKE_C_FLAGS='${CMAKE_C_FLAGS} -D_WIN32_WINNT=0x0600 -D__STDC_FORMAT_MACROS -DSTRSAFE_NO_DEPRECATE -Dparse_number=cjson_parse_number' \
-    -DCMAKE_CXX_FLAGS='${CMAKE_CXX_FLAGS} -D__USE_MINGW_ANSI_STDIO -D__STDC_FORMAT_MACROS -fpermissive -D_WIN32_WINNT=0x0600'
+    -DENABLE_WERROR=OFF
   make
 }
 
