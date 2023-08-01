@@ -16,7 +16,6 @@ package() {
 
   cd $srcdir
   git clone \
-    --depth 1 \
     --sparse \
     --filter=tree:0 \
     --branch main \
@@ -25,7 +24,7 @@ package() {
   git sparse-checkout set --no-cone /* !tests
   cmake -B out -S . -G Ninja \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
-    -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
+    -DCMAKE_TOOLCHAIN_FILE=../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
     -DBUILD_TESTS=OFF
