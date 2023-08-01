@@ -14,7 +14,7 @@ build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
-  cd $srcdir/libssh-mirror
+  cd $srcdir/libssh
   export CFLAGS="$CFLAGS -DMBEDTLS_ALLOW_PRIVATE_ACCESS -DMBEDTLS_THREADING_C -DMBEDTLS_THREADING_PTHREAD"
   rm -rf build && mkdir build && cd build
   cmake .. \
@@ -31,7 +31,7 @@ build() {
 }
 
 package() {
-  cd $srcdir/libssh-mirror/build
+  cd $srcdir/libssh/build
   make DESTDIR=$pkgdir install
   echo "Libs.private: -lmbedtls -lmbedx509 -lmbedcrypto -lz -lwsock32 -lws2_32 -lpthread" >> $pkgdir${MINGW_PREFIX}/lib/pkgconfig/libssh.pc
   echo "Cflags.private: -DLIBSSH_STATIC" >> $pkgdir${MINGW_PREFIX}/lib/pkgconfig/libssh.pc
