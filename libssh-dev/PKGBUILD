@@ -7,7 +7,7 @@ url="https://www.libssh.org/"
 makedepends=('zlib-dev' 'mbedtls-dev')
 license=('LGPL')
 options=('strip')
-source=("git+https://gitlab.com/libssh/libssh-mirror.git")
+source=("git+https://git.libssh.org/projects/libssh.git")
 md5sums=('SKIP')
 
 build() {
@@ -15,6 +15,7 @@ build() {
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
   cd $srcdir/libssh-mirror
+  export CFLAGS="$CFLAGS -DMBEDTLS_ALLOW_PRIVATE_ACCESS -DMBEDTLS_THREADING_C -DMBEDTLS_THREADING_PTHREAD"
   rm -rf build && mkdir build && cd build
   cmake .. \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
@@ -25,15 +26,13 @@ build() {
     -DMBEDTLS_INCLUDE_DIR='${MINGW_PREFIX}/include' \
     -DWITH_EXAMPLES=OFF \
     -DBUILD_SHARED_LIBS=OFF \
-    -DBUILD_STATIC_LIB=ON \
-    -DCMAKE_C_FLAGS='-DMBEDTLS_ALLOW_PRIVATE_ACCESS -DMBEDTLS_THREADING_C -DMBEDTLS_THREADING_PTHREAD'
+    -DBUILD_STATIC_LIB=ON
   make
 }
 
 package() {
   cd $srcdir/libssh-mirror/build
   make DESTDIR=$pkgdir install
-  mv $pkgdir/msys64/* $pkgdir
   echo "Libs.private: -lmbedtls -lmbedx509 -lmbedcrypto -lz -lwsock32 -lws2_32 -lpthread" >> $pkgdir${MINGW_PREFIX}/lib/pkgconfig/libssh.pc
   echo "Cflags.private: -DLIBSSH_STATIC" >> $pkgdir${MINGW_PREFIX}/lib/pkgconfig/libssh.pc
 }

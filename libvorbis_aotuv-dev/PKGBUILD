@@ -7,15 +7,14 @@ arch=('x86_64')
 url="https://ao-yumi.github.io/aotuv_web/"
 makedepends=('libogg-dev')
 license=('BSD')
-source=("https://github.com/AO-Yumi/vorbis_aotuv/archive/master.zip")
+source=("https://downloads.xiph.org/releases/vorbis/libvorbis-$pkgver.tar.xz")
 md5sums=('SKIP')
 
 build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
-  cd $srcdir/vorbis_aotuv-master
-  ./autogen.sh
+  cd $srcdir/libvorbis-$pkgver
   ./configure \
     --host=${TARGET_ARCH} \
     --prefix=${MINGW_PREFIX} \
@@ -26,7 +25,7 @@ build() {
 }
 
 package() {
-  cd $srcdir/vorbis_aotuv-master
+  cd $srcdir/libvorbis-$pkgver
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir${MINGW_PREFIX}/share
 }

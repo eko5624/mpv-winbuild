@@ -6,14 +6,22 @@ arch=('x86_64')
 url="https://github.com/hoene/libmysofa/"
 makedepends=('zlib-dev')
 license=('BSD')
-source=("git+https://github.com/hoene/libmysofa.git")
-md5sums=('SKIP')
+source=()
+md5sums=()
 
 build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static" 
-  cd $srcdir/libmysofa
+  export PKG_CONFIG="pkgconf --static"
+
+  cd $srcdir
+  git clone \
+    --depth 1 \
+    --sparse \
+    --filter=tree:0 \
+    https://github.com/hoene/libmysofa.git
+  cd libmysofa
+  git sparse-checkout set --no-cone /* !tests
   rm -rf build && mkdir build && cd build
   cmake .. -G Ninja \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
