@@ -15,8 +15,7 @@ build() {
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
   cd $srcdir/luajit2
-  patch -p1 -i $srcdir/luajit-0001-add-win32-utf-8-filesystem-functions.patch
-  
+  patch -p1 -i $srcdir/luajit-0001-add-win32-utf-8-filesystem-functions.patch  
   cd src
   make \
     HOST_CC="${TARGET_ARCH}-gcc -m64" \
@@ -26,8 +25,7 @@ build() {
     FILE_T=luajit.exe \
     CFLAGS='-D_WIN32_WINNT=0x0602 -DUNICODE' \
     XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT' \
-    PREFIX=${MINGW_PREFIX} \
-    Q= \
+    PREFIX=${MINGW_PREFIX} Q= \
     amalg 
 }
 
@@ -41,8 +39,7 @@ package() {
     FILE_T=luajit.exe \
     CFLAGS='-D_WIN32_WINNT=0x0602 -DUNICODE' \
     XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT' \
-    PREFIX=${MINGW_PREFIX} \
-    Q= \
+    PREFIX=${MINGW_PREFIX} Q= \
     install
   # cp ../../*.pc $pkgdir${MINGW_PREFIX}/lib/pkgconfig
   rm -rf $pkgdir{MINGW_PREFIX}/bin $pkgdir{MINGW_PREFIX}/share $pkgdir{MINGW_PREFIX}/lib/lua
