@@ -9,7 +9,7 @@ license=('BSD')
 source=()
 md5sums=()
 
-build() {
+package() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
@@ -23,7 +23,6 @@ build() {
     https://github.com/hoene/libmysofa.git
   cd libmysofa
   git sparse-checkout set --no-cone /* !tests
-  find . -name "libmysofa.pc.cmake"
   cmake -B out -S . -G Ninja \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
@@ -31,9 +30,5 @@ build() {
     -DBUILD_SHARED_LIBS=OFF \
     -DBUILD_TESTS=OFF
   ninja -C out
-}
-
-package() {
-  cd $srcdir/libmysofa/out
-  DESTDIR=$pkgdir ninja install
+  DESTDIR=$pkgdir ninja install -C out
 }
