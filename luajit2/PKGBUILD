@@ -29,7 +29,7 @@ build() {
 
 package() {
   cd $srcdir/luajit2
-  make -C src DESTDIR=$pkgdir \
+  make DESTDIR=$pkgdir \
     CROSS=${TARGET_ARCH}- \
     TARGET_SYS=Windows \
     BUILDMODE=static \
