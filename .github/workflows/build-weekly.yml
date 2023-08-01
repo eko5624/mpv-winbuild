@@ -1687,7 +1687,7 @@ jobs:
         run: |
           sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
           sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja Jinja2 cmake yasm nasm unzip p7zip python-pip python-cairo curl jq
+          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
           pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -1716,7 +1716,7 @@ jobs:
           restore-keys: |
             cross-gcc-mcf-
       - name: Build
-        run: |     
+        run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.15-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdovi-dev-3.1.2-1-x86_64.pkg.tar.zst        
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.250.1-1-x86_64.pkg.tar.zst
