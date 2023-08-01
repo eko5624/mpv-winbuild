@@ -29,8 +29,7 @@ build() {
 
 package() {
   cd $srcdir/luajit2
-  make -C src \
-    HOST_CC="${TARGET_ARCH}-gcc -m64" \
+  make \
     CROSS=${TARGET_ARCH}- \
     TARGET_SYS=Windows \
     BUILDMODE=static \
