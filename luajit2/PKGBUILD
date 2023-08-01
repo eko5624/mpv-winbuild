@@ -25,13 +25,14 @@ build() {
     CFLAGS='-D_WIN32_WINNT=0x0602 -DUNICODE' \
     XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT' \
     PREFIX=${MINGW_PREFIX} \
+    Q= \
     amalg 
 }
 
 package() {
   cd $srcdir/luajit2
   make \
-    HOST_CC=${TARGET_ARCH}-gcc -m64 \
+    HOST_CC="${TARGET_ARCH}-gcc -m64" \
     CROSS=${TARGET_ARCH}- \
     TARGET_SYS=Windows \
     BUILDMODE=static \
