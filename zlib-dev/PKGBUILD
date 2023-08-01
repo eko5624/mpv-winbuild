@@ -15,7 +15,8 @@ build() {
   export PKG_CONFIG="pkgconf --static"
   cd $srcdir/zlib
   patch -p1 -i $srcdir/zlib-1-win32-static.patch
-  CHOST=${TARGET_ARCH} ./configure \
+  CHOST=${TARGET_ARCH} \
+  ./configure \
     --prefix="${MINGW_PREFIX}" \
     --static
   make
