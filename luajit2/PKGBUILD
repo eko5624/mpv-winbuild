@@ -14,7 +14,7 @@ build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
-  cd $srcdir/luajit2
+  cd $srcdir/luajit2/src
   patch -p1 -i $srcdir/luajit-0001-add-win32-utf-8-filesystem-functions.patch
   make \
     HOST_CC="${TARGET_ARCH}-gcc -m64" \
@@ -30,7 +30,7 @@ build() {
 }
 
 package() {
-  cd $srcdir/luajit2
+  cd $srcdir/luajit2/src
   make \
     HOST_CC="${TARGET_ARCH}-gcc -m64" \
     CROSS=${TARGET_ARCH}- \
