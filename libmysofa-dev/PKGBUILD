@@ -24,7 +24,8 @@ build() {
   cd libmysofa
   git sparse-checkout set --no-cone /* !tests
   rm -rf out && mkdir out && cd out
-  cmake -G Ninja \
+  ls ..
+  cmake .. -G Ninja \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
