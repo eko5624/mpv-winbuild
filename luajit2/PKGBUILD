@@ -25,7 +25,6 @@ build() {
     CFLAGS='-D_WIN32_WINNT=0x0602 -DUNICODE' \
     XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT' \
     PREFIX=${MINGW_PREFIX} \
-    Q= \
     amalg 
 }
 
