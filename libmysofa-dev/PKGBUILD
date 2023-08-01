@@ -23,8 +23,8 @@ build() {
     https://github.com/hoene/libmysofa.git
   cd libmysofa
   git sparse-checkout set --no-cone /* !tests
+  ls
   rm -rf out && mkdir out && cd out
-  ls ..
   cmake .. -G Ninja \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
