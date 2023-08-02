@@ -11,7 +11,7 @@ md5sums=('SKIP')
 
 build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
+  export PKG_CONFIG_PATH="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static" 
   cd $srcdir/libmysofa
   export ZLIB_ROOT_DIR="${MINGW_PREFIX}"
