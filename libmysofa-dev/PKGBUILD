@@ -20,10 +20,7 @@ build() {
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
-    -DBUILD_TESTS=OFF \
-    -DZLIB_ROOT="${MINGW_PREFIX}" \
-    -DZLIB_LIBRARY=${MINGW_PREFIX}/lib \
-    -DZLIB_INCLUDE_DIR=${MINGW_PREFIX}/include
+    -DBUILD_TESTS=OFF
   ninja
 }
 
