@@ -11,10 +11,10 @@ md5sums=('SKIP')
 
 build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_PATH="/github/home/opt/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static" 
+  #export PKG_CONFIG_PATH="/github/home/opt/lib/pkgconfig"
+  #export PKG_CONFIG="pkgconf --static" 
   cd $srcdir/libmysofa
-  export ZLIB_ROOT_DIR="${MINGW_PREFIX}"
+  #export ZLIB_ROOT_DIR="${MINGW_PREFIX}"
   rm -rf out && mkdir out && cd out
   cmake .. -G Ninja \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
