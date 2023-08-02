@@ -14,14 +14,15 @@ build() {
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
   cd $srcdir/zlib
-  export BINARY_PATH=${MINGW_PREFIX}/bin
-	export INCLUDE_PATH=${MINGW_PREFIX}/include
-	export LIBRARY_PATH=${MINGW_PREFIX}/lib
   patch -p1 -i $srcdir/zlib-1-win32-static.patch
-  make win32/Makefile.gcc  PREFIX=x86_64-w64-mingw32- SHARED_MODE=0
+  CHOST=${TARGET_ARCH} \
+  ./configure \
+    --prefix="${MINGW_PREFIX}" \
+    --static
+  make
 }
 
 package() {
   cd $srcdir/zlib
-  DESTDIR=$pkgdir make install -f win32/Makefile.gcc  PREFIX=x86_64-w64-mingw32- SHARED_MODE=0
+  make DESTDIR=$pkgdir install
 }
