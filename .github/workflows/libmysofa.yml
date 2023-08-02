@@ -36,6 +36,7 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo rm /usr/lib/libz.a
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
@@ -44,17 +45,12 @@ jobs:
           restore-keys: |
             cross-gcc-mcf-
       - name: Build
-        env:
-          C_INCLUDE_PATH: /github/home/opt/include
-          CPLUS_INCLUDE_PATH: /github/home/opt/include
-          LIBRARY_PATH: /github/home/opt/lib
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm                   
           sudo chmod 777 -R ${{ env.top_dir }}
           sudo chmod 777 -R .
           cd libmysofa-dev
-          PKG_CONFIG_PATH=/github/home/opt/lib/pkgconfig
           sudo -H -u builder makepkg-cross -sC --noconfirm 
       - name: Release
         env:
