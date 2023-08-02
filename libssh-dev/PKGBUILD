@@ -22,7 +22,7 @@ build() {
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
-    -DWITH_ZLIB=OFF \
+    -DWITH_ZLIB=ON \
     -DWITH_MBEDTLS=ON \
     -DMBEDTLS_INCLUDE_DIR='${MINGW_PREFIX}/include' \
     -DWITH_EXAMPLES=OFF \
