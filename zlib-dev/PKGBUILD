@@ -18,7 +18,7 @@ build() {
 	export INCLUDE_PATH=${MINGW_PREFIX}/include
 	export LIBRARY_PATH=${MINGW_PREFIX}/lib
   patch -p1 -i $srcdir/zlib-1-win32-static.patch
-  make install win32/Makefile.gcc  PREFIX=x86_64-w64-mingw32- SHARED_MODE=0
+  make win32/Makefile.gcc  PREFIX=x86_64-w64-mingw32- SHARED_MODE=0
 }
 
 package() {
