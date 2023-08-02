@@ -14,14 +14,18 @@ build() {
   export PKG_CONFIG_PATH="/github/home/opt/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static" 
   cd $srcdir/libmysofa
-  export ZLIB_ROOT_DIR="${MINGW_PREFIX}"
+  #export ZLIB_ROOT_DIR="${MINGW_PREFIX}"
   rm -rf out && mkdir out && cd out
   cmake .. -G Ninja \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
-    -DBUILD_TESTS=OFF
+    -DBUILD_TESTS=OFF \
+    -DZLIB_ROOT="${MINGW_PREFIX}" \
+    -DZLIB_LIBRARY=${MINGW_PREFIX}/lib/libz.a \
+    -DZLIB_INCLUDE_DIR=${MINGW_PREFIX}/include
+endif
   ninja
 }
 
