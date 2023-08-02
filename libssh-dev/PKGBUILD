@@ -15,7 +15,7 @@ build() {
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
   cd $srcdir/libssh
-  export ZLIB_ROOT_DIR="${MINGW_PREFIX}"
+  export ZLIB_ROOT_DIR=/github/home/opt
   export CFLAGS="$CFLAGS -DMBEDTLS_ALLOW_PRIVATE_ACCESS -DMBEDTLS_THREADING_C -DMBEDTLS_THREADING_PTHREAD"
   rm -rf build && mkdir build && cd build
   cmake .. \
@@ -24,7 +24,7 @@ build() {
     -DCMAKE_BUILD_TYPE=Release \
     -DWITH_ZLIB=ON \
     -DWITH_MBEDTLS=ON \
-    -DMBEDTLS_INCLUDE_DIR='${MINGW_PREFIX}/include' \
+    -DMBEDTLS_INCLUDE_DIR='/github/home/opt/include' \
     -DWITH_EXAMPLES=OFF \
     -DBUILD_SHARED_LIBS=OFF \
     -DBUILD_STATIC_LIB=ON
