@@ -25,7 +25,6 @@ build() {
     -DZLIB_ROOT="${MINGW_PREFIX}" \
     -DZLIB_LIBRARY=${MINGW_PREFIX}/lib/libz.a \
     -DZLIB_INCLUDE_DIR=${MINGW_PREFIX}/include
-endif
   ninja
 }
 
