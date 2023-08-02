@@ -17,7 +17,7 @@ build() {
   echo "Cflags.private: -DMODPLUG_STATIC" >> libmodplug.pc.in
   ./configure \
     --host=${TARGET_ARCH} \
-    --prefix=${MINGW_INSTALL_PREFIX} \
+    --prefix=${MINGW_PREFIX} \
     --disable-shared
   make
 }
