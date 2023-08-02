@@ -45,6 +45,10 @@ jobs:
           restore-keys: |
             cross-gcc-mcf-
       - name: Build
+        env:
+          C_INCLUDE_PATH: /github/home/opt/include
+          CPLUS_INCLUDE_PATH: /github/home/opt/include
+          LIBRARY_PATH: /github/home/opt/lib
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm                   
