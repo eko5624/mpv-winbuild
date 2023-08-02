@@ -36,7 +36,6 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-          #sudo rm /usr/lib/libz.a
       - name: Loading cross gcc cache
         uses: actions/cache/restore@main
         with:
