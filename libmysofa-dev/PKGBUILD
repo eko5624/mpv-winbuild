@@ -21,7 +21,9 @@ build() {
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
     -DBUILD_TESTS=OFF \
-    -DZLIB_ROOT="${MINGW_PREFIX}"
+    -DZLIB_ROOT="${MINGW_PREFIX}" \
+    -DZLIB_LIBRARY=${MINGW_PREFIX}/lib/libz.a \
+    -DZLIB_INCLUDE_DIR=${MINGW_PREFIX}/include
   ninja
 }
 
