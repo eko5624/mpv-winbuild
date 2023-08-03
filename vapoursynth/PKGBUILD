@@ -27,6 +27,7 @@ package() {
   cp libvsscript.a $pkgdir${MINGW_PREFIX}/lib
   cp libvapoursynth.a $pkgdir${MINGW_PREFIX}/lib   
   cp ../*.pc $pkgdir${MINGW_PREFIX}/lib/pkgconfig
+  sed -i 's,@MINGW_PREFIX@,${MINGW_PREFIX},g' $pkgdir${MINGW_PREFIX}/lib/pkgconfig/*.pc
   sed -i "s/_ver/$pkgver/" $pkgdir${MINGW_PREFIX}/lib/pkgconfig/vapoursynth.pc
   sed -i "s/_ver/$pkgver/" $pkgdir${MINGW_PREFIX}/lib/pkgconfig/vapoursynth-script.pc
 }
