@@ -13,8 +13,10 @@ build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
-  cd $srcdir/libvpx/build
-  CROSS=${TARGET_ARCH}- ../configure \
+  cd $srcdir/libvpx
+  export CROSS=${TARGET_ARCH}- 
+  ./configure \
+    --target=x86_64-win64-gcc \
     --extra-cflags='-fno-asynchronous-unwind-tables' \
     --prefix=${MINGW_PREFIX} \
     --disable-examples \
@@ -28,7 +30,7 @@ build() {
 }
 
 package() {
-  cd $srcdir/libvpx/build
+  cd $srcdir/libvpx
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir${MINGW_PREFIX}/share $pkgdir${MINGW_PREFIX}/bin
 }
