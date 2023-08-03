@@ -88,7 +88,7 @@ package_ffmpeg-dev() {
     --enable-libopenmpt \
     --enable-libsoxr \
     --enable-libspeex \
-    --disable-libsrt \
+    --enable-libsrt \
     --enable-libssh \
     --enable-libuavs3d \
     --enable-libvorbis \
@@ -104,7 +104,7 @@ package_ffmpeg-dev() {
     --disable-decoder=libopus \
     --disable-encoder=opus \
     --disable-encoder=vorbis \
-    --disable-vapoursynth
+    --enable-vapoursynth
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir${MINGW_PREFIX}/bin $pkgdir${MINGW_PREFIX}/share $pkgdir${MINGW_PREFIX}/lib/*.def
 }
