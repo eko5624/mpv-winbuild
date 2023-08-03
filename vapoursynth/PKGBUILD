@@ -15,10 +15,10 @@ package() {
   export PKG_CONFIG="pkgconf --static"
   cd $srcdir
   set -x
-  gendef VSScript.dll
-  gendef VapourSynth.dll
-  x86_64-w64-mingw32-dlltool -d VSScript.def -y libvsscript.a 
-  x86_64-w64-mingw32-dlltool -d VapourSynth.def -y libvapoursynth.a 
+  gendef - VSScript.dll | sed -r -e 's|^_||' -e 's|@[1-9]+$||' > VSScript.def
+  gendef - VapourSynth.dll | sed -r -e 's|^_||' -e 's|@[1-9]+$||' > VapourSynth.def"
+  ${TARGET_ARCH}-dlltool -d VSScript.def -y libvsscript.a 
+  ${TARGET_ARCH}-dlltool -d VapourSynth.def -y libvapoursynth.a 
   mkdir -p $pkgdir${MINGW_PREFIX}/lib/pkgconfig
   mkdir -p $pkgdir${MINGW_PREFIX}/include
   mv sdk/include/VapourSynth.h $pkgdir${MINGW_PREFIX}/include
