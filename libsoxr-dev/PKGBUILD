@@ -14,7 +14,7 @@ build() {
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
   cd $srcdir/code
-  patch -p1 -i $srcdir/0001-libsoxr-fix-pc-file-installation.patch
+  #patch -p1 -i $srcdir/0001-libsoxr-fix-pc-file-installation.patch
   rm -rf build && mkdir build && cd build
   cmake .. \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
