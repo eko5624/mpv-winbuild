@@ -48,7 +48,7 @@ build() {
 package_ffmpeg-dev() {
   cd $srcdir/FFmpeg
   export CPPFLAGS="$CPPFLAGS -I${MINGW_PREFIX}/include"
-  export LDFLAGS="$LDFLAGS -L${MINGW_PREFIX}/lib
+  export LDFLAGS="$LDFLAGS -L${MINGW_PREFIX}/lib"
   ./configure \
     --cross-prefix=${TARGET_ARCH}- \
     --prefix=${MINGW_PREFIX} \
