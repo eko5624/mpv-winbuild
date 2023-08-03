@@ -32,5 +32,6 @@ build() {
 package() {
   cd $srcdir/libvpx
   make DESTDIR=$pkgdir install
+  ${TARGET_ARCH}-ranlib $pkgdir${MINGW_PREFIX}/lib/libvpx.a
   rm -rf $pkgdir${MINGW_PREFIX}/share $pkgdir${MINGW_PREFIX}/bin
 }
