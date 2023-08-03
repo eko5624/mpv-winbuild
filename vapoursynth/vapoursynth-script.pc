@@ -1,4 +1,4 @@
-libdir=$MINGW_PREFIX/lib
+libdir=@MINGW_PREFIX@/lib
 includedir=$MINGW_PREFIX/include
 
 Name: vapoursynth-script
