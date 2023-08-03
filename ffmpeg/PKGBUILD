@@ -49,7 +49,7 @@ package_ffmpeg-dev() {
   cd $srcdir/FFmpeg
   ./configure \
     --cross-prefix=${TARGET_ARCH}- \
-    --prefix="${MINGW_PREFIX}" \
+    --prefix=${MINGW_PREFIX} \
     --arch=x86_64 \
     --target-os=mingw32 \
     --target-exec=wine \
@@ -92,7 +92,7 @@ package_ffmpeg-dev() {
     --enable-libssh \
     --enable-libuavs3d \
     --enable-libvorbis \
-    --enable-libvpx \
+    --disable-libvpx \
     --enable-libwebp \
     --enable-libxml2 \
     --enable-libxvid \
