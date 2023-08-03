@@ -65,8 +65,6 @@ package_ffmpeg-dev() {
     --disable-ffplay \
     --disable-ffprobe \
     --disable-avdevice \
-    --enable-static \
-    --disable-shared \
     --disable-pthreads \
     --enable-w32threads \
     --extra-cflags="${CFLAGS}" \
