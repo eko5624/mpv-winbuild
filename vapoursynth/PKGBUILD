@@ -16,7 +16,7 @@ package() {
   cd $srcdir
   set -x
   gendef - VSScript.dll | sed -r -e 's|^_||' -e 's|@[1-9]+$||' > VSScript.def
-  gendef - VapourSynth.dll | sed -r -e 's|^_||' -e 's|@[1-9]+$||' > VapourSynth.def"
+  gendef - VapourSynth.dll | sed -r -e 's|^_||' -e 's|@[1-9]+$||' > VapourSynth.def
   ${TARGET_ARCH}-dlltool -d VSScript.def -y libvsscript.a 
   ${TARGET_ARCH}-dlltool -d VapourSynth.def -y libvapoursynth.a 
   mkdir -p $pkgdir${MINGW_PREFIX}/lib/pkgconfig
