@@ -91,7 +91,7 @@ package_ffmpeg-dev() {
     --enable-libssh \
     --enable-libuavs3d \
     --enable-libvorbis \
-    --ensable-libvpx \
+    --enable-libvpx \
     --enable-libwebp \
     --enable-libxml2 \
     --enable-libxvid \
