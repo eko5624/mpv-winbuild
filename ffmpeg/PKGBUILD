@@ -61,7 +61,6 @@ package_ffmpeg-dev() {
     --enable-gpl \
     --enable-version3 \
     --enable-nonfree \
-    --enable-pic  \
     --disable-ffplay \
     --disable-ffprobe \
     --disable-avdevice \
