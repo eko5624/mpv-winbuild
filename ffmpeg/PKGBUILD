@@ -61,6 +61,7 @@ package_ffmpeg-dev() {
     --enable-gpl \
     --enable-version3 \
     --enable-nonfree \
+    --enable-postproc \
     --disable-ffplay \
     --disable-ffprobe \
     --disable-avdevice \
@@ -69,6 +70,8 @@ package_ffmpeg-dev() {
     --disable-pthreads \
     --enable-w32threads \
     --extra-libs="-lstdc++" \
+    --extra-cflags=-I${MINGW_PREFIX}/include \
+    --extra-ldflags=-L${MINGW_PREFIX}/lib \
     --disable-mediafoundation \
     --enable-amf \
     --enable-avisynth \
