@@ -86,7 +86,7 @@ package_ffmpeg-dev() {
     --enable-libopenmpt \
     --enable-libsoxr \
     --enable-libspeex \
-    --enable-libsrt \
+    --disable-libsrt \
     --enable-libssh \
     --enable-libuavs3d \
     --enable-libvorbis \
