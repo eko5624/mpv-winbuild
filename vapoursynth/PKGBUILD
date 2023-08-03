@@ -11,12 +11,10 @@ md5sums=('SKIP')
 
 package() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
   cd $srcdir
   set -x
-  gendef - VSScript.dll | sed -r -e 's|^_||' -e 's|@[1-9]+$||' > VSScript.def
-  gendef - VapourSynth.dll | sed -r -e 's|^_||' -e 's|@[1-9]+$||' > VapourSynth.def
+  gendef VSScript.dll
+  gendef VapourSynth.dll
   ${TARGET_ARCH}-dlltool -d VSScript.def -y libvsscript.a 
   ${TARGET_ARCH}-dlltool -d VapourSynth.def -y libvapoursynth.a 
   mkdir -p $pkgdir${MINGW_PREFIX}/lib/pkgconfig
@@ -27,7 +25,7 @@ package() {
   cp libvsscript.a $pkgdir${MINGW_PREFIX}/lib
   cp libvapoursynth.a $pkgdir${MINGW_PREFIX}/lib   
   cp ../*.pc $pkgdir${MINGW_PREFIX}/lib/pkgconfig
-  sed -i 's,@MINGW_PREFIX@,/github/home/opt,g' $pkgdir${MINGW_PREFIX}/lib/pkgconfig/*.pc
+  sed -i 's,@MINGW_PREFIX@,$MINGW_PREFIX,g' $pkgdir${MINGW_PREFIX}/lib/pkgconfig/*.pc
   sed -i "s/_ver/$pkgver/" $pkgdir${MINGW_PREFIX}/lib/pkgconfig/vapoursynth.pc
   sed -i "s/_ver/$pkgver/" $pkgdir${MINGW_PREFIX}/lib/pkgconfig/vapoursynth-script.pc
 }
