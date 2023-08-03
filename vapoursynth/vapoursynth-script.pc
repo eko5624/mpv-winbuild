@@ -1,5 +1,5 @@
-libdir=@MINGW_PREFIX@/lib
-includedir=@MINGW_PREFIX@/include
+libdir=$MINGW_PREFIX/lib
+includedir=$MINGW_PREFIX/include
 
 Name: vapoursynth-script
 Description:
