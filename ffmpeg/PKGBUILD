@@ -69,9 +69,8 @@ package_ffmpeg-dev() {
     --disable-shared \
     --disable-pthreads \
     --enable-w32threads \
-    --extra-libs="-lstdc++" \
-    --extra-cflags=-I${MINGW_PREFIX}/include \
-    --extra-ldflags=-L${MINGW_PREFIX}/lib \
+    --extra-libs="-lstdc++ -lssp" \
+    --extra-ldflags="-static -static-libgcc -static-libstdc++" \
     --disable-mediafoundation \
     --enable-amf \
     --enable-avisynth \
