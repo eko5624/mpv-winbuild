@@ -5,4 +5,5 @@ Name: vapoursynth
 Description:
 Version: _ver
 Libs: -L${libdir} -lVapourSynth
+Libs.private: -L${libdir} -lzimg
 Cflags: -I${includedir}
