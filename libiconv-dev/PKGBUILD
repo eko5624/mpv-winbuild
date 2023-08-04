@@ -27,5 +27,6 @@ package() {
   make DESTDIR=$pkgdir install
   mkdir -p $pkgdir${MINGW_PREFIX}/lib/pkgconfig 
   cp ../../*.pc $pkgdir${MINGW_PREFIX}/lib/pkgconfig
+  sed -i "s,@MINGW_PREFIX@,${MINGW_PREFIX}," $pkgdir${MINGW_PREFIX}/lib/pkgconfig/*.pc  
   sed -i 's/_ver/$pkgver/' $pkgdir${MINGW_PREFIX}/lib/pkgconfig/iconv.pc
 }
