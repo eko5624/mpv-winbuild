@@ -35,16 +35,13 @@ build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
+  export LDFLAGS="$LDFLAGS -static -lstdc++ -lssp"
   cd $srcdir/mpv
   meson setup build \
     --prefix="${MINGW_PREFIX}" \
     --libdir=${MINGW_PREFIX}/lib \
     --cross-file=../../../cross.meson \
     --buildtype=release \
-    --default-library=shared \
-    --prefer-static \
-    -Db_lto=true \
-    -Db_ndebug=true \
     -Dlibmpv=true \
     -Dlua=enabled \
     -Djavascript=enabled \
