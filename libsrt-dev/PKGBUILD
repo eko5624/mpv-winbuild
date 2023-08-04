@@ -31,4 +31,5 @@ build() {
 package() {
   cd $srcdir/srt/build
   DESTDIR=$pkgdir ninja install
+  echo "Libs.private: -lm" >> $pkgdir${MINGW_PREFIX}/lib/pkgconfig/srt.pc
 }
