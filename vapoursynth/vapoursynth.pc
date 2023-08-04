@@ -5,3 +5,4 @@ Name: vapoursynth
 Description:
 Version: _ver
 Libs: -L${libdir} -lVapourSynth
+Cflags: -I${includedir}
