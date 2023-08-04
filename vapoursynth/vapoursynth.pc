@@ -2,8 +2,10 @@ libdir=@MINGW_PREFIX@/lib
 includedir=@MINGW_PREFIX@/include
 
 Name: vapoursynth
-Description:
+Description: A frameserver for the 21st century
 Version: _ver
-Libs: -L${libdir} -lVapourSynth
+
+Requires.private: zimg
+Libs: -L${libdir} -lvapoursynth
 Libs.private: -L${libdir} -lzimg
 Cflags: -I${includedir}
