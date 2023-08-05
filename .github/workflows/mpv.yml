@@ -46,6 +46,11 @@ jobs:
           key: cross-gcc-mcf-${{ github.run_id }}
           restore-keys: |
             cross-gcc-mcf-
+
+      - name: Hack toolchain
+        run: |
+          find ${{ env.top_dir }}/cross/x86_64-w64-mingw32/lib -type f \( -name "*.dll.a" ! -name "libmcfgthread.dll.a" \) -print0 | xargs -0 -I {} rm {}
+          
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.30-1-x86_64.pkg.tar.zst
