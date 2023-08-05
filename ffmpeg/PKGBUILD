@@ -67,8 +67,6 @@ package_ffmpeg-dev() {
     --disable-avdevice \
     --disable-pthreads \
     --enable-w32threads \
-    --extra-libs="-lstdc++" \
-    --extra-ldflags="-static -static-libgcc -static-libstdc++" \
     --disable-mediafoundation \
     --enable-amf \
     --enable-avisynth \
