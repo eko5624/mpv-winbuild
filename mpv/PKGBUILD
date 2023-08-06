@@ -35,28 +35,34 @@ build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
-  export LDFLAGS="$LDFLAGS -static"
+  #export LDFLAGS="$LDFLAGS -static"
   cd $srcdir/mpv
   meson setup build \
     --prefix="${MINGW_PREFIX}" \
     --libdir=${MINGW_PREFIX}/lib \
     --cross-file=../../../cross.meson \
     --buildtype=release \
+    --default-library=shared \
+    --prefer-static \
+    -Db_lto=true \
+    -Db_ndebug=true \
     -Dlibmpv=true \
+    -Dpdf-build=enabled \
     -Dlua=enabled \
     -Djavascript=enabled \
     -Dsdl2=enabled \
+    -Dlibarchive=enabled \
     -Dlibbluray=enabled \
     -Ddvdnav=enabled \
+    -Duchardet=enabled \
     -Drubberband=enabled \
     -Dlcms2=enabled \
     -Dopenal=enabled \
     -Dspirv-cross=enabled \
     -Dvulkan=enabled \
-    -Dlibplacebo=enabled \
     -Dvapoursynth=enabled \
     -Degl-angle=enabled
-  meson compile -C build
+  ninja -C build
   
   # get latest commit sha
   short_sha=$(git rev-parse --short HEAD)
