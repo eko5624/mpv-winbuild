@@ -39,7 +39,7 @@ jobs:
             curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-gcc-posix.7z
             7z x cross-gcc-posix.7z
             find cross/x86_64-w64-mingw32/lib -type f -name "*.la" -print0 | xargs -0 -I {} rm {}
-            rm cross-gcc-mcf.7z
+            rm cross-gcc-posix.7z
           fi  
 
       - name: Saving gcc cache
