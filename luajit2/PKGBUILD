@@ -39,5 +39,6 @@ package() {
     PREFIX=${MINGW_PREFIX} Q= \
     install
   cp ../../*.pc $pkgdir${MINGW_PREFIX}/lib/pkgconfig
+  sed -i "s,@MINGW_PREFIX@,${MINGW_PREFIX}," $pkgdir${MINGW_PREFIX}/lib/pkgconfig/*.pc
   rm -rf $pkgdir${MINGW_PREFIX}/bin $pkgdir${MINGW_PREFIX}/share $pkgdir${MINGW_PREFIX}/lib/lua
 }
