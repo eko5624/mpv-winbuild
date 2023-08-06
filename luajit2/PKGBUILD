@@ -38,6 +38,6 @@ package() {
     XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT' \
     PREFIX=${MINGW_PREFIX} Q= \
     install
-  # cp ../../*.pc $pkgdir${MINGW_PREFIX}/lib/pkgconfig
+  cp ../../*.pc $pkgdir${MINGW_PREFIX}/lib/pkgconfig
   rm -rf $pkgdir${MINGW_PREFIX}/bin $pkgdir${MINGW_PREFIX}/share $pkgdir${MINGW_PREFIX}/lib/lua
 }
