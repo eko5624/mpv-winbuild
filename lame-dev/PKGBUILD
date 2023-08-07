@@ -6,15 +6,17 @@ pkgdesc='A high quality MPEG Audio Layer III (MP3) encoder'
 arch=('x86_64')
 url="http://lame.sourceforge.net/"
 license=('LGPL')
-source=("http://downloads.sourceforge.net/lame/lame-$pkgver.tar.gz")
+source=("git+https://gitlab.com/shinchiro/lame.git")
 md5sums=('SKIP')
 
 build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
-  export CFLAGS="-msse2 ${CFLAGS}"
-  cd $srcdir/lame-$pkgver
+  cd $srcdir/lame
+  for i in $(cat debian/patches/series); do
+    patch -N -p1 < debian/patches/$i || true
+  done
   ./configure \
     --host=${TARGET_ARCH} \
     --prefix=${MINGW_PREFIX} \
@@ -24,7 +26,7 @@ build() {
 }
 
 package() {
-  cd $srcdir/lame-$pkgver
+  cd $srcdir/lame
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir${MINGW_PREFIX}/share
 }
