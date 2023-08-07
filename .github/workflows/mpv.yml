@@ -49,7 +49,7 @@ jobs:
 
       - name: Hack toolchain
         run: |
-          find ${{ env.top_dir }}/cross/x86_64-w64-mingw32/lib -type f -name "*.dll.a" -print0 | xargs -0 -I {} rm {}
+          find ${{ env.top_dir }}/cross/x86_64-w64-mingw32/lib -type f \( -name "*.dll.a" ! -name "libmcfgthread.dll.a" \) -print0 | xargs -0 -I {} rm {}
           
       - name: Build
         run: |
