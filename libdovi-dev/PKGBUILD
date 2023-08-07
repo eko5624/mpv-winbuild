@@ -26,5 +26,5 @@ package() {
   mkdir build
   export CARGO_BUILD_TARGET_DIR=build
   export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
-  cargo cinstall --manifest-path=Cargo.toml --prefix=${MINGW_PREFIX} --target=x86_64-pc-windows-gnu --destdir=$pkgdir --release --library-type staticlib
+  cargo cinstall --manifest-path=Cargo.toml --prefix=${MINGW_PREFIX} --destdir=build --target=x86_64-pc-windows-gnu --release --library-type staticlib
 }
