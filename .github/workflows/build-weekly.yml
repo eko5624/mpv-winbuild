@@ -691,7 +691,8 @@ jobs:
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_0-1-x86_64.pkg.tar.zst 
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst     
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst   
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }}
           sudo chmod 777 -R .
@@ -802,6 +803,7 @@ jobs:
           ./release-dev.sh lame-dev lame-dev 
 
   lcms2:
+    needs: [libjpeg, zlib]
     runs-on: ubuntu-latest
     container:
       image: archlinux/archlinux:base-devel
@@ -840,6 +842,9 @@ jobs:
             cross-gcc-mcf-
       - name: Build
         run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.0.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst
+          pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }}
           sudo chmod 777 -R .
           cd lcms2-dev
@@ -1418,7 +1423,7 @@ jobs:
           ./release-dev.sh libjpeg-dev libjpeg-dev
         
   libjxl:
-    needs: [brotli, highway, lcms2, libjpeg]
+    needs: [brotli, highway, lcms2, libjpeg, libpng]
     runs-on: ubuntu-latest
     container:
       image: archlinux/archlinux:base-devel
@@ -1461,6 +1466,8 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/highway-dev-1.0.5-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.15-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.0.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst 
           pacman -U *.zst --noconfirm        
           sudo chmod 777 -R ${{ env.top_dir }}
           sudo chmod 777 -R .
@@ -1718,10 +1725,12 @@ jobs:
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.15-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdovi-dev-3.1.2-1-x86_64.pkg.tar.zst        
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.250.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdovi-dev-3.1.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.0.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2023.5-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.250.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-dev-1.3.250.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm 
           sudo chmod 777 -R ${{ env.top_dir }}
           sudo chmod 777 -R .
@@ -2536,7 +2545,7 @@ jobs:
           ./release-dev.sh libzimg-dev libzimg-dev  
 
   libzvbi:
-    needs: [libpng]
+    needs: [libiconv, libpng]
     runs-on: ubuntu-latest
     container:
       image: archlinux/archlinux:base-devel
@@ -2576,7 +2585,8 @@ jobs:
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libpng-dev-1.6.40-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.2.13-1-x86_64.pkg.tar.zst        
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }}
           sudo chmod 777 -R .
