@@ -2599,6 +2599,7 @@ jobs:
           ./release-dev.sh libzvbi-dev libzvbi-dev
 
   luajit2:
+    needs: [libiconv]
     runs-on: ubuntu-latest
     container:
       image: archlinux/archlinux:base-devel
@@ -2637,6 +2638,8 @@ jobs:
             cross-gcc-mcf-
       - name: Build
         run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst      
+          pacman -U *.zst --noconfirm          
           sudo chmod 777 -R ${{ env.top_dir }}
           sudo chmod 777 -R .
           cd luajit2
