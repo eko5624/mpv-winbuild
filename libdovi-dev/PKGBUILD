@@ -14,6 +14,19 @@ package() {
   export PKG_CONFIG="pkgconf --static"
   export RUSTUP_HOME="${TOP_DIR}/rust/.rustup"
   export CARGO_HOME="${TOP_DIR}/rust/.cargo"
+  rm $CARGO_HOME/config
+  cat <<EOF >$CARGO_HOME/config
+[net]
+git-fetch-with-cli = true
+
+[target.x86_64-pc-windows-gnu]
+linker = "${TOP_DIR}/cross/bin/x86_64-w64-mingw32-gcc"
+ar = "${TOP_DIR}/cross/bin/x86_64-w64-mingw32-ar"
+
+[profile.release]
+panic = "abort"
+strip = true
+EOF
   cd $srcdir
   git clone \
     --depth 1 \
@@ -26,5 +39,5 @@ package() {
   mkdir build
   export CARGO_BUILD_TARGET_DIR=build
   export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
-  cargo cinstall --manifest-path=Cargo.toml --prefix=${MINGW_PREFIX} --destdir=$pkgdir --release --library-type staticlib
+  cargo cinstall --manifest-path=Cargo.toml --prefix=${MINGW_PREFIX} --destdir=$pkgdir --target=x86_64-pc-windows-gnu --release --library-type staticlib
 }
