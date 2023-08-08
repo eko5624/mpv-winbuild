@@ -5,17 +5,19 @@ pkgrel=1
 pkgdesc='A Free Implementation of the Unicode Bidirectional Algorithm'
 arch=('x86_64')
 url="https://github.com/haasn/libplacebo/"
-makedepends=('libdovi-dev' 'lcms2-dev' 'vulkan-dev' 'shaderc-dev')
+makedepends=('lcms2-dev' 'libdovi-dev' 'vulkan-dev' 'shaderc-dev')
 license=('LGPL')
-source=("git+https://github.com/haasn/libplacebo.git")
-md5sums=('SKIP')
+source=("git+https://github.com/haasn/libplacebo.git"
+        "git+https://github.com/Dav1dde/glad.git")
+md5sums=('SKIP' 'SKIP')
 
 build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
   cd $srcdir/libplacebo
-  git submodule update --init --recursive
+  rm -rf 3rdparty/glad
+  mv $srcdir/glad 3rdparty
   meson setup build \
     --prefix="${MINGW_PREFIX}" \
     --libdir=${MINGW_PREFIX}/lib \
