@@ -42,8 +42,6 @@ build() {
     --libdir=${MINGW_PREFIX}/lib \
     --cross-file=../../../cross.meson \
     --buildtype=release \
-    --default-library=shared
-    --prefer-static
     -Dlibmpv=true \
     -Dlua=enabled \
     -Djavascript=enabled \
