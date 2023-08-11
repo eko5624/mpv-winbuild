@@ -14,7 +14,6 @@ package() {
   export PKG_CONFIG="pkgconf --static"
   export RUSTUP_HOME="${TOP_DIR}/rust/.rustup"
   export CARGO_HOME="${TOP_DIR}/rust/.cargo"
-  rm $CARGO_HOME/config
   cat <<EOF >$CARGO_HOME/config
 [net]
 git-fetch-with-cli = true
