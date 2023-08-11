@@ -36,11 +36,11 @@ jobs:
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-gcc-posix.7z
-            7z x cross-gcc-posix.7z
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-gcc-posix-13.2.0-x64-ucrt.7z
+            7z x cross-gcc-posix-13.2.0-x64-ucrt.7z
             find cross/x86_64-w64-mingw32/lib -type f -name "*.la" -print0 | xargs -0 -I {} rm {}
             find cross/x86_64-w64-mingw32/lib -type f -name "*.dll.a" -print0 | xargs -0 -I {} rm {}
-            rm cross-gcc-posix.7z
+            rm cross-gcc-posix-13.2.0-x64-ucrt.7z
           fi  
 
       - name: Saving gcc cache
