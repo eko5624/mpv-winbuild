@@ -82,8 +82,8 @@ package_ffmpeg-dev() {
     --enable-libmp3lame \
     --enable-libmysofa \
     --enable-libopenmpt \
-    --enable-libplacebo \
-    --enable-libshaderc \
+    --disable-libplacebo \
+    --disable-libshaderc \
     --enable-libsoxr \
     --enable-libspeex \
     --enable-libsrt \
