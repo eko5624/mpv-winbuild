@@ -38,7 +38,7 @@ makedepends=("amf-headers-dev"
              "uavs3d-dev"
              "vapoursynth-dev")
 license=('LGPL')
-source=("git+https://github.com/FFmpeg/FFmpeg")
+source=("git+https://github.com/FFmpeg/FFmpeg#commit=5cb9ef93000048afe29ce1c67f151ad3fffcd83a")
 md5sums=('SKIP')
 
 build() {
