@@ -5,8 +5,7 @@ import in_place
 resp = request.urlopen('https://github.com/eko5624/nginx-nosni/raw/master/old.json')
 x = json.loads(resp.read().decode('utf-8'))
     
-pkgs = {} 
-curl = x['curl']
+pkgs = {}
 pkgs['libsixel'] = x['libsixel']     
 pkgs['vapoursynth'] = x['VapourSynth'][1:]
 for p in ['curl', 'mpv', 'ffmpeg', 'luajit2', 'mujs', 'rubberband']:
@@ -26,7 +25,7 @@ for p in [
   'highway',
   'lame',
   'lcms2',
-  'libaribb24',    
+  'libaribcaption',    
   'libass',
   'libbluray',
   'libbs2b',
@@ -84,7 +83,7 @@ pkgs['ffmpeg-git'] = x['ffmpeg']
 pkgs['libmpv-git'] = x['mpv']
 pkgs['mpv-git'] = x['mpv']
 
-for t in ['build-weekly.yml']:
+for t in ['build-weekly.yml', 'ffmpeg.yml', 'libplacebo.yml', 'mpv.yml', 'vulkan.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
     for l in f:
       if (i:=l.find('/dev/')) > -1:
