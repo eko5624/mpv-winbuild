@@ -28,7 +28,7 @@ makedepends=("libjpeg-dev"
              "vulkan-dev"
              "zlib-dev")
 license=('GPL3')
-source=("git+https://github.com/mpv-player/mpv.git#commit=ee155d79fd7b669de6d91654fc84ea26aaeac892")
+source=("git+https://github.com/mpv-player/mpv.git")
 md5sums=('SKIP')
 
 build() {
