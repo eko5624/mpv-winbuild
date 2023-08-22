@@ -14,6 +14,7 @@ pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
 for p in [
   'amf',
   'angle',
+  'aom',
   'avisynth',
   'brotli',
   'dav1d',
