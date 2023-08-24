@@ -85,6 +85,7 @@ package_ffmpeg-dev() {
     --enable-libmp3lame \
     --enable-libmysofa \
     --enable-libopenmpt \
+    --enable-libopus \
     --enable-libplacebo \
     --enable-libshaderc \
     --enable-libsoxr \
@@ -99,13 +100,13 @@ package_ffmpeg-dev() {
     --enable-libxvid \
     --enable-libzimg \
     --enable-libzvbi \
-    --enable-libopus \
     --enable-mbedtls \
+    --enable-vapoursynth \
+    --enable-zlib \
     --disable-decoder=libvorbis \
     --disable-decoder=libopus \
     --disable-encoder=opus \
-    --disable-encoder=vorbis \
-    --enable-vapoursynth
+    --disable-encoder=vorbis
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir${MINGW_PREFIX}/bin $pkgdir${MINGW_PREFIX}/share $pkgdir${MINGW_PREFIX}/lib/*.def
 }
