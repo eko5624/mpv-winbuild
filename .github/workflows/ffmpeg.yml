@@ -12,15 +12,11 @@ jobs:
   ffmpeg:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true

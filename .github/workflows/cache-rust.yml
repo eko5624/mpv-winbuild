@@ -14,7 +14,7 @@ jobs:
       - name: Install Dependencies
         run: |
           pacman -Syu --noconfirm
-          pacman -S --noconfirm --needed git yasm nasm ninja cmake python-pip curl python-cairo unzip p7zip curl jq
+          pacman -S --noconfirm --needed git unzip p7zip curl jq
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true

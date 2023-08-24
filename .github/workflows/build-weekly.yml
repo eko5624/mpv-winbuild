@@ -12,15 +12,11 @@ jobs:
   amf:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -61,15 +57,11 @@ jobs:
   angle:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -110,15 +102,11 @@ jobs:
   avisynth:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -160,15 +148,11 @@ jobs:
   brotli:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -209,15 +193,11 @@ jobs:
   config:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -259,15 +239,11 @@ jobs:
     needs: [amf, avisynth, dav1d, davs2, gmp, lame, libaribcaption, libbs2b, libjxl, libvpl, libmodplug, libmysofa, libogg, libopenmpt, libplacebo, libsdl2, libsoxr, libspeex, libsrt, libssh, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, libzvbi, mbedtls, opus, ffnvcodec, uavs3d, vapoursynth, zlib]
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -353,15 +329,11 @@ jobs:
   dav1d:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -402,22 +374,11 @@ jobs:
   davs2:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --global pull.rebase true
-          git config --global rebase.autoStash true
-          git config --global fetch.prune true
-          git config --global --add safe.directory $PWD
-
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -458,15 +419,11 @@ jobs:
   ffnvcodec:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -508,15 +465,11 @@ jobs:
     needs: [libpng, zlib]
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -560,15 +513,11 @@ jobs:
   fribidi:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -609,15 +558,11 @@ jobs:
   gmp:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -659,15 +604,11 @@ jobs:
     needs: [freetype2, libpng]
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -712,15 +653,11 @@ jobs:
   highway:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -761,15 +698,11 @@ jobs:
   lame:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -811,15 +744,11 @@ jobs:
     needs: [libjpeg, zlib]
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -864,15 +793,11 @@ jobs:
     needs: [freetype2, fribidi, harfbuzz, libunibreak]
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -920,15 +845,11 @@ jobs:
   libaribcaption:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -970,15 +891,11 @@ jobs:
     needs: [freetype2, libpng, libudfread, zlib]
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -1024,15 +941,11 @@ jobs:
   libbs2b:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -1073,15 +986,11 @@ jobs:
   libcaca:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -1122,15 +1031,11 @@ jobs:
   libdovi:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -1178,15 +1083,11 @@ jobs:
   libdvdcss:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -1228,15 +1129,11 @@ jobs:
     needs: [libdvdread]
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -1281,15 +1178,11 @@ jobs:
     needs: [libdvdcss]
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -1332,15 +1225,11 @@ jobs:
   libiconv:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -1381,15 +1270,11 @@ jobs:
   libjpeg:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -1431,15 +1316,11 @@ jobs:
     needs: [brotli, highway, lcms2, libjpeg, libpng]
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -1487,15 +1368,11 @@ jobs:
   libmodplug:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -1537,15 +1414,11 @@ jobs:
     needs: [zlib]
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -1588,15 +1461,11 @@ jobs:
   libogg:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -1638,15 +1507,11 @@ jobs:
     needs: [zlib, libogg, libsdl2, libvorbis_aotuv]
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -1693,15 +1558,11 @@ jobs:
     needs: [libdovi, lcms2, vulkan, shaderc, spirv-cross]
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -1751,15 +1612,11 @@ jobs:
     needs: [zlib]
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -1802,15 +1659,11 @@ jobs:
   libsdl2:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -1852,15 +1705,11 @@ jobs:
     needs: [libjpeg, libpng]
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -1905,15 +1754,11 @@ jobs:
   libsoxr:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -1954,15 +1799,11 @@ jobs:
   libspeex:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -2004,15 +1845,11 @@ jobs:
     needs: [mbedtls]
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -2056,15 +1893,11 @@ jobs:
     needs: [mbedtls, zlib]
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -2108,15 +1941,11 @@ jobs:
   libudfread:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -2157,15 +1986,11 @@ jobs:
   libunibreak:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -2207,15 +2032,11 @@ jobs:
     needs: [libogg]
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -2258,15 +2079,11 @@ jobs:
   libvpl:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -2307,15 +2124,11 @@ jobs:
   libvpx:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -2356,15 +2169,11 @@ jobs:
   libwebp:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -2405,15 +2214,11 @@ jobs:
   libxml2:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -2454,15 +2259,11 @@ jobs:
   libxvid:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -2503,15 +2304,11 @@ jobs:
   libzimg:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -2553,15 +2350,11 @@ jobs:
     needs: [libiconv, libpng]
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -2607,15 +2400,11 @@ jobs:
     needs: [libiconv]
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -2658,15 +2447,11 @@ jobs:
   mbedtls:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -2708,15 +2493,11 @@ jobs:
     needs: [libcaca, libjpeg, libpng, libsdl2, libsixel, openal-soft, ffmpeg, luajit2, libass, lcms2, libbluray, libudfread, libdvdnav, libplacebo, angle, mujs, rubberband, spirv-cross, vulkan]
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq
-          pip3 install -U --break-system-packages setuptools rst2pdf mako meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -2824,15 +2605,11 @@ jobs:
   mujs:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -2873,15 +2650,11 @@ jobs:
   openal-soft:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -2922,15 +2695,11 @@ jobs:
   opus:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -2972,14 +2741,11 @@ jobs:
     needs: [mpv, config]
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git unzip p7zip curl jq
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -3034,15 +2800,11 @@ jobs:
   rubberband:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -3083,15 +2845,11 @@ jobs:
   shaderc:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -3132,15 +2890,11 @@ jobs:
   spirv-cross:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -3181,15 +2935,11 @@ jobs:
   uavs3d:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -3230,15 +2980,11 @@ jobs:
   vapoursynth:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -3279,15 +3025,11 @@ jobs:
   vulkan:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
@@ -3328,15 +3070,11 @@ jobs:
   zlib:
     runs-on: ubuntu-latest
     container:
-      image: archlinux/archlinux:base-devel
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Install Dependencies
+      - name: Setup git config
         run: |
-          sudo echo -e "[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-          sudo pacman -Syu --noconfirm docker
-          sudo pacman -S --noconfirm --needed git ninja cmake yasm nasm unzip p7zip python-pip python-cairo curl jq wget
-          pip3 install -U --break-system-packages setuptools rst2pdf mako jsonschema meson
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name "github-actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
           git config --global rebase.autoStash true
