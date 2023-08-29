@@ -70,11 +70,12 @@ package_ffmpeg-dev() {
     --disable-pthreads \
     --enable-w32threads \
     --extra-libs="-lstdc++" \
-    --extra-ldflags="-static -static-libgcc -static-libstdc++" \
+    --extra-ldflags="-static-libgcc" \
     --disable-mediafoundation \
     --enable-amf \
     --enable-avisynth \
     --enable-gmp \
+    --enable-libaom \
     --enable-libaribcaption \
     --enable-libbs2b \
     --enable-libdav1d \
@@ -87,6 +88,7 @@ package_ffmpeg-dev() {
     --enable-libopenmpt \
     --enable-libopus \
     --enable-libplacebo \
+    --enable-librav1e \
     --enable-libshaderc \
     --enable-libsoxr \
     --enable-libspeex \
@@ -103,6 +105,7 @@ package_ffmpeg-dev() {
     --enable-mbedtls \
     --enable-vapoursynth \
     --enable-zlib \
+    --disable-decoder=libaom_av1 \
     --disable-decoder=libvorbis \
     --disable-decoder=libopus \
     --disable-encoder=opus \
