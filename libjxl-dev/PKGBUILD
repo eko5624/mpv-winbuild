@@ -6,7 +6,7 @@ arch=('x86_64')
 url="https://github.com/libjxl/libjxl/"
 makedepends=('brotli-dev' 'highway-dev' 'lcms2-dev')
 license=('BSD')
-source=("git+https://github.com/libjxl/libjxl.git#commit=5f3cc36bca9e43cf78aa5b819b74b387c638cac5")
+source=("git+https://github.com/libjxl/libjxl.git")
 md5sums=('SKIP')
 
 build() {
@@ -18,7 +18,7 @@ build() {
   export CFLAGS="$CFLAGS -Wa,-muse-unaligned-vector-move"
  
   cd $srcdir/libjxl
-  #git submodule update --init --recursive --depth 1 --recommend-shallow third_party/libjpeg-turbo
+  #git submodule update --init --recursive --depth 1 --recommend-shallow third_party/{highway,libjpeg-turbo}
   rm -rf build && mkdir build && cd build
   cmake .. \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
