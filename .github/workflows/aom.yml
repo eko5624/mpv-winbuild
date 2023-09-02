@@ -4,9 +4,6 @@ defaults:
     shell: bash
 on:
   workflow_dispatch:
-
-  #schedule:
-  #- cron: '30 0 * * MON'
     
 jobs:
   aom:

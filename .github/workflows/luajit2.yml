@@ -44,7 +44,6 @@ jobs:
             cross-gcc-mcf-
       - name: Build
         run: |
-          pacman -U *.zst --noconfirm          
           sudo chmod 777 -R ${{ env.top_dir }}
           sudo chmod 777 -R .
           cd luajit2
@@ -53,4 +52,5 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          ./release-dev.sh luajit2-dev luajit2
+          ./release-latest.sh luajit2-shared luajit2
+          ./release-dev.sh luajit2-shared-dev luajit2

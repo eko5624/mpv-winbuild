@@ -1,12 +1,15 @@
-name: libplacebo
+name: spirv-cross
 defaults:
   run:
     shell: bash
 on:
   workflow_dispatch:
 
+  #schedule:
+  #- cron: '30 0 * * MON'
+    
 jobs:
-  libplacebo:
+  spirv-cross:
     runs-on: ubuntu-latest
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
@@ -41,20 +44,12 @@ jobs:
             cross-gcc-mcf-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.15-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libdovi-dev-3.2.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libjpeg-dev-3.0.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/shaderc-dev-2023.6-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/spirv-cross-dev-1.3.261.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/vulkan-shared-dev-1.3.261.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-1.3-1-x86_64.pkg.tar.zst
-          pacman -U *.zst --noconfirm 
           sudo chmod 777 -R ${{ env.top_dir }}
           sudo chmod 777 -R .
-          cd libplacebo-dev
+          cd spirv-cross-dev
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          ./release-dev.sh libplacebo-shared-dev libplacebo-dev
+          ./release-dev.sh spirv-cross-dev spirv-cross-dev

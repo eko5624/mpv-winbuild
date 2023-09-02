@@ -52,4 +52,4 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}    
         run: |
-          ./release-dev.sh shaderc-dev shaderc-dev
+          ./release-dev.sh shaderc-shared-dev shaderc-dev
