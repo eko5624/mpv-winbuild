@@ -11,6 +11,7 @@ pkgs['vapoursynth'] = x['VapourSynth'][1:]
 for p in ['curl', 'mpv', 'ffmpeg', 'luajit2', 'mujs', 'rubberband']:
   pkgs['%s' % p] = x[p]
 pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
+pkgs['rav1e-dev'] = x['rav1e'][1:]
 for p in [
   'amf',
   'angle',
