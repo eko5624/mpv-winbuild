@@ -5,6 +5,7 @@ pkgdesc='Complete and free Internet live audio and video solution'
 arch=('x86_64')
 url="http://ffmpeg.org/"
 makedepends=("amf-headers-dev"
+             "aom-dev"
              "avisynth-dev"
              "dav1d-dev"
              "davs2-dev"
@@ -34,6 +35,7 @@ makedepends=("amf-headers-dev"
              "libzvbi-dev"
              "mbedtls-dev"
              "opus-dev"
+             "rav1e-dev"
              "shaderc-dev"
              "uavs3d-dev"
              "vapoursynth-dev")
