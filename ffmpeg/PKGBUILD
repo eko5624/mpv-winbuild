@@ -1,11 +1,10 @@
-pkgname=(ffmpeg-dev ffmpeg-git)
+pkgname=(ffmpeg-shared-dev ffmpeg-shared)
 pkgver=6.0
 pkgrel=1
 pkgdesc='Complete and free Internet live audio and video solution'
 arch=('x86_64')
 url="http://ffmpeg.org/"
 makedepends=("amf-headers-dev"
-             "aom-dev"
              "avisynth-dev"
              "dav1d-dev"
              "davs2-dev"
@@ -19,8 +18,7 @@ makedepends=("amf-headers-dev"
              "libmysofa-dev"
              "libogg-dev"
              "libopenmpt-dev"
-             "libplacebo-dev"
-             "libsdl2-dev"
+             "libplacebo-shared-dev"
              "libsoxr-dev"
              "libspeex-dev"
              "libsrt-dev"
@@ -35,7 +33,6 @@ makedepends=("amf-headers-dev"
              "libzvbi-dev"
              "mbedtls-dev"
              "opus-dev"
-             "rav1e-dev"
              "shaderc-dev"
              "uavs3d-dev"
              "vapoursynth-dev")
@@ -49,7 +46,7 @@ build() {
   export PKG_CONFIG="pkgconf --static"
 }
 
-package_ffmpeg-dev() {
+package_ffmpeg-shared-dev() {
   cd $srcdir/FFmpeg
   ./configure \
     --cross-prefix=${TARGET_ARCH}- \
@@ -65,6 +62,8 @@ package_ffmpeg-dev() {
     --enable-gpl \
     --enable-version3 \
     --enable-nonfree \
+    --disable-static \
+    --enable-shared \
     --enable-postproc \
     --disable-ffplay \
     --disable-ffprobe \
@@ -77,7 +76,6 @@ package_ffmpeg-dev() {
     --enable-amf \
     --enable-avisynth \
     --enable-gmp \
-    --enable-libaom \
     --enable-libaribcaption \
     --enable-libbs2b \
     --enable-libdav1d \
@@ -90,7 +88,6 @@ package_ffmpeg-dev() {
     --enable-libopenmpt \
     --enable-libopus \
     --enable-libplacebo \
-    --enable-librav1e \
     --enable-libshaderc \
     --enable-libsoxr \
     --enable-libspeex \
@@ -107,7 +104,6 @@ package_ffmpeg-dev() {
     --enable-mbedtls \
     --enable-vapoursynth \
     --enable-zlib \
-    --disable-decoder=libaom_av1 \
     --disable-decoder=libvorbis \
     --disable-decoder=libopus \
     --disable-encoder=opus \
@@ -116,18 +112,10 @@ package_ffmpeg-dev() {
   rm -rf $pkgdir${MINGW_PREFIX}/bin $pkgdir${MINGW_PREFIX}/share $pkgdir${MINGW_PREFIX}/lib/*.def
 }
 
-package_ffmpeg-git() {
+package_ffmpeg-shared() {
   export PKGEXT='.pkg.tar.xz'
-  mkdir -p $pkgdir${MINGW_PREFIX}/ffmpeg
   cd $srcdir/FFmpeg
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir${MINGW_PREFIX}/bin/*.lib $pkgdir${MINGW_PREFIX}/share $pkgdir${MINGW_PREFIX}/include $pkgdir${MINGW_PREFIX}/lib
   strip $pkgdir${MINGW_PREFIX}/bin/*
-  mv $pkgdir${MINGW_PREFIX}/bin/ffmpeg.exe $pkgdir${MINGW_PREFIX}/ffmpeg
-  rm -rf $pkgdir${MINGW_PREFIX}/bin
-
-  # get latest commit sha
-  short_sha=$(git rev-parse --short HEAD)
-  echo $short_sha > SHORT_SHA
-  mv SHORT_SHA $pkgdir${MINGW_PREFIX}/ffmpeg
 }

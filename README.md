@@ -6,6 +6,7 @@ Download from <https://github.com/eko5624/mpv-winbuild/releases>
 ## Q&A
 - [The differences between mcf and posix](https://github.com/msys2/MINGW-packages/discussions/13259)
 - About shared build: If you have vulkan-1.dll on your OS, mpv will use it from your graphic driver automatically. In this case, vulkan-1.dll can be removed.
+- About static build: If you need static build, switch to static-posix or static-mcf branch, and run build-weekly.yml workflow, then done.
 
 ## Requirements
 - [Microsoft Visual C++ Redistributable](https://docs.microsoft.com/en-US/cpp/windows/latest-supported-vc-redist?view=msvc-170)

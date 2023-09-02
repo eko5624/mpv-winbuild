@@ -1,9 +1,9 @@
 #!/bin/bash
 set -ex  
-CURL_RETRIES="--connect-timeout 60 --retry 5 --retry-delay 5 --http1.1"
+CURL_RETRIES="--connect-timeout 60 --retry 5 --retry-delay 5"
 
 #Get mpv latest commit sha
-short_sha=$(cat /github/home/opt/mpv/SHORT_SHA)
+short_sha=$(cat /github/home/opt/bin/MPV_SHA)
 
 # Release assets
 date=$(date +%Y-%m-%d)

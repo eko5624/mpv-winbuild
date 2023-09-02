@@ -1,25 +1,22 @@
-# Maintainer: nyfair <nyfair2012@gmail.com>
-pkgname=luajit2-dev
+pkgname=(luajit2-shared-dev luajit2-shared)
 pkgver=2.1_20230410
 pkgrel=1
 pkgdesc='Just-in-time compiler and drop-in replacement for Lua 5.1'
 arch=('x86_64')
 url="https://luajit.org/"
 license=('MIT')
-source=("git+https://github.com/openresty/luajit2"
-        "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/luajit-0001-add-win32-utf-8-filesystem-functions.patch")
-md5sums=('SKIP' 'SKIP')
+source=("git+https://github.com/openresty/luajit2")
+md5sums=('SKIP')
 
 build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
   cd $srcdir/luajit2
-  patch -p1 -i $srcdir/luajit-0001-add-win32-utf-8-filesystem-functions.patch
   make -C src \
     CROSS=${TARGET_ARCH}- \
     TARGET_SYS=Windows \
-    BUILDMODE=static \
+    BUILDMODE=dynamic \
     FILE_T=luajit.exe \
     CFLAGS='-D_WIN32_WINNT=0x0602 -DUNICODE' \
     XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT' \
@@ -27,18 +24,26 @@ build() {
     amalg 
 }
 
-package() {
+package_luajit2-shared-dev() {
   cd $srcdir/luajit2
   make DESTDIR=$pkgdir \
     CROSS=${TARGET_ARCH}- \
     TARGET_SYS=Windows \
-    BUILDMODE=static \
+    BUILDMODE=dynamic \
     FILE_T=luajit.exe \
     CFLAGS='-D_WIN32_WINNT=0x0602 -DUNICODE' \
     XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT' \
     PREFIX=${MINGW_PREFIX} Q= \
     install
-  cp ../../*.pc $pkgdir${MINGW_PREFIX}/lib/pkgconfig
-  sed -i "s,@MINGW_PREFIX@,${MINGW_PREFIX}," $pkgdir${MINGW_PREFIX}/lib/pkgconfig/*.pc
+  sed -i "s/-Wl,-E -lm -ldl/-lm/" $pkgdir${MINGW_PREFIX}/lib/pkgconfig/*.pc
   rm -rf $pkgdir${MINGW_PREFIX}/bin $pkgdir${MINGW_PREFIX}/share $pkgdir${MINGW_PREFIX}/lib/lua
+  mv src/liblua*.a $pkgdir${MINGW_PREFIX}/lib
+}
+
+package_luajit2-shared() {
+  export PKGEXT='.pkg.tar.xz'
+  cd $srcdir/luajit2
+  mkdir -p $pkgdir${MINGW_PREFIX}/bin
+  mv src/lua*.exe $pkgdir${MINGW_PREFIX}/bin
+  mv src/lua*.dll $pkgdir${MINGW_PREFIX}/bin
 }

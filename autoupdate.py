@@ -4,19 +4,12 @@ import in_place
 
 resp = request.urlopen('https://github.com/eko5624/nginx-nosni/raw/master/old.json')
 x = json.loads(resp.read().decode('utf-8'))
-    
-pkgs = {} 
-curl = x['curl']
-pkgs['libsixel'] = x['libsixel']     
-pkgs['vapoursynth'] = x['VapourSynth'][1:]
-for p in ['curl', 'mpv', 'ffmpeg', 'luajit2', 'mujs', 'rubberband']:
+
+pkgs = {}
+for p in ['mpv', 'ffmpeg', 'luajit2']:
   pkgs['%s' % p] = x[p]
-pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
-pkgs['rav1e-dev'] = x['rav1e'][1:]
 for p in [
-  'amf',
   'aom',
-  'angle',
   'avisynth',
   'brotli',
   'dav1d',
@@ -49,6 +42,7 @@ for p in [
   'libplacebo',
   'libpng',
   'libsdl2',
+  'libsixel',
   'libspeex',
   'libssh',
   'libsrt',
@@ -59,34 +53,39 @@ for p in [
   'libzimg',
   'libzvbi',
   'mbedtls',
+  'mujs',
   'openal-soft',
   'opus',
+  'rav1e',
+  'rubberband',
   'shaderc',
   'spirv-cross',
   'uavs3d',
-  'vulkan', 
+  'vulkan',
   'zlib',
   ]:
   pkgs['%s-dev' % p] = x[p]
-for p in pkgs:
+
+for p in ['libplacebo-dev', 'mpv', 'ffmpeg', 'vulkan-dev', 'luajit2']:
   with in_place.InPlace('%s/PKGBUILD' % p, newline='') as f:
     for l in f:
       if l.startswith('pkgver'):
         l = 'pkgver=%s\n' % pkgs[p]
       f.write(l)
 pkgs['amf-headers-dev'] = x['amf']
-pkgs['angle-headers-dev'] = x['angle']
-pkgs['libsixel-dev'] = x['libsixel']     
-pkgs['luajit2-dev'] = x['luajit2']
-pkgs['mujs-dev'] = x['mujs']
-pkgs['rubberband-dev'] = x['rubberband']
+pkgs['angle-headers'] =x['angle']
+pkgs['ffmpeg-shared'] = x['ffmpeg']
+pkgs['ffmpeg-shared-dev'] = x['ffmpeg']
+pkgs['libplacebo-shared-dev'] = x['libplacebo']
+pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
+pkgs['luajit2-shared-dev'] = x['luajit2']
+pkgs['luajit2-shared'] = x['luajit2']
+pkgs['mpv-shared'] = x['mpv']
+pkgs['rav1e-dev'] = x['rav1e'][1:]
 pkgs['vapoursynth-dev'] = x['VapourSynth'][1:]
-pkgs['ffmpeg-dev'] = x['ffmpeg']
-pkgs['ffmpeg-git'] = x['ffmpeg']
-pkgs['libmpv-git'] = x['mpv']
-pkgs['mpv-git'] = x['mpv']
+pkgs['vulkan-shared-dev'] = x['vulkan']
 
-for t in ['build-weekly.yml', 'libplacebo.yml', 'ffmpeg.yml', 'mpv.yml']:
+for t in ['ffmpeg.yml', 'libplacebo.yml', 'vulkan.yml', 'mpv.yml', 'build-weekly.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
     for l in f:
       if (i:=l.find('/dev/')) > -1:

@@ -1,11 +1,11 @@
 # Maintainer: nyfair <nyfair2012@gmail.com>
-pkgname=libplacebo-dev
+pkgname=libplacebo-shared-dev
 pkgver=6.292.1
 pkgrel=1
 pkgdesc='A Free Implementation of the Unicode Bidirectional Algorithm'
 arch=('x86_64')
 url="https://github.com/haasn/libplacebo/"
-makedepends=('lcms2-dev' 'libdovi-dev' 'vulkan-dev' 'shaderc-dev' 'spirv-cross-dev')
+makedepends=('lcms2-dev' 'libdovi-dev' 'vulkan-shared-dev' 'shaderc-dev' 'spirv-cross-dev')
 license=('LGPL')
 source=("git+https://github.com/haasn/libplacebo.git"
         "git+https://github.com/Dav1dde/glad.git")
@@ -15,6 +15,7 @@ build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
+  export LDFLAGS="$LDFLAGS -static-libgcc -lstdc++"
   cd $srcdir/libplacebo
   rm -rf 3rdparty/glad
   mv $srcdir/glad 3rdparty
@@ -23,13 +24,13 @@ build() {
     --libdir=${MINGW_PREFIX}/lib \
     --cross-file=../../../cross.meson \
     --buildtype=release \
-    --default-library=static \
     -Ddemos=false \
     -Dvulkan-registry="${MINGW_PREFIX}/share/vulkan/registry/vk.xml"
-  meson compile -C build
+  ninja -C build
 }
 
 package() {
   cd $srcdir/libplacebo
-  DESTDIR=$pkgdir meson install -C build
+  DESTDIR=$pkgdir ninja install -C build
+  strip $pkgdir${MINGW_PREFIX}/bin/*
 }
