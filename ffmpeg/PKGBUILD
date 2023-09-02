@@ -5,6 +5,7 @@ pkgdesc='Complete and free Internet live audio and video solution'
 arch=('x86_64')
 url="http://ffmpeg.org/"
 makedepends=("amf-headers-dev"
+             "aom-dev"
              "avisynth-dev"
              "dav1d-dev"
              "davs2-dev"
@@ -33,6 +34,7 @@ makedepends=("amf-headers-dev"
              "libzvbi-dev"
              "mbedtls-dev"
              "opus-dev"
+             "rav1e-dev"
              "shaderc-dev"
              "uavs3d-dev"
              "vapoursynth-dev")
@@ -76,6 +78,7 @@ package_ffmpeg-shared-dev() {
     --enable-amf \
     --enable-avisynth \
     --enable-gmp \
+    --enable-libaom \
     --enable-libaribcaption \
     --enable-libbs2b \
     --enable-libdav1d \
@@ -88,6 +91,7 @@ package_ffmpeg-shared-dev() {
     --enable-libopenmpt \
     --enable-libopus \
     --enable-libplacebo \
+    --enable-librav1e \
     --enable-libshaderc \
     --enable-libsoxr \
     --enable-libspeex \
@@ -104,6 +108,7 @@ package_ffmpeg-shared-dev() {
     --enable-mbedtls \
     --enable-vapoursynth \
     --enable-zlib \
+    --disable-decoder=libaom_av1 \
     --disable-decoder=libvorbis \
     --disable-decoder=libopus \
     --disable-encoder=opus \
