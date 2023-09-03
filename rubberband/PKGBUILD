@@ -20,7 +20,8 @@ build() {
     --buildtype=release \
     --default-library=static \
     -Dfft=builtin \
-    -Dresampler=builtin
+    -Dresampler=builtin \
+    -Djni=disabled
   meson compile -C build
 }
 
