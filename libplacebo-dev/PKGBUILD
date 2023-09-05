@@ -10,7 +10,7 @@ license=('LGPL')
 source=("git+https://github.com/haasn/libplacebo.git"
         "git+https://github.com/Dav1dde/glad.git"
         "git+https://github.com/fastfloat/fast_float.git")
-md5sums=('SKIP' 'SKIP')
+md5sums=('SKIP' 'SKIP' 'SKIP')
 
 build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
