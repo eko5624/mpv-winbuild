@@ -8,8 +8,9 @@ url="https://github.com/haasn/libplacebo/"
 makedepends=('lcms2-dev' 'libdovi-dev' 'vulkan-shared-dev' 'shaderc-dev' 'spirv-cross-dev')
 license=('LGPL')
 source=("git+https://github.com/haasn/libplacebo.git"
-        "git+https://github.com/Dav1dde/glad.git")
-md5sums=('SKIP' 'SKIP')
+        "git+https://github.com/Dav1dde/glad.git"
+        "git+https://github.com/fastfloat/fast_float.git")
+md5sums=('SKIP' 'SKIP' 'SKIP')
 
 build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
@@ -18,7 +19,9 @@ build() {
   export LDFLAGS="$LDFLAGS -static-libgcc -lstdc++"
   cd $srcdir/libplacebo
   rm -rf 3rdparty/glad
+  rm -rf 3rdparty/fast_float
   mv $srcdir/glad 3rdparty
+  mv $srcdir/fast_float 3rdparty
   meson setup build \
     --prefix="${MINGW_PREFIX}" \
     --libdir=${MINGW_PREFIX}/lib \
