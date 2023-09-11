@@ -18,7 +18,7 @@ build() {
   export CFLAGS="$CFLAGS -Wa,-muse-unaligned-vector-move"
  
   cd $srcdir/libjxl
-  #git submodule update --init --recursive --depth 1 --recommend-shallow third_party/{libjpeg-turbo}
+  #git submodule update --init --recursive --depth 1 --recommend-shallow third_party/{brotli,highway,libjpeg-turbo}
   rm -rf build && mkdir build && cd build
   cmake .. \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
