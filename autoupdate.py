@@ -62,6 +62,7 @@ for p in [
   'spirv-cross',
   'uavs3d',
   'vulkan',
+  'xxhash',
   'zlib',
   ]:
   pkgs['%s-dev' % p] = x[p]
