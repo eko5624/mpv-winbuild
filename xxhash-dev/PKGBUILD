@@ -15,7 +15,7 @@ build() {
  
   cd $srcdir/xxHash
   rm -rf build && mkdir build && cd build
-  cmake .. \
+  cmake ../cmake_unofficial \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
