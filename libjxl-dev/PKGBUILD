@@ -11,7 +11,7 @@ source=("git+https://github.com/libjxl/libjxl"
         "git+https://github.com/google/highway.git"
         "git+https://github.com/mm2/Little-CMS.git"
         "git+https://github.com/libjpeg-turbo/libjpeg-turbo.git")
-md5sums=('SKIP')
+md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"

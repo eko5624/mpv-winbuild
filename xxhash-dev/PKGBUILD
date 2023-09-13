@@ -17,7 +17,7 @@ build() {
   rm -rf build && mkdir build && cd build
   cmake ../cmake_unofficial \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
-    -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
+    -DCMAKE_TOOLCHAIN_FILE=../../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
     -DDISPATCH=ON
