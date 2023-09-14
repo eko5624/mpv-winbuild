@@ -46,5 +46,7 @@ package() {
   cd $srcdir/Vulkan-Headers/build
   make DESTDIR=$pkgdir install
   cd $srcdir/Vulkan-Loader/build
-  make DESTDIR=$pkgdir install
+  #make DESTDIR=$pkgdir install
+  cp loader/libvulkan.a $pkgdir${MINGW_PREFIX}/lib
+  cp loader/vulkan.pc $pkgdir${MINGW_PREFIX}/lib/pkgconfig 
 }
