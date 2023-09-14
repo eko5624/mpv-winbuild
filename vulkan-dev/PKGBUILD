@@ -43,6 +43,7 @@ build() {
 }
 
 package() {
+  mkdir -p $pkgdir${MINGW_PREFIX}/lib/pkgconfig
   cd $srcdir/Vulkan-Headers/build
   make DESTDIR=$pkgdir install
   cd $srcdir/Vulkan-Loader/build
