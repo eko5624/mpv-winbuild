@@ -14,17 +14,17 @@ build() {
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
   cd $srcdir/libpng
-  CFLAGS+=' -fno-asynchronous-unwind-tables'
-  autoreconf -ivf
-  ./configure \
-    --host=${TARGET_ARCH} \
-    --prefix="${MINGW_PREFIX}" \
-    --disable-shared \
-    --enable-static
-  make
+  rm -rf build && mkdir build && cd build
+  cmake .. -G Ninja \
+    -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
+    -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DPNG_SHARED=OFF \
+    -DPNG_TESTS=OFF
+  ninja
 }
 
 package() {
-  cd $srcdir/libpng
-  make DESTDIR=$pkgdir install
+  cd $srcdir/libpng/build
+  DESTDIR=$pkgdir ninja install
 }
