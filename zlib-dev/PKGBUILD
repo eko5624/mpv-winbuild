@@ -18,7 +18,6 @@ build() {
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
-    -DINSTALL_PKGCONFIG_DIR=${MINGW_PREFIX}/lib/pkgconfig \
     -DSKIP_INSTALL_LIBRARIES=ON \
     -DBUILD_SHARED_LIBS=OFF \
     -DZLIB_COMPAT=ON \
