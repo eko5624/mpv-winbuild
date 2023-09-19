@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ex
+set -x
 CURL_RETRIES="--connect-timeout 60 --retry 5 --retry-delay 5"
 
 # Delete assets
