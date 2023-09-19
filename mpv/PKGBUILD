@@ -65,7 +65,7 @@ build() {
 
 package_libmpv-git() {
   export PKGEXT='.pkg.tar.xz'
-  mkdir -p $pkgdir${MINGW_PREFIX}/libmpv/include/mpv
+  mkdir -p $pkgdir${MINGW_PREFIX}/libmpv
   cd $srcdir/mpv/build
   strip -s libmpv-2.dll
   mv libmpv-2.dll $pkgdir${MINGW_PREFIX}/libmpv
