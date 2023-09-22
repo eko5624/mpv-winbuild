@@ -20,8 +20,7 @@ build() {
     --filter=tree:0 \
     https://github.com/hoene/libmysofa.git
   cd libmysofa
-  git sparse-checkout set --no-cone /* !tests
-  cd $srcdir/libmysofa
+  git sparse-checkout set --no-cone '/*' '!tests'
   rm -rf out && mkdir out && cd out
   cmake .. -G Ninja \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
