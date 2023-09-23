@@ -28,7 +28,7 @@ jobs:
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: cross-gcc-mcf-${{ github.run_id }}
+          key: clang-${{ github.run_id }}
           restore-keys: |
             clang-
             
