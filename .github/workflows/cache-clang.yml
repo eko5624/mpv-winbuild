@@ -1,0 +1,49 @@
+name: cache-clang
+defaults:
+  run:
+    shell: bash
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux/archlinux:base-devel
+    steps:    
+      - name: Install Dependencies
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm --needed git unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
+      - name: Setting top_dir env
+        run: |
+           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading clang cache
+        uses: actions/cache/restore@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: cross-gcc-mcf-${{ github.run_id }}
+          restore-keys: |
+            clang-
+            
+      - name: Setup Clang Toolchain
+        run: |
+          cd ${{ env.top_dir }}
+          if [[ ! -d "cross/bin" ]]; then
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-mingw-2023-09-22-ucrt-x86_64.7z
+            7z x llvm-mingw*.7z
+            rm llvm-mingw*.7z
+          fi  
+
+      - name: Saving clang cache
+        uses: actions/cache/save@main
+        if: always()
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: clang-${{ github.run_id }}
