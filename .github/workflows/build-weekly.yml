@@ -28,13 +28,13 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-      - name: Loading cross gcc cache
+      - name: Loading clang cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: cross-gcc-mcf-${{ github.run_id }}
+          key: clang-${{ github.run_id }}
           restore-keys: |
-            cross-gcc-mcf-
+            clang-
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.30-1-x86_64.pkg.tar.zst
@@ -112,13 +112,13 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-      - name: Loading cross gcc cache
+      - name: Loading clang cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: cross-gcc-mcf-${{ github.run_id }}
+          key: clang-${{ github.run_id }}
           restore-keys: |
-            cross-gcc-mcf-
+            clang-
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.15-1-x86_64.pkg.tar.zst
@@ -159,13 +159,13 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-      - name: Loading cross gcc cache
+      - name: Loading clang cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: cross-gcc-mcf-${{ github.run_id }}
+          key: clang-${{ github.run_id }}
           restore-keys: |
-            cross-gcc-mcf-
+            clang-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
@@ -198,13 +198,13 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-      - name: Loading cross gcc cache
+      - name: Loading clang cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: cross-gcc-mcf-${{ github.run_id }}
+          key: clang-${{ github.run_id }}
           restore-keys: |
-            cross-gcc-mcf-
+            clang-
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/angle-headers-dev-1.0.772-1-x86_64.pkg.tar.zst
@@ -271,13 +271,13 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-      - name: Loading cross gcc cache
+      - name: Loading clang cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: cross-gcc-mcf-${{ github.run_id }}
+          key: clang-${{ github.run_id }}
           restore-keys: |
-            cross-gcc-mcf-
+            clang-
       - name: Setup Packages      
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz        
@@ -318,13 +318,13 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-      - name: Loading cross gcc cache
+      - name: Loading clang cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: cross-gcc-mcf-${{ github.run_id }}
+          key: clang-${{ github.run_id }}
           restore-keys: |
-            cross-gcc-mcf-
+            clang-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
