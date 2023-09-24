@@ -70,10 +70,8 @@ package_ffmpeg-shared-dev() {
     --disable-ffplay \
     --disable-ffprobe \
     --disable-avdevice \
-    --disable-pthreads \
-    --enable-w32threads \
-    --extra-libs="-lstdc++" \
-    --extra-ldflags="-static-libgcc" \
+    --extra-cflags="-Wno-error=int-conversion" \
+    --extra-libs="-fopenmp -lc++" \
     --disable-mediafoundation \
     --enable-amf \
     --enable-avisynth \
