@@ -33,7 +33,7 @@ build() {
   cmake .. \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DSHARE_INSTALL_PREFIX="${MINGW_PREFIX}" \
-    -DCMAKE_TOOLCHAIN_FILE=${TOP_DIR}/mpv-winbuild/toolchain.cmake \
+    -DCMAKE_TOOLCHAIN_FILE=/__w/mpv-winbuild/mpv-winbuild/toolchain.cmake \
     -DBUILD_SHARED_LIBS=OFF \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
