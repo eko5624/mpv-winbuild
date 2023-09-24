@@ -35,7 +35,7 @@ build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf" 
-  export LDFLAGS="$LDFLAGS -Wl,--allow-multiple-definition -fopenmp -lc++"
+  #export LDFLAGS="$LDFLAGS -Wl,--allow-multiple-definition -fopenmp -lc++"
   cd $srcdir/mpv
   meson setup build \
     --prefix="${MINGW_PREFIX}" \
