@@ -32,13 +32,13 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-      - name: Loading cross gcc cache
+      - name: Loading clang cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: cross-gcc-mcf-${{ github.run_id }}
+          key: clang-${{ github.run_id }}
           restore-keys: |
-            cross-gcc-mcf-
+            clang-
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.15-1-x86_64.pkg.tar.zst
