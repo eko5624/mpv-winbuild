@@ -27,13 +27,13 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-      - name: Loading cross gcc cache
+      - name: Loading clang cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: cross-gcc-mcf-${{ github.run_id }}
+          key: clang-${{ github.run_id }}
           restore-keys: |
-            cross-gcc-mcf-
+            clang-
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
@@ -49,6 +49,6 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
-          ./release-dev.sh libjxl-dev libjxl-dev 
+          ./release-dev.sh libjxl-dev libjxl-dev
