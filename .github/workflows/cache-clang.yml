@@ -36,9 +36,13 @@ jobs:
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-mingw-2023-09-22-ucrt-x86_64.7z
-            7z x llvm-mingw*.7z
-            rm llvm-mingw*.7z
+            #curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-mingw-2023-09-22-ucrt-x86_64.7z
+            #7z x llvm-mingw*.7z
+            #rm llvm-mingw*.7z
+            curl -OL https://github.com/eko5624/mpv-toolchain/releases/download/toolchain/clang.7z
+            7z x clang.7z
+            mv mpv-winbuild-cmake/clang_root cross
+            
           fi  
 
       - name: Saving clang cache
