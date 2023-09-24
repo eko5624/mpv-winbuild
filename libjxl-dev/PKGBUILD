@@ -17,14 +17,14 @@ build() {
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
   # Fix AVX2 related crash due to unaligned stack memory
-  export CXXFLAGS="$CXXFLAGS -Wa,-muse-unaligned-vector-move"
-  export CFLAGS="$CFLAGS -Wa,-muse-unaligned-vector-move"
+  #export CXXFLAGS="$CXXFLAGS -Wa,-muse-unaligned-vector-move"
+  #export CFLAGS="$CFLAGS -Wa,-muse-unaligned-vector-move"
  
   cd $srcdir/libjxl
   #git submodule update --init --recursive --depth 1 --recommend-shallow third_party/{brotli,highway,lcms,libjpeg-turbo}
   rm -rf third_party/brotli
   rm -rf third_party/highway
-  rm -rf third_party/lcms
+  #rm -rf third_party/lcms
   rm -rf third_party/libjpeg-turbo
   mv $srcdir/brotli third_party/brotli
   mv $srcdir/highway third_party/highway
