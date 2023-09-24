@@ -16,9 +16,6 @@ build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
-  # Fix AVX2 related crash due to unaligned stack memory
-  #export CXXFLAGS="$CXXFLAGS -Wa,-muse-unaligned-vector-move"
-  #export CFLAGS="$CFLAGS -Wa,-muse-unaligned-vector-move"
  
   cd $srcdir/libjxl
   #git submodule update --init --recursive --depth 1 --recommend-shallow third_party/{brotli,highway,lcms,libjpeg-turbo}
@@ -33,7 +30,7 @@ build() {
   cmake .. \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DSHARE_INSTALL_PREFIX="${MINGW_PREFIX}" \
-    -DCMAKE_TOOLCHAIN_FILE=toolchain.cmake \
+    -DCMAKE_TOOLCHAIN_FILE=../../..toolchain.cmake \
     -DBUILD_SHARED_LIBS=OFF \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
@@ -53,9 +50,7 @@ build() {
     -DJPEGXL_ENABLE_BENCHMARK=OFF \
     -DJPEGXL_ENABLE_SJPEG=OFF \
     -DJPEGXL_ENABLE_AVX512=ON \
-    -DJPEGXL_ENABLE_AVX512_ZEN4=ON \
-    -DCMAKE_CXX_FLAGS='${CMAKE_CXX_FLAGS} -msse2 -Wa,-muse-unaligned-vector-move' \
-    -DCMAKE_C_FLAGS='${CMAKE_C_FLAGS} -msse2 -Wa,-muse-unaligned-vector-move'
+    -DJPEGXL_ENABLE_AVX512_ZEN4=ON
   make
 }
 
