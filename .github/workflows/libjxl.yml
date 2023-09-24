@@ -12,7 +12,7 @@ jobs:
   libjxl:
     runs-on: ubuntu-latest
     container:
-      image: docker://ghcr.io/shinchiro/archlinux:latest
+      image: docker://ghcr.io/eko5624/archlinux:latest
     steps: 
       - name: Add builder user
         run: |
