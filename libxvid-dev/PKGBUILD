@@ -7,7 +7,7 @@ url="https://www.xvid.com/"
 license=('GPL')
 source=("https://downloads.xvid.com/downloads/xvidcore-$pkgver.tar.bz2"
         "0001-remove-dll-option-clang.patch")
-md5sums=('SKIP')
+md5sums=('SKIP' 'SKIP')
 
 build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
