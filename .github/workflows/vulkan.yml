@@ -13,18 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.github_token }}
-    steps:    
-      - name: Setup git config
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --global pull.rebase true
-          git config --global rebase.autoStash true
-          git config --global fetch.prune true
-          git config --global --add safe.directory $PWD
+    steps:
       - name: Add builder user
         run: |
           useradd builder -m
@@ -38,13 +27,13 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-      - name: Loading cross gcc cache
+      - name: Loading clang cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: cross-gcc-mcf-${{ github.run_id }}
+          key: clang-${{ github.run_id }}
           restore-keys: |
-            cross-gcc-mcf-
+            clang-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }}
