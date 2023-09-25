@@ -21,6 +21,7 @@ git-fetch-with-cli = true
 [target.x86_64-pc-windows-gnu]
 linker = "${TOP_DIR}/cross/bin/x86_64-w64-mingw32-gcc"
 ar = "${TOP_DIR}/cross/bin/x86_64-w64-mingw32-ar"
+rustflags = ["-C", "target-cpu=x86-64"]
 
 [profile.release]
 panic = "abort"
