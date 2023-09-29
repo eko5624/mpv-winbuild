@@ -42,7 +42,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.BOT }}
         run: |
           ./release-dev.sh amf-headers-dev amf-dev
 
@@ -79,7 +79,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.BOT }}
         run: |
           ./release-dev.sh angle-headers-dev angle-dev
 
@@ -116,7 +116,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.BOT }}
         run: |
           ./release-dev.sh aom-dev aom-dev
 
@@ -153,7 +153,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.BOT }}
         run: |
           ./release-dev.sh avisynth-dev avisynth-dev
 
@@ -191,7 +191,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.BOT }}
         run: |
           ./release-dev.sh brotli-dev brotli-dev
 
@@ -228,7 +228,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.BOT }}
         run: |
           ./release-latest.sh config mpv-config
 
@@ -311,7 +311,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.BOT }}
         run: |
           ./release-latest.sh ffmpeg-git ffmpeg
           ./release-dev.sh ffmpeg-dev ffmpeg
@@ -349,7 +349,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.BOT }}
         run: |
           ./release-dev.sh dav1d-dev dav1d-dev
 
@@ -386,7 +386,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh davs2-dev davs2-dev
 
@@ -423,7 +423,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh ffnvcodec-dev ffnvcodec-dev
 
@@ -464,7 +464,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh freetype2-dev freetype2-dev
 
@@ -501,7 +501,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh fribidi-dev fribidi-dev
 
@@ -538,7 +538,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh gmp-dev gmp-dev       
 
@@ -580,7 +580,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh harfbuzz-dev harfbuzz-dev 
 
@@ -617,7 +617,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh highway-dev highway-dev 
 
@@ -654,7 +654,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh lame-dev lame-dev 
 
@@ -695,7 +695,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm 
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh lcms2-dev lcms2-dev 
 
@@ -740,7 +740,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libass-dev libass-dev
 
@@ -777,7 +777,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libaribcaption-dev libaribcaption-dev        
 
@@ -820,7 +820,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.BOT }}
         run: |
           ./release-dev.sh libbluray-dev libbluray-dev
 
@@ -857,7 +857,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.BOT }}
         run: |
           ./release-dev.sh libbs2b-dev libbs2b-dev
 
@@ -894,7 +894,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libcaca-dev libcaca-dev
 
@@ -938,7 +938,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm    
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libdovi-dev libdovi-dev                     
 
@@ -975,7 +975,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libdvdcss-dev libdvdcss-dev
 
@@ -1016,7 +1016,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libdvdnav-dev libdvdnav-dev
 
@@ -1056,7 +1056,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libdvdread-dev libdvdread-dev
 
@@ -1093,7 +1093,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libiconv-dev libiconv-dev
 
@@ -1130,7 +1130,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libjpeg-dev libjpeg-dev
         
@@ -1175,7 +1175,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libjxl-dev libjxl-dev         
 
@@ -1212,7 +1212,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libmodplug-dev libmodplug-dev 
 
@@ -1252,7 +1252,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm 
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libmysofa-dev libmysofa-dev                           
 
@@ -1289,7 +1289,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libogg-dev libogg-dev 
         
@@ -1332,7 +1332,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libopenmpt-dev libopenmpt-dev                
 
@@ -1379,7 +1379,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libplacebo-dev libplacebo-dev
         
@@ -1419,7 +1419,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libpng-dev libpng-dev      
         
@@ -1456,7 +1456,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libsdl2-dev libsdl2-dev 
 
@@ -1498,7 +1498,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libsixel-dev libsixel 
 
@@ -1535,7 +1535,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm 
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libsoxr-dev libsoxr-dev                   
 
@@ -1572,7 +1572,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libspeex-dev libspeex-dev 
 
@@ -1612,7 +1612,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm 
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libsrt-dev libsrt-dev 
 
@@ -1653,7 +1653,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm 
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libssh-dev libssh-dev 
 
@@ -1690,7 +1690,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libudfread-dev libudfread-dev
 
@@ -1727,7 +1727,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libunibreak-dev libunibreak-dev                             
 
@@ -1767,7 +1767,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libvorbis_aotuv-dev libvorbis_aotuv-dev
 
@@ -1804,7 +1804,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm 
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libvpl-dev libvpl-dev         
 
@@ -1841,7 +1841,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libvpx-dev libvpx-dev
 
@@ -1878,7 +1878,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libwebp-dev libwebp-dev
 
@@ -1915,7 +1915,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libxml2-dev libxml2-dev        
         
@@ -1952,7 +1952,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libxvid-dev libxvid-dev  
         
@@ -1989,7 +1989,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libzimg-dev libzimg-dev  
 
@@ -2031,7 +2031,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh libzvbi-dev libzvbi-dev
 
@@ -2071,7 +2071,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh luajit2-dev luajit2 
 
@@ -2108,7 +2108,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh mbedtls-dev mbedtls-dev               
 
@@ -2209,12 +2209,12 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Delete old libmpv
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-latest.sh libmpv-git
       - name: Release mpv and libmpv
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-latest.sh mpv-git mpv 
 
@@ -2251,7 +2251,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh mujs-dev mujs
 
@@ -2288,7 +2288,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh openal-soft-dev openal-soft-dev              
 
@@ -2325,7 +2325,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh opus-dev opus-dev
 
@@ -2377,7 +2377,7 @@ jobs:
           7z a git-ffmpeg-${{ env.date }}-${{ env.ffmpeg_sha }}.7z ${{ env.top_dir }}/opt/ffmpeg/*
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.BOT }}
         run: |
           ./release-package.sh
 
@@ -2421,7 +2421,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm    
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh rav1e-dev rav1e-dev
 
@@ -2458,7 +2458,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh rubberband-dev rubberband        
   
@@ -2495,7 +2495,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh shaderc-dev shaderc-dev
 
@@ -2532,7 +2532,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh spirv-cross-dev spirv-cross-dev
 
@@ -2569,7 +2569,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh uavs3d-dev uavs3d-dev        
 
@@ -2606,7 +2606,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh vapoursynth-dev vapoursynth
 
@@ -2643,7 +2643,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh vulkan-dev vulkan-dev
 
@@ -2680,7 +2680,7 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh xxhash-dev xxhash-dev 
 
@@ -2717,6 +2717,6 @@ jobs:
           sudo -H -u builder makepkg-cross -sC --noconfirm
       - name: Release
         env:
-          GH_TOKEN: ${{ github.token }}    
+          GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-dev.sh zlib-dev zlib-dev
