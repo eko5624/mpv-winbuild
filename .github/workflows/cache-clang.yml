@@ -43,7 +43,7 @@ jobs:
 
       - name: test
         run: |
-          cd ${{ env.top_dir }}
+          export PATH="${{ env.top_dir }}/cross/bin:$PATH"
           echo "print-resource-dir"
           cross/bin/x86_64-w64-mingw32-clang --print-resource-dir
           echo "print-runtime-dir"
