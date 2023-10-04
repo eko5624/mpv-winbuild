@@ -36,10 +36,17 @@ jobs:
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-mingw-2023-10-02-ucrt-x86_64.7z
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-mingw-2023-10-04-ucrt-x86_64.7z
             7z x llvm-mingw*.7z
             rm llvm-mingw*.7z
-          fi  
+          fi
+
+      - name: test
+        run: |
+          echo "print-resource-dir"
+          cross/bin/x86_64-w64-mingw32-clang --print-resource-dir
+          echo "print-runtime-dir"
+          cross/bin/x86_64-w64-mingw32-gcc -print-runtime-dir
 
       - name: Saving clang cache
         uses: actions/cache/save@main
