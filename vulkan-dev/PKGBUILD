@@ -17,7 +17,7 @@ build() {
 
   export CFLAGS="${CFLAGS} -D__STDC_FORMAT_MACROS -DSTRSAFE_NO_DEPRECATE -D_WIN32_WINNT=0x0600 -Dparse_number=cjson_parse_number"
   export CPPFLAGS="${CPPFLAGS} -D__STDC_FORMAT_MACROS"
-  export CXXFLAGS="${CXXFLAGS} -D__STDC_FORMAT_MACROS -fpermissive -D_WIN32_WINNT=0x0600'"
+  export CXXFLAGS="${CXXFLAGS} -D__STDC_FORMAT_MACROS -fpermissive -D_WIN32_WINNT=0x0600"
 
   cd $srcdir/Vulkan-Headers
   rm -rf build && mkdir build && cd build
