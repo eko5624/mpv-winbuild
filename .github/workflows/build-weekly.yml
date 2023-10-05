@@ -317,6 +317,7 @@ jobs:
           ./release-dev.sh ffmpeg-dev ffmpeg
 
   dav1d:
+    needs: [xxhash]
     runs-on: ubuntu-latest
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
@@ -343,6 +344,8 @@ jobs:
             clang-
       - name: Build
         run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
+          pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }}
           sudo chmod 777 -R .
           cd dav1d-dev
