@@ -317,6 +317,7 @@ jobs:
           ./release-dev.sh ffmpeg-dev ffmpeg
 
   dav1d:
+    needs: [xxhash]
     runs-on: ubuntu-latest
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
@@ -334,15 +335,17 @@ jobs:
         run: |
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/local/bin
-      - name: Loading cross gcc cache
+      - name: Loading clang cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: cross-gcc-mcf-${{ github.run_id }}
+          key: clang-${{ github.run_id }}
           restore-keys: |
-            cross-gcc-mcf-
+            clang-
       - name: Build
         run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
+          pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }}
           sudo chmod 777 -R .
           cd dav1d-dev
