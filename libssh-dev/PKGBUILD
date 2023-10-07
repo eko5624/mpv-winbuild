@@ -33,6 +33,6 @@ build() {
 package() {
   cd $srcdir/libssh/build
   make DESTDIR=$pkgdir install
-  echo "Libs.private: -lmbedtls -lmbedx509 -lmbedcrypto -lz -lwsock32 -lws2_32 -lpthread" >> $pkgdir${MINGW_PREFIX}/lib/pkgconfig/libssh.pc
+  echo "Libs.private: -lmbedtls -lmbedx509 -lmbedcrypto -lz -lwsock32 -lbcrypt -lws2_32 -lpthread" >> $pkgdir${MINGW_PREFIX}/lib/pkgconfig/libssh.pc
   echo "Cflags.private: -DLIBSSH_STATIC" >> $pkgdir${MINGW_PREFIX}/lib/pkgconfig/libssh.pc
 }
