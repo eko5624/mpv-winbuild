@@ -12,7 +12,7 @@ jobs:
   luajit2:
     runs-on: ubuntu-latest
     container:
-      image: docker://ghcr.io/eko5624/archlinux:latest
+      image: docker://ghcr.io/eko5624/archlinux:latest@sha256:af1635c54093e59edded7aa9fc86aa6c75c9def4635d527f39862516c7dd24a9
     steps:    
       - name: Setup git config
         run: |
