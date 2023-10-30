@@ -14,7 +14,7 @@ jobs:
       - name: Install Dependencies
         run: |
           pacman -Syu --noconfirm
-          pacman -S --noconfirm --needed git unzip p7zip curl jq clang lld libc++ libc++abi
+          pacman -S --noconfirm --needed git unzip p7zip curl jq
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global pull.rebase true
@@ -36,7 +36,7 @@ jobs:
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-mingw-2023-10-04-ucrt-x86_64.7z
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-mingw-2023-10-23-ucrt-x86_64.7z
             7z x llvm-mingw*.7z
             rm llvm-mingw*.7z
           fi
