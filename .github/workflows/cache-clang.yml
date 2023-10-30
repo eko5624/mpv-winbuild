@@ -41,14 +41,6 @@ jobs:
             rm llvm-mingw*.7z
           fi
 
-      - name: test
-        run: |
-          export PATH="${{ env.top_dir }}/cross/bin:$PATH"
-          echo "print-resource-dir"
-          x86_64-w64-mingw32-clang --print-resource-dir
-          echo "print-runtime-dir"
-          x86_64-w64-mingw32-clang -print-runtime-dir
-
       - name: Saving clang cache
         uses: actions/cache/save@main
         if: always()
