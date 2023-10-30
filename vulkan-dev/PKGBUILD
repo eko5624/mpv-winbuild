@@ -48,5 +48,5 @@ package() {
   make DESTDIR=$pkgdir install
   cd $srcdir/Vulkan-Loader/build
   cp loader/libvulkan.a $pkgdir${MINGW_PREFIX}/lib
-  cp loader/vulkan.pc $pkgdir${MINGW_PREFIX}/lib/pkgconfig 
+  cp loader/vulkan_own.pc $pkgdir${MINGW_PREFIX}/lib/pkgconfig/vulkan.pc 
 }
