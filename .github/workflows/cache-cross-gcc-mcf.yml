@@ -36,7 +36,7 @@ jobs:
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/target-gcc-mcf-13.2.1-20231005-x64-ucrt.7z
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-gcc-mcf-13.2.0-x64-ucrt.7z
             7z x cross-gcc-mcf*.7z
             rm cross-gcc-mcf*.7z
           fi  
