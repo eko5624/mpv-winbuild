@@ -1,0 +1,61 @@
+name: package
+defaults:
+  run:
+    shell: bash
+on:
+  workflow_dispatch:
+
+  #schedule:
+  #- cron: '30 0 * * MON'
+    
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+      - name: Setting top_dir env
+        run: |
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+      - name: Checkout
+        uses: actions/checkout@main
+      - name: Setting makepkg etc
+        run: |
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+      - name: Loading cross gcc cache
+        uses: actions/cache/restore@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: cross-gcc-mcf-${{ github.run_id }}
+          restore-keys: |
+            cross-gcc-mcf-
+      - name: Setup Packages      
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/latest/config-1.0-1-x86_64.pkg.tar.xz        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/latest/ffmpeg-git-6.0-1-x86_64.pkg.tar.xz
+          curl -OL https://github.com/${{ github.repository }}/releases/download/latest/libmpv-git-0.36.0-1-x86_64.pkg.tar.xz
+          curl -OL https://github.com/${{ github.repository }}/releases/download/latest/mpv-git-0.36.0-1-x86_64.pkg.tar.xz
+          pacman -U *.xz --noconfirm
+      - name: Get ffmpeg latest commit sha
+        run: |
+          echo "ffmpeg_sha=$(cat ${{ env.top_dir }}/opt/ffmpeg/SHORT_SHA)" >> $GITHUB_ENV
+      - name: Get current timestamp
+        run: |
+          echo "date=$(date +%Y%m%d)" >> $GITHUB_ENV
+      - name: Zip Packages    
+        run: |
+          curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2023.10.13/yt-dlp.exe
+          mv yt-dlp.exe ${{ env.top_dir }}/opt/mpv
+          7z a static-mpv-${{ env.date }}.7z ${{ env.top_dir }}/opt/mpv/*
+          7z a git-libmpv-${{ env.date }}.7z ${{ env.top_dir }}/opt/libmpv/*
+          7z a git-ffmpeg-${{ env.date }}-${{ env.ffmpeg_sha }}.7z ${{ env.top_dir }}/opt/ffmpeg/*
+      - name: Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ./release-package.sh
