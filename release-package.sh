@@ -6,7 +6,7 @@ CURL_RETRIES="--connect-timeout 60 --retry 5 --retry-delay 5"
 short_sha=$(cat /github/home/opt/mpv/SHORT_SHA)
 date=$(date +%Y-%m-%d)
 body="Bump to mpv-player/mpv@${short_sha}\n"
-body+="**Compiler**: clang"
+body+="**Compiler**: GCC with the MCF thread"
 
 curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -X POST \
