@@ -4,7 +4,7 @@ CURL_RETRIES="--connect-timeout 60 --retry 5 --retry-delay 5"
 
 #Get mpv latest commit sha
 short_sha=$(cat /github/home/opt/mpv/SHORT_SHA)
-note=$(cat <<END
+body=$(cat <<END
 Bump to mpv-player/mpv@${short_sha}
 **Compiler**: clang
 END
@@ -14,7 +14,7 @@ curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -X POST \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases \
-  -d '{"tag_name":"'"$date"'","name":"'"$date"'","body":"'"${note}"'"}'
+  -d '{"tag_name":"'"$date"'","name":"'"$date"'","body":"$(echo ${body})"}'
   
 release_id=$(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -H "Accept: application/vnd.github.v3+json" \
