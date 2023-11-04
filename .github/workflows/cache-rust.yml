@@ -36,7 +36,7 @@ jobs:
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "rust" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/rustup-2023-10-23.7z
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/rustup-2023-11-04.7z
             7z x rustup*.7z
             rm rustup*.7z
           fi  
