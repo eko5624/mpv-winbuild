@@ -4,6 +4,7 @@ pkgrel=1
 pkgdesc='XML parsing library, version 2'
 arch=('x86_64')
 url="http://www.xmlsoft.org/"
+makedepends=("libiconv-dev" "zlib-dev")
 license=('spdx:MIT')
 source=("git+https://github.com/GNOME/libxml2.git")
 md5sums=('SKIP')
@@ -13,20 +14,24 @@ build() {
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
   cd $srcdir/libxml2
-  ./autogen.sh
-  ./configure \
-    --host=${TARGET_ARCH} \
-    --prefix=${MINGW_PREFIX} \
-    --disable-shared \
-    --enable-static \
-    --with-minimum \
-    --with-threads \
-    --with-tree \
-    --without-lzma
-  make
-}
-
+  rm -rf build && mkdir build && cd build
+  cmake .. \
+    -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
+    -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DLIBXML2_WITH_ZLIB=ON \
+    -DLIBXML2_WITH_ICONV=ON \
+    -DLIBXML2_WITH_LZMA=OFF \
+    -DLIBXML2_WITH_PYTHON=OFF \
+    -DLIBXML2_WITH_TESTS=OFF \
+    -DLIBXML2_WITH_TREE=ON \
+    -DLIBXML2_WITH_THREADS=ON \
+    -DLIBXML2_WITH_THREAD_ALLOC=ON
+make
+} 
+  
 package() {
-  cd $srcdir/libxml2
-  make DESTDIR=$pkgdir install
+  cd $srcdir/libxml2/build
+  DESTDIR=$pkgdir make install
 }

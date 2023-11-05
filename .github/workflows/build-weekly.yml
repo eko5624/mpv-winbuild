@@ -1886,6 +1886,7 @@ jobs:
           ./release-dev.sh libwebp-dev libwebp-dev
 
   libxml2:
+    needs: [libiconv, zlib]
     runs-on: ubuntu-latest
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
@@ -1912,6 +1913,9 @@ jobs:
             clang-
       - name: Build
         run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/zlib-dev-2.1.4-1-x86_64.pkg.tar.zst   
+          pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }}
           sudo chmod 777 -R .
           cd libxml2-dev
