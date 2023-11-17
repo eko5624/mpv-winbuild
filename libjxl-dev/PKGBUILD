@@ -6,32 +6,25 @@ arch=('x86_64')
 url="https://github.com/libjxl/libjxl/"
 makedepends=('brotli-dev' 'highway-dev' 'lcms2-dev')
 license=('BSD')
-source=("git+https://github.com/libjxl/libjxl.git#commit=d3a69dbeef78f036969a2500f949f931df857e17"
-        "git+https://github.com/google/brotli.git"
-        "git+https://github.com/google/highway.git"
-        "git+https://github.com/mm2/Little-CMS.git"
+source=("git+https://github.com/libjxl/libjxl.git"
         "git+https://github.com/libjpeg-turbo/libjpeg-turbo.git")
-md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
+md5sums=('SKIP' 'SKIP')
 
 build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
+  # Fix AVX2 related crash due to unaligned stack memory
+  export CXXFLAGS="$CXXFLAGS -Wa,-muse-unaligned-vector-move"
+  export CFLAGS="$CFLAGS -Wa,-muse-unaligned-vector-move"
  
   cd $srcdir/libjxl
   #git submodule update --init --recursive --depth 1 --recommend-shallow third_party/{brotli,highway,lcms,libjpeg-turbo}
-  rm -rf third_party/brotli
-  rm -rf third_party/highway
-  rm -rf third_party/lcms
   rm -rf third_party/libjpeg-turbo
-  mv $srcdir/brotli third_party/brotli
-  mv $srcdir/highway third_party/highway
-  mv $srcdir/Little-CMS third_party/lcms
   mv $srcdir/libjpeg-turbo third_party/libjpeg-turbo
   rm -rf build && mkdir build && cd build
   cmake .. \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
-    -DSHARE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DBUILD_SHARED_LIBS=OFF \
     -DCMAKE_BUILD_TYPE=Release \
@@ -52,11 +45,17 @@ build() {
     -DJPEGXL_ENABLE_BENCHMARK=OFF \
     -DJPEGXL_ENABLE_SJPEG=OFF \
     -DJPEGXL_ENABLE_AVX512=ON \
-    -DJPEGXL_ENABLE_AVX512_ZEN4=ON
+    -DJPEGXL_ENABLE_AVX512_ZEN4=ON \
+    -DJPEGXL_ENABLE_AVX512_SPR=ON \
+    -DJPEGXL_FORCE_SYSTEM_LCMS2=ON \
+    -DJPEGXL_FORCE_SYSTEM_BROTLI=ON \
+    -DJPEGXL_FORCE_SYSTEM_HWY=ON
   make
 }
 
 package() {
   cd $srcdir/libjxl/build
   DESTDIR=$pkgdir make install
+  sed -i 's/lcms2//' $pkgdir$MINGW_PREFIX/lib/pkgconfig/libjxl.pc
+  sed -i 's/-lm/-lm -llcms2/' $pkgdir$MINGW_PREFIX/lib/pkgconfig/libjxl.pc
 }
