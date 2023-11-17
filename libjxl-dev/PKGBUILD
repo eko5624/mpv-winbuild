@@ -56,6 +56,6 @@ build() {
 package() {
   cd $srcdir/libjxl/build
   DESTDIR=$pkgdir make install
-  sed -i 's/lcms2//' $pkgdir$MINGW_PREFIX/lib/pkgconfig/libjxl.pc
+  sed -i 's/libjxl_cms//' $pkgdir$MINGW_PREFIX/lib/pkgconfig/libjxl.pc
   sed -i 's/-lm/-lm -llcms2/' $pkgdir$MINGW_PREFIX/lib/pkgconfig/libjxl.pc
 }
