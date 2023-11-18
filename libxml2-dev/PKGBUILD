@@ -34,6 +34,4 @@ cmake --build .
 package() {
   cd $srcdir/libxml2/build
   DESTDIR=$pkgdir cmake --install .
-  mv $pkgdir/msys64/* $pkgdir
-  rm -rf $pkgdir/msys64
 }
