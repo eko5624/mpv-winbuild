@@ -19,7 +19,6 @@ build() {
   export CFLAGS="$CFLAGS -Wa,-muse-unaligned-vector-move"
  
   cd $srcdir/libjxl
-  #git submodule update --init --recursive --depth 1 --recommend-shallow third_party/{brotli,highway,lcms,libjpeg-turbo}
   rm -rf third_party/libjpeg-turbo
   mv $srcdir/libjpeg-turbo third_party/libjpeg-turbo
   rm -rf build && mkdir build && cd build
@@ -56,6 +55,6 @@ build() {
 package() {
   cd $srcdir/libjxl/build
   DESTDIR=$pkgdir make install
-  sed -i 's/lcms2//' $pkgdir$MINGW_PREFIX/lib/pkgconfig/libjxl.pc
+  sed -i 's/libjxl_cms//' $pkgdir$MINGW_PREFIX/lib/pkgconfig/libjxl.pc
   sed -i 's/-lm/-lm -llcms2/' $pkgdir$MINGW_PREFIX/lib/pkgconfig/libjxl.pc
 }
