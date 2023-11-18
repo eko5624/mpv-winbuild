@@ -15,15 +15,18 @@ build() {
   cd $srcdir/brotli
   rm -rf out && mkdir out && cd out
   cmake .. \
+    -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DBUILD_SHARED_LIBS=OFF \
     -DCMAKE_BUILD_TYPE=Release \
     -DBROTLI_EMSCRIPTEN=OFF
-  make
+  cmake --build .
 } 
   
 package() {
   cd $srcdir/brotli/out  
-  DESTDIR=$pkgdir make install
+  DESTDIR=$pkgdir cmake --install .
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
 }

@@ -15,6 +15,7 @@ build() {
   cd $srcdir/openal-soft
   rm -rf build && mkdir build && cd build
   cmake .. \
+    -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
@@ -23,10 +24,12 @@ build() {
     -DALSOFT_EXAMPLES=OFF \
     -DALSOFT_TESTS=OFF \
     -DALSOFT_BACKEND_PIPEWIRE=OFF 
-  make
+  cmake --build .
 }
 
 package() {
   cd $srcdir/openal-soft/build
-  make DESTDIR=$pkgdir install
+  DESTDIR=$pkgdir cmake --install .
+  mv $pkgdir/msys64/* $pkgdir
+  rm -rf $pkgdir/msys64
 }
