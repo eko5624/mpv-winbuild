@@ -16,15 +16,16 @@ build() {
   cd $srcdir/xxHash
   rm -rf build && mkdir build && cd build
   cmake ../cmake_unofficial \
+    -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
     -DDISPATCH=ON
-  make
+  cmake --build .
 }
 
 package() {
   cd $srcdir/xxHash/build
-  DESTDIR=$pkgdir make install
+  DESTDIR=$pkgdir cmake --install .
 }

@@ -15,13 +15,14 @@ build() {
   cd $srcdir/libaribcaption
   rm -rf build && mkdir build && cd build
   cmake .. \
+    -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release
-  make
+  cmake --build .
 }
 
 package() {
   cd $srcdir/libaribcaption/build
-  make DESTDIR=$pkgdir install
+  DESTDIR=$pkgdir cmake --install .
 }

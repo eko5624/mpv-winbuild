@@ -23,6 +23,7 @@ build() {
   mv $srcdir/libjpeg-turbo third_party/libjpeg-turbo
   rm -rf build && mkdir build && cd build
   cmake .. \
+    -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DBUILD_SHARED_LIBS=OFF \
@@ -49,12 +50,12 @@ build() {
     -DJPEGXL_FORCE_SYSTEM_LCMS2=ON \
     -DJPEGXL_FORCE_SYSTEM_BROTLI=ON \
     -DJPEGXL_FORCE_SYSTEM_HWY=ON
-  make
+  cmake --build .
 }
 
 package() {
   cd $srcdir/libjxl/build
-  DESTDIR=$pkgdir make install
+  DESTDIR=$pkgdir cmake --install .
   sed -i 's/libjxl_cms//' $pkgdir$MINGW_PREFIX/lib/pkgconfig/libjxl.pc
   sed -i 's/-lm/-lm -llcms2/' $pkgdir$MINGW_PREFIX/lib/pkgconfig/libjxl.pc
 }

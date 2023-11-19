@@ -27,6 +27,7 @@ build() {
   mv $srcdir/glslang third_party
   rm -rf build && mkdir build && cd build
   cmake .. \
+    -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../cmake/linux-mingw-toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
@@ -35,7 +36,7 @@ build() {
     -DSHADERC_SKIP_INSTALL=ON \
     -DSHADERC_SKIP_EXAMPLES=ON \
     -DMINGW_COMPILER_PREFIX=${TARGET_ARCH}
-  make
+  cmake --build .
 }
 
 package() {

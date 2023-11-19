@@ -15,6 +15,7 @@ build() {
   cd $srcdir/mbedtls
   rm -rf build && mkdir build && cd build
   cmake .. \
+    -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
@@ -25,12 +26,12 @@ build() {
     -DUSE_SHARED_MBEDTLS_LIBRARY=OFF \
     -DINSTALL_MBEDTLS_HEADERS=ON \
     -DMBEDTLS_FATAL_WARNINGS=OFF
-  make
+  cmake --build .
 }
 
 package() {
   cd $srcdir/mbedtls/build
-  make DESTDIR=$pkgdir install
+  DESTDIR=$pkgdir cmake --install .
   mkdir -p $pkgdir${MINGW_PREFIX}/lib/pkgconfig
   cp ../../../*.pc $pkgdir${MINGW_PREFIX}/lib/pkgconfig
   sed -i "s,@MINGW_PREFIX@,${MINGW_PREFIX}," $pkgdir${MINGW_PREFIX}/lib/pkgconfig/*.pc

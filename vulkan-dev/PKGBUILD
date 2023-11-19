@@ -22,6 +22,7 @@ build() {
   cd $srcdir/Vulkan-Headers
   rm -rf build && mkdir build && cd build
   cmake .. \
+    -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release
@@ -31,6 +32,7 @@ build() {
   patch -p1 -i $srcdir/vulkan-0001-cross-compile-static-linking-hacks.patch
   rm -rf build && mkdir build && cd build
   cmake .. \
+    -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
@@ -40,13 +42,13 @@ build() {
     -DUSE_MASM=OFF \
     -DUSE_GAS=OFF \
     -DBUILD_STATIC_LOADER=ON
-  make
+  cmake --build .
 }
 
 package() {
   mkdir -p $pkgdir${MINGW_PREFIX}/lib/pkgconfig
   cd $srcdir/Vulkan-Headers/build
-  make DESTDIR=$pkgdir install
+  DESTDIR=$pkgdir cmake --install .
   cd $srcdir/Vulkan-Loader/build
   cp loader/libvulkan.a $pkgdir${MINGW_PREFIX}/lib
   cp loader/vulkan_own.pc $pkgdir${MINGW_PREFIX}/lib/pkgconfig/vulkan.pc
