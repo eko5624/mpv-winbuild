@@ -44,10 +44,12 @@ jobs:
             sed -i 's/$FLAGS "$@"/"$@" $FLAGS/' cross/bin/x86_64-w64-mingw32-g++
             sed -i 's/$FLAGS "$@"/"$@" $FLAGS/' cross/bin/x86_64-w64-mingw32-gcc
             sed -i 's/$FLAGS "$@"/"$@" $FLAGS/' cross/bin/x86_64-w64-mingw32-ld
-            echo "c++=================="
-            cat cross/bin/x86_64-w64-mingw32-c++
-            echo "clang=================="
-            cat ./cross/bin/x86_64-w64-mingw32-clang
+            sed -i '/CLANG_FLAGS=/i FLAGS="$FLAGS -Wno-error=unused-command-line-argument -Wno-unused-command-line-argument"' cross/bin/x86_64-w64-mingw32-c++ 
+            sed -i '/CLANG_FLAGS=/i FLAGS="$FLAGS -Wno-error=unused-command-line-argument -Wno-unused-command-line-argument"' cross/bin/x86_64-w64-mingw32-clang
+            sed -i '/CLANG_FLAGS=/i FLAGS="$FLAGS -Wno-error=unused-command-line-argument -Wno-unused-command-line-argument"' cross/bin/x86_64-w64-mingw32-clang++
+            sed -i '/CLANG_FLAGS=/i FLAGS="$FLAGS -Wno-error=unused-command-line-argument -Wno-unused-command-line-argument"' cross/bin/x86_64-w64-mingw32-gcc
+            sed -i '/CLANG_FLAGS=/i FLAGS="$FLAGS -Wno-error=unused-command-line-argument -Wno-unused-command-line-argument"' cross/bin/x86_64-w64-mingw32-g++
+
             rm llvm-mingw*.7z
           fi
 
