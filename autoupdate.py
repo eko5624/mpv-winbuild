@@ -87,7 +87,7 @@ pkgs['ffmpeg-git'] = x['ffmpeg']
 pkgs['libmpv-git'] = x['mpv']
 pkgs['mpv-git'] = x['mpv']
 
-for t in ['build-weekly.yml', 'libjxl.yml', 'libplacebo.yml', 'ffmpeg.yml', 'mpv.yml']:
+for t in ['build-weekly.yml', 'libplacebo.yml', 'ffmpeg.yml', 'mpv.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
     for l in f:
       if (i:=l.find('/dev/')) > -1:
