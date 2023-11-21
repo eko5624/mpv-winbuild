@@ -41,8 +41,6 @@ build() {
     --prefix="${MINGW_PREFIX}" \
     --libdir=${MINGW_PREFIX}/lib \
     --cross-file=../../../cross.meson \
-    --default-library=shared \
-    --prefer-static \
     -Ddebug=true \
     -Db_ndebug=true \
     -Doptimization=3 \
