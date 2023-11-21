@@ -41,8 +41,6 @@ build() {
     --prefix="${MINGW_PREFIX}" \
     --libdir=${MINGW_PREFIX}/lib \
     --cross-file=../../../cross.meson \
-    -Ddebug=true \
-    -Db_ndebug=true \
     -Doptimization=3 \
     -Db_lto=true \
     -Db_lto_mode=thin \
