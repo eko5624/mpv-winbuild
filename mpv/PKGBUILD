@@ -58,7 +58,6 @@ build() {
     -Dopenal=enabled \
     -Dspirv-cross=enabled \
     -Dvulkan=enabled \
-    -Dlibplacebo=enabled \
     -Dvapoursynth=enabled \
     -Degl-angle=enabled
   meson compile -C build
