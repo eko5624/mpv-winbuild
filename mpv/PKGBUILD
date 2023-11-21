@@ -34,8 +34,7 @@ md5sums=('SKIP')
 build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf" 
-  export LDFLAGS="$LDFLAGS -fopenmp -lc++"
+  export PKG_CONFIG="pkgconf"
   cd $srcdir/mpv
   meson setup build \
     --prefix="${MINGW_PREFIX}" \
