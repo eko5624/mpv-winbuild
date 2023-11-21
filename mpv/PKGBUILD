@@ -40,6 +40,8 @@ build() {
     --libdir=${MINGW_PREFIX}/lib \
     --cross-file=../../../cross.meson \
     --buildtype=release \
+    -Doptimization=3 \
+    -Db_lto=true \
     -Dlibmpv=true \
     -Dlua=enabled \
     -Djavascript=enabled \
