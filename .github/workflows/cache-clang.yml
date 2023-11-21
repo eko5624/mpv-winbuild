@@ -38,6 +38,16 @@ jobs:
           if [[ ! -d "cross/bin" ]]; then
             curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-mingw-2023-11-21-ucrt-x86_64.7z
             7z x llvm-mingw*.7z
+            sed -i 's/CLANG_FLAGS=/d' cross/bin/x86_64-w64-mingw32-c++
+            sed -i 's/CLANG_FLAGS=/d' cross/bin/x86_64-w64-mingw32-clang
+            sed -i 's/CLANG_FLAGS=/d' cross/bin/x86_64-w64-mingw32-clang++
+            sed -i 's/CLANG_FLAGS=/d' cross/bin/x86_64-w64-mingw32-g++
+            sed -i 's/CLANG_FLAGS=/d' cross/bin/x86_64-w64-mingw32-gcc
+            sed -i 's/LLD_FLAGS=/d' cross/bin/x86_64-w64-mingw32-ld
+            echo "c++==========="
+            cat cross/bin/x86_64-w64-mingw32-c++
+            echo "ld==========="
+            cat cross/bin/x86_64-w64-mingw32-ld
             rm llvm-mingw*.7z
           fi
 
