@@ -13,6 +13,7 @@ build() {
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
   cd $srcdir/libva
+  sed -i "s/shared_library/library/g" va/meson.build
   meson setup build \
     --prefix="${MINGW_PREFIX}" \
     --libdir=${MINGW_PREFIX}/lib \
@@ -26,4 +27,5 @@ build() {
 package() {
   cd $srcdir/libva
   DESTDIR=$pkgdir meson install -C build
+  rm -rf $pkgdir${MINGW_PREFIX}/lib/libva*.dll.a
 }
