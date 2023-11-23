@@ -34,7 +34,7 @@ makedepends=("amf-headers-dev"
              "libxml2-dev"
              "libxvid-dev"
              "libzimg-dev"
-             "libzvbi-dev"
+             "openssl-dev"
              "opus-dev"
              "rav1e-dev"
              "shaderc-dev"
@@ -107,6 +107,7 @@ package_ffmpeg-dev() {
     --enable-libxvid \
     --enable-libzimg \
     --enable-libzvbi \
+    --enable-openssl \
     --enable-nvdec \
     --enable-nvenc \
     --enable-vaapi \
