@@ -52,6 +52,7 @@ for p in [
   'libspeex',
   'libssh',
   'libsrt',
+  'libva',
   'libvpl',
   'libwebp',
   'libxml2',
