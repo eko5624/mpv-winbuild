@@ -60,6 +60,7 @@ for p in [
   'libzvbi',
   'mbedtls',
   'openal-soft',
+  'openssl',
   'opus',
   'shaderc',
   'spirv-cross',
