@@ -68,7 +68,7 @@ package() {
   mkdir -p $pkgdir${MINGW_PREFIX}/bin
   cd $srcdir/mpv/build
   mv mpv.exe $pkgdir${MINGW_PREFIX}/bin
-  mv player/mpv.com $pkgdir${MINGW_PREFIX}/bin
+  mv mpv.com $pkgdir${MINGW_PREFIX}/bin
   strip -s $pkgdir${MINGW_PREFIX}/bin/mpv.*
   mv ${MINGW_PREFIX}/bin/vulkan-1.dll $pkgdir${MINGW_PREFIX}/bin
   #mv ${MINGW_PREFIX}/bin/libplacebo*.dll $pkgdir${MINGW_PREFIX}/bin
