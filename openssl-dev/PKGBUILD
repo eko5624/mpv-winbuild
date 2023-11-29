@@ -14,7 +14,7 @@ build() {
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
   cd $srcdir/openssl
-  ./configure \
+  ./Configure \
     --cross-compile-prefix=${TARGET_ARCH}- \
     --prefix=${MINGW_PREFIX} \
     --libdir=lib \
