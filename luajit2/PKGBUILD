@@ -21,7 +21,7 @@ build() {
     BUILDMODE=static \
     FILE_T=luajit.exe \
     CFLAGS='-DUNICODE' \
-    XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT' \
+    XCFLAGS='-DLUAJIT_NO_UNWIND -DLUAJIT_ENABLE_LUA52COMPAT' \
     PREFIX=${MINGW_PREFIX} Q= \
     amalg 
 }
