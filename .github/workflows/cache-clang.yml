@@ -36,7 +36,7 @@ jobs:
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-mingw-2023-11-29-ucrt-x86_64.7z
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-mingw-2023-11-30-ucrt-x86_64.7z
             7z x cross*.7z
             rm cross*.7z
           fi
