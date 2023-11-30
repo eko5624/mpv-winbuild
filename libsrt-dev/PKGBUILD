@@ -14,7 +14,6 @@ build() {
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
   cd $srcdir/srt
-  patch -p1 -i $srcdir/libsrt-0001-avoid-name-collision.patch 
   rm -rf build && mkdir build && cd build
   cmake .. -G Ninja \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
