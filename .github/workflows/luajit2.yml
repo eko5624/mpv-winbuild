@@ -14,14 +14,6 @@ jobs:
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:    
-      - name: Setup git config
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --global pull.rebase true
-          git config --global rebase.autoStash true
-          git config --global fetch.prune true
-          git config --global --add safe.directory $PWD
       - name: Add builder user
         run: |
           useradd builder -m
