@@ -13,8 +13,6 @@ build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static" 
-  #export CXXFLAGS="$CXXFLAGS -DHAVE_OPENSSL=1"
-  #export CFLAGS="$CFLAGS -DHAVE_OPENSSL=1"
   cd $srcdir/libaribcaption
   rm -rf build && mkdir build && cd build
   cmake .. \
