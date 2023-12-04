@@ -13,7 +13,7 @@ build() {
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static"
   cd $srcdir/zstd
-  rm -rf build && mkdir out && cd out
+  rm -rf out && mkdir out && cd out
   cmake ../build/cmake -G Ninja \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
