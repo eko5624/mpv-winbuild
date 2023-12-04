@@ -21,7 +21,6 @@ build() {
     --release \
     no-autoload-config \
     no-ssl3-method \
-    enable-brotli \
     no-whirlpool \
     no-filenames \
     no-camellia \
