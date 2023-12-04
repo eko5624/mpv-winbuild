@@ -19,6 +19,7 @@ build() {
     -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
+    -DCMAKE_FIND_ROOT_PATH="${MINGW_PREFIX}" \
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
     -DARIBCC_BUILD_TESTS=OFF \
