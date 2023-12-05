@@ -4,7 +4,7 @@ pkgrel=1
 pkgdesc='Portable ARIB STD-B24 Caption Decoder/Renderer'
 arch=('x86_64')
 url="https://github.com/xqq/libaribcaption/"
-makedepends=('openssl-dev')
+#makedepends=('openssl-dev')
 license=('MIT')
 source=("git+https://github.com/xqq/libaribcaption.git")
 md5sums=('SKIP')
@@ -25,9 +25,7 @@ build() {
     -DBUILD_SHARED_LIBS=OFF \
     -DARIBCC_BUILD_TESTS=OFF \
     -DARIBCC_SHARED_LIBRARY=OFF \
-    -DARIBCC_NO_RTTI=ON \
-    -DCMAKE_C_FLAGS='-DHAVE_OPENSSL=1' \
-    -DCMAKE_CXX_FLAGS='-DHAVE_OPENSSL=1'
+    -DARIBCC_NO_RTTI=ON
   cmake --build .
 }
 
