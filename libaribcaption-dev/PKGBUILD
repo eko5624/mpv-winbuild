@@ -4,7 +4,7 @@ pkgrel=1
 pkgdesc='Portable ARIB STD-B24 Caption Decoder/Renderer'
 arch=('x86_64')
 url="https://github.com/xqq/libaribcaption/"
-#makedepends=('openssl-dev')
+makedepends=('openssl-dev')
 license=('MIT')
 source=("git+https://github.com/xqq/libaribcaption.git")
 md5sums=('SKIP')
@@ -12,7 +12,11 @@ md5sums=('SKIP')
 build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static" 
+  export PKG_CONFIG="pkgconf --static"
+
+  export CFLAGS="${CFLAGS} -DHAVE_OPENSSL=1"
+  export CXXFLAGS="${CXXFLAGS} -DHAVE_OPENSSL=1"
+  
   cd $srcdir/libaribcaption
   rm -rf build && mkdir build && cd build
   cmake .. \
