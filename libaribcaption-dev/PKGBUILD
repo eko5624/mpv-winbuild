@@ -6,14 +6,16 @@ arch=('x86_64')
 url="https://github.com/xqq/libaribcaption/"
 makedepends=('openssl-dev' 'zlib-dev')
 license=('MIT')
-source=("git+https://github.com/xqq/libaribcaption.git")
-md5sums=('SKIP')
+source=("git+https://github.com/xqq/libaribcaption.git"
+        "git+https://github.com/openssl/openssl.git")
+md5sums=('SKIP' 'SKIP')
 
 build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static" 
   cd $srcdir/libaribcaption
+  mv $srcdir/openssl/include/openssl include
   rm -rf build && mkdir build && cd build
   cmake .. \
     -G "Ninja" \
@@ -25,7 +27,9 @@ build() {
     -DARIBCC_SHARED_LIBRARY=OFF \
     -DARIBCC_NO_RTTI=ON \
     -DARIBCC_USE_EMBEDDED_FREETYPE=OFF \
-    -DARIBCC_USE_FREETYPE=ON
+    -DARIBCC_USE_FREETYPE=ON \
+    -DCMAKE_C_FLAGS='-DHAVE_OPENSSL=1' \
+    -DCMAKE_CXX_FLAGS='-DHAVE_OPENSSL=1'
   cmake --build .
 }
 
