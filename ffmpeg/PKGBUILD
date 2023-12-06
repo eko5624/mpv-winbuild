@@ -10,7 +10,6 @@ makedepends=("amf-headers-dev"
              "dav1d-dev"
              "davs2-dev"
              "ffnvcodec-dev"
-             "gmp-dev"
              "lame-dev"
              "lcms2-dev"
              "libaribcaption-dev"
@@ -77,7 +76,6 @@ package_ffmpeg-dev() {
     --enable-avisynth \
     --enable-cuda-llvm \
     --enable-cuvid \
-    --enable-gmp \
     --enable-hardcoded-tables \
     --enable-lcms2 \
     --enable-libaom \

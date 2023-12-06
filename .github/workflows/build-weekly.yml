@@ -233,7 +233,7 @@ jobs:
           ./release-latest.sh config mpv-config
 
   ffmpeg:
-    needs: [amf, aom, avisynth, dav1d, davs2, ffnvcodec, gmp, lame, libaribcaption, libbs2b, libjxl, libvpl, libmodplug, libmysofa, libogg, libopenmpt, libplacebo, libsdl2, libsoxr, libspeex, libsrt, libssh, libva, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, libzvbi, openssl, opus, rav1e, uavs3d, vapoursynth, zlib]
+    needs: [amf, aom, avisynth, dav1d, davs2, ffnvcodec, lame, libaribcaption, libbs2b, libjxl, libvpl, libmodplug, libmysofa, libogg, libopenmpt, libplacebo, libsdl2, libsoxr, libspeex, libsrt, libssh, libva, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, libzvbi, openssl, opus, rav1e, uavs3d, vapoursynth, zlib]
     runs-on: ubuntu-latest
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
@@ -268,7 +268,6 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/davs2-dev-1.7-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-12.1.14.0-1-x86_64.pkg.tar.zst        
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/gmp-dev-6.2.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/highway-dev-1.0.7-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lame-dev-3.100-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.15-1-x86_64.pkg.tar.zst
@@ -510,44 +509,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.BOT }}    
         run: |
-          ./release-dev.sh fribidi-dev fribidi-dev
-
-  gmp:
-    runs-on: ubuntu-latest
-    container:
-      image: docker://ghcr.io/eko5624/archlinux:latest
-    steps: 
-      - name: Add builder user
-        run: |
-          useradd builder -m
-          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-      - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Checkout
-        uses: actions/checkout@main       
-      - name: Setting makepkg etc
-        run: |
-          sudo cp pacman-config/makepkg_cross.conf /etc
-          sudo cp pacman-config/makepkg-cross /usr/local/bin
-      - name: Loading clang cache
-        uses: actions/cache/restore@main
-        with:
-          path: ${{ env.top_dir }}/cross
-          key: clang-${{ github.run_id }}
-          restore-keys: |
-            clang-
-      - name: Build
-        run: |
-          sudo chmod 777 -R ${{ env.top_dir }}
-          sudo chmod 777 -R .
-          cd gmp-dev
-          sudo -H -u builder makepkg-cross -sC --noconfirm
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
-        run: |
-          ./release-dev.sh gmp-dev gmp-dev       
+          ./release-dev.sh fribidi-dev fribidi-dev       
 
   harfbuzz:
     needs: [freetype2, libpng]
@@ -2168,8 +2130,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffmpeg-dev-6.1-1-x86_64.pkg.tar.zst        
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/ffnvcodec-dev-12.1.14.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.13-1-x86_64.pkg.tar.zst                
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/gmp-dev-6.2.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev/fribidi-dev-1.0.13-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/highway-dev-1.0.7-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/harfbuzz-dev-8.3.0-1-x86_64.pkg.tar.zst      
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lame-dev-3.100-1-x86_64.pkg.tar.zst
