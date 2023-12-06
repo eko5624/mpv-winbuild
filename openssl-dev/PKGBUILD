@@ -60,10 +60,10 @@ build() {
     no-bf \
     zlib \
     enable-ec_nistp_64_gcc_128
-  make
+  make build_sw
 }
 
 package() {
   cd $srcdir/openssl
-  make DESTDIR=$pkgdir install
+  make DESTDIR=$pkgdir install_sw
 }

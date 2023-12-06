@@ -4,6 +4,7 @@ pkgrel=1
 pkgdesc='Portable ARIB STD-B24 Caption Decoder/Renderer'
 arch=('x86_64')
 url="https://github.com/xqq/libaribcaption/"
+makedepends=('freetype2-dev' 'openssl-dev' 'zlib-dev')
 license=('MIT')
 source=("git+https://github.com/xqq/libaribcaption.git")
 md5sums=('SKIP')
@@ -14,17 +15,22 @@ build() {
   export PKG_CONFIG="pkgconf --static"
 
   cd $srcdir/libaribcaption
+  cp -r ${MINGW_PREFIX}/include/openssl include
+
   rm -rf build && mkdir build && cd build
   cmake .. \
     -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
-    -DCMAKE_FIND_ROOT_PATH="${MINGW_PREFIX}" \
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
     -DARIBCC_BUILD_TESTS=OFF \
     -DARIBCC_SHARED_LIBRARY=OFF \
-    -DARIBCC_NO_RTTI=ON
+    -DARIBCC_NO_RTTI=ON \
+    -DARIBCC_USE_EMBEDDED_FREETYPE=OFF \
+    -DARIBCC_USE_FREETYPE=ON \
+    -DCMAKE_C_FLAGS='-DHAVE_OPENSSL=1' \
+    -DCMAKE_CXX_FLAGS='-DHAVE_OPENSSL=1'
   cmake --build .
 }
 
