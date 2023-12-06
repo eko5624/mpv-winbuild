@@ -6,16 +6,15 @@ arch=('x86_64')
 url="https://github.com/xqq/libaribcaption/"
 makedepends=('openssl-dev' 'zlib-dev')
 license=('MIT')
-source=("git+https://github.com/xqq/libaribcaption.git"
-        "git+https://github.com/openssl/openssl.git")
-md5sums=('SKIP' 'SKIP')
+source=("git+https://github.com/xqq/libaribcaption.git")
+md5sums=('SKIP')
 
 build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static" 
   cd $srcdir/libaribcaption
-  mv $srcdir/openssl/include/openssl include
+  cp ${MINGW_PREFIX}/include/openssl include
   rm -rf build && mkdir build && cd build
   cmake .. \
     -G "Ninja" \
