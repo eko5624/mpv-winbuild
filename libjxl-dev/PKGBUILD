@@ -56,4 +56,6 @@ build() {
 package() {
   cd $srcdir/libjxl/build
   DESTDIR=$pkgdir cmake --install .
+  sed -i 's/libjxl_cms//g' $pkgdir/opt/lib/pkgconfig/libjxl.pc
+  rm $pkgdir/opt/lib/pkgconfig/libjxl_cms.pc
 }
