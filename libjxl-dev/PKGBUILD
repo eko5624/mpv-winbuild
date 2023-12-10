@@ -53,4 +53,5 @@ build() {
 package() {
   cd $srcdir/libjxl/build
   DESTDIR=$pkgdir cmake --install .
+  sed -i 's/Requires.private:/Requires.private: lcms2/g' $pkgdir${MINGW_PREFIX}/lib/pkgconfig/libjxl_cms.pc
 }
