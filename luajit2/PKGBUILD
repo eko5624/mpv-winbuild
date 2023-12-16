@@ -20,7 +20,7 @@ build() {
     TARGET_SYS=Windows \
     BUILDMODE=static \
     FILE_T=luajit.exe \
-    CFLAGS='-DUNICODE' \
+    CFLAGS+=' -DUNICODE' \
     XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT' \
     PREFIX=${MINGW_PREFIX} Q= \
     amalg 
@@ -33,7 +33,7 @@ package() {
     TARGET_SYS=Windows \
     BUILDMODE=static \
     FILE_T=luajit.exe \
-    CFLAGS='-DUNICODE' \
+    CFLAGS+=' -DUNICODE' \
     XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT' \
     PREFIX=${MINGW_PREFIX} Q= \
     install
