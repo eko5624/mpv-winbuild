@@ -18,9 +18,10 @@ build() {
     -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
-    -DENABLE_SHARED=OFF \
+    -DCMAKE_BUILD_TYPE=Release \
     -DENABLE_STATIC=ON \
-    -DCMAKE_BUILD_TYPE=Release   
+    -DENABLE_SHARED=OFF \
+    -DWITH_TURBOJPEG=OFF
   cmake --build .
 }
 

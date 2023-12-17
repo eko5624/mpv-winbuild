@@ -20,7 +20,8 @@ build() {
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DBUILD_SHARED_LIBS=OFF \
     -DCMAKE_BUILD_TYPE=Release \
-    -DBROTLI_EMSCRIPTEN=OFF
+    -DBROTLI_EMSCRIPTEN=OFF \
+    -DBROTLI_BUILD_TOOLS=OFF
   cmake --build .
 } 
   

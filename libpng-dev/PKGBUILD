@@ -20,7 +20,8 @@ build() {
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DPNG_SHARED=OFF \
-    -DPNG_TESTS=OFF
+    -DPNG_TESTS=OFF \
+    -DPNG_TOOLS=OFF
   ninja
 }
 

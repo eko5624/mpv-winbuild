@@ -21,7 +21,8 @@ build() {
     -DCMAKE_TOOLCHAIN_FILE=../../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
-    -DDISPATCH=ON
+    -DDISPATCH=ON \
+    -DXXHASH_BUILD_XXHSUM=OFF
   cmake --build .
 }
 
