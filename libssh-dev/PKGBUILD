@@ -21,19 +21,16 @@ build() {
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DWITH_ZLIB=ON \
-    -DWITH_OPENSSL=ON \
-    -DMBEDTLS_INCLUDE_DIR=${MINGW_PREFIX}/include \
     -DWITH_EXAMPLES=OFF \
     -DBUILD_SHARED_LIBS=OFF \
-    -DBUILD_STATIC_LIB=ON \
-    -DCMAKE_C_FLAGS='-DHAVE_COMPILER__FUNC__=1'
+    -DBUILD_STATIC_LIB=ON
   make
 }
 
 package() {
   cd $srcdir/libssh/build
   make DESTDIR=$pkgdir install
-  echo "Libs.private: -lwsock32 -lpthread" >> $pkgdir${MINGW_PREFIX}/lib/pkgconfig/libssh.pc
+  echo "Libs.private: -lwsock32 -liphlpapi -lpthread" >> $pkgdir${MINGW_PREFIX}/lib/pkgconfig/libssh.pc
   echo "Cflags.private: -DLIBSSH_STATIC" >> $pkgdir${MINGW_PREFIX}/lib/pkgconfig/libssh.pc
   echo "Requires.private: libssl" >> $pkgdir${MINGW_PREFIX}/lib/pkgconfig/libssh.pc
 }
