@@ -14,7 +14,7 @@ build() {
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf --static" 
   cd $srcdir/libaribcaption
-  cp -r ${MINGW_PREFIX}/include/openssl include
+  ln -s ${MINGW_PREFIX}/include/openssl include/openssl
   rm -rf build && mkdir build && cd build
   cmake .. \
     -G "Ninja" \
