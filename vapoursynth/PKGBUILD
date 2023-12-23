@@ -10,7 +10,6 @@ source=("https://github.com/vapoursynth/vapoursynth/releases/download/R$pkgver/V
 md5sums=('SKIP')
 
 package() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
   cd $srcdir
   set -x
   gendef VSScript.dll

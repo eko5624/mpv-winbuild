@@ -9,9 +9,6 @@ source=("https://ftp.gnu.org/gnu/gmp/gmp-$pkgver.tar.xz")
 md5sums=('SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
   cd $srcdir/gmp-$pkgver
   ./configure \
     CC_FOR_BUILD=cc \

@@ -10,9 +10,6 @@ source=("git+https://github.com/ccxvii/mujs.git"
 md5sums=('SKIP' 'SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
   cd $srcdir/mujs
   mkdir build
   patch -p1 -i $srcdir/mujs-0001-add-exe-to-binary-name.patch

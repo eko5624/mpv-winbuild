@@ -10,9 +10,6 @@ source=("https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-$pkgver+release
 md5sums=('SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
   cd $srcdir/libopenmpt-$pkgver+release.autotools
   ./configure \
     --host=${TARGET_ARCH} \

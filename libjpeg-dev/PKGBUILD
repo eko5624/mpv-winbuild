@@ -9,9 +9,6 @@ source=("git+https://github.com/libjpeg-turbo/libjpeg-turbo.git")
 md5sums=('SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
   cd $srcdir/libjpeg-turbo
   rm -rf build && mkdir build && cd build
   cmake .. \

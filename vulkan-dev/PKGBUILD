@@ -12,13 +12,9 @@ source=("git+https://github.com/KhronosGroup/Vulkan-Headers"
 md5sums=('SKIP' 'SKIP' 'SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
-
-  export CFLAGS="${CFLAGS} -D__STDC_FORMAT_MACROS -DSTRSAFE_NO_DEPRECATE -Dparse_number=cjson_parse_number"
-  export CPPFLAGS="${CPPFLAGS} -D__STDC_FORMAT_MACROS"
-  export CXXFLAGS="${CXXFLAGS} -D__STDC_FORMAT_MACROS -fpermissive"
+  export CFLAGS+=" -D__STDC_FORMAT_MACROS -DSTRSAFE_NO_DEPRECATE -Dparse_number=cjson_parse_number"
+  export CPPFLAGS+=" -D__STDC_FORMAT_MACROS"
+  export CXXFLAGS+=" -D__STDC_FORMAT_MACROS -fpermissive"
 
   cd $srcdir/Vulkan-Headers
   rm -rf build && mkdir build && cd build

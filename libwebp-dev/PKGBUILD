@@ -9,9 +9,6 @@ source=("git+https://chromium.googlesource.com/webm/libwebp.git#tag=v${pkgver//_
 md5sums=('SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
   cd $srcdir/libwebp
   rm -rf build && mkdir build && cd build
   cmake .. -G Ninja \
@@ -19,10 +16,10 @@ build() {
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF
-  ninja   
+  cmake --build .   
 }
 
 package() {
   cd $srcdir/libwebp/build
-  DESTDIR=$pkgdir ninja install
+  DESTDIR=$pkgdir cmake --install .
 }

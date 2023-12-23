@@ -9,12 +9,10 @@ source=("git+https://github.com/libsdl-org/SDL.git#branch=SDL2")
 md5sums=('SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
   cd $srcdir/SDL
   rm -rf build && mkdir build && cd build
   cmake .. \
+    -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
@@ -22,10 +20,10 @@ build() {
     -DSDL_STATIC=ON \
     -DSDL_STATIC_PIC=ON \
     -DSDL_TEST=OFF
-  make
+  cmake --build .
 }
 
 package() {
   cd $srcdir/SDL/build
-  make DESTDIR=$pkgdir install
+  DESTDIR=$pkgdir cmake --install .
 }  

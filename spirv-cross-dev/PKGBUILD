@@ -11,25 +11,21 @@ source=("git+https://github.com/KhronosGroup/SPIRV-Cross"
 md5sums=('SKIP' 'SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
   cd $srcdir/SPIRV-Cross
   patch -p1 -i $srcdir/spirv-cross-0001-static-linking-hacks.patch
   rm -rf build && mkdir build && cd build
-  #export CXXFLAGS="${CXXFLAGS} -D__USE_MINGW_ANSI_STDIO"
+  export CXXFLAGS+=" -D__USE_MINGW_ANSI_STDIO"
   cmake .. -G Ninja \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DSPIRV_CROSS_SHARED=ON \
     -DSPIRV_CROSS_CLI=OFF \
-    -DSPIRV_CROSS_ENABLE_TESTS=OFF \
-    -DCMAKE_CXX_FLAGS='${CMAKE_CXX_FLAGS} -D__USE_MINGW_ANSI_STDIO'
-  ninja
+    -DSPIRV_CROSS_ENABLE_TESTS=OFF
+  cmake --build .
 }
 
 package() {
   cd $srcdir/SPIRV-Cross/build
-  DESTDIR=$pkgdir ninja install
+  DESTDIR=$pkgdir cmake --install .
 }

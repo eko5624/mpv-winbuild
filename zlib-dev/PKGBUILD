@@ -9,9 +9,6 @@ source=("git+https://github.com/zlib-ng/zlib-ng.git")
 md5sums=('SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
   cd $srcdir/zlib-ng
   rm -rf build && mkdir build && cd build
   cmake .. -G Ninja \
@@ -23,11 +20,11 @@ build() {
     -DZLIB_COMPAT=ON \
     -DZLIB_ENABLE_TESTS=OFF \
     -DZLIBNG_ENABLE_TESTS=OFF
-  ninja
+  cmake --build .
 }
 
 package() {
   cd $srcdir/zlib-ng/build
-  DESTDIR=$pkgdir ninja install
+  DESTDIR=$pkgdir cmake --install .
   cp libz.a $pkgdir${MINGW_PREFIX}/lib
 }

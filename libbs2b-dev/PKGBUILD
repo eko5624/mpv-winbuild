@@ -10,9 +10,6 @@ source=("git+https://github.com/alexmarsev/libbs2b.git"
 md5sums=('SKIP' 'SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
   cd $srcdir/libbs2b
   patch -p1 -i $srcdir/libbs2b-0001-build-library-only.patch
   ./autogen.sh

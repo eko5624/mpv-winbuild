@@ -9,9 +9,6 @@ source=("git+https://github.com/pkuvcl/davs2.git")
 md5sums=('SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
   cd $srcdir/davs2/build/linux
   ./configure \
     --host=${TARGET_ARCH} \

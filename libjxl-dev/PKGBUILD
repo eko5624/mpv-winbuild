@@ -11,12 +11,9 @@ source=("git+https://github.com/libjxl/libjxl.git"
 md5sums=('SKIP' 'SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
   # Fix AVX2 related crash due to unaligned stack memory
-  export CXXFLAGS="$CXXFLAGS -Wa,-muse-unaligned-vector-move"
-  export CFLAGS="$CFLAGS -Wa,-muse-unaligned-vector-move"
+  export CXXFLAGS+=" -Wa,-muse-unaligned-vector-move"
+  export CFLAGS+=" -Wa,-muse-unaligned-vector-move"
  
   cd $srcdir/libjxl
   rm -rf third_party/libjpeg-turbo

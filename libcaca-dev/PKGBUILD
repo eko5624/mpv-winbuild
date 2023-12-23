@@ -12,9 +12,6 @@ source=("git+https://github.com/cacalabs/libcaca.git"
 md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
   cd $srcdir/libcaca
   # wrong result with ucrt
   export ac_cv_func_sprintf_s=yes

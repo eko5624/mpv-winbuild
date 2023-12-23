@@ -11,9 +11,6 @@ source=("git+https://git.libssh.org/projects/libssh.git")
 md5sums=('SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
   cd $srcdir/libssh
   rm -rf build && mkdir build && cd build
   cmake .. \

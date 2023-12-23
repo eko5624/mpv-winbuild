@@ -10,9 +10,6 @@ source=("git+https://github.com/google/shaderc")
 md5sums=('SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
   cd $srcdir
   cp $srcdir/shaderc/DEPS ./
   curl -OL https://github.com/KhronosGroup/glslang/archive/`cat DEPS | grep glslang | head -n1 | cut -d\' -f4`.tar.gz
