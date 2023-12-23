@@ -10,9 +10,6 @@ source=()
 md5sums=()
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_PATH="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
   cd $srcdir
   git clone \
     --depth 1 \

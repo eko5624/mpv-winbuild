@@ -11,10 +11,6 @@ source=("git+https://github.com/libjxl/libjxl.git"
 md5sums=('SKIP' 'SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
- 
   cd $srcdir/libjxl
   rm -rf third_party/libjpeg-turbo
   mv $srcdir/libjpeg-turbo third_party/libjpeg-turbo

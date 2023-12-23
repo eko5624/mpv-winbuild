@@ -10,9 +10,6 @@ source=("https://downloads.xvid.com/downloads/xvidcore-$pkgver.tar.bz2"
 md5sums=('SKIP' 'SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
   cd $srcdir/xvidcore
   patch -p1 -i $srcdir/0001-remove-dll-option-clang.patch
   cd build/generic

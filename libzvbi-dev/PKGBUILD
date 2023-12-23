@@ -16,9 +16,6 @@ source=("git+https://github.com/zapping-vbi/zvbi.git"
 md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
   cd $srcdir/zvbi
   for patch in $srcdir/*.patch; do
       echo "Applying $patch"

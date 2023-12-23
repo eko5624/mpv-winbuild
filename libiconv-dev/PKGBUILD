@@ -9,9 +9,6 @@ source=("https://ftp.gnu.org/pub/gnu/libiconv/libiconv-$pkgver.tar.gz")
 md5sums=('SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"  
   cd $srcdir/libiconv-$pkgver
   ./configure \
     --host=${TARGET_ARCH} \

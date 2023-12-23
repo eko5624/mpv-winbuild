@@ -9,10 +9,7 @@ license=('GPL')
 source=("https://download.videolan.org/pub/videolan/libdvdread/$pkgver/libdvdread-$pkgver.tar.bz2")
 md5sums=('SKIP')
 
-build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"  
+build() { 
   cd $srcdir/libdvdread-$pkgver
   ./configure \
     --host=${TARGET_ARCH} \

@@ -8,10 +8,7 @@ license=('custom')
 source=("git+https://github.com/AviSynth/AviSynthPlus.git")
 md5sums=('SKIP')
 
-build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"  
+build() { 
   cd $srcdir/AviSynthPlus
   git submodule update --init --recursive
   rm -rf build && mkdir build && cd build

@@ -10,9 +10,6 @@ source=("https://download.videolan.org/pub/videolan/libdvdnav/$pkgver/libdvdnav-
 md5sums=('SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"  
   cd $srcdir/libdvdnav-$pkgver
   ./configure \
     --host=${TARGET_ARCH} \

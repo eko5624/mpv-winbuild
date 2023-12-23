@@ -10,9 +10,6 @@ source=("git+https://github.com/openresty/luajit2#tag=v${pkgver//_/-}"
 md5sums=('SKIP' 'SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
   cd $srcdir/luajit2
   patch -p1 -i $srcdir/luajit-0001-add-win32-utf-8-filesystem-functions.patch
   make -C src \

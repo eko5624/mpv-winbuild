@@ -10,9 +10,6 @@ options=(!strip)
 md5sums=('SKIP')
 
 package() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
   export PKGEXT='.pkg.tar.xz'
   mkdir -p $pkgdir${MINGW_PREFIX}/mpv
   cd $srcdir/mpv-config

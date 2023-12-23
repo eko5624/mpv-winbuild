@@ -9,9 +9,6 @@ source=("git+https://github.com/kcat/openal-soft")
 md5sums=('SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
   cd $srcdir/openal-soft
   rm -rf build && mkdir build && cd build
   cmake .. \

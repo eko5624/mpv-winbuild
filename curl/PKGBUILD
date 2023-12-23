@@ -12,9 +12,6 @@ source=("git+https://github.com/curl/curl.git#tag=curl-$pkgver"
 md5sums=('SKIP' 'SKIP' 'SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
   cd $srcdir/curl
   patch -p1 -i $srcdir/curl-0001-Skip-compiling-unnecessary-stuff.patch
   ./configure \
