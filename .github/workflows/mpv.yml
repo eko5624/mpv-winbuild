@@ -44,7 +44,7 @@ jobs:
             clang-          
       - name: Build
         run: |
-          cp cross/x86_64-w64-mingw32/lib/libc++.a cross/x86_64-w64-mingw32/lib/libstdc++.a
+          cp /github/home/cross/x86_64-w64-mingw32/lib/libc++.a /github/home/cross/x86_64-w64-mingw32/lib/libstdc++.a
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.32-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/angle-headers-dev-1.0.772-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/aom-dev-3.8.0-1-x86_64.pkg.tar.zst
