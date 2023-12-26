@@ -41,6 +41,7 @@ jobs:
             7z x cross*.7z
             rm -rf cross/x86_64-w64-mingw32/bin
             rm cross/x86_64-w64-mingw32/lib/*.dll.a
+            cp cross/x86_64-w64-mingw32/lib/libc++.a cross/x86_64-w64-mingw32/lib/libstdc++.a
             rm cross*.7z
           fi
 
