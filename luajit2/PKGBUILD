@@ -15,7 +15,7 @@ build() {
     TARGET_SYS=Windows \
     BUILDMODE=dynamic \
     FILE_T=luajit.exe \
-    CFLAGS+=' -DUNICODE' \
+    CFLAGS+=' -D_WIN32_WINNT=0x0602 -DUNICODE' \
     XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT' \
     PREFIX=${MINGW_PREFIX} Q= \
     amalg 
@@ -28,7 +28,7 @@ package_luajit2-shared-dev() {
     TARGET_SYS=Windows \
     BUILDMODE=dynamic \
     FILE_T=luajit.exe \
-    CFLAGS+=' -DUNICODE' \
+    CFLAGS+=' -D_WIN32_WINNT=0x0602 -DUNICODE' \
     XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT' \
     PREFIX=${MINGW_PREFIX} Q= \
     install
