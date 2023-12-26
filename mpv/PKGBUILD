@@ -31,7 +31,7 @@ source=("git+https://github.com/mpv-player/mpv.git")
 md5sums=('SKIP')
 
 build() {
-  export PKG_CONFIG="pkgconf"
+  unset PKG_CONFIG
   export LDFLAGS="$LDFLAGS -Wl,--allow-multiple-definition -lc++"
   cd $srcdir/mpv
   meson setup build \
