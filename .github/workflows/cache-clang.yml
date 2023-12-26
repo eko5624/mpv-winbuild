@@ -39,6 +39,8 @@ jobs:
             curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-mingw-2023-12-12-ucrt-x86_64.7z
             #curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-mingw-2023-11-21-ucrt-x86_64.7z
             7z x cross*.7z
+            rm -rf cross/x86_64-w64-mingw32/bin
+            rm cross/x86_64-w64-mingw32/lib/*.dll.a
             rm cross*.7z
           fi
 
