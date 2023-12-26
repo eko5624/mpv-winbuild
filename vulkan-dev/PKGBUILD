@@ -11,13 +11,9 @@ source=("git+https://github.com/KhronosGroup/Vulkan-Headers#tag=vulkan-sdk-$pkgv
 md5sums=('SKIP' 'SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
-
-  export CFLAGS="${CFLAGS} -D__STDC_FORMAT_MACROS -Wno-unused-function"
-  export CPPFLAGS="${CPPFLAGS} -D__STDC_FORMAT_MACROS"
-  export CXXFLAGS="${CXXFLAGS} -D__USE_MINGW_ANSI_STDIO -D__STDC_FORMAT_MACROS -fpermissive -Wno-unused-function"
+  export CFLAGS+=" -D__STDC_FORMAT_MACROS -Wno-unused-function"
+  export CPPFLAGS+=" -D__STDC_FORMAT_MACROS"
+  export CXXFLAGS+=" -D__USE_MINGW_ANSI_STDIO -D__STDC_FORMAT_MACROS -fpermissive -Wno-unused-function"
 
   cd $srcdir/Vulkan-Headers
   rm -rf build && mkdir build && cd build
