@@ -42,12 +42,6 @@ license=('LGPL')
 source=("git+https://github.com/FFmpeg/FFmpeg")
 md5sums=('SKIP')
 
-build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
-}
-
 package_ffmpeg-shared-dev() {
   cd $srcdir/FFmpeg
   ./configure \
