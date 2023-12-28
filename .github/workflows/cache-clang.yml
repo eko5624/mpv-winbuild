@@ -36,19 +36,16 @@ jobs:
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
-            #curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-mingw-2023-12-12-ucrt-x86_64.7z
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-mingw-2023-12-28-ucrt-archlinux-x86_64.7z
             #curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-mingw-2023-11-21-ucrt-x86_64.7z
-            curl -OL https://github.com/mstorsjo/llvm-mingw/releases/download/20231128/llvm-mingw-20231128-ucrt-ubuntu-20.04-x86_64.tar.xz
-            tar -Jxf llvm-mingw-*.tar.xz
-            rm llvm-mingw-*.tar.xz
-            mv llvm-mingw* cross
-            cd cross
-            ln -s $(which pkgconf) x86_64-w64-mingw32-pkg-config
-            ln -s $(which pkgconf) x86_64-w64-mingw32-pkgconf
-            #7z x cross*.7z
+            #curl -OL https://github.com/mstorsjo/llvm-mingw/releases/download/20231128/llvm-mingw-20231128-ucrt-ubuntu-20.04-x86_64.tar.xz
+            #tar -Jxf llvm-mingw-*.tar.xz
+            #rm llvm-mingw-*.tar.xz
+            #mv llvm-mingw* cross
+            7z x llvm-mingw*.7z
+            rm llvm-mingw*.7z
             #rm cross/x86_64-w64-mingw32/lib/*.dll.a
             #cp cross/x86_64-w64-mingw32/lib/libc++.a cross/x86_64-w64-mingw32/lib/libstdc++.a
-            #rm cross*.7z
           fi
 
       - name: Saving clang cache
