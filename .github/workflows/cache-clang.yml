@@ -44,6 +44,8 @@ jobs:
             #mv llvm-mingw* cross
             7z x llvm-mingw*.7z
             rm llvm-mingw*.7z
+            mkdir -p cross/x86_64-w64-mingw32/bin
+            mv cross/lib/clang/17/lib/windows/*.dll cross/x86_64-w64-mingw32/bin
             #rm cross/x86_64-w64-mingw32/lib/*.dll.a
             #cp cross/x86_64-w64-mingw32/lib/libc++.a cross/x86_64-w64-mingw32/lib/libstdc++.a
           fi
