@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       toolchain:
-        description: "choose toolchain"
+        description: "toolchain"
         required: false
         default: "llvm-archlinux"
         type: choice
