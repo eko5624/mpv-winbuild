@@ -66,11 +66,11 @@ jobs:
             cp toolchain/x86_64-w64-mingw32-gcc cross/bin
             cp toolchain/x86_64-w64-mingw32-g++ cross/bin
             cp toolchain/x86_64-w64-mingw32-c++ cross/bin
-            sed -i "/-mtune=generic/-mtune=generic -rtlib=compiler-rt -unwindlib=libunwind -stdlib=libc++/" cross/bin/x86_64-w64-mingw32-clang
-            sed -i "/-mtune=generic/-mtune=generic -rtlib=compiler-rt -unwindlib=libunwind -stdlib=libc++/" cross/bin/x86_64-w64-mingw32-clang++
-            sed -i "/-mtune=generic/-mtune=generic -rtlib=compiler-rt -unwindlib=libunwind -stdlib=libc++/" cross/bin/x86_64-w64-mingw32-gcc
-            sed -i "/-mtune=generic/-mtune=generic -rtlib=compiler-rt -unwindlib=libunwind -stdlib=libc++/" cross/bin/x86_64-w64-mingw32-g++
-            sed -i "/-mtune=generic/-mtune=generic -rtlib=compiler-rt -unwindlib=libunwind -stdlib=libc++/" cross/bin/x86_64-w64-mingw32-c++
+            sed -i "s/-mtune=generic/-mtune=generic -rtlib=compiler-rt -unwindlib=libunwind -stdlib=libc++/" cross/bin/x86_64-w64-mingw32-clang
+            sed -i "s/-mtune=generic/-mtune=generic -rtlib=compiler-rt -unwindlib=libunwind -stdlib=libc++/" cross/bin/x86_64-w64-mingw32-clang++
+            sed -i "s/-mtune=generic/-mtune=generic -rtlib=compiler-rt -unwindlib=libunwind -stdlib=libc++/" cross/bin/x86_64-w64-mingw32-gcc
+            sed -i "s/-mtune=generic/-mtune=generic -rtlib=compiler-rt -unwindlib=libunwind -stdlib=libc++/" cross/bin/x86_64-w64-mingw32-g++
+            sed -i "s/-mtune=generic/-mtune=generic -rtlib=compiler-rt -unwindlib=libunwind -stdlib=libc++/" cross/bin/x86_64-w64-mingw32-c++
             chmod 755 cross/bin/x86_64-w64-mingw32-clang
             chmod 755 cross/bin/x86_64-w64-mingw32-clang++
             chmod 755 cross/bin/x86_64-w64-mingw32-ld
