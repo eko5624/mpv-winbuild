@@ -84,7 +84,6 @@ pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
 pkgs['luajit2-shared-dev'] = x['luajit2']
 pkgs['luajit2-shared'] = x['luajit2']
 pkgs['mpv-shared'] = x['mpv']
-pkgs['rav1e-dev'] = x['rav1e'][1:]
 pkgs['vapoursynth-dev'] = x['VapourSynth'][1:]
 pkgs['vulkan-shared-dev'] = x['vulkan']
 
