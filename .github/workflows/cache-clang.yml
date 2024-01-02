@@ -60,6 +60,7 @@ jobs:
             git clone https://github.com/eko5624/toolchain.git
             7z x cross*.7z
             find cross/x86_64-w64-mingw32/lib -maxdepth 1 -type f -name "*.dll.a" -print0 | xargs -0 -I {} rm {}
+            rm -rf cross/bin/x86_64-w64-mingw32-{clang,clang++,gcc,g++,c++,ld}
             cp toolchain/x86_64-w64-mingw32-clang cross/bin
             cp toolchain/x86_64-w64-mingw32-clang++ cross/bin
             cp toolchain/x86_64-w64-mingw32-ld cross/bin
