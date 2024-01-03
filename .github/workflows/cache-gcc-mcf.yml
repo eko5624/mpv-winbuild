@@ -1,4 +1,4 @@
-name: cache-cross-gcc-mcf
+name: cache-gcc-mcf
 defaults:
   run:
     shell: bash

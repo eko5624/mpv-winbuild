@@ -1,4 +1,4 @@
-name: cache-cross-gcc-posix
+name: cache-gcc-posix
 defaults:
   run:
     shell: bash
