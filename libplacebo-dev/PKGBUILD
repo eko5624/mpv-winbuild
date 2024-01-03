@@ -31,4 +31,5 @@ build() {
 package() {
   cd $srcdir/libplacebo
   DESTDIR=$pkgdir ninja install -C build
+  strip $pkgdir${MINGW_PREFIX}/bin/libplacebo*.dll
 }
