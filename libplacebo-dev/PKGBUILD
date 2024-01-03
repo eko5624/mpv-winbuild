@@ -26,7 +26,6 @@ build() {
     --libdir=${MINGW_PREFIX}/lib \
     --cross-file=../../../cross.meson \
     --buildtype=release \
-    --default-library=static \
     -Ddemos=false \
     -Dvulkan-registry="${MINGW_PREFIX}/share/vulkan/registry/vk.xml"
   ninja -C build
@@ -35,4 +34,5 @@ build() {
 package() {
   cd $srcdir/libplacebo
   DESTDIR=$pkgdir ninja install -C build
+  strip $pkgdir${MINGW_PREFIX}/bin/libplacebo*.dll
 }

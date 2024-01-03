@@ -51,5 +51,5 @@ package() {
   make DESTDIR=$pkgdir install
   cd $srcdir/Vulkan-Loader/build
   make DESTDIR=$pkgdir install
-  strip $pkgdir${MINGW_PREFIX}/bin/*
+  strip $pkgdir${MINGW_PREFIX}/bin/vulkan*.dll
 }

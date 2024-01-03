@@ -35,7 +35,7 @@ build() {
   export PATH="${TOP_DIR}/cross/bin:$PATH"
   export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
   export PKG_CONFIG="pkgconf" 
-  export LDFLAGS="$LDFLAGS -Wl,--allow-multiple-definition -lstdc++"
+  export LDFLAGS="$LDFLAGS -lstdc++"
   cd $srcdir/mpv
   meson setup build \
     --prefix="${MINGW_PREFIX}" \
@@ -68,7 +68,7 @@ package() {
   mv mpv.exe $pkgdir${MINGW_PREFIX}/bin
   mv mpv.com $pkgdir${MINGW_PREFIX}/bin
   strip -s $pkgdir${MINGW_PREFIX}/bin/mpv.*
-  mv ${MINGW_PREFIX}/bin/vulkan-1.dll $pkgdir${MINGW_PREFIX}/bin
-  #mv ${MINGW_PREFIX}/bin/libplacebo*.dll $pkgdir${MINGW_PREFIX}/bin
+  mv ${MINGW_PREFIX}/bin/vulkan*.dll $pkgdir${MINGW_PREFIX}/bin
+  mv ${MINGW_PREFIX}/bin/libplacebo*.dll $pkgdir${MINGW_PREFIX}/bin
   mv ../MPV_SHA $pkgdir${MINGW_PREFIX}/bin
 }
