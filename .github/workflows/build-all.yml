@@ -2395,9 +2395,9 @@ jobs:
         run: |
           curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2023.12.30/yt-dlp.exe
           mv yt-dlp.exe ${{ env.top_dir }}/opt/mpv
-          7z a static-mpv-${{ env.date }}.7z ${{ env.top_dir }}/opt/mpv/*
-          7z a git-libmpv-${{ env.date }}.7z ${{ env.top_dir }}/opt/libmpv/*
-          7z a git-ffmpeg-${{ env.date }}-${{ env.ffmpeg_sha }}.7z ${{ env.top_dir }}/opt/ffmpeg/*
+          7z a static-mpv.7z ${{ env.top_dir }}/opt/mpv/*
+          7z a git-libmpv.7z ${{ env.top_dir }}/opt/libmpv/*
+          7z a git-ffmpeg-${{ env.ffmpeg_sha }}.7z ${{ env.top_dir }}/opt/ffmpeg/*
       - name: Release
         env:
           GH_TOKEN: ${{ secrets.BOT }}
