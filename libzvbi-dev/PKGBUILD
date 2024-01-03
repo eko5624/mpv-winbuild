@@ -6,7 +6,7 @@ arch=('x86_64')
 url="https://github.com/zapping-vbi/zvbi"
 makedepends=('libiconv-dev' 'libpng-dev')
 license=('BSD' 'GPL2' 'LGPL2.1' 'MIT')
-source=("git+https://github.com/zapping-vbi/zvbi.git"
+source=("git+https://github.com/zapping-vbi/zvbi.git#tag=v$pkgver"
         "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/libzvbi-0001-ssize_max.patch"
         "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/libzvbi-0002-ioctl.patch"
         "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/libzvbi-0003-fix-static-linking.patch"
