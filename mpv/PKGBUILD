@@ -32,7 +32,7 @@ md5sums=('SKIP')
 
 build() {
   export PKG_CONFIG="pkgconf"
-  #export LDFLAGS="$LDFLAGS -fopenmp -lc++"
+  export LDFLAGS="$LDFLAGS -lc++"
   cd $srcdir/mpv
   meson setup build \
     --prefix="${MINGW_PREFIX}" \
