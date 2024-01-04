@@ -23,6 +23,7 @@ build() {
     --libdir=${MINGW_PREFIX}/lib \
     --cross-file=../../../cross.meson \
     --buildtype=release \
+    --default-library=shared \
     -Ddemos=false \
     -Dvulkan-registry="${MINGW_PREFIX}/share/vulkan/registry/vk.xml"
   ninja -C build
