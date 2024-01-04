@@ -21,25 +21,44 @@ jobs:
           git config --global rebase.autoStash true
           git config --global fetch.prune true
           git config --global --add safe.directory $PWD
+      
       - name: Setting top_dir env
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc cache
+      
+      - name: Loading gcc-mcf cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
           key: cross-gcc-mcf-${{ github.run_id }}
           restore-keys: |
             cross-gcc-mcf-
+
+      - name: Loading rust cache
+        uses: actions/cache/restore@main
+        with:
+          path: ${{ env.top_dir }}/rust
+          key: rust-${{ github.run_id }}
+          restore-keys: |
+            rust-
             
-      - name: Setup GCC Toolchain
+      - name: Setup GCC With MCF Toolchain
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
             curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-gcc-mcf-2023-12-05-x64-ucrt.7z
             7z x cross-gcc-mcf*.7z
             rm cross-gcc-mcf*.7z
-          fi  
+          fi
+
+      - name: Setup Rust Toolchain
+        run: |
+          cd ${{ env.top_dir }}
+          if [[ ! -d "rust" ]]; then
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/rustup-2023-11-21.7z
+            7z x rustup*.7z
+            rm rustup*.7z
+          fi
 
       - name: Saving gcc cache
         uses: actions/cache/save@main
@@ -47,3 +66,10 @@ jobs:
         with:
           path: ${{ env.top_dir }}/cross
           key: cross-gcc-mcf-${{ github.run_id }}
+
+      - name: Saving Rust cache
+        uses: actions/cache/save@main
+        if: always()
+        with:
+          path: ${{ env.top_dir }}/rust
+          key: rust-${{ github.run_id }}

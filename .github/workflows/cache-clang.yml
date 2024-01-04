@@ -30,9 +30,11 @@ jobs:
           git config --global rebase.autoStash true
           git config --global fetch.prune true
           git config --global --add safe.directory $PWD
+      
       - name: Setting top_dir env
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      
       - name: Loading clang cache
         uses: actions/cache/restore@main
         with:
@@ -40,7 +42,15 @@ jobs:
           key: clang-${{ github.run_id }}
           restore-keys: |
             clang-
-            
+
+      - name: Loading rust cache
+        uses: actions/cache/restore@main
+        with:
+          path: ${{ env.top_dir }}/rust
+          key: rust-${{ github.run_id }}
+          restore-keys: |
+            rust-
+
       - name: Setup Clang Toolchain
         if: ${{ inputs.toolchain =='llvm-archlinux' }}
         run: |
@@ -82,9 +92,25 @@ jobs:
             rm -rf toolchain
           fi
 
+      - name: Setup Rust Toolchain
+        run: |
+          cd ${{ env.top_dir }}
+          if [[ ! -d "rust" ]]; then
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/rustup-2023-11-21.7z
+            7z x rustup*.7z
+            rm rustup*.7z
+          fi 
+
       - name: Saving clang cache
         uses: actions/cache/save@main
         if: always()
         with:
           path: ${{ env.top_dir }}/cross
           key: clang-${{ github.run_id }}
+
+      - name: Saving Rust cache
+        uses: actions/cache/save@main
+        if: always()
+        with:
+          path: ${{ env.top_dir }}/rust
+          key: rust-${{ github.run_id }}
