@@ -65,7 +65,7 @@ package_ffmpeg-shared-dev() {
     --disable-ffprobe \
     --disable-avdevice \
     --extra-cflags="-Wno-error=int-conversion" \
-    --extra-libs="-fopenmp -lc++" \
+    --extra-libs="-lc++" \
     --disable-mediafoundation \
     --enable-amf \
     --enable-avisynth \
