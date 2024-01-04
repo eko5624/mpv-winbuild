@@ -25,6 +25,7 @@ build() {
     --prefix="${MINGW_PREFIX}" \
     --libdir=${MINGW_PREFIX}/lib \
     --cross-file=../../../cross.meson \
+    --default-library=shared \
     --buildtype=release \
     -Ddemos=false \
     -Dvulkan-registry="${MINGW_PREFIX}/share/vulkan/registry/vk.xml"
