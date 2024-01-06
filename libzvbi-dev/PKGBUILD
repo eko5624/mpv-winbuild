@@ -6,21 +6,11 @@ arch=('x86_64')
 url="https://github.com/zapping-vbi/zvbi"
 makedepends=('libiconv-dev' 'libpng-dev')
 license=('BSD' 'GPL2' 'LGPL2.1' 'MIT')
-source=("git+https://github.com/zapping-vbi/zvbi.git#tag=v$pkgver"
-        "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/libzvbi-0001-ssize_max.patch"
-        "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/libzvbi-0002-ioctl.patch"
-        "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/libzvbi-0003-fix-static-linking.patch"
-        "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/libzvbi-0004-win32.patch"
-        "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/libzvbi-0005-win32-undefined.patch"
-        "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/libzvbi-0006-skip-directory.patch")
-md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
+source=("git+https://github.com/zapping-vbi/zvbi.git")
+md5sums=('SKIP')
 
 build() {
   cd $srcdir/zvbi
-  for patch in $srcdir/*.patch; do
-      echo "Applying $patch"
-      patch -p1 < "$patch"
-  done
   autoreconf -ivf
   ./configure \
     --host=${TARGET_ARCH} \
