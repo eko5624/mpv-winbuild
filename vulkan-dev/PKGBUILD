@@ -17,7 +17,7 @@ build() {
 
   cd $srcdir/Vulkan-Headers
   rm -rf build && mkdir build && cd build
-  cmake .. \
+  NO_CONFLTO=1 cmake .. \
     -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
@@ -32,7 +32,7 @@ build() {
   sed -i "s/-1.def/-1.def)/" loader/CMakeLists.txt
 
   rm -rf build && mkdir build && cd build
-  cmake .. \
+  NO_CONFLTO=1 cmake .. \
     -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \

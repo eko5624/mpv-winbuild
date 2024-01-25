@@ -34,7 +34,7 @@ build() {
   export PKG_CONFIG="pkgconf"
   export LDFLAGS="$LDFLAGS -lc++"
   cd $srcdir/mpv
-  meson setup build \
+  NO_CONFLTO=1 meson setup build \
     --prefix="${MINGW_PREFIX}" \
     --libdir=${MINGW_PREFIX}/lib \
     --cross-file=../../../cross.meson \

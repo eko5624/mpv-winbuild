@@ -45,7 +45,7 @@ md5sums=('SKIP')
 
 package_ffmpeg-shared-dev() {
   cd $srcdir/FFmpeg
-  ./configure \
+  NO_CONFLTO=1 ./configure \
     --cross-prefix=${TARGET_ARCH}- \
     --prefix=${MINGW_PREFIX} \
     --arch=x86_64 \
@@ -53,12 +53,12 @@ package_ffmpeg-shared-dev() {
     --target-exec=wine \
     --pkg-config-flags=--static \
     --enable-cross-compile \
+    --enable-lto=thin \
     --enable-runtime-cpudetect \
     --disable-debug \
     --disable-doc \
     --enable-gpl \
     --enable-version3 \
-    --enable-nonfree \
     --disable-static \
     --enable-shared \
     --enable-postproc \

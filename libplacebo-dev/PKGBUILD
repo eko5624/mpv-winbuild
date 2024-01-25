@@ -18,7 +18,7 @@ build() {
   rm -rf 3rdparty/fast_float
   mv $srcdir/glad 3rdparty
   mv $srcdir/fast_float 3rdparty
-  meson setup build \
+  NO_CONFLTO=1 meson setup build \
     --prefix="${MINGW_PREFIX}" \
     --libdir=${MINGW_PREFIX}/lib \
     --cross-file=../../../cross.meson \
