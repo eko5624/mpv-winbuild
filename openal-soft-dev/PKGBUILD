@@ -26,6 +26,6 @@ build() {
 
 package() {
   cd $srcdir/openal-soft/build
-  echo "Libs.private: -Lole32 -luuid -lshlwapi" >> openal.pc
+  echo "Libs.private: -lole32 -luuid -lshlwapi" >> openal.pc
   DESTDIR=$pkgdir cmake --install .
 }
