@@ -16,6 +16,7 @@ package() {
   export CARGO_PROFILE_RELEASE_DEBUG=false
   export CARGO_PROFILE_RELEASE_INCREMENTAL=false
   export CARGO_PROFILE_RELEASE_LTO=off
+  export CARGO_PROFILE_RELEASE_LTO=thin
   export RUSTFLAGS='-C linker-plugin-lto -C embed-bitcode -C lto=thin'
   cargo cinstall --manifest-path=Cargo.toml --prefix=${MINGW_PREFIX} --destdir=$pkgdir --release --target x86_64-pc-windows-gnu --crt-static --library-type staticlib
 }
