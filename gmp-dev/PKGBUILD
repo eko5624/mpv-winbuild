@@ -1,0 +1,25 @@
+pkgname=gmp-dev
+pkgver=6.2.1
+pkgrel=1
+pkgdesc='A free library for arbitrary precision arithmetic'
+arch=('x86_64')
+url="https://gmplib.org/"
+license=('LGPL3' 'GPL')
+source=("https://ftp.gnu.org/gnu/gmp/gmp-$pkgver.tar.xz")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/gmp-$pkgver
+  NO_CONFLTO=1 ./configure \
+    CC_FOR_BUILD=cc \
+    --host=${TARGET_ARCH} \
+    --prefix=${MINGW_PREFIX} \
+    --enable-static \
+    --disable-shared
+  make
+}
+
+package() {
+  cd $srcdir/gmp-$pkgver
+  make DESTDIR=$pkgdir install
+}

@@ -1,0 +1,25 @@
+pkgname=libspeex-dev
+pkgver=1.2.1
+pkgrel=1
+pkgdesc='A free codec for free speech'
+arch=('x86_64')
+url="https://speex.org/"
+license=('BSD')
+source=("git+https://github.com/xiph/speex.git#tag=Speex-$pkgver")
+md5sums=('SKIP')
+
+build() {
+  LIBS=-lwinmm
+  cd $srcdir/speex
+  ./autogen.sh
+  NO_CONFLTO=1 ./configure \
+    --host=${TARGET_ARCH} \
+    --prefix=${MINGW_PREFIX} \
+    --disable-shared
+  make
+}
+
+package() {
+  cd $srcdir/speex
+  make DESTDIR=$pkgdir install
+}

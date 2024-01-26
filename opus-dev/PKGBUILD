@@ -1,0 +1,29 @@
+pkgname=opus-dev
+pkgver=1.4
+pkgrel=1
+pkgdesc="Totally open, royalty-free, highly versatile audio codec"
+arch=('x86_64')
+url="https://github.com/xiph/opus"
+license=('BSD')
+source=("git+https://github.com/xiph/opus.git")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/opus
+  NO_CONFLTO=1 meson setup build \
+    --prefix="${MINGW_PREFIX}" \
+    --libdir=${MINGW_PREFIX}/lib \
+    --cross-file=../../../cross.meson \
+    --buildtype=release \
+    --default-library=static \
+    -Dhardening=false \
+    -Dextra-programs=disabled \
+    -Dtests=disabled \
+    -Ddocs=disabled
+  meson compile -C build
+}
+
+package() {
+  cd $srcdir/opus
+  DESTDIR=$pkgdir meson install -C build
+}

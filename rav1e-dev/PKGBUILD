@@ -1,0 +1,20 @@
+pkgname=rav1e-dev
+pkgver=0.7.1
+pkgrel=1
+pkgdesc='The fastest and safest AV1 encoder'
+arch=('x86_64')
+url="https://github.com/xiph/rav1e/"
+license=('spdx:BSD-2-Clause')
+source=("git+https://github.com/xiph/rav1e.git")
+md5sums=('SKIP')
+
+package() {
+  cd $srcdir/rav1e
+  mkdir build
+  export CARGO_BUILD_TARGET_DIR=build
+  export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
+  export CARGO_PROFILE_RELEASE_DEBUG=false
+  export CARGO_PROFILE_RELEASE_INCREMENTAL=false
+  export CARGO_PROFILE_RELEASE_LTO=off
+  cargo cinstall --manifest-path=Cargo.toml --prefix=${MINGW_PREFIX} --destdir=$pkgdir --release --target x86_64-pc-windows-gnu --crt-static --library-type staticlib
+}

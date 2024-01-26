@@ -1,0 +1,22 @@
+name: autoupdate
+
+on:
+  #schedule:
+  #- cron: '03 0 * * *'
+  workflow_dispatch:
+      
+jobs:
+  version_check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@main
+      with:
+        token: ${{ secrets.BOT }}
+    - name: Check Latest Version
+      run: |
+        pip3 install in_place
+        python autoupdate.py
+        git config --global user.name 'eko5624'
+        git config --global user.email 'datong5624@gmail.com'
+        git commit -am "Automate" || echo "nothing updated"
+        git push

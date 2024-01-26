@@ -1,0 +1,29 @@
+pkgname=libxvid-dev
+pkgver=1.3.7
+pkgrel=1
+pkgdesc='XviD is an open source MPEG-4 video codec'
+arch=('x86_64')
+url="https://www.xvid.com/"
+license=('GPL')
+source=("https://downloads.xvid.com/downloads/xvidcore-$pkgver.tar.bz2"
+        "0001-remove-dll-option-clang.patch")
+md5sums=('SKIP' 'SKIP')
+
+build() {
+  cd $srcdir/xvidcore
+  patch -p1 -i $srcdir/0001-remove-dll-option-clang.patch
+  cd build/generic
+  sed -i 's/yasm_prog="yasm"/yasm_prog="yasm -DNO_PREFIX"/' configure.in
+  NO_CONFLTO=1 ./configure \
+    --host=${TARGET_ARCH} \
+    --prefix=${MINGW_PREFIX}
+  make
+}
+
+package() {
+  cd $srcdir/xvidcore/build/generic
+  make DESTDIR=$pkgdir install
+  cp ../../src/xvid.h $pkgdir${MINGW_PREFIX}/include
+  mv $pkgdir${MINGW_PREFIX}/lib/xvidcore.a $pkgdir${MINGW_PREFIX}/lib/libxvidcore.a
+  rm -rf $pkgdir${MINGW_PREFIX}/bin $pkgdir${MINGW_PREFIX}/lib/xvidcore.dll.a 
+}

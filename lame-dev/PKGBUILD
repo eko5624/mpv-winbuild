@@ -1,0 +1,26 @@
+pkgname=lame-dev
+pkgver=3.100
+pkgrel=1
+pkgdesc='A high quality MPEG Audio Layer III (MP3) encoder'
+arch=('x86_64')
+url="http://lame.sourceforge.net/"
+license=('LGPL')
+source=("http://downloads.sourceforge.net/lame/lame-$pkgver.tar.gz")
+md5sums=('SKIP')
+
+build() {
+  export CFLAGS+=" -msse2"
+  cd $srcdir/lame-$pkgver
+  NO_CONFLTO=1 ./configure \
+    --host=${TARGET_ARCH} \
+    --prefix=${MINGW_PREFIX} \
+    --disable-shared \
+    --enable-nasm \
+    --disable-frontend
+}
+
+package() {
+  cd $srcdir/lame-$pkgver
+  make DESTDIR=$pkgdir install
+  rm -rf $pkgdir${MINGW_PREFIX}/share
+}

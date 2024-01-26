@@ -1,0 +1,35 @@
+pkgname=aom-dev
+pkgver=8.4
+pkgrel=1
+pkgdesc='AV1 codec library'
+arch=('x86_64')
+url="https://aomedia.org/"
+license=('spdx:BSD-2-Clause')
+source=("git+https://aomedia.googlesource.com/aom")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/aom
+  rm -rf out && mkdir out && cd out
+  NO_CONFLTO=1 cmake .. \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
+    -DCMAKE_FIND_ROOT_PATH="${MINGW_PREFIX}" \
+    -DCMAKE_TOOLCHAIN_FILE=../build/cmake/toolchains/x86_64-mingw-gcc.cmake \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DENABLE_EXAMPLES=OFF \
+    -DENABLE_DOCS=OFF \
+    -DENABLE_TOOLS=OFF \
+    -DENABLE_NASM=ON \
+    -DENABLE_TESTS=OFF \
+    -DENABLE_TESTDATA=OFF \
+    -DCONFIG_UNIT_TESTS=0 \
+    -DCONFIG_AV1_DECODER=0 \
+    -DCMAKE_BUILD_TYPE=Release
+  cmake --build .
+} 
+  
+package() {
+  cd $srcdir/aom/out  
+  DESTDIR=$pkgdir cmake --install .
+}

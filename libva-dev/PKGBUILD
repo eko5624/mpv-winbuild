@@ -1,0 +1,28 @@
+pkgname=libva-dev
+pkgver=2.20.0
+pkgrel=1
+pkgdesc='An implementation for VA-API'
+arch=('x86_64')
+url="https://github.com/intel/libva"
+license=('MIT')
+source=("git+https://github.com/intel/libva.git")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/libva
+  sed -i "s/shared_library/library/g" va/meson.build
+  NO_CONFLTO=1 meson setup build \
+    --prefix="${MINGW_PREFIX}" \
+    --libdir=${MINGW_PREFIX}/lib \
+    --cross-file=../../../cross.meson \
+    --buildtype=release \
+    --default-library=static \
+    -Denable_docs=false
+  meson compile -C build 
+}
+
+package() {
+  cd $srcdir/libva
+  DESTDIR=$pkgdir meson install -C build
+  rm -rf $pkgdir${MINGW_PREFIX}/lib/libva*.dll.a
+}

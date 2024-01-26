@@ -1,0 +1,34 @@
+pkgname=libplacebo-dev
+pkgver=6.338.2
+pkgrel=1
+pkgdesc='A Free Implementation of the Unicode Bidirectional Algorithm'
+arch=('x86_64')
+url="https://github.com/haasn/libplacebo/"
+makedepends=('lcms2-dev' 'libdovi-dev' 'vulkan-dev' 'shaderc-dev' 'spirv-cross-dev' 'xxhash-dev')
+license=('LGPL')
+source=("git+https://github.com/haasn/libplacebo.git"
+        "git+https://github.com/Dav1dde/glad.git"
+        "git+https://github.com/fastfloat/fast_float.git")
+md5sums=('SKIP' 'SKIP' 'SKIP')
+
+build() {
+  cd $srcdir/libplacebo
+  rm -rf 3rdparty/glad
+  rm -rf 3rdparty/fast_float
+  mv $srcdir/glad 3rdparty
+  mv $srcdir/fast_float 3rdparty
+  NO_CONFLTO=1 meson setup build \
+    --prefix="${MINGW_PREFIX}" \
+    --libdir=${MINGW_PREFIX}/lib \
+    --cross-file=../../../cross.meson \
+    --buildtype=release \
+    --default-library=static \
+    -Ddemos=false \
+    -Dvulkan-registry="${MINGW_PREFIX}/share/vulkan/registry/vk.xml"
+  meson compile -C build
+}
+
+package() {
+  cd $srcdir/libplacebo
+  DESTDIR=$pkgdir meson install -C build
+}

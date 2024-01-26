@@ -1,0 +1,10 @@
+libdir=@MINGW_PREFIX@/lib
+includedir=@MINGW_PREFIX@/include
+
+Name: vapoursynth-script
+Description: Library for interfacing VapourSynth with Python
+Version: _ver
+
+Requires: vapoursynth
+Libs: -L${libdir} -lVSScript -Wl,-delayload=VSScript.dll
+Cflags: -I${includedir}

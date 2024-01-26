@@ -1,0 +1,26 @@
+pkgname=uavs3d-dev
+pkgver=1.1
+pkgrel=1
+pkgdesc='An opensource and cross-platform avs3 decoder, supports AVS3-P2 baseline profile'
+arch=('x86_64')
+url="https://github.com/uavs3/uavs3d"
+license=('GPL')
+source=("git+https://github.com/uavs3/uavs3d.git")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/uavs3d
+  mkdir out && cd out
+  NO_CONFLTO=1 cmake .. -G Ninja \
+    -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
+    -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DCOMPILE_10BIT=ON
+  cmake --build .
+}
+
+package() {
+  cd $srcdir/uavs3d/out
+  DESTDIR=$pkgdir cmake --install .
+}

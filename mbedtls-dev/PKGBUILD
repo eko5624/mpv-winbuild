@@ -1,0 +1,36 @@
+pkgname=mbedtls-dev
+pkgver=3.5.1
+pkgrel=1
+pkgdesc='Portable cryptographic and SSL/TLS library, aka polarssl'
+arch=('x86_64')
+url="https://tls.mbed.org/"
+license=('Apache')
+source=("git+https://github.com/Mbed-TLS/mbedtls.git#tag=v$pkgver")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/mbedtls
+  rm -rf build && mkdir build && cd build
+  NO_CONFLTO=1 cmake .. \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
+    -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DENABLE_PROGRAMS=OFF \
+    -DENABLE_TESTING=OFF \
+    -DGEN_FILES=ON \
+    -DUSE_STATIC_MBEDTLS_LIBRARY=ON \
+    -DUSE_SHARED_MBEDTLS_LIBRARY=OFF \
+    -DINSTALL_MBEDTLS_HEADERS=ON \
+    -DMBEDTLS_FATAL_WARNINGS=OFF
+  cmake --build .
+}
+
+package() {
+  cd $srcdir/mbedtls/build
+  DESTDIR=$pkgdir cmake --install .
+  mkdir -p $pkgdir${MINGW_PREFIX}/lib/pkgconfig
+  cp ../../../*.pc $pkgdir${MINGW_PREFIX}/lib/pkgconfig
+  sed -i "s,@MINGW_PREFIX@,${MINGW_PREFIX}," $pkgdir${MINGW_PREFIX}/lib/pkgconfig/*.pc
+  sed -i "s,_ver,$pkgver," $pkgdir${MINGW_PREFIX}/lib/pkgconfig/*.pc
+}

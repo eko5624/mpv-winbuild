@@ -1,0 +1,40 @@
+pkgname=luajit2-dev
+pkgver=2.1_20231117
+pkgrel=1
+pkgdesc='Just-in-time compiler and drop-in replacement for Lua 5.1'
+arch=('x86_64')
+url="https://luajit.org/"
+license=('MIT')
+source=("git+https://github.com/openresty/luajit2#tag=v${pkgver//_/-}"
+        "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/luajit-0001-add-win32-utf-8-filesystem-functions.patch")
+md5sums=('SKIP' 'SKIP')
+
+build() {
+  cd $srcdir/luajit2
+  patch -p1 -i $srcdir/luajit-0001-add-win32-utf-8-filesystem-functions.patch
+  make -C src \
+    CROSS=${TARGET_ARCH}- \
+    TARGET_SYS=Windows \
+    BUILDMODE=static \
+    FILE_T=luajit.exe \
+    CFLAGS+=' -D_WIN32_WINNT=0x0602 -DUNICODE' \
+    XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT' \
+    PREFIX=${MINGW_PREFIX} Q= \
+    amalg 
+}
+
+package() {
+  cd $srcdir/luajit2
+  make DESTDIR=$pkgdir \
+    CROSS=${TARGET_ARCH}- \
+    TARGET_SYS=Windows \
+    BUILDMODE=static \
+    FILE_T=luajit.exe \
+    CFLAGS+=' -D_WIN32_WINNT=0x0602 -DUNICODE' \
+    XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT' \
+    PREFIX=${MINGW_PREFIX} Q= \
+    install
+  cp ../../*.pc $pkgdir${MINGW_PREFIX}/lib/pkgconfig
+  sed -i "s,@MINGW_PREFIX@,${MINGW_PREFIX}," $pkgdir${MINGW_PREFIX}/lib/pkgconfig/*.pc
+  rm -rf $pkgdir${MINGW_PREFIX}/bin $pkgdir${MINGW_PREFIX}/share $pkgdir${MINGW_PREFIX}/lib/lua
+}

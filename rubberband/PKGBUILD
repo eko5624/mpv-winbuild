@@ -1,0 +1,28 @@
+pkgname=rubberband-dev
+pkgver=3.3.0
+pkgrel=1
+pkgdesc='High quality software library for audio time-stretching and pitch-shifting'
+arch=('x86_64')
+url="https://breakfastquay.com/rubberband/"
+license=('GPL')
+source=("git+https://github.com/breakfastquay/rubberband.git")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/rubberband
+  NO_CONFLTO=1 meson setup build \
+    --prefix="${MINGW_PREFIX}" \
+    --libdir=${MINGW_PREFIX}/lib \
+    --cross-file=../../../cross.meson \
+    --buildtype=release \
+    --default-library=static \
+    -Dfft=builtin \
+    -Dresampler=builtin \
+    -Djni=disabled
+  meson compile -C build
+}
+
+package() {
+  cd $srcdir/rubberband
+  DESTDIR=$pkgdir meson install -C build
+}

@@ -1,0 +1,11 @@
+libdir=@MINGW_PREFIX@/lib
+includedir=@MINGW_PREFIX@/include
+
+Name: vapoursynth
+Description: A frameserver for the 21st century
+Version: _ver
+
+Requires.private: zimg
+Libs: -L${libdir} -lVapourSynth -Wl,-delayload=VapourSynth.dll
+Libs.private: -L${libdir} -lzimg
+Cflags: -I${includedir}

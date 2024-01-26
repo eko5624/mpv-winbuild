@@ -1,0 +1,28 @@
+pkgname=libsdl2-dev
+pkgver=2.28.5
+pkgrel=1
+pkgdesc='Provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D'
+arch=('x86_64')
+url="https://github.com/libsdl-org/SDL/"
+license=('ZLIB')
+source=("git+https://github.com/libsdl-org/SDL.git#branch=SDL2")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/SDL
+  rm -rf build && mkdir build && cd build
+  NO_CONFLTO=1 cmake .. \
+    -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
+    -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DSDL_SHARED=OFF \
+    -DSDL_STATIC=ON \
+    -DSDL_STATIC_PIC=ON \
+    -DSDL_TEST=OFF
+  make
+}
+
+package() {
+  cd $srcdir/SDL/build
+  make DESTDIR=$pkgdir install
+}  

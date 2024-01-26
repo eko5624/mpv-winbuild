@@ -1,0 +1,31 @@
+pkgname=zlib-dev
+pkgver=2.1.6
+pkgrel=1
+pkgdesc='zlib replacement with optimizations for next generation systems'
+arch=('x86_64')
+url="https://github.com/zlib-ng/zlib-ng"
+license=('ZLIB')
+source=("git+https://github.com/zlib-ng/zlib-ng.git")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/zlib-ng
+  rm -rf build && mkdir build && cd build
+  NO_CONFLTO=1 cmake .. \
+    -G Ninja \
+    -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
+    -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DSKIP_INSTALL_LIBRARIES=ON \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DZLIB_COMPAT=ON \
+    -DZLIB_ENABLE_TESTS=OFF \
+    -DZLIBNG_ENABLE_TESTS=OFF
+  cmake --build .
+}
+
+package() {
+  cd $srcdir/zlib-ng/build
+  DESTDIR=$pkgdir cmake --install .
+  cp libz.a $pkgdir${MINGW_PREFIX}/lib
+}

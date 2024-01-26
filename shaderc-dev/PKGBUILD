@@ -1,0 +1,51 @@
+pkgname=shaderc-dev
+pkgver=2023.8
+pkgrel=1
+pkgdesc='Collection of tools, libraries and tests for shader compilation'
+arch=('x86_64')
+url="https://github.com/google/shaderc/"
+license=('Apache')
+source=("git+https://github.com/google/shaderc")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir
+  cp $srcdir/shaderc/DEPS ./
+  curl -OL https://github.com/KhronosGroup/glslang/archive/`cat DEPS | grep glslang | head -n1 | cut -d\' -f4`.tar.gz
+  curl -OL https://github.com/KhronosGroup/SPIRV-Headers/archive/`cat DEPS | grep spirv_headers | head -n1 | cut -d\' -f4`.tar.gz
+  curl -OL https://github.com/KhronosGroup/SPIRV-Tools/archive/`cat DEPS | grep spirv_tools | head -n1 | cut -d\' -f4`.tar.gz
+  for f in *.gz; do tar xvf "$f"; done 
+  mv glslang* glslang
+  mv SPIRV-Headers* spirv-headers
+  mv SPIRV-Tools* spirv-tools
+  cd $srcdir/shaderc
+  mv $srcdir/spirv-headers third_party
+  mv $srcdir/spirv-tools third_party
+  mv $srcdir/glslang third_party
+  rm -rf build && mkdir build && cd build
+  NO_CONFLTO=1 cmake .. \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
+    -DCMAKE_TOOLCHAIN_FILE=../cmake/linux-mingw-toolchain.cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DSHADERC_SKIP_TESTS=ON \
+    -DSHADERC_SKIP_SPVC=ON \
+    -DSHADERC_SKIP_INSTALL=ON \
+    -DSHADERC_SKIP_EXAMPLES=ON \
+    -DSPIRV_SKIP_EXECUTABLES=ON \
+    -DSPIRV_SKIP_TESTS=ON \
+    -DENABLE_GLSLANG_BINARIES=OFF \
+    -DSPIRV_TOOLS_BUILD_STATIC=ON \
+    -DSPIRV_TOOLS_LIBRARY_TYPE=STATIC \
+    -DMINGW_COMPILER_PREFIX=${TARGET_ARCH}
+  cmake --build .
+}
+
+package() {
+  cd $srcdir/shaderc
+  mkdir -p $pkgdir${MINGW_PREFIX}/lib/pkgconfig
+  cp -r libshaderc/include $pkgdir${MINGW_PREFIX}
+  cp -r libshaderc_util/include/libshaderc_util $pkgdir${MINGW_PREFIX}/include
+  cp build/libshaderc/libshaderc_combined.a $pkgdir${MINGW_PREFIX}/lib
+  cp build/shaderc_combined.pc $pkgdir${MINGW_PREFIX}/lib/pkgconfig/shaderc.pc
+}
