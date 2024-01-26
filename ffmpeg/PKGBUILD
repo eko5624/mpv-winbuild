@@ -55,7 +55,6 @@ package_ffmpeg-dev() {
     --pkg-config-flags=--static \
     --enable-cross-compile \
     --enable-runtime-cpudetect \
-    --enable-lto=thin \
     --disable-debug \
     --disable-doc \
     --enable-gpl \
