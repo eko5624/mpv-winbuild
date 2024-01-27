@@ -41,16 +41,16 @@ jobs:
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/rust
-          key: rust-llvm-clang-${{ github.run_id }}
+          key: rust-${{ github.run_id }}
           restore-keys: |
-            rust-llvm-clang-
+            rust-
 
       - name: Setup llvm-clang Toolchain
         if: ${{ inputs.toolchain =='llvm-archlinux' }}
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-archlinux-2024-01-25-ucrt-x86_64.7z
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-archlinux-20240127-ucrt-x86_64.7z
             7z x llvm*.7z
             rm llvm*.7z
           fi
@@ -90,7 +90,7 @@ jobs:
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "rust" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/rustup-llvm-clang-20240126.7z
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/rustup-20240127.7z
             7z x rustup*.7z
             rm rustup*.7z
           fi 
@@ -107,4 +107,4 @@ jobs:
         if: always()
         with:
           path: ${{ env.top_dir }}/rust
-          key: rust-llvm-clang-${{ github.run_id }}
+          key: rust-${{ github.run_id }}
