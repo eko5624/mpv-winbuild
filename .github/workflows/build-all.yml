@@ -36,7 +36,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd amf-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -62,14 +64,16 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd angle-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
           GH_TOKEN: ${{ secrets.BOT }}
         run: ./release-dev.sh angle-headers-dev angle-dev
 
-  aom:
+  aom:  
     runs-on: ubuntu-latest
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
@@ -88,7 +92,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd aom-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -114,7 +120,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd avisynth-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -140,7 +148,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd brotli-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -166,7 +176,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd mpv-config; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -242,7 +254,9 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd ffmpeg; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -273,7 +287,9 @@ jobs:
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd dav1d-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -299,7 +315,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd davs2-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -325,7 +343,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd ffnvcodec-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -355,7 +375,9 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libpng-dev-1.6.41-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm 
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd freetype2-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -381,7 +403,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd fribidi-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -412,7 +436,9 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libpng-dev-1.6.41-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst   
           pacman -U *.zst --noconfirm
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd harfbuzz-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -438,7 +464,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd highway-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -464,7 +492,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd lame-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -494,7 +524,9 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd lcms2-dev; sudo -H -u builder makepkg-cross -sLf 
       - name: Release
         env:
@@ -528,7 +560,9 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libunibreak-dev-5_1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst       
           pacman -U *.zst --noconfirm
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libass-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -560,7 +594,9 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libaribcaption-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -592,7 +628,9 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst        
           pacman -U *.zst --noconfirm
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libbluray-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -618,7 +656,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libbs2b-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -644,7 +684,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libcaca-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -676,7 +718,9 @@ jobs:
           restore-keys: rust-${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libdovi-dev; sudo -H -u builder makepkg-cross -sLf    
       - name: Release
         env:
@@ -702,7 +746,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libdvdcss-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -732,7 +778,9 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libdvdnav-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -761,7 +809,9 @@ jobs:
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libdvdread-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -787,7 +837,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libiconv-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -813,7 +865,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libjpeg-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -847,7 +901,9 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libpng-dev-1.6.41-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst 
           pacman -U *.zst --noconfirm        
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libjxl-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -873,7 +929,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libmodplug-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -902,7 +960,9 @@ jobs:
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm                   
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libmysofa-dev; sudo -H -u builder makepkg-cross -sLf 
       - name: Release
         env:
@@ -928,7 +988,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libogg-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -960,7 +1022,9 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libsdl2-dev-2.28.5-1-x86_64.pkg.tar.zst 
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm         
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libopenmpt-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -996,7 +1060,9 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm 
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libplacebo-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1025,7 +1091,9 @@ jobs:
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst     
           pacman -U *.zst --noconfirm         
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libpng-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1051,7 +1119,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libsdl2-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1082,7 +1152,9 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libpng-dev-1.6.41-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst 
           pacman -U *.zst --noconfirm        
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libsixel; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1108,7 +1180,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libsoxr-dev; sudo -H -u builder makepkg-cross -sLf 
       - name: Release
         env:
@@ -1134,7 +1208,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libspeex-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1164,7 +1240,9 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst      
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm                   
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libsrt-dev; sudo -H -u builder makepkg-cross -sLf 
       - name: Release
         env:
@@ -1194,7 +1272,9 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm                   
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libssh-dev; sudo -H -u builder makepkg-cross -sLf 
       - name: Release
         env:
@@ -1220,7 +1300,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libudfread-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1246,7 +1328,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libunibreak-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1272,7 +1356,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libva-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1301,7 +1387,9 @@ jobs:
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libvorbis_aotuv-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1327,7 +1415,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libvpl-dev; sudo -H -u builder makepkg-cross -sLf 
       - name: Release
         env:
@@ -1353,7 +1443,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libvpx-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1379,7 +1471,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libwebp-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1409,7 +1503,9 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst   
           pacman -U *.zst --noconfirm
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libxml2-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1435,7 +1531,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libxvid-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1461,7 +1559,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libzimg-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1492,7 +1592,9 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libpng-dev-1.6.41-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst        
           pacman -U *.zst --noconfirm
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd libzvbi-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1521,7 +1623,9 @@ jobs:
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libiconv-dev-1.17-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm          
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd luajit2; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1613,7 +1717,9 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd mpv; sudo -H -u builder makepkg-cross -sLf
       - name: Delete old libmpv
         continue-on-error: true
@@ -1644,7 +1750,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd mujs; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1670,7 +1778,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd openal-soft-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1699,7 +1809,9 @@ jobs:
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst       
           pacman -U *.zst --noconfirm
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd openssl-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1725,7 +1837,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd opus-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1798,7 +1912,9 @@ jobs:
           restore-keys: rust-${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd rav1e-dev; sudo -H -u builder makepkg-cross -sLf    
       - name: Release
         env:
@@ -1824,7 +1940,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-      
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd rubberband; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1850,7 +1968,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd shaderc-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1876,7 +1996,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd spirv-cross-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1902,7 +2024,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd uavs3d-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1928,7 +2052,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd vapoursynth; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1954,7 +2080,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd vulkan-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -1980,7 +2108,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd xxhash-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
@@ -2006,7 +2136,9 @@ jobs:
           restore-keys: ${{ inputs.toolchain }}-
       - name: Build
         run: |
-          sudo chmod 777 -R ${{ env.top_dir }} /home/builder .
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/local/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
           cd zlib-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
         env:
