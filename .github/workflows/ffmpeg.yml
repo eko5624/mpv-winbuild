@@ -1,0 +1,90 @@
+name: Build FFmpeg
+defaults:
+  run:
+    shell: bash
+on:
+  workflow_dispatch:
+  #schedule:
+  #- cron: '30 0 * * MON'
+    
+jobs:
+  ffmpeg:
+    runs-on: ubuntu-latest
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
+      - name: Checkout
+        uses: actions/checkout@main
+      - name: Loading llvm-clang cache
+        uses: actions/cache/restore@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: llvm-clang-${{ github.run_id }}
+          restore-keys: llvm-clang-
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/amf-headers-dev-1.4.33-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/aom-dev-8.4-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/avisynth-dev-3.7.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/dav1d-dev-1.3.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/davs2-dev-1.7-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/ffnvcodec-dev-12.1.14.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/highway-dev-1.0.7-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/lame-dev-3.100-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libaribcaption-dev-1.1.1-1-x86_64.pkg.tar.zst                
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libbs2b-dev-3.1.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libdovi-dev-3.2.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libjxl-dev-0.9.1-1-x86_64.pkg.tar.zst                
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libmysofa-dev-1.3.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libopenmpt-dev-0.7.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libplacebo-dev-6.338.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libpng-dev-1.6.41-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libsdl2-dev-2.28.5-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libspeex-dev-1.2.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libsrt-dev-1.5.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libssh-dev-0.10.6-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libva-dev-2.20.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libvpl-dev-2023.4.0-1-x86_64.pkg.tar.zst         
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libvpx-dev-1.12.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libwebp-dev-1.3.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libxml2-dev-2.12.4-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libxvid-dev-1.3.7-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libzimg-dev-3.0.5-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libzvbi-dev-0.2.42-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/openal-soft-dev-1.23.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/opus-dev-1.4-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/rav1e-dev-0.7.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/shaderc-dev-2023.8-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/vapoursynth-dev-65-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/vulkan-dev-1.3.275.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
+          pacman -U *.zst --noconfirm
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd ffmpeg; sudo -H -u builder makepkg-cross -sLf
+      - name: Release
+        env:
+          GH_TOKEN: ${{ secrets.BOT }}
+        run: |
+          ./release-latest.sh ffmpeg-git ffmpeg
+          ./release-dev.sh ffmpeg-dev ffmpeg
