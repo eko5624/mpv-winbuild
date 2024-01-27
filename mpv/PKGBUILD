@@ -39,6 +39,7 @@ build() {
     --buildtype=release \
     -Doptimization=3 \
     -Db_lto=true \
+    -Db_lto_mode=thin \
     -Dlibmpv=true \
     -Dlua=enabled \
     -Djavascript=enabled \
