@@ -107,6 +107,11 @@ package_ffmpeg-dev() {
     --enable-nvenc \
     --enable-vaapi \
     --enable-vapoursynth \
+    --disable-decoder=mlp \
+    --disable-encoder=mlp \
+    --disable-demuxer=mlp \
+    --disable-muxer=mlp \
+    --disable-parser=mlp \
     --disable-videotoolbox \
     --disable-decoder=libaom_av1 \
     --disable-decoder=libvorbis \
