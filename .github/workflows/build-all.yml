@@ -33,8 +33,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -66,8 +65,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -99,8 +97,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -132,8 +129,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -165,8 +161,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -198,8 +193,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -232,8 +226,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -317,8 +310,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -341,17 +333,18 @@ jobs:
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          ref: ${{ inputs.toolchain }}      
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: ${{ inputs.toolchain }}
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -372,17 +365,18 @@ jobs:
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          ref: ${{ inputs.toolchain }}      
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: ${{ inputs.toolchain }}
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -404,17 +398,18 @@ jobs:
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          ref: ${{ inputs.toolchain }}      
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV 
-      - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: ${{ inputs.toolchain }}
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -438,17 +433,18 @@ jobs:
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          ref: ${{ inputs.toolchain }}      
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV 
-      - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: ${{ inputs.toolchain }}
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -470,17 +466,18 @@ jobs:
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          ref: ${{ inputs.toolchain }}      
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV 
-      - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: ${{ inputs.toolchain }}
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -505,17 +502,18 @@ jobs:
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          ref: ${{ inputs.toolchain }}      
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV 
-      - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: ${{ inputs.toolchain }}
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -536,17 +534,18 @@ jobs:
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          ref: ${{ inputs.toolchain }}      
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV 
-      - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: ${{ inputs.toolchain }}
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -568,17 +567,18 @@ jobs:
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          ref: ${{ inputs.toolchain }}      
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV 
-      - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: ${{ inputs.toolchain }}
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -603,17 +603,18 @@ jobs:
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          ref: ${{ inputs.toolchain }}      
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV 
-      - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: ${{ inputs.toolchain }}
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -642,17 +643,18 @@ jobs:
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          ref: ${{ inputs.toolchain }}      
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV 
-      - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: ${{ inputs.toolchain }}
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -679,17 +681,18 @@ jobs:
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          ref: ${{ inputs.toolchain }}      
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV 
-      - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: ${{ inputs.toolchain }}
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -715,17 +718,18 @@ jobs:
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          ref: ${{ inputs.toolchain }}      
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV 
-      - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: ${{ inputs.toolchain }}
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -746,17 +750,18 @@ jobs:
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          ref: ${{ inputs.toolchain }}      
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV 
-      - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: ${{ inputs.toolchain }}
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -777,17 +782,18 @@ jobs:
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          ref: ${{ inputs.toolchain }}      
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV 
-      - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: ${{ inputs.toolchain }}
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -814,17 +820,18 @@ jobs:
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          ref: ${{ inputs.toolchain }}      
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV 
-      - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: ${{ inputs.toolchain }}
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -846,17 +853,18 @@ jobs:
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          ref: ${{ inputs.toolchain }}      
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV 
-      - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: ${{ inputs.toolchain }}
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -881,17 +889,18 @@ jobs:
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          ref: ${{ inputs.toolchain }}      
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV 
-      - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: ${{ inputs.toolchain }}
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -925,8 +934,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -958,8 +966,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -992,8 +999,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1032,8 +1038,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1066,8 +1071,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1101,8 +1105,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1135,8 +1138,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1174,8 +1176,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1217,8 +1218,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1252,8 +1252,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1286,8 +1285,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1323,8 +1321,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1356,8 +1353,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1390,8 +1386,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1427,8 +1422,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1463,8 +1457,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1496,8 +1489,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1529,8 +1521,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1563,8 +1554,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1598,8 +1588,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1631,8 +1620,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1664,8 +1652,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1698,8 +1685,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1734,8 +1720,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1767,8 +1752,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1801,8 +1785,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1839,8 +1822,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1875,8 +1857,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -1978,8 +1959,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -2011,8 +1991,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -2034,17 +2013,18 @@ jobs:
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          ref: ${{ inputs.toolchain }}      
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV 
-      - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: ${{ inputs.toolchain }}
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -2078,8 +2058,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -2106,8 +2085,7 @@ jobs:
         with:
           ref: ${{ inputs.toolchain }}
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Setup Packages
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/latest-${{ inputs.toolchain }}/config-1.0-1-x86_64.pkg.tar.xz        
@@ -2136,17 +2114,18 @@ jobs:
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          ref: ${{ inputs.toolchain }}      
       - name: Add builder user
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV 
-      - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: ${{ inputs.toolchain }}
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -2184,8 +2163,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -2217,8 +2195,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -2250,8 +2227,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -2283,8 +2259,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -2316,8 +2291,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -2349,8 +2323,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -2382,8 +2355,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
@@ -2415,8 +2387,7 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.toolchain }} cache
         uses: actions/cache/restore@main
         with:
