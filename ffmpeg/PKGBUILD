@@ -46,7 +46,7 @@ md5sums=('SKIP')
 
 package_ffmpeg-dev() {
   cd $srcdir/FFmpeg
-  NO_CONFLTO=1 ./configure \
+  NO_CONFLTO=1 ./configure $FFMPEG_LTO \
     --cross-prefix=${TARGET_ARCH}- \
     --prefix=${MINGW_PREFIX} \
     --arch=x86_64 \
@@ -55,7 +55,6 @@ package_ffmpeg-dev() {
     --pkg-config-flags=--static \
     --enable-cross-compile \
     --enable-runtime-cpudetect \
-    --enable-lto=thin \
     --disable-debug \
     --disable-doc \
     --enable-gpl \

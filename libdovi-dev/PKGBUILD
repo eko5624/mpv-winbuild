@@ -21,7 +21,6 @@ package() {
   mkdir build
   export CARGO_BUILD_TARGET_DIR=build
   export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
-  export CARGO_PROFILE_RELEASE_LTO=thin
-  export RUSTFLAGS='-C linker-plugin-lto -C embed-bitcode -C lto=thin'
+  $RUST_LTO
   cargo cinstall --manifest-path=Cargo.toml --prefix=${MINGW_PREFIX} --destdir=$pkgdir --target=x86_64-pc-windows-gnu --release --library-type staticlib
 }
