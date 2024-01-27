@@ -22,18 +22,13 @@ jobs:
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
-      - name: Setting top_dir env
-        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV         
       - name: Checkout
         uses: actions/checkout@main
         with:
           ref: ${{ inputs.toolchain }}
-      - name: Loading ${{ inputs.toolchain }} cache
-        uses: actions/cache/restore@main
-        with:
-          path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.toolchain }}-${{ github.run_id }}
-          restore-keys: ${{ inputs.toolchain }}-
+      - name: Setting top_dir env
+        run: |
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Setup Packages      
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/latest-${{ inputs.toolchain }}/config-1.0-1-x86_64.pkg.tar.xz        
