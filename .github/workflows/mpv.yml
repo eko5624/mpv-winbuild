@@ -1,4 +1,4 @@
-name: Build FFmpeg
+name: Build MPV
 defaults:
   run:
     shell: bash
