@@ -4,15 +4,6 @@ defaults:
     shell: bash
 on:
   workflow_dispatch:
-    inputs:
-      toolchain:
-        required: false
-        default: "gcc-mcf"
-        type: choice
-        options:
-        - gcc-mcf
-        - llvm-clang
-
   #schedule:
   #- cron: '30 0 * * MON'
     
@@ -24,8 +15,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@main
-        with:
-          ref: ${{ inputs.toolchain }}
       - name: Add builder user
         run: |
           useradd builder -m
@@ -35,12 +24,12 @@ jobs:
       - name: Setting top_dir env
         run: |
           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading ${{ inputs.toolchain }} cache
+      - name: Loading gcc-mcf cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.toolchain }}-${{ github.run_id }}
-          restore-keys: ${{ inputs.toolchain }}-
+          key: gcc-mcf-${{ github.run_id }}
+          restore-keys: gcc-mcf-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
