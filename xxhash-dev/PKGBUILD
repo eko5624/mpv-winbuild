@@ -9,6 +9,7 @@ source=("git+https://github.com/Cyan4973/xxHash.git")
 md5sums=('SKIP')
 
 build() {
+  export CFLAGS+=" -DXXH_X86DISPATCH_ALLOW_AVX=1"
   cd $srcdir/xxHash
   rm -rf build && mkdir build && cd build
   NO_CONFLTO=1 cmake ../cmake_unofficial \
