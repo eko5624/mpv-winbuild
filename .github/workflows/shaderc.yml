@@ -5,13 +5,14 @@ defaults:
 on:
   workflow_dispatch:
     inputs:
-      toolchain:
+      build_target:
+        description: "Build target"
         required: false
-        default: "llvm-clang"
+        default: "x86_64"
         type: choice
         options:
-        - gcc-mcf
-        - llvm-clang
+        - x86_64
+        - x86_64_v3
 
   #schedule:
   #- cron: '30 0 * * MON'
@@ -19,13 +20,14 @@ on:
 jobs:
   shaderc:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: ${{ inputs.toolchain }}
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -33,19 +35,16 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading ${{ inputs.toolchain }} cache
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading llvm-clang-$BIT cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.toolchain }}-${{ github.run_id }}
-          restore-keys: ${{ inputs.toolchain }}-
+          key: llvm-clang-$BIT-${{ github.run_id }}
+          restore-keys: llvm-clang-$BIT-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd shaderc-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh shaderc-dev shaderc-dev

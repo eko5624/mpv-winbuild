@@ -34,7 +34,7 @@ jobs:
           path: ${{ env.top_dir }}/rust
           key: rust-gcc-mcf-${{ github.run_id }}
           restore-keys: |
-            rust-gcc-mcf-
+            rust-
             
       - name: Setup GCC With MCF Toolchain
         run: |
@@ -49,7 +49,7 @@ jobs:
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "rust" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/rustup-gcc-mcf-20240126.7z
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/rustup-20240128.7z
             7z x rustup*.7z
             rm rustup*.7z
           fi
@@ -66,4 +66,4 @@ jobs:
         if: always()
         with:
           path: ${{ env.top_dir }}/rust
-          key: rust-gcc-mcf-${{ github.run_id }}
+          key: rust-${{ github.run_id }}

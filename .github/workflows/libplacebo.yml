@@ -5,24 +5,26 @@ defaults:
 on:
   workflow_dispatch:
     inputs:
-      toolchain:
+      build_target:
+        description: "Build target"
         required: false
-        default: "llvm-clang"
+        default: "x86_64"
         type: choice
         options:
-        - gcc-mcf
-        - llvm-clang
+        - x86_64
+        - x86_64_v3
 
 jobs:
   libplacebo:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: ${{ inputs.toolchain }}
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -30,28 +32,25 @@ jobs:
           sudo cp pacman-config/makepkg_cross.conf /etc
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
-        run: |
-          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading ${{ inputs.toolchain }} cache
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading llvm-clang-$BIT cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.toolchain }}-${{ github.run_id }}
-          restore-keys: ${{ inputs.toolchain }}-
+          key: llvm-clang-$BIT-${{ github.run_id }}
+          restore-keys: llvm-clang-$BIT-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libdovi-dev-3.2.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/shaderc-dev-2023.8-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/vulkan-dev-1.3.275.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
-          pacman -U *.zst --noconfirm
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libdovi-dev-3.2.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/shaderc-dev-2023.8-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/vulkan-dev-1.3.275.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
+          pacman -U *.zst --noconfirm 
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libplacebo-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libplacebo-dev libplacebo-dev

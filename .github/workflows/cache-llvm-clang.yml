@@ -8,10 +8,11 @@ on:
       toolchain:
         description: "toolchain"
         required: false
-        default: "llvm-clang"
+        default: "llvm-clang-x86_64"
         type: choice
         options:
-        - llvm-clang
+        - llvm-clang-x86_64
+        - llvm-clang-x86_64_v3
         - llvm-mingw
   
 jobs:
@@ -29,13 +30,29 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       
-      - name: Loading llvm-clang cache
+      - name: Loading llvm-clang-x86_64 cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ github.run_id }}
+          key: llvm-clang-x86_64-${{ github.run_id }}
           restore-keys: |
-            llvm-clang-
+            llvm-clang-x86_64-
+
+      - name: Loading llvm-clang-x86_64_v3 cache
+        uses: actions/cache/restore@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: llvm-clang-x86_64_v3-${{ github.run_id }}
+          restore-keys: |
+            llvm-clang-x86_64_v3-
+
+      - name: Loading llvm-mingw cache
+        uses: actions/cache/restore@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: llvm-mingw-x86_64-${{ github.run_id }}
+          restore-keys: |
+            llvm-mingw-x86_64-
 
       - name: Loading rust cache
         uses: actions/cache/restore@main
@@ -45,17 +62,27 @@ jobs:
           restore-keys: |
             rust-
 
-      - name: Setup llvm-clang Toolchain
-        if: ${{ inputs.toolchain =='llvm-clang' }}
+      - name: Setup llvm-clang-x86_64 Toolchain
+        if: ${{ inputs.toolchain =='llvm-clang-x86_64' }}
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-archlinux-20240127-ucrt-x86_64.7z
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-clang-20240128-ucrt-x86_64.7z
             7z x llvm*.7z
             rm llvm*.7z
           fi
 
-      - name: Setup llvm-clang Toolchain
+      - name: Setup llvm-clang-x86_64_v3 Toolchain
+        if: ${{ inputs.toolchain =='llvm-clang-x86_64_v3' }}
+        run: |
+          cd ${{ env.top_dir }}
+          if [[ ! -d "cross/bin" ]]; then
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-clang-20240128-ucrt-x86_64_v3.7z
+            7z x llvm*.7z
+            rm llvm*.7z
+          fi
+
+      - name: Setup llvm-mingw Toolchain
         if: ${{ inputs.toolchain =='llvm-mingw' }}
         run: |
           cd ${{ env.top_dir }}
@@ -95,12 +122,26 @@ jobs:
             rm rustup*.7z
           fi 
 
-      - name: Saving llvm-clang cache
+      - name: Saving llvm-clang-x86_64 cache
         uses: actions/cache/save@main
         if: always()
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ github.run_id }}
+          key: llvm-clang-x86_64-${{ github.run_id }}
+
+      - name: Saving llvm-clang-x86_64_v3 cache
+        uses: actions/cache/save@main
+        if: always()
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: llvm-clang-x86_64_v3-${{ github.run_id }}
+
+      - name: Saving llvm-mingw cache
+        uses: actions/cache/save@main
+        if: always()
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: llvm-mingw-${{ github.run_id }}      
 
       - name: Saving Rust cache
         uses: actions/cache/save@main
