@@ -7,7 +7,7 @@ on:
     inputs:
       toolchain:
         required: false
-        default: "gcc-mcf"
+        default: "llvm-clang"
         type: choice
         options:
         - gcc-mcf

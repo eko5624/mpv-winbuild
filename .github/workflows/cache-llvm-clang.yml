@@ -8,11 +8,11 @@ on:
       toolchain:
         description: "toolchain"
         required: false
-        default: "llvm-archlinux"
+        default: "llvm-clang"
         type: choice
         options:
-        - llvm-archlinux
-        - llvm-mingw 
+        - llvm-clang
+        - llvm-mingw
   
 jobs:
   build:
@@ -46,7 +46,7 @@ jobs:
             rust-
 
       - name: Setup llvm-clang Toolchain
-        if: ${{ inputs.toolchain =='llvm-archlinux' }}
+        if: ${{ inputs.toolchain =='llvm-clang' }}
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
