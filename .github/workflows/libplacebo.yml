@@ -1,4 +1,4 @@
-name: Build libplacebo
+name: libplacebo
 defaults:
   run:
     shell: bash

@@ -1,4 +1,4 @@
-name: Build zstd
+name: zstd
 defaults:
   run:
     shell: bash

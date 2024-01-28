@@ -1,4 +1,4 @@
-name: Build mpv
+name: MPV
 defaults:
   run:
     shell: bash

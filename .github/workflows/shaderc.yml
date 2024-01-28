@@ -1,4 +1,4 @@
-name: Build shaderc
+name: shaderc
 defaults:
   run:
     shell: bash
