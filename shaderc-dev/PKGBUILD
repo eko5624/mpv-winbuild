@@ -23,7 +23,7 @@ build() {
   mv $srcdir/spirv-tools third_party
   mv $srcdir/glslang third_party
   rm -rf build && mkdir build && cd build
-  NO_CONFLTO=1 cmake .. \
+  LTO_JOB=1 NO_CONFLTO=1 cmake .. \
     -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../cmake/linux-mingw-toolchain.cmake \
@@ -38,7 +38,7 @@ build() {
     -DSPIRV_TOOLS_BUILD_STATIC=ON \
     -DSPIRV_TOOLS_LIBRARY_TYPE=STATIC \
     -DMINGW_COMPILER_PREFIX=${TARGET_ARCH}
-  cmake --build .
+  LTO_JOB=1 cmake --build .
 }
 
 package() {

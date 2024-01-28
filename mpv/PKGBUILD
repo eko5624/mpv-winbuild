@@ -53,7 +53,7 @@ build() {
     -Dvulkan=enabled \
     -Dvapoursynth=enabled \
     -Degl-angle=enabled
-  meson compile -C build
+  LTO_JOB=1 meson compile -C build
   
   # get latest commit sha
   short_sha=$(git rev-parse --short HEAD)
@@ -64,7 +64,7 @@ package_libmpv-git() {
   export PKGEXT='.pkg.tar.xz'
   mkdir -p $pkgdir${MINGW_PREFIX}/libmpv
   cd $srcdir/mpv/build
-  strip -s libmpv-2.dll
+  ${TARGET_ARCH}-strip -s libmpv-2.dll
   mv libmpv-2.dll $pkgdir${MINGW_PREFIX}/libmpv
 }
 
@@ -74,6 +74,6 @@ package_mpv-git() {
   cd $srcdir/mpv/build
   mv mpv.exe $pkgdir${MINGW_PREFIX}/mpv
   mv mpv.com $pkgdir${MINGW_PREFIX}/mpv
-  strip -s $pkgdir${MINGW_PREFIX}/mpv/mpv.*
+  ${TARGET_ARCH}-strip -s $pkgdir${MINGW_PREFIX}/mpv/mpv.*
   mv ../SHORT_SHA $pkgdir${MINGW_PREFIX}/mpv
 }
