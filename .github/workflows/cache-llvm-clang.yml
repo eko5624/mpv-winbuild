@@ -34,9 +34,9 @@ jobs:
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-x86_64-${{ github.run_id }}
+          key: llvm-clang-x86_64-ucrt-${{ github.run_id }}
           restore-keys: |
-            llvm-clang-x86_64-
+            llvm-clang-x86_64-ucrt-
 
       - name: Loading llvm-clang-x86_64_v3 cache
         uses: actions/cache/restore@main
@@ -44,7 +44,7 @@ jobs:
           path: ${{ env.top_dir }}/cross
           key: llvm-clang-x86_64_v3-${{ github.run_id }}
           restore-keys: |
-            llvm-clang-x86_64_v3-
+            llvm-clang-x86_64_v3-ucrt-
 
       - name: Loading llvm-mingw cache
         uses: actions/cache/restore@main
@@ -92,12 +92,12 @@ jobs:
             7z x cross*.7z
             find cross/x86_64-w64-mingw32/lib -maxdepth 1 -type f -name "*.dll.a" -print0 | xargs -0 -I {} rm {}
             rm -rf cross/bin/x86_64-w64-mingw32-{clang,clang++,gcc,g++,c++,ld}
-            cp toolchain/llvm-wrapper/x86_64-w64-mingw32-clang cross/bin
-            cp toolchain/llvm-wrapper/x86_64-w64-mingw32-clang++ cross/bin
-            cp toolchain/llvm-wrapper/x86_64-w64-mingw32-ld cross/bin
-            cp toolchain/llvm-wrapper/x86_64-w64-mingw32-gcc cross/bin
-            cp toolchain/llvm-wrapper/x86_64-w64-mingw32-g++ cross/bin
-            cp toolchain/llvm-wrapper/x86_64-w64-mingw32-c++ cross/bin
+            cp toolchain/llvm-wrapper-x86_64/x86_64-w64-mingw32-clang cross/bin
+            cp toolchain/llvm-wrapper-x86_64/x86_64-w64-mingw32-clang++ cross/bin
+            cp toolchain/llvm-wrapper-x86_64/x86_64-w64-mingw32-ld cross/bin
+            cp toolchain/llvm-wrapper-x86_64/x86_64-w64-mingw32-gcc cross/bin
+            cp toolchain/llvm-wrapper-x86_64/x86_64-w64-mingw32-g++ cross/bin
+            cp toolchain/llvm-wrapper-x86_64/x86_64-w64-mingw32-c++ cross/bin
             sed -i "s/-mtune=generic/-mtune=generic -rtlib=compiler-rt -unwindlib=libunwind -stdlib=libc++/" cross/bin/x86_64-w64-mingw32-clang
             sed -i "s/-mtune=generic/-mtune=generic -rtlib=compiler-rt -unwindlib=libunwind -stdlib=libc++/" cross/bin/x86_64-w64-mingw32-clang++
             sed -i "s/-mtune=generic/-mtune=generic -rtlib=compiler-rt -unwindlib=libunwind -stdlib=libc++/" cross/bin/x86_64-w64-mingw32-gcc
@@ -117,7 +117,7 @@ jobs:
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "rust" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/rustup-20240127.7z
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/rustup-20240128.7z
             7z x rustup*.7z
             rm rustup*.7z
           fi 
@@ -127,14 +127,14 @@ jobs:
         if: always()
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-x86_64-${{ github.run_id }}
+          key: llvm-clang-x86_64-ucrt-${{ github.run_id }}
 
       - name: Saving llvm-clang-x86_64_v3 cache
         uses: actions/cache/save@main
         if: always()
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-x86_64_v3-${{ github.run_id }}
+          key: llvm-clang-x86_64_v3-ucrt-${{ github.run_id }}
 
       - name: Saving llvm-mingw cache
         uses: actions/cache/save@main
