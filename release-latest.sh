@@ -20,7 +20,7 @@ curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -X POST \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases \
-  -d '{"tag_name": "latest-llvm-clang-$BIT"}'
+  -d '{"tag_name": "latest-llvm-clang-'"$BIT"'"}'
   
 release_id=$(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -H "Accept: application/vnd.github.v3+json" \
