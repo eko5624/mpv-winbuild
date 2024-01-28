@@ -123,22 +123,22 @@ jobs:
           fi 
 
       - name: Saving llvm-clang-x86_64 cache
+        if: ${{ inputs.toolchain =='llvm-clang-x86_64' }}
         uses: actions/cache/save@main
-        if: always()
         with:
           path: ${{ env.top_dir }}/cross
           key: llvm-clang-x86_64-ucrt-${{ github.run_id }}
 
       - name: Saving llvm-clang-x86_64_v3 cache
+        if: ${{ inputs.toolchain =='llvm-clang-x86_64_v3' }}
         uses: actions/cache/save@main
-        if: always()
         with:
           path: ${{ env.top_dir }}/cross
           key: llvm-clang-x86_64_v3-ucrt-${{ github.run_id }}
 
       - name: Saving llvm-mingw cache
+        if: ${{ inputs.toolchain =='llvm-mingw' }}
         uses: actions/cache/save@main
-        if: always()
         with:
           path: ${{ env.top_dir }}/cross
           key: llvm-mingw-${{ github.run_id }}      
