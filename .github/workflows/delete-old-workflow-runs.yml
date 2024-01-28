@@ -1,0 +1,50 @@
+name: Delete old workflow runs
+on:
+  #schedule:
+  #  - cron: '0 12 * * MON'
+  # Run monthly, at 00:00 on the 1st day of month.
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'Input retained days'
+        required: true
+        default: '30'
+      minimum_runs:
+        description: 'Minimum runs to keep for each workflow'
+        required: true
+        default: '6'
+      workflow_pattern:
+        description: 'Name or filename of the workflow (if not set, all workflows are targeted)'
+        required: false
+      by_conclusion:
+        description: 'Remove runs based on conclusion: action_required, cancelled, failure, skipped, success'
+        required: true
+        default: "ALL"
+        type: choice
+        options:
+          - "ALL"
+          - "Unsuccessful: action_required,cancelled,failure,skipped"
+          - action_required
+          - cancelled
+          - failure
+          - skipped
+          - success
+
+jobs:
+  del_runs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          retain_days: ${{ github.event.inputs.days }}
+          keep_minimum_runs: ${{ github.event.inputs.minimum_runs }}
+          delete_workflow_pattern: ${{ github.event.inputs.workflow_pattern }}
+          delete_run_by_conclusion_pattern: >-
+            ${{
+              startsWith(github.event.inputs.by_conclusion, 'Unsuccessful:')
+              && 'action_required,cancelled,failure,skipped'
+              || github.event.inputs.by_conclusion_pattern
+            }}

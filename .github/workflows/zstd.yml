@@ -1,0 +1,51 @@
+name: Build zstd
+defaults:
+  run:
+    shell: bash
+on:
+  workflow_dispatch:
+    inputs:
+      toolchain:
+        required: false
+        default: "gcc-mcf"
+        type: choice
+        options:
+        - gcc-mcf
+        - llvm-clang
+
+  #schedule:
+  #- cron: '30 0 * * MON'
+    
+jobs:
+  zstd:
+    runs-on: ubuntu-latest
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          ref: ${{ inputs.toolchain }}
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
+      - name: Setting top_dir env
+        run: |
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.toolchain }} cache
+        uses: actions/cache/restore@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.toolchain }}-${{ github.run_id }}
+          restore-keys: ${{ inputs.toolchain }}-
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd zstd-dev; sudo -H -u builder makepkg-cross -sLf
+      - name: Release
+        env:
+          GH_TOKEN: ${{ secrets.BOT }}    
+        run: ./release-dev.sh zstd-dev zstd-dev

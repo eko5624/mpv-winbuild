@@ -1,0 +1,51 @@
+name: Cache GCC With POSIX Toolchain
+defaults:
+  run:
+    shell: bash
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux/archlinux:base-devel
+    steps:    
+      - name: Install Dependencies
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm --needed git unzip p7zip curl jq
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global pull.rebase true
+          git config --global rebase.autoStash true
+          git config --global fetch.prune true
+          git config --global --add safe.directory $PWD
+      - name: Setting top_dir env
+        run: |
+           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading gcc cache
+        uses: actions/cache/restore@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: cross-gcc-posix-${{ github.run_id }}
+          restore-keys: |
+            cross-gcc-posix-
+            
+      - name: Setup GCC Toolchain
+        run: |
+          cd ${{ env.top_dir }}
+          if [[ ! -d "cross/bin" ]]; then
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-gcc-posix-13.2.0-x64-ucrt.7z
+            7z x cross-gcc-posix*.7z
+            find cross/x86_64-w64-mingw32/lib -type f -name "*.la" -print0 | xargs -0 -I {} rm {}
+            find cross/x86_64-w64-mingw32/lib -type f -name "*.dll.a" -print0 | xargs -0 -I {} rm {}
+            rm cross-gcc-posix*.7z
+          fi  
+
+      - name: Saving gcc cache
+        uses: actions/cache/save@main
+        if: always()
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: cross-gcc-posix-${{ github.run_id }}

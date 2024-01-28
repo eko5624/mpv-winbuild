@@ -1,0 +1,110 @@
+name: Cache LLVM CLANG Toolchain
+defaults:
+  run:
+    shell: bash
+on:
+  workflow_dispatch:
+    inputs:
+      toolchain:
+        description: "toolchain"
+        required: false
+        default: "llvm-archlinux"
+        type: choice
+        options:
+        - llvm-archlinux
+        - llvm-mingw 
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux/archlinux:base-devel
+    steps:    
+      - name: Install Dependencies
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm --needed git unzip p7zip curl jq
+          
+      - name: Setting top_dir env
+        run: |
+           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      
+      - name: Loading llvm-clang cache
+        uses: actions/cache/restore@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: llvm-clang-${{ github.run_id }}
+          restore-keys: |
+            llvm-clang-
+
+      - name: Loading rust cache
+        uses: actions/cache/restore@main
+        with:
+          path: ${{ env.top_dir }}/rust
+          key: rust-${{ github.run_id }}
+          restore-keys: |
+            rust-
+
+      - name: Setup llvm-clang Toolchain
+        if: ${{ inputs.toolchain =='llvm-archlinux' }}
+        run: |
+          cd ${{ env.top_dir }}
+          if [[ ! -d "cross/bin" ]]; then
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-archlinux-20240127-ucrt-x86_64.7z
+            7z x llvm*.7z
+            rm llvm*.7z
+          fi
+
+      - name: Setup llvm-clang Toolchain
+        if: ${{ inputs.toolchain =='llvm-mingw' }}
+        run: |
+          cd ${{ env.top_dir }}
+          if [[ ! -d "cross/bin" ]]; then
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-mingw-2024-01-25-ucrt-x86_64.7z
+            git clone https://github.com/eko5624/toolchain.git
+            7z x cross*.7z
+            find cross/x86_64-w64-mingw32/lib -maxdepth 1 -type f -name "*.dll.a" -print0 | xargs -0 -I {} rm {}
+            rm -rf cross/bin/x86_64-w64-mingw32-{clang,clang++,gcc,g++,c++,ld}
+            cp toolchain/llvm-wrapper/x86_64-w64-mingw32-clang cross/bin
+            cp toolchain/llvm-wrapper/x86_64-w64-mingw32-clang++ cross/bin
+            cp toolchain/llvm-wrapper/x86_64-w64-mingw32-ld cross/bin
+            cp toolchain/llvm-wrapper/x86_64-w64-mingw32-gcc cross/bin
+            cp toolchain/llvm-wrapper/x86_64-w64-mingw32-g++ cross/bin
+            cp toolchain/llvm-wrapper/x86_64-w64-mingw32-c++ cross/bin
+            sed -i "s/-mtune=generic/-mtune=generic -rtlib=compiler-rt -unwindlib=libunwind -stdlib=libc++/" cross/bin/x86_64-w64-mingw32-clang
+            sed -i "s/-mtune=generic/-mtune=generic -rtlib=compiler-rt -unwindlib=libunwind -stdlib=libc++/" cross/bin/x86_64-w64-mingw32-clang++
+            sed -i "s/-mtune=generic/-mtune=generic -rtlib=compiler-rt -unwindlib=libunwind -stdlib=libc++/" cross/bin/x86_64-w64-mingw32-gcc
+            sed -i "s/-mtune=generic/-mtune=generic -rtlib=compiler-rt -unwindlib=libunwind -stdlib=libc++/" cross/bin/x86_64-w64-mingw32-g++
+            sed -i "s/-mtune=generic/-mtune=generic -rtlib=compiler-rt -unwindlib=libunwind -stdlib=libc++/" cross/bin/x86_64-w64-mingw32-c++
+            chmod 755 cross/bin/x86_64-w64-mingw32-clang
+            chmod 755 cross/bin/x86_64-w64-mingw32-clang++
+            chmod 755 cross/bin/x86_64-w64-mingw32-ld
+            chmod 755 cross/bin/x86_64-w64-mingw32-gcc
+            chmod 755 cross/bin/x86_64-w64-mingw32-g++
+            chmod 755 cross/bin/x86_64-w64-mingw32-c++
+            rm cross*.7z
+            rm -rf toolchain
+          fi
+
+      - name: Setup Rust Toolchain
+        run: |
+          cd ${{ env.top_dir }}
+          if [[ ! -d "rust" ]]; then
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/rustup-20240127.7z
+            7z x rustup*.7z
+            rm rustup*.7z
+          fi 
+
+      - name: Saving llvm-clang cache
+        uses: actions/cache/save@main
+        if: always()
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: llvm-clang-${{ github.run_id }}
+
+      - name: Saving Rust cache
+        uses: actions/cache/save@main
+        if: always()
+        with:
+          path: ${{ env.top_dir }}/rust
+          key: rust-${{ github.run_id }}

@@ -1,0 +1,57 @@
+name: Build libplacebo
+defaults:
+  run:
+    shell: bash
+on:
+  workflow_dispatch:
+    inputs:
+      toolchain:
+        required: false
+        default: "gcc-mcf"
+        type: choice
+        options:
+        - gcc-mcf
+        - llvm-clang
+
+jobs:
+  libplacebo:
+    runs-on: ubuntu-latest
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          ref: ${{ inputs.toolchain }}
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
+      - name: Setting top_dir env
+        run: |
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.toolchain }} cache
+        uses: actions/cache/restore@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.toolchain }}-${{ github.run_id }}
+          restore-keys: ${{ inputs.toolchain }}-
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libdovi-dev-3.2.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/shaderc-dev-2023.8-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/vulkan-dev-1.3.275.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-${{ inputs.toolchain }}/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
+          pacman -U *.zst --noconfirm
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libplacebo-dev; sudo -H -u builder makepkg-cross -sLf
+      - name: Release
+        env:
+          GH_TOKEN: ${{ secrets.BOT }}    
+        run: ./release-dev.sh libplacebo-dev libplacebo-dev

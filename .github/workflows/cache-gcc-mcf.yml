@@ -1,0 +1,69 @@
+name: Cache GCC With MCF Toolchain
+defaults:
+  run:
+    shell: bash
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux/archlinux:base-devel
+    steps:    
+      - name: Install Dependencies
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm --needed git unzip p7zip curl jq
+      
+      - name: Setting top_dir env
+        run: |
+           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      
+      - name: Loading gcc-mcf cache
+        uses: actions/cache/restore@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: gcc-mcf-${{ github.run_id }}
+          restore-keys: |
+            gcc-mcf-
+
+      - name: Loading rust cache
+        uses: actions/cache/restore@main
+        with:
+          path: ${{ env.top_dir }}/rust
+          key: rust-gcc-mcf-${{ github.run_id }}
+          restore-keys: |
+            rust-gcc-mcf-
+            
+      - name: Setup GCC With MCF Toolchain
+        run: |
+          cd ${{ env.top_dir }}
+          if [[ ! -d "cross/bin" ]]; then
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-gcc-mcf-2024-01-25-x64-ucrt.7z
+            7z x cross-gcc-mcf*.7z
+            rm cross-gcc-mcf*.7z
+          fi
+
+      - name: Setup Rust Toolchain
+        run: |
+          cd ${{ env.top_dir }}
+          if [[ ! -d "rust" ]]; then
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/rustup-gcc-mcf-20240126.7z
+            7z x rustup*.7z
+            rm rustup*.7z
+          fi
+
+      - name: Saving gcc cache
+        uses: actions/cache/save@main
+        if: always()
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: gcc-mcf-${{ github.run_id }}
+
+      - name: Saving Rust cache
+        uses: actions/cache/save@main
+        if: always()
+        with:
+          path: ${{ env.top_dir }}/rust
+          key: rust-gcc-mcf-${{ github.run_id }}
