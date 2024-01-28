@@ -1,4 +1,4 @@
-name: Build All-in-One-MPV
+name: Build All-in-One-MPV(GCC)
 defaults:
   run:
     shell: bash
