@@ -1,4 +1,4 @@
-name: Cache GCC With MCF Toolchain
+name: Cache GCC with MCF Toolchain
 defaults:
   run:
     shell: bash

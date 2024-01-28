@@ -1,4 +1,4 @@
-name: MPV
+name: mpv
 defaults:
   run:
     shell: bash
