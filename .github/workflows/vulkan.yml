@@ -47,4 +47,4 @@ jobs:
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd vulkan-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release    
-        run: export BIT; ./release-dev.sh vulkan-dev vulkan-dev
+        run: export BIT=${{ inputs.build_target }}; ./release-dev.sh vulkan-dev vulkan-dev
