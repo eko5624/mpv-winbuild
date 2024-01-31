@@ -228,7 +228,7 @@ jobs:
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/amf-headers-dev-1.4.33-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/aom-dev-8.4-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/aom-dev-3.8.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/avisynth-dev-3.7.3-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/dav1d-dev-1.3.0-1-x86_64.pkg.tar.zst
@@ -249,7 +249,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libopenmpt-dev-0.7.3-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libplacebo-dev-6.338.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.41-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libsdl2-dev-2.28.5-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libspeex-dev-1.2.1-1-x86_64.pkg.tar.zst
@@ -265,7 +265,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libzimg-dev-3.0.5-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libzvbi-dev-0.2.42-1-x86_64.pkg.tar.zst        
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/openal-soft-dev-1.23.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/openssl-dev-3.2.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/opus-dev-1.4-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/rav1e-dev-0.7.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/shaderc-dev-2023.8-1-x86_64.pkg.tar.zst
@@ -410,7 +410,7 @@ jobs:
           restore-keys: gcc-mcf-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.41-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm 
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -479,7 +479,7 @@ jobs:
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst 
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.41-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst   
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -618,7 +618,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/fribidi-dev-1.0.13-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/harfbuzz-dev-8.3.0-1-x86_64.pkg.tar.zst 
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.41-1-x86_64.pkg.tar.zst       
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst       
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libunibreak-dev-5_1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst       
           pacman -U *.zst --noconfirm
@@ -656,8 +656,8 @@ jobs:
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.41-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/openssl-dev-3.2.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -694,7 +694,7 @@ jobs:
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.41-1-x86_64.pkg.tar.zst         
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst         
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst        
           pacman -U *.zst --noconfirm
@@ -1004,7 +1004,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/highway-dev-1.0.7-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.41-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst 
           pacman -U *.zst --noconfirm        
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1287,7 +1287,7 @@ jobs:
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.41-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst 
           pacman -U *.zst --noconfirm        
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1387,7 +1387,7 @@ jobs:
           restore-keys: gcc-mcf-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst      
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/openssl-dev-3.2.1-1-x86_64.pkg.tar.zst      
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm                   
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1423,7 +1423,7 @@ jobs:
           restore-keys: gcc-mcf-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/openssl-dev-3.2.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm                   
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1787,7 +1787,7 @@ jobs:
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.41-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst        
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1860,7 +1860,7 @@ jobs:
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/amf-headers-dev-1.4.33-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/angle-headers-dev-1.0.772-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/aom-dev-8.4-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/aom-dev-3.8.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/avisynth-dev-3.7.3-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/dav1d-dev-1.3.0-1-x86_64.pkg.tar.zst
@@ -1890,7 +1890,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libopenmpt-dev-0.7.3-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libplacebo-dev-6.338.2-1-x86_64.pkg.tar.zst        
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.41-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libsdl2-dev-2.28.5-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libsixel-dev-1.10.3-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
@@ -1911,7 +1911,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/luajit2-dev-2.1_20231117-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/mujs-dev-1.3.4-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/openal-soft-dev-1.23.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/openssl-dev-3.2.0-1-x86_64.pkg.tar.zst      
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/openssl-dev-3.2.1-1-x86_64.pkg.tar.zst      
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/opus-dev-1.4-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/rav1e-dev-0.7.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/rubberband-dev-3.3.0-1-x86_64.pkg.tar.zst
