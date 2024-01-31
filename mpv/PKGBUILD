@@ -1,4 +1,4 @@
-pkgname=(libmpv-git mpv-git)
+pkgname=(libmpv-git mpv-git mpv-thinlto)
 pkgver=0.37.0
 pkgrel=1
 pkgdesc='a free, open source, and cross-platform media player'
@@ -76,4 +76,10 @@ package_mpv-git() {
   mv mpv.com $pkgdir${MINGW_PREFIX}/mpv
   ${TARGET_ARCH}-strip -s $pkgdir${MINGW_PREFIX}/mpv/mpv.*
   mv ../SHORT_SHA $pkgdir${MINGW_PREFIX}/mpv
+}
+
+package_mpv-thinlto() {
+  export PKGEXT='.pkg.tar.zst'
+  mkdir -p $pkgdir${TOP_DIR}
+  mv ${TOP_DIR}/thinlto $pkgdir${TOP_DIR}
 }

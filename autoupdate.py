@@ -86,10 +86,13 @@ pkgs['rubberband-dev'] = x['rubberband']
 pkgs['vapoursynth-dev'] = x['VapourSynth'][1:]
 pkgs['ffmpeg-dev'] = x['ffmpeg']
 pkgs['ffmpeg-git'] = x['ffmpeg']
+pkgs['ffmpeg-thinlto'] = x['ffmpeg']
 pkgs['libmpv-git'] = x['mpv']
 pkgs['mpv-git'] = x['mpv']
+pkgs['mpv-thinlto'] = x['mpv']
+pkgs['shaderc-thinlto'] = x['shaderc']
 
-for t in ['build-mpv-clang.yml', 'build-mpv-gcc.yml', 'ffmpeg.yml', 'mpv.yml', 'libplacebo.yml', 'shaderc.yml', 'vulkan.yml']:
+for t in ['build-mpv-clang.yml', 'build-mpv-gcc-mcf.yml', 'ffmpeg.yml', 'mpv.yml', 'libplacebo.yml', 'shaderc.yml', 'vulkan.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
     for l in f:
       if (i:=l.find('/dev-llvm-clang-$BIT/')) > -1:

@@ -1,4 +1,4 @@
-pkgname=shaderc-dev
+pkgname=(shaderc-dev shaderc-thinlto)
 pkgver=2023.8
 pkgrel=1
 pkgdesc='Collection of tools, libraries and tests for shader compilation'
@@ -41,11 +41,16 @@ build() {
   LTO_JOB=1 cmake --build .
 }
 
-package() {
+package_shaderc-dev () {
   cd $srcdir/shaderc
   mkdir -p $pkgdir${MINGW_PREFIX}/lib/pkgconfig
   cp -r libshaderc/include $pkgdir${MINGW_PREFIX}
   cp -r libshaderc_util/include/libshaderc_util $pkgdir${MINGW_PREFIX}/include
   cp build/libshaderc/libshaderc_combined.a $pkgdir${MINGW_PREFIX}/lib
   cp build/shaderc_combined.pc $pkgdir${MINGW_PREFIX}/lib/pkgconfig/shaderc.pc
+}
+
+package_shaderc-thinlto() {
+  mkdir -p $pkgdir${TOP_DIR}
+  mv ${TOP_DIR}/thinlto $pkgdir${TOP_DIR}
 }
