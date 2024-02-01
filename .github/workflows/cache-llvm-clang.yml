@@ -45,7 +45,7 @@ jobs:
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-x86_64_v3-${{ github.run_id }}
+          key: llvm-clang-x86_64_v3-ucrt-${{ github.run_id }}
           restore-keys: |
             llvm-clang-x86_64_v3-ucrt-
 
