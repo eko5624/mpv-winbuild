@@ -118,7 +118,7 @@ jobs:
           GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-latest.sh mpv mpv
-          ./release-dev.sh mpv-thinlto mpv
+          ./release-dev.sh mpv-thinlto mpv || true
 
   package:
     needs: [mpv]

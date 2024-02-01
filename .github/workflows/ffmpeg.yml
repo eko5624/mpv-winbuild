@@ -99,4 +99,4 @@ jobs:
       - name: Release
         run: |
           ./release-latest.sh ffmpeg-git ffmpeg
-          ./release-dev.sh ffmpeg ffmpeg
+          ./release-dev.sh ffmpeg ffmpeg || true
