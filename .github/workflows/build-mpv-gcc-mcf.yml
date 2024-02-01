@@ -4,6 +4,15 @@ defaults:
     shell: bash
 on:
   workflow_dispatch:
+    inputs:
+      build_target:
+        description: "Build target"
+        required: false
+        default: "x86_64"
+        type: choice
+        options:
+        - x86_64
+        - x86_64_v3
 
   #schedule:
   #- cron: '30 0 * * MON'
@@ -11,6 +20,9 @@ on:
 jobs:
   amf:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -26,23 +38,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd amf-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}
         run: ./release-dev.sh amf-headers-dev amf-dev
 
   angle:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -58,23 +71,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd angle-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}
         run: ./release-dev.sh angle-headers-dev angle-dev
 
   aom:  
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -90,23 +104,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd aom-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}
         run: ./release-dev.sh aom-dev aom-dev
 
   avisynth:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -122,23 +137,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd avisynth-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}
         run: ./release-dev.sh avisynth-dev avisynth-dev
 
   brotli:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -154,23 +170,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd brotli-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}
         run: ./release-dev.sh brotli-dev brotli-dev
 
   config:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -186,24 +203,25 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd mpv-config; sudo -H -u builder makepkg-cross -sLf
       - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}
         run: ./release-latest.sh config mpv-config
 
   ffmpeg:
     needs: [amf, aom, avisynth, dav1d, davs2, ffnvcodec, lame, libaribcaption, libbs2b, libjxl, libvpl, libmodplug, libmysofa, libogg, libopenmpt, libplacebo, libsdl2, libsoxr, libspeex, libsrt, libssh, libva, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, libzvbi, openal-soft, openssl, opus, rav1e, uavs3d, vapoursynth, zlib]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -219,68 +237,66 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/amf-headers-dev-1.4.33-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/aom-dev-3.8.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/avisynth-dev-3.7.3-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/dav1d-dev-1.3.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/davs2-dev-1.7-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/ffnvcodec-dev-12.1.14.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/highway-dev-1.0.7-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/lame-dev-3.100-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libaribcaption-dev-1.1.1-1-x86_64.pkg.tar.zst                
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libbs2b-dev-3.1.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libdovi-dev-3.2.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libjxl-dev-0.9.1-1-x86_64.pkg.tar.zst                
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libmysofa-dev-1.3.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libopenmpt-dev-0.7.3-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libplacebo-dev-6.338.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libsdl2-dev-2.28.5-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libspeex-dev-1.2.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libsrt-dev-1.5.3-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libssh-dev-0.10.6-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libva-dev-2.20.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libvpl-dev-2023.4.0-1-x86_64.pkg.tar.zst         
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libvpx-dev-1.12.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libwebp-dev-1.3.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libxml2-dev-2.12.4-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libxvid-dev-1.3.7-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libzimg-dev-3.0.5-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libzvbi-dev-0.2.42-1-x86_64.pkg.tar.zst        
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/openal-soft-dev-1.23.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/openssl-dev-3.2.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/opus-dev-1.4-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/rav1e-dev-0.7.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/shaderc-dev-2023.8-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/vapoursynth-dev-65-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/vulkan-dev-1.3.275.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/amf-headers-dev-1.4.33-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/aom-dev-3.8.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/avisynth-dev-3.7.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/dav1d-dev-1.3.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/davs2-dev-1.7-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/ffnvcodec-dev-12.1.14.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/highway-dev-1.0.7-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/lame-dev-3.100-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libaribcaption-dev-1.1.1-1-x86_64.pkg.tar.zst                
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libbs2b-dev-3.1.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libdovi-dev-3.2.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libjxl-dev-0.9.1-1-x86_64.pkg.tar.zst                
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libmysofa-dev-1.3.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libopenmpt-dev-0.7.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libplacebo-dev-6.338.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libsdl2-dev-2.28.5-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libspeex-dev-1.2.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libsrt-dev-1.5.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libssh-dev-0.10.6-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libva-dev-2.20.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libvpl-dev-2023.4.0-1-x86_64.pkg.tar.zst         
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libvpx-dev-1.12.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libwebp-dev-1.3.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libxml2-dev-2.12.4-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libxvid-dev-1.3.7-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libzimg-dev-3.0.5-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libzvbi-dev-0.2.42-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/openal-soft-dev-1.23.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/openssl-dev-3.2.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/opus-dev-1.4-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/rav1e-dev-0.7.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/shaderc-dev-2023.8-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/vapoursynth-dev-65-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/vulkan-dev-1.3.275.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd ffmpeg; sudo -H -u builder makepkg-cross -sLf
       - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}
         run: |
           ./release-latest.sh ffmpeg-git ffmpeg
           ./release-dev.sh ffmpeg-dev ffmpeg
@@ -288,6 +304,9 @@ jobs:
   dav1d:
     needs: [xxhash]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -303,25 +322,26 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd dav1d-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}
         run: ./release-dev.sh dav1d-dev dav1d-dev
 
   davs2:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -337,23 +357,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd davs2-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh davs2-dev davs2-dev
 
   ffnvcodec:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -369,24 +390,25 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd ffnvcodec-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh ffnvcodec-dev ffnvcodec-dev
 
   freetype2:
     needs: [libpng, zlib]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -402,26 +424,27 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst      
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm 
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd freetype2-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh freetype2-dev freetype2-dev
 
   fribidi:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -437,24 +460,25 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd fribidi-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh fribidi-dev fribidi-dev     
 
   harfbuzz:
     needs: [freetype2, libpng]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -470,27 +494,28 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst 
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst   
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst 
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst   
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd harfbuzz-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh harfbuzz-dev harfbuzz-dev 
 
   highway:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -506,23 +531,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd highway-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh highway-dev highway-dev 
 
   lame:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -538,24 +564,25 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd lame-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh lame-dev lame-dev 
 
   lcms2:
     needs: [libjpeg, zlib]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -571,27 +598,28 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd lcms2-dev; sudo -H -u builder makepkg-cross -sLf 
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh lcms2-dev lcms2-dev 
 
   libass:
     needs: [freetype2, fribidi, harfbuzz, libunibreak]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -607,31 +635,32 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/fribidi-dev-1.0.13-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/harfbuzz-dev-8.3.0-1-x86_64.pkg.tar.zst 
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst       
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libunibreak-dev-5_1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst       
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/fribidi-dev-1.0.13-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/harfbuzz-dev-8.3.0-1-x86_64.pkg.tar.zst 
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst       
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libunibreak-dev-5_1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst       
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libass-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libass-dev libass-dev
 
   libaribcaption:
     needs: [freetype2, openssl]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -647,29 +676,30 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/openssl-dev-3.2.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/openssl-dev-3.2.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libaribcaption-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libaribcaption-dev libaribcaption-dev        
 
   libbluray:
     needs: [freetype2, libpng, libudfread, zlib]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -685,28 +715,29 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst         
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst         
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst        
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libbluray-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}
         run: ./release-dev.sh libbluray-dev libbluray-dev
 
   libbs2b:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -722,23 +753,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libbs2b-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}
         run: ./release-dev.sh libbs2b-dev libbs2b-dev
 
   libcaca:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -754,23 +786,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libcaca-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libcaca-dev libcaca-dev
 
   libdovi:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -786,12 +819,12 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Loading rust cache
         uses: actions/cache/restore@main
         with:
@@ -802,13 +835,14 @@ jobs:
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libdovi-dev; sudo -H -u builder makepkg-cross -sLf    
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libdovi-dev libdovi-dev
 
   libdvdcss:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -824,24 +858,25 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libdvdcss-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libdvdcss-dev libdvdcss-dev
 
   libdvdnav:
     needs: [libdvdread]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -857,27 +892,28 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libdvdnav-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libdvdnav-dev libdvdnav-dev
 
   libdvdread:
     needs: [libdvdcss]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -893,25 +929,26 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libdvdread-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libdvdread-dev libdvdread-dev
 
   libiconv:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -927,23 +964,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libiconv-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libiconv-dev libiconv-dev
 
   libjpeg:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -959,24 +997,25 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libjpeg-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libjpeg-dev libjpeg-dev
         
   libjxl:
     needs: [brotli, highway, lcms2, libjpeg, libpng, zlib]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -992,30 +1031,31 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/highway-dev-1.0.7-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst 
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/highway-dev-1.0.7-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst 
           pacman -U *.zst --noconfirm        
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libjxl-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libjxl-dev libjxl-dev         
 
   libmodplug:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1031,24 +1071,25 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libmodplug-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libmodplug-dev libmodplug-dev 
 
   libmysofa:
     needs: [zlib]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1064,25 +1105,26 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst      
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm                   
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libmysofa-dev; sudo -H -u builder makepkg-cross -sLf 
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libmysofa-dev libmysofa-dev                           
 
   libogg:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1098,24 +1140,25 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libogg-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libogg-dev libogg-dev 
         
   libopenmpt:
     needs: [zlib, libogg, libsdl2, libvorbis_aotuv]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1131,29 +1174,30 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libsdl2-dev-2.28.5-1-x86_64.pkg.tar.zst 
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst      
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libsdl2-dev-2.28.5-1-x86_64.pkg.tar.zst 
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm         
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libopenmpt-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libopenmpt-dev libopenmpt-dev                
 
   libplacebo:
     needs: [lcms2, libdovi, shaderc, spirv-cross, xxhash, vulkan]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1169,33 +1213,34 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libdovi-dev-3.2.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/shaderc-dev-2023.8-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/vulkan-dev-1.3.275.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libdovi-dev-3.2.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/shaderc-dev-2023.8-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/vulkan-dev-1.3.275.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm 
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libplacebo-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libplacebo-dev libplacebo-dev
         
   libpng:
     needs: [zlib]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1211,25 +1256,26 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst     
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst     
           pacman -U *.zst --noconfirm         
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libpng-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libpng-dev libpng-dev      
         
   libsdl2:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1245,24 +1291,25 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libsdl2-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libsdl2-dev libsdl2-dev 
 
   libsixel:
     needs: [libjpeg, libpng]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1278,27 +1325,28 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst 
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst 
           pacman -U *.zst --noconfirm        
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libsixel; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libsixel-dev libsixel 
 
   libsoxr:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1314,23 +1362,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libsoxr-dev; sudo -H -u builder makepkg-cross -sLf 
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libsoxr-dev libsoxr-dev                   
 
   libspeex:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1346,24 +1395,25 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libspeex-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libspeex-dev libspeex-dev 
 
   libsrt:
     needs: [openssl]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1379,27 +1429,28 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/openssl-dev-3.2.1-1-x86_64.pkg.tar.zst      
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/openssl-dev-3.2.1-1-x86_64.pkg.tar.zst      
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm                   
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libsrt-dev; sudo -H -u builder makepkg-cross -sLf 
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libsrt-dev libsrt-dev 
 
   libssh:
     needs: [openssl, zlib]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1415,26 +1466,27 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/openssl-dev-3.2.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/openssl-dev-3.2.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm                   
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libssh-dev; sudo -H -u builder makepkg-cross -sLf 
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libssh-dev libssh-dev 
 
   libudfread:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1450,23 +1502,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libudfread-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libudfread-dev libudfread-dev
 
   libunibreak:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1482,23 +1535,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libunibreak-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libunibreak-dev libunibreak-dev                             
 
   libva:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1514,24 +1568,25 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libva-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}
         run: ./release-dev.sh libva-dev libva-dev
 
   libvorbis_aotuv:
     needs: [libogg]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1547,25 +1602,26 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libvorbis_aotuv-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libvorbis_aotuv-dev libvorbis_aotuv-dev
 
   libvpl:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1581,23 +1637,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libvpl-dev; sudo -H -u builder makepkg-cross -sLf 
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libvpl-dev libvpl-dev         
 
   libvpx:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1613,23 +1670,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libvpx-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libvpx-dev libvpx-dev
 
   libwebp:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1645,24 +1703,25 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libwebp-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libwebp-dev libwebp-dev
 
   libxml2:
     needs: [libiconv, zlib]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1678,26 +1737,27 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst   
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst   
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libxml2-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libxml2-dev libxml2-dev
         
   libxvid:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1713,23 +1773,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libxvid-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libxvid-dev libxvid-dev  
         
   libzimg:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1745,24 +1806,25 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libzimg-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libzimg-dev libzimg-dev  
 
   libzvbi:
     needs: [libiconv, libpng]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1778,28 +1840,29 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst        
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libzvbi-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh libzvbi-dev libzvbi-dev
 
   luajit2:
     needs: [libiconv]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1815,26 +1878,27 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libiconv-dev-1.17-1-x86_64.pkg.tar.zst      
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm          
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd luajit2; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh luajit2-dev luajit2               
 
   mpv:
     needs: [libcaca, libjpeg, libpng, libsdl2, libsixel, ffmpeg, luajit2, libass, lcms2, libbluray, libudfread, libdvdnav, libplacebo, angle, mujs, rubberband, spirv-cross, vulkan]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1850,93 +1914,89 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/amf-headers-dev-1.4.33-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/angle-headers-dev-1.0.772-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/aom-dev-3.8.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/avisynth-dev-3.7.3-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/dav1d-dev-1.3.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/davs2-dev-1.7-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/ffmpeg-dev-6.1.1-1-x86_64.pkg.tar.zst        
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/ffnvcodec-dev-12.1.14.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/fribidi-dev-1.0.13-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/highway-dev-1.0.7-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/harfbuzz-dev-8.3.0-1-x86_64.pkg.tar.zst      
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/lame-dev-3.100-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libaribcaption-dev-1.1.1-1-x86_64.pkg.tar.zst        
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libass-dev-0.17.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libbluray-dev-1.3.4-1-x86_64.pkg.tar.zst                        
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libbs2b-dev-3.1.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libcaca-dev-0.99.beta20-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libdovi-dev-3.2.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst        
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst        
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libjxl-dev-0.9.1-1-x86_64.pkg.tar.zst                
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libmysofa-dev-1.3.2-1-x86_64.pkg.tar.zst               
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libopenmpt-dev-0.7.3-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libplacebo-dev-6.338.2-1-x86_64.pkg.tar.zst        
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libsdl2-dev-2.28.5-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libsixel-dev-1.10.3-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libspeex-dev-1.2.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libsrt-dev-1.5.3-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libssh-dev-0.10.6-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst         
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libunibreak-dev-5_1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libva-dev-2.20.0-1-x86_64.pkg.tar.zst               
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libvpl-dev-2023.4.0-1-x86_64.pkg.tar.zst        
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libvpx-dev-1.12.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libwebp-dev-1.3.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libxml2-dev-2.12.4-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libxvid-dev-1.3.7-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libzimg-dev-3.0.5-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libzvbi-dev-0.2.42-1-x86_64.pkg.tar.zst        
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/luajit2-dev-2.1_20231117-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/mujs-dev-1.3.4-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/openal-soft-dev-1.23.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/openssl-dev-3.2.1-1-x86_64.pkg.tar.zst      
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/opus-dev-1.4-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/rav1e-dev-0.7.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/rubberband-dev-3.3.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/shaderc-dev-2023.8-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst                
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst        
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/vapoursynth-dev-65-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/vulkan-dev-1.3.275.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/amf-headers-dev-1.4.33-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/angle-headers-dev-1.0.772-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/aom-dev-3.8.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/avisynth-dev-3.7.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/dav1d-dev-1.3.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/davs2-dev-1.7-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/ffmpeg-dev-6.1.1-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/ffnvcodec-dev-12.1.14.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/fribidi-dev-1.0.13-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/highway-dev-1.0.7-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/harfbuzz-dev-8.3.0-1-x86_64.pkg.tar.zst      
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/lame-dev-3.100-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libaribcaption-dev-1.1.1-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libass-dev-0.17.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libbluray-dev-1.3.4-1-x86_64.pkg.tar.zst                        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libbs2b-dev-3.1.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libcaca-dev-0.99.beta20-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libdovi-dev-3.2.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libjxl-dev-0.9.1-1-x86_64.pkg.tar.zst                
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libmysofa-dev-1.3.2-1-x86_64.pkg.tar.zst               
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libopenmpt-dev-0.7.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libplacebo-dev-6.338.2-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libpng-dev-1.6.42-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libsdl2-dev-2.28.5-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libsixel-dev-1.10.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libspeex-dev-1.2.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libsrt-dev-1.5.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libssh-dev-0.10.6-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst         
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libunibreak-dev-5_1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libva-dev-2.20.0-1-x86_64.pkg.tar.zst               
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libvpl-dev-2023.4.0-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libvpx-dev-1.12.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libwebp-dev-1.3.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libxml2-dev-2.12.4-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libxvid-dev-1.3.7-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libzimg-dev-3.0.5-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libzvbi-dev-0.2.42-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/luajit2-dev-2.1_20231117-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/mujs-dev-1.3.4-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/openal-soft-dev-1.23.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/openssl-dev-3.2.1-1-x86_64.pkg.tar.zst      
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/opus-dev-1.4-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/rav1e-dev-0.7.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/rubberband-dev-3.3.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/shaderc-dev-2023.8-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst                
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/vapoursynth-dev-65-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/vulkan-dev-1.3.275.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd mpv; sudo -H -u builder makepkg-cross -sLf
-      - name: Delete old libmpv
-        continue-on-error: true
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
-        run: ./release-latest.sh libmpv-git
-      - name: Release mpv and libmpv
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
-        run: ./release-latest.sh mpv-git mpv
+      - name: Release mpv and libmpv  
+        run: ./release-latest.sh mpv mpv
 
   mujs:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1952,23 +2012,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd mujs; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh mujs-dev mujs
 
   openal-soft:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -1984,24 +2045,25 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd openal-soft-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh openal-soft-dev openal-soft-dev              
 
   openssl:
     needs: [zlib]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -2017,25 +2079,26 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst       
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst       
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd openssl-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh openssl-dev openssl-dev
 
   opus:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -2051,24 +2114,25 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd opus-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh opus-dev opus-dev
 
   package:
     needs: [mpv, config]
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -2080,10 +2144,10 @@ jobs:
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Setup Packages
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/latest-gcc-mcf/config-1.0-1-x86_64.pkg.tar.xz        
-          curl -OL https://github.com/${{ github.repository }}/releases/download/latest-gcc-mcf/ffmpeg-git-6.1.1-1-x86_64.pkg.tar.xz
-          curl -OL https://github.com/${{ github.repository }}/releases/download/latest-gcc-mcf/libmpv-git-0.37.0-1-x86_64.pkg.tar.xz
-          curl -OL https://github.com/${{ github.repository }}/releases/download/latest-gcc-mcf/mpv-git-0.37.0-1-x86_64.pkg.tar.xz
+          curl -OL https://github.com/${{ github.repository }}/releases/download/latest-gcc-mcf-$BIT/config-1.0-1-x86_64.pkg.tar.xz        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/latest-gcc-mcf-$BIT/ffmpeg-git-6.1.1-1-x86_64.pkg.tar.xz
+          curl -OL https://github.com/${{ github.repository }}/releases/download/latest-gcc-mcf-$BIT/libmpv-git-0.37.0-1-x86_64.pkg.tar.xz
+          curl -OL https://github.com/${{ github.repository }}/releases/download/latest-gcc-mcf-$BIT/mpv-git-0.37.0-1-x86_64.pkg.tar.xz
           pacman -U *.xz --noconfirm
       - name: Get ffmpeg latest commit sha
         run: echo "ffmpeg_sha=$(cat ${{ env.top_dir }}/opt/ffmpeg/SHORT_SHA)" >> $GITHUB_ENV
@@ -2097,12 +2161,13 @@ jobs:
           7z a git-libmpv-${{ env.date }}.7z ${{ env.top_dir }}/opt/libmpv/*
           7z a git-ffmpeg-${{ env.date }}-${{ env.ffmpeg_sha }}.7z ${{ env.top_dir }}/opt/ffmpeg/*
       - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}
         run: ./release-package.sh
 
   rav1e:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -2118,12 +2183,12 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Loading rust cache
         uses: actions/cache/restore@main
         with:
@@ -2134,13 +2199,14 @@ jobs:
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd rav1e-dev; sudo -H -u builder makepkg-cross -sLf    
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh rav1e-dev rav1e-dev
 
   rubberband:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -2156,23 +2222,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-      
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-      
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd rubberband; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh rubberband-dev rubberband        
   
   shaderc:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -2188,23 +2255,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd shaderc-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh shaderc-dev shaderc-dev
 
   spirv-cross:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -2220,23 +2288,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd spirv-cross-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh spirv-cross-dev spirv-cross-dev
 
   uavs3d:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -2252,23 +2321,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd uavs3d-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh uavs3d-dev uavs3d-dev        
 
   vapoursynth:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -2284,23 +2354,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd vapoursynth; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh vapoursynth-dev vapoursynth
 
   vulkan:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -2316,23 +2387,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd vulkan-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh vulkan-dev vulkan-dev
 
   xxhash:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -2348,23 +2420,24 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd xxhash-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh xxhash-dev xxhash-dev 
 
   zlib:
     runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -2380,17 +2453,15 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-${{ inputs.build_target }} cache
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
-          restore-keys: gcc-mcf-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
+          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd zlib-dev; sudo -H -u builder makepkg-cross -sLf
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.BOT }}    
+      - name: Release    
         run: ./release-dev.sh zlib-dev zlib-dev

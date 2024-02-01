@@ -107,18 +107,18 @@ for t in ['build-mpv-clang.yml', 'build-mpv-gcc-mcf.yml', 'ffmpeg.yml', 'mpv.yml
         p = l[i+24:rr]
         if p in pkgs:
           l = '%s%s-%s%s' % (l[:i+24], p, pkgs[p], l[r:])
-      elif (i:=l.find('/dev-gcc-mcf/')) > -1:
+      elif (i:=l.find('/dev-gcc-mcf-$BIT/')) > -1:
         r = l.find('-1-x86_64')
         rr = l.rfind('-', i, r)
-        p = l[i+13:rr]
+        p = l[i+18:rr]
         if p in pkgs:
-          l = '%s%s-%s%s' % (l[:i+13], p, pkgs[p], l[r:])
-      elif (i:=l.find('/latest-gcc-mcf/')) > -1:
+          l = '%s%s-%s%s' % (l[:i+18], p, pkgs[p], l[r:])
+      elif (i:=l.find('/latest-gcc-mcf-$BIT/')) > -1:
         r = l.find('-1-x86_64')
         rr = l.rfind('-', i, r)
-        p = l[i+16:rr]
+        p = l[i+21:rr]
         if p in pkgs:
-          l = '%s%s-%s%s' % (l[:i+16], p, pkgs[p], l[r:])
+          l = '%s%s-%s%s' % (l[:i+21], p, pkgs[p], l[r:])
       elif (i:=l.find('/yt-dlp/releases/download/')) > -1:
         l = '%s%s/yt-dlp.exe\n' % (l[:i+26], x['yt-dlp'])                 
       f.write(l)

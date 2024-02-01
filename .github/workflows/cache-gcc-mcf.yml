@@ -4,6 +4,16 @@ defaults:
     shell: bash
 on:
   workflow_dispatch:
+    inputs:
+      toolchain:
+        description: "toolchain"
+        required: false
+        default: "gcc-mcf-x86_64"
+        type: choice
+        options:
+        - gcc-mcf-x86_64
+        - gcc-mcf-x86_64_v3
+        - rust  
   
 jobs:
   build:
@@ -20,15 +30,26 @@ jobs:
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       
-      - name: Loading gcc-mcf cache
+      - name: Loading gcc-mcf-x86_64 cache
+        if: ${{ inputs.toolchain =='gcc-mcf-x86_64' }}
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
+          key: gcc-mcf-x86_64-ucrt-${{ github.run_id }}
           restore-keys: |
-            gcc-mcf-
+            gcc-mcf-x86_64-ucrt-
 
+      - name: Loading gcc-mcf-x86_64_v3 cache
+        if: ${{ inputs.toolchain =='gcc-mcf-x86_64_v3' }}
+        uses: actions/cache/restore@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: gcc-mcf-x86_64_v3-ucrt-${{ github.run_id }}
+          restore-keys: |
+            gcc-mcf-x86_64_v3-ucrt-
+      
       - name: Loading rust cache
+        if: ${{ inputs.toolchain =='rust' }}
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/rust
@@ -36,30 +57,49 @@ jobs:
           restore-keys: |
             rust-
             
-      - name: Setup GCC With MCF Toolchain
+      - name: Setup gcc-mcf-x86_64 Toolchain
+        if: ${{ inputs.toolchain =='gcc-mcf-x86_64' }}
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-gcc-mcf-2024-01-25-x64-ucrt.7z
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/gcc-mcf-latest-ucrt-x86_64.7z
+            7z x cross-gcc-mcf*.7z
+            rm cross-gcc-mcf*.7z
+          fi
+
+      - name: Setup gcc-mcf-x86_64_v3 Toolchain
+        if: ${{ inputs.toolchain =='gcc-mcf-x86_64_v3' }}
+        run: |
+          cd ${{ env.top_dir }}
+          if [[ ! -d "cross/bin" ]]; then
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/gcc-mcf-latest-ucrt-x86_64_v3.7z
             7z x cross-gcc-mcf*.7z
             rm cross-gcc-mcf*.7z
           fi
 
       - name: Setup Rust Toolchain
+        if: ${{ inputs.toolchain =='rust' }}
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "rust" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/rustup-20240128.7z
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/rustup-latest.7z
             7z x rustup*.7z
             rm rustup*.7z
           fi
 
-      - name: Saving gcc cache
+      - name: Saving gcc-mcf-x86_64 cache
+        if: ${{ inputs.toolchain =='gcc-mcf-x86_64' }}
         uses: actions/cache/save@main
-        if: always()
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ github.run_id }}
+          key: gcc-mcf-x86_64-ucrt-${{ github.run_id }}
+
+      - name: Saving gcc-mcf-x86_64_v3 cache
+        if: ${{ inputs.toolchain =='gcc-mcf-x86_64_v3' }}
+        uses: actions/cache/save@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: gcc-mcf-x86_64_v3-ucrt-${{ github.run_id }}
 
       - name: Saving Rust cache
         uses: actions/cache/save@main
