@@ -287,7 +287,7 @@ jobs:
       - name: Release
         run: |
           ./release-latest.sh ffmpeg-git ffmpeg
-          ./release-dev.sh ffmpeg ffmpeg
+          ./release-dev.sh ffmpeg ffmpeg || true
 
   dav1d:
     needs: [xxhash]
@@ -1892,7 +1892,7 @@ jobs:
           GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-latest.sh mpv mpv
-          ./release-dev.sh mpv-thinlto mpv
+          ./release-dev.sh mpv-thinlto mpv || true
 
   mujs:
     runs-on: ubuntu-latest
@@ -2157,7 +2157,7 @@ jobs:
       - name: Release    
         run: |
           ./release-dev.sh shaderc-dev shaderc-dev
-          ./release-dev.sh shaderc-thinlto shaderc-dev
+          ./release-dev.sh shaderc-thinlto shaderc-dev || true
 
   spirv-cross:
     runs-on: ubuntu-latest
