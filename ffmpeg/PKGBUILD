@@ -1,4 +1,4 @@
-pkgname=(ffmpeg-dev ffmpeg-git ffmpeg-thinlto)
+pkgname=(ffmpeg-dev ffmpeg-git $([[ "$CLANG_PACKAGES_LTO" == "ON" ]] && echo "ffmpeg-thinlto"))
 pkgver=6.1.1
 pkgrel=1
 pkgdesc='Complete and free Internet live audio and video solution'

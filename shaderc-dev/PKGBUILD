@@ -1,4 +1,4 @@
-pkgname=(shaderc-dev shaderc-thinlto)
+pkgname=(shaderc-dev $([[ "$CLANG_PACKAGES_LTO" == "ON" ]] && echo "shaderc-thinlto"))
 pkgver=2023.8
 pkgrel=1
 pkgdesc='Collection of tools, libraries and tests for shader compilation'
