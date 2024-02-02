@@ -63,8 +63,8 @@ jobs:
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
             curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/gcc-mcf-latest-ucrt-x86_64.7z
-            7z x cross-gcc-mcf*.7z
-            rm cross-gcc-mcf*.7z
+            7z x gcc*.7z
+            rm gcc*.7z
           fi
 
       - name: Setup gcc-mcf-x86_64_v3 Toolchain
