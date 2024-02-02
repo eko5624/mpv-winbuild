@@ -32,7 +32,7 @@ jobs:
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       
       - name: Loading llvm-clang-x86_64 cache
-        if: ${{ inputs.toolchain =='llvm-clang-x86_64' }}
+        if: ${{ inputs.toolchain == 'llvm-clang-x86_64' }}
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
@@ -41,7 +41,7 @@ jobs:
             llvm-clang-x86_64-ucrt-
 
       - name: Loading llvm-clang-x86_64_v3 cache
-        if: ${{ inputs.toolchain =='llvm-clang-x86_64_v3' }}
+        if: ${{ inputs.toolchain == 'llvm-clang-x86_64_v3' }}
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
@@ -50,7 +50,7 @@ jobs:
             llvm-clang-x86_64_v3-ucrt-
 
       - name: Loading llvm-mingw cache
-        if: ${{ inputs.toolchain =='llvm-mingw' }}
+        if: ${{ inputs.toolchain == 'llvm-mingw' }}
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
@@ -59,7 +59,7 @@ jobs:
             llvm-mingw-x86_64-
 
       - name: Loading rust cache
-        if: ${{ inputs.toolchain =='rust' }}
+        if: ${{ inputs.toolchain == 'rust' }}
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/rust
@@ -68,7 +68,7 @@ jobs:
             rust-
 
       - name: Setup llvm-clang-x86_64 Toolchain
-        if: ${{ inputs.toolchain =='llvm-clang-x86_64' }}
+        if: ${{ inputs.toolchain == 'llvm-clang-x86_64' }}
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
@@ -78,7 +78,7 @@ jobs:
           fi
 
       - name: Setup llvm-clang-x86_64_v3 Toolchain
-        if: ${{ inputs.toolchain =='llvm-clang-x86_64_v3' }}
+        if: ${{ inputs.toolchain == 'llvm-clang-x86_64_v3' }}
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
@@ -88,7 +88,7 @@ jobs:
           fi
 
       - name: Setup llvm-mingw Toolchain
-        if: ${{ inputs.toolchain =='llvm-mingw' }}
+        if: ${{ inputs.toolchain == 'llvm-mingw' }}
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
@@ -119,7 +119,7 @@ jobs:
           fi
 
       - name: Setup Rust Toolchain
-        if: ${{ inputs.toolchain =='rust' }}
+        if: ${{ inputs.toolchain == 'rust' }}
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "rust" ]]; then
@@ -129,28 +129,28 @@ jobs:
           fi 
 
       - name: Saving llvm-clang-x86_64 cache
-        if: ${{ inputs.toolchain =='llvm-clang-x86_64' }}
+        if: ${{ inputs.toolchain == 'llvm-clang-x86_64' }}
         uses: actions/cache/save@main
         with:
           path: ${{ env.top_dir }}/cross
           key: llvm-clang-x86_64-ucrt-${{ github.run_id }}
 
       - name: Saving llvm-clang-x86_64_v3 cache
-        if: ${{ inputs.toolchain =='llvm-clang-x86_64_v3' }}
+        if: ${{ inputs.toolchain == 'llvm-clang-x86_64_v3' }}
         uses: actions/cache/save@main
         with:
           path: ${{ env.top_dir }}/cross
           key: llvm-clang-x86_64_v3-ucrt-${{ github.run_id }}
 
       - name: Saving llvm-mingw cache
-        if: ${{ inputs.toolchain =='llvm-mingw' }}
+        if: ${{ inputs.toolchain == 'llvm-mingw' }}
         uses: actions/cache/save@main
         with:
           path: ${{ env.top_dir }}/cross
           key: llvm-mingw-${{ github.run_id }}      
 
       - name: Saving Rust cache
-        if: ${{ inputs.toolchain =='rust' }}
+        if: ${{ inputs.toolchain == 'rust' }}
         uses: actions/cache/save@main
         with:
           path: ${{ env.top_dir }}/rust
