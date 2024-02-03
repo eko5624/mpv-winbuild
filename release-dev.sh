@@ -5,8 +5,8 @@ CURL_RETRIES="--connect-timeout 60 --retry 5 --retry-delay 5"
 # Delete assets
 asset_id=($(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -H "Accept: application/vnd.github.v3+json" \
-  https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/dev-gcc-mcf \
-| jq -r '."assets"[] | select(.name | startswith("'"$1"'")) | .id' | tr -d '\r'))  
+  https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/dev-gcc-mcf-$BIT \
+| jq -r '."assets"[] | select(.name | contains("'"$1"'")) | .id' | tr -d '\r'))  
   
 curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -X DELETE \
@@ -18,11 +18,11 @@ curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -X POST \
   -H "Accept: application/vnd.github.v3+json" \
   https://api.github.com/repos/${GITHUB_REPOSITORY}/releases \
-  -d '{"tag_name": "dev-gcc-mcf"}'
+  -d '{"tag_name": "dev-gcc-mcf-'"$BIT"'"}'
   
 release_id=$(curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -H "Accept: application/vnd.github.v3+json" \
-  https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/dev-gcc-mcf | jq -r '.id')
+  https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/dev-gcc-mcf-$BIT | jq -r '.id')
   
 for f in $2/*.zst; do 
   curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
