@@ -13,10 +13,11 @@ build() {
   cd $srcdir/xvidcore
   patch -p1 -i $srcdir/0001-remove-dll-option-clang.patch
   cd build/generic
-  sed -i 's/yasm_prog="yasm"/yasm_prog="yasm -DNO_PREFIX"/' configure.in
+  #sed -i 's/yasm_prog="yasm"/yasm_prog="yasm -DNO_PREFIX"/' configure.in
   NO_CONFLTO=1 ./configure \
     --host=${TARGET_ARCH} \
-    --prefix=${MINGW_PREFIX}
+    --prefix=${MINGW_PREFIX} \
+    --disable-assembly
   make
 }
 
