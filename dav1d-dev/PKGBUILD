@@ -6,7 +6,7 @@ arch=('x86_64')
 url="https://code.videolan.org/videolan/dav1d"
 makedepends=('xxhash-dev')
 license=('BSD')
-source=("git+https://code.videolan.org/videolan/dav1d")
+source=("git+https://github.com/videolan/dav1d.git")
 md5sums=('SKIP')
 
 build() {
