@@ -4,21 +4,25 @@ pkgrel=1
 pkgdesc='Small-footprint color management engine, version 2'
 arch=('x86_64')
 url="http://www.littlecms.com/"
+makedepends=('zlib-dev' 'libjpeg-dev')
 license=('MIT')
 source=("git+https://github.com/mm2/Little-CMS")
 md5sums=('SKIP')
 
 build() {
   cd $srcdir/Little-CMS
-  NO_CONFLTO=1 ./configure \
-    --host=${TARGET_ARCH} \
+  NO_CONFLTO=1 meson setup build \
     --prefix="${MINGW_PREFIX}" \
-    --disable-shared
-  make
+    --libdir=${MINGW_PREFIX}/lib \
+    --cross-file=../../../cross.meson \
+    --buildtype=release \
+    --default-library=static \
+    -Dfastfloat=true \
+    -Dthreaded=true
+  meson compile -C build
 }
 
 package() {
   cd $srcdir/Little-CMS
-  make DESTDIR=$pkgdir install
-  rm -rf $pkgdir/opt/share $pkgdir/opt/bin
+  DESTDIR=$pkgdir meson install -C build
 }
