@@ -54,9 +54,9 @@ jobs:
         uses: actions/cache/restore@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-mingw-x86_64-${{ github.run_id }}
+          key: llvm-clang-x86_64-ucrt-${{ github.run_id }}
           restore-keys: |
-            llvm-mingw-x86_64-
+            llvm-clang-x86_64-ucrt-
 
       - name: Loading rust cache
         if: ${{ inputs.toolchain == 'rust' }}
@@ -127,7 +127,7 @@ jobs:
         uses: actions/cache/save@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-mingw-${{ github.run_id }}      
+          key: llvm-clang-x86_64-ucrt-${{ github.run_id }}      
 
       - name: Saving Rust cache
         if: ${{ inputs.toolchain == 'rust' }}
