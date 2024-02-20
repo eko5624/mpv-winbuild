@@ -17,13 +17,10 @@ build() {
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DENABLE_SHARED=OFF \
-    -DENABLE_STATIC=ON \
-    -DUSE_STATIC_LIBSTDCXX=ON \
-    -DENABLE_CXX_DEPS=OFF \
-    -DUSE_ENCLIB=openssl \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DENABLE_STDCXX_SYNC=ON \
     -DENABLE_APPS=OFF \
-    -DCMAKE_C_FLAGS='-static-libgcc -static-libstdc++' \
-    -DCMAKE_CXX_FLAGS='-static-libgcc -static-libstdc++' 
+    -DUSE_ENCLIB=openssl    
   cmake --build .
 }
 
