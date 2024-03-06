@@ -103,6 +103,7 @@ jobs:
             sed -i 's/$FLAGS "$@"/"$@" $FLAGS/' cross/bin/x86_64-w64-mingw32-g++
             sed -i 's/$FLAGS "$@"/"$@" $FLAGS/' cross/bin/x86_64-w64-mingw32-gcc
             sed -i 's/$FLAGS "$@"/"$@" $FLAGS/' cross/bin/x86_64-w64-mingw32-ld
+            cat cross/bin/x86_64-w64-mingw32-as
           fi
 
       - name: Setup Rust Toolchain
