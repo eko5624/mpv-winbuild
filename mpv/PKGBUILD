@@ -53,7 +53,7 @@ build() {
     -Dvulkan=enabled \
     -Dvapoursynth=enabled \
     -Degl-angle=enabled
-  LTO_JOB=1 meson compile -C build
+  LTO_JOB=1 PDB=1 meson compile -C build
   
   # get latest commit sha
   short_sha=$(git rev-parse --short HEAD)
