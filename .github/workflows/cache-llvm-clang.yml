@@ -96,14 +96,6 @@ jobs:
             7z x cross*.7z
             find cross/x86_64-w64-mingw32/lib -maxdepth 1 -type f -name "*.dll.a" -print0 | xargs -0 -I {} rm {}
             rm cross*.7z
-            sed -i 's/$FLAGS "$@"/"$@" $FLAGS/' cross/bin/x86_64-w64-mingw32-as
-            sed -i 's/$FLAGS "$@"/"$@" $FLAGS/' cross/bin/x86_64-w64-mingw32-c++
-            sed -i 's/$FLAGS "$@"/"$@" $FLAGS/' cross/bin/x86_64-w64-mingw32-clang
-            sed -i 's/$FLAGS "$@"/"$@" $FLAGS/' cross/bin/x86_64-w64-mingw32-clang++
-            sed -i 's/$FLAGS "$@"/"$@" $FLAGS/' cross/bin/x86_64-w64-mingw32-g++
-            sed -i 's/$FLAGS "$@"/"$@" $FLAGS/' cross/bin/x86_64-w64-mingw32-gcc
-            sed -i 's/$FLAGS "$@"/"$@" $FLAGS/' cross/bin/x86_64-w64-mingw32-ld
-            cat cross/bin/x86_64-w64-mingw32-as
           fi
 
       - name: Setup Rust Toolchain
