@@ -11,6 +11,7 @@ makedepends=("amf-headers-dev"
              "davs2-dev"
              "ffnvcodec-dev"
              "lame-dev"
+             "lcms2-dev"
              "libaribcaption-dev"
              "libbs2b-dev"
              "libjxl-dev"
@@ -19,6 +20,7 @@ makedepends=("amf-headers-dev"
              "libogg-dev"
              "libopenmpt-dev"
              "libplacebo-shared-dev"
+             "libsdl2-dev"
              "libsoxr-dev"
              "libspeex-dev"
              "libsrt-dev"
@@ -70,6 +72,8 @@ package_ffmpeg-shared-dev() {
     --disable-mediafoundation \
     --enable-amf \
     --enable-avisynth \
+    --enable-cuda-llvm \
+    --enable-cuvid \
     --enable-lcms2 \
     --enable-libaom \
     --enable-libaribcaption \
@@ -101,14 +105,17 @@ package_ffmpeg-shared-dev() {
     --enable-openal \
     --enable-opengl \
     --enable-openssl \
+    --enable-nvdec \
+    --enable-nvenc \
     --enable-vaapi \
     --enable-vapoursynth \
-    --enable-zlib \
+    --disable-videotoolbox \
     --disable-decoder=libaom_av1 \
     --disable-decoder=libvorbis \
     --disable-decoder=libopus \
     --disable-encoder=opus \
-    --disable-encoder=vorbis
+    --disable-encoder=vorbis \
+    --disable-vdpau
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir${MINGW_PREFIX}/bin $pkgdir${MINGW_PREFIX}/share $pkgdir${MINGW_PREFIX}/lib/*.def
 }
