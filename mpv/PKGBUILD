@@ -36,7 +36,6 @@ build() {
     --prefix="${MINGW_PREFIX}" \
     --libdir=${MINGW_PREFIX}/lib \
     --cross-file=../../../cross.meson \
-    --buildtype=release \
     -Doptimization=3 \
     -Db_lto=true \
     -Db_lto_mode=thin \
@@ -62,10 +61,15 @@ build() {
 
 package_libmpv-git() {
   export PKGEXT='.pkg.tar.xz'
-  mkdir -p $pkgdir${MINGW_PREFIX}/libmpv
+  mkdir -p $pkgdir${MINGW_PREFIX}/libmpv/include/mpv
   cd $srcdir/mpv/build
   ${TARGET_ARCH}-strip -s libmpv-2.dll
   mv libmpv-2.dll $pkgdir${MINGW_PREFIX}/libmpv
+  mv libmpv.dll.a $pkgdir${MINGW_PREFIX}/libmpv
+  mv libmpv/client.h $pkgdir${MINGW_PREFIX}/libmpv/include/mpv
+  mv libmpv/stream_cb.h $pkgdir${MINGW_PREFIX}/libmpv/include/mpv
+  mv libmpv/render.h $pkgdir${MINGW_PREFIX}/libmpv/include/mpv
+  mv libmpv/render_gl.h $pkgdir${MINGW_PREFIX}/libmpv/include/mpv
 }
 
 package_mpv-git() {
