@@ -138,10 +138,8 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/vulkan-shared-dev-1.3.275.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
-
           pacman -U *.zst --noconfirm 
           sudo chmod 777 -R ${{ env.top_dir }} .
-          sudo chmod 777 -R .
           cd libplacebo-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release  
         run: ./release-dev.sh libplacebo-shared-dev libplacebo-dev
