@@ -3,12 +3,10 @@ set -ex
 CURL_RETRIES="--connect-timeout 60 --retry 5 --retry-delay 5"
 
 #Get mpv latest commit sha
-short_sha=$(cat /github/home/opt/bin/MPV_SHA)
-
-# Release assets
+short_sha=$(cat /github/home/opt/mpv/SHORT_SHA)
 date=$(date +%Y-%m-%d)
 
-# Release note
+#Release note
 body="Bump to mpv-player/mpv@${short_sha}\n"
 body+="**Compiler**: GCC with the MCF thread"
 

@@ -1,4 +1,4 @@
-name: rollback
+name: Reset commit
 on: 
   workflow_dispatch:
     inputs:
