@@ -20,9 +20,6 @@ on:
 jobs:
   mpv:
     runs-on: ubuntu-latest
-    container:
-      image: docker://ghcr.io/eko5624/archlinux:latest
-    steps:    
     env:
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }}
