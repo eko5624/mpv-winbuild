@@ -38,11 +38,10 @@ jobs:
         run: |
           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV              
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/amf-headers-dev-1.4.33-1-x86_64.pkg.tar.zst
