@@ -28,8 +28,6 @@ jobs:
     steps:    
       - name: Checkout
         uses: actions/checkout@main
-        with:
-          ref: gcc
       - name: Add builder user
         run: |
           useradd builder -m
@@ -95,8 +93,6 @@ jobs:
     steps:    
       - name: Checkout
         uses: actions/checkout@main
-        with:
-          ref: gcc
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Setup Packages      
