@@ -35,7 +35,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libdovi-dev-3.2.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/shaderc-dev-2023.8-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/shaderc-dev-2024.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/vulkan-dev-1.3.275.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
