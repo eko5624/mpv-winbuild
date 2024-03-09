@@ -804,11 +804,10 @@ jobs:
           path: ${{ env.top_dir }}/cross
           key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Loading rust cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/rust
-          key: rust-${{ github.run_id }}
-          restore-keys: rust-
+          key: rust
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -2132,11 +2131,10 @@ jobs:
           path: ${{ env.top_dir }}/cross
           key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Loading rust cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/rust
-          key: rust-${{ github.run_id }}
-          restore-keys: rust-
+          key: rust
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
