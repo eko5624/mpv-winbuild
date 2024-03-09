@@ -37,11 +37,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -68,11 +67,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -99,11 +97,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -130,11 +127,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -161,11 +157,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -192,11 +187,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -224,11 +218,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/amf-headers-dev-1.4.33-1-x86_64.pkg.tar.zst
@@ -309,11 +302,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
@@ -342,11 +334,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -373,11 +364,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -405,11 +395,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libpng-dev-1.6.43-1-x86_64.pkg.tar.zst
@@ -439,11 +428,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -471,11 +459,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst 
@@ -506,11 +493,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -537,11 +523,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -569,11 +554,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
@@ -604,11 +588,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
@@ -643,11 +626,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
@@ -680,11 +662,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
@@ -716,11 +697,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -747,11 +727,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -778,11 +757,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Loading rust cache
         uses: actions/cache/restore@main
         with:
@@ -815,11 +793,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -847,11 +824,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
@@ -882,11 +858,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
@@ -915,11 +890,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -946,11 +920,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -978,11 +951,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
@@ -1016,11 +988,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1048,11 +1019,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst      
@@ -1081,11 +1051,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1113,11 +1082,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
@@ -1150,11 +1118,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
@@ -1191,11 +1158,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst     
@@ -1224,11 +1190,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1256,11 +1221,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
@@ -1291,11 +1255,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1322,11 +1285,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1354,11 +1316,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/openssl-dev-3.2.1-1-x86_64.pkg.tar.zst      
@@ -1389,11 +1350,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/openssl-dev-3.2.1-1-x86_64.pkg.tar.zst
@@ -1423,11 +1383,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1454,11 +1413,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1485,11 +1443,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1517,11 +1474,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
@@ -1550,11 +1506,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1581,11 +1536,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1612,11 +1566,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1644,11 +1597,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
@@ -1678,11 +1630,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1709,11 +1660,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1741,11 +1691,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
@@ -1777,11 +1726,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst      
@@ -1811,11 +1759,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/amf-headers-dev-1.4.33-1-x86_64.pkg.tar.zst
@@ -1913,11 +1860,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1944,11 +1890,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1976,11 +1921,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst       
@@ -2009,11 +1953,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -2074,11 +2017,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Loading rust cache
         uses: actions/cache/restore@main
         with:
@@ -2111,11 +2053,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-      
+          key: llvm-clang-${{ inputs.build_target }}-ucrt      
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -2142,11 +2083,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL -f https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/shaderc-thinlto-2024.0-1-x86_64.pkg.tar.zst || true
@@ -2178,11 +2118,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -2209,11 +2148,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -2240,11 +2178,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -2271,11 +2208,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -2302,11 +2238,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -2333,11 +2268,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .

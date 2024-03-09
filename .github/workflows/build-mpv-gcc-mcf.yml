@@ -39,11 +39,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -72,11 +71,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -105,11 +103,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -138,11 +135,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -171,11 +167,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -204,11 +199,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -238,11 +232,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/amf-headers-dev-1.4.33-1-x86_64.pkg.tar.zst
@@ -323,11 +316,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
@@ -358,11 +350,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -391,11 +382,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -425,11 +415,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libpng-dev-1.6.43-1-x86_64.pkg.tar.zst
@@ -461,11 +450,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -495,11 +483,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst 
@@ -532,11 +519,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -565,11 +551,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -599,11 +584,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
@@ -636,11 +620,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
@@ -677,11 +660,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
@@ -716,11 +698,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
@@ -754,11 +735,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -787,11 +767,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -820,11 +799,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Loading rust cache
         uses: actions/cache/restore@main
         with:
@@ -859,11 +837,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -893,11 +870,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
@@ -930,11 +906,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
@@ -965,11 +940,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -998,11 +972,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1032,11 +1005,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
@@ -1072,11 +1044,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1106,11 +1077,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst      
@@ -1141,11 +1111,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1175,11 +1144,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
@@ -1214,11 +1182,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
@@ -1257,11 +1224,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst     
@@ -1292,11 +1258,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1326,11 +1291,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
@@ -1363,11 +1327,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1396,11 +1359,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1430,11 +1392,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/openssl-dev-3.2.1-1-x86_64.pkg.tar.zst      
@@ -1467,11 +1428,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/openssl-dev-3.2.1-1-x86_64.pkg.tar.zst
@@ -1503,11 +1463,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1536,11 +1495,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1569,11 +1527,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1603,11 +1560,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
@@ -1638,11 +1594,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1671,11 +1626,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1704,11 +1658,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1738,11 +1691,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
@@ -1774,11 +1726,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1807,11 +1758,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -1841,11 +1791,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
@@ -1879,11 +1828,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst      
@@ -1915,11 +1863,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/amf-headers-dev-1.4.33-1-x86_64.pkg.tar.zst
@@ -2013,11 +1960,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -2046,11 +1992,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -2080,11 +2025,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst       
@@ -2115,11 +2059,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -2184,11 +2127,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Loading rust cache
         uses: actions/cache/restore@main
         with:
@@ -2223,11 +2165,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-      
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt      
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -2256,11 +2197,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -2289,11 +2229,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -2322,11 +2261,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -2355,11 +2293,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -2388,11 +2325,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -2421,11 +2357,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -2454,11 +2389,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
