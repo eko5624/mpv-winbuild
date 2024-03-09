@@ -247,7 +247,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libdovi-dev-3.2.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libjxl-dev-0.10.1-1-x86_64.pkg.tar.zst                
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libjxl-dev-0.10.2-1-x86_64.pkg.tar.zst                
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libmysofa-dev-1.3.2-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
@@ -272,10 +272,10 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/openssl-dev-3.2.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/opus-dev-1.5.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/rav1e-dev-0.7.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/shaderc-dev-2023.8-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/shaderc-dev-2024.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/vapoursynth-dev-65-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/vapoursynth-dev-66-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/vulkan-dev-1.3.275.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
@@ -1160,7 +1160,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libdovi-dev-3.2.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/shaderc-dev-2023.8-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/shaderc-dev-2024.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/vulkan-dev-1.3.275.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
@@ -1844,7 +1844,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst        
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libjxl-dev-0.10.1-1-x86_64.pkg.tar.zst                
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libjxl-dev-0.10.2-1-x86_64.pkg.tar.zst                
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libmysofa-dev-1.3.2-1-x86_64.pkg.tar.zst               
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
@@ -1875,10 +1875,10 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/opus-dev-1.5.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/rav1e-dev-0.7.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/rubberband-dev-3.3.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/shaderc-dev-2023.8-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/shaderc-dev-2024.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst                
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst        
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/vapoursynth-dev-65-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/vapoursynth-dev-66-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/vulkan-dev-1.3.275.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
@@ -2149,7 +2149,7 @@ jobs:
           restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL -f https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/shaderc-thinlto-2023.8-1-x86_64.pkg.tar.zst || true
+          curl -OL -f https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/shaderc-thinlto-2024.0-1-x86_64.pkg.tar.zst || true
           pacman -U *.zst --noconfirm || true
           mkdir -p ${{ env.top_dir }}/ccache && cp ccache.conf ${{ env.top_dir }}/ccache
           sudo chmod 777 -R ${{ env.top_dir }} .

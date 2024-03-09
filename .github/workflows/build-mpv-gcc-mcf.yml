@@ -261,7 +261,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libdovi-dev-3.2.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libjxl-dev-0.10.1-1-x86_64.pkg.tar.zst                
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libjxl-dev-0.10.2-1-x86_64.pkg.tar.zst                
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libmysofa-dev-1.3.2-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
@@ -286,10 +286,10 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/openssl-dev-3.2.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/opus-dev-1.5.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/rav1e-dev-0.7.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/shaderc-dev-2023.8-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/shaderc-dev-2024.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/vapoursynth-dev-65-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/vapoursynth-dev-66-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/vulkan-dev-1.3.275.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
@@ -1224,7 +1224,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libdovi-dev-3.2.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/shaderc-dev-2023.8-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/shaderc-dev-2024.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/vulkan-dev-1.3.275.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
@@ -1948,7 +1948,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst        
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libjxl-dev-0.10.1-1-x86_64.pkg.tar.zst                
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libjxl-dev-0.10.2-1-x86_64.pkg.tar.zst                
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libmysofa-dev-1.3.2-1-x86_64.pkg.tar.zst               
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
@@ -1979,10 +1979,10 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/opus-dev-1.5.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/rav1e-dev-0.7.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/rubberband-dev-3.3.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/shaderc-dev-2023.8-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/shaderc-dev-2024.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst                
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst        
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/vapoursynth-dev-65-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/vapoursynth-dev-66-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/vulkan-dev-1.3.275.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst

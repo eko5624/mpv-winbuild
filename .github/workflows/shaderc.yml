@@ -44,7 +44,7 @@ jobs:
           restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
       - name: Build
         run: |
-          curl -OL -f https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/shaderc-thinlto-2023.8-1-x86_64.pkg.tar.zst || true
+          curl -OL -f https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/shaderc-thinlto-2024.0-1-x86_64.pkg.tar.zst || true
           pacman -U *.zst --noconfirm || true
           mkdir -p ${{ env.top_dir }}/ccache && cp ccache.conf ${{ env.top_dir }}/ccache
           sudo chmod 777 -R ${{ env.top_dir }} .
