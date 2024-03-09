@@ -49,7 +49,7 @@ jobs:
       - name: Cache llvm-mingw
         if: ${{ inputs.toolchain == 'llvm-mingw' }}
         uses: actions/cache@main
-        id: llvm-clang-x86_64-ucrt
+        id: llvm-mingw
         with:
           path: ${{ env.top_dir }}/cross
           key: llvm-clang-x86_64-ucrt
@@ -82,7 +82,7 @@ jobs:
           fi
 
       - name: Setup llvm-mingw Toolchain
-        if: ${{ inputs.toolchain == 'llvm-mingw' && steps.llvm-clang-x86_64-ucrt.outputs.cache-hit != 'true' }}
+        if: ${{ inputs.toolchain == 'llvm-mingw' && steps.llvm-mingw.outputs.cache-hit != 'true' }}
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
