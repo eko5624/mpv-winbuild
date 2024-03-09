@@ -108,7 +108,6 @@ jobs:
       - name: Zip Packages    
         run: |
           curl -OL https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe
-          mv ${{ env.top_dir }}/opt/mpv/* ${{ env.top_dir }}/opt/bin
           mv yt-dlp.exe ${{ env.top_dir }}/opt/bin
           7z a shared-mpv-$BIT-gcc.7z ${{ env.top_dir }}/opt/bin/*
       - name: Release
