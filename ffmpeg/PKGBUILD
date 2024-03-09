@@ -55,7 +55,6 @@ package_ffmpeg-shared-dev() {
     --target-exec=wine \
     --pkg-config-flags=--static \
     --enable-cross-compile \
-    --enable-lto=thin \
     --enable-runtime-cpudetect \
     --disable-debug \
     --disable-doc \
