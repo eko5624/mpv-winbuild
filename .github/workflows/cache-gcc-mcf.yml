@@ -12,8 +12,7 @@ on:
         type: choice
         options:
         - gcc-mcf-x86_64
-        - gcc-mcf-x86_64_v3
-        - rust  
+        - gcc-mcf-x86_64_v3  
   
 jobs:
   build:
@@ -30,35 +29,31 @@ jobs:
         run: |
           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       
-      - name: Loading gcc-mcf-x86_64 cache
-        if: ${{ inputs.toolchain =='gcc-mcf-x86_64' }}
-        uses: actions/cache/restore@main
+      - name: Cache gcc-mcf-x86_64 cache
+        if: ${{ inputs.toolchain == 'gcc-mcf-x86_64' }}
+        uses: actions/cache@main
+        id: gcc-mcf-x86_64
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-x86_64-ucrt-${{ github.run_id }}
-          restore-keys: |
-            gcc-mcf-x86_64-ucrt-
+          key: gcc-mcf-x86_64-ucrt
 
-      - name: Loading gcc-mcf-x86_64_v3 cache
+      - name: Cache gcc-mcf-x86_64_v3 cache
         if: ${{ inputs.toolchain == 'gcc-mcf-x86_64_v3' }}
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
+        id: gcc-mcf-x86_64_v3
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-x86_64_v3-ucrt-${{ github.run_id }}
-          restore-keys: |
-            gcc-mcf-x86_64_v3-ucrt-
+          key: gcc-mcf-x86_64_v3-ucrt
       
-      - name: Loading rust cache
-        if: ${{ inputs.toolchain == 'rust' }}
+      - name: Cache rust cache
         uses: actions/cache/restore@main
+        id: rust
         with:
           path: ${{ env.top_dir }}/rust
-          key: rust-gcc-mcf-${{ github.run_id }}
-          restore-keys: |
-            rust-
-            
+          key: rust
+
       - name: Setup gcc-mcf-x86_64 Toolchain
-        if: ${{ inputs.toolchain == 'gcc-mcf-x86_64' }}
+        if: ${{ inputs.toolchain == 'gcc-mcf-x86_64' && steps.gcc-mcf-x86_64.outputs.cache-hit != 'true' }}
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
@@ -68,7 +63,7 @@ jobs:
           fi
 
       - name: Setup gcc-mcf-x86_64_v3 Toolchain
-        if: ${{ inputs.toolchain == 'gcc-mcf-x86_64_v3' }}
+        if: ${{ inputs.toolchain == 'gcc-mcf-x86_64_v3' && steps.gcc-mcf-x86_64_v3.outputs.cache-hit != 'true' }}
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
@@ -78,7 +73,7 @@ jobs:
           fi
 
       - name: Setup Rust Toolchain
-        if: ${{ inputs.toolchain == 'rust' }}
+        if: ${{ steps.rust.outputs.cache-hit != 'true' }}
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "rust" ]]; then
@@ -87,23 +82,3 @@ jobs:
             rm rustup*.7z
           fi
 
-      - name: Saving gcc-mcf-x86_64 cache
-        if: ${{ inputs.toolchain == 'gcc-mcf-x86_64' }}
-        uses: actions/cache/save@main
-        with:
-          path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-x86_64-ucrt-${{ github.run_id }}
-
-      - name: Saving gcc-mcf-x86_64_v3 cache
-        if: ${{ inputs.toolchain == 'gcc-mcf-x86_64_v3' }}
-        uses: actions/cache/save@main
-        with:
-          path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-x86_64_v3-ucrt-${{ github.run_id }}
-
-      - name: Saving Rust cache
-        if: ${{ inputs.toolchain == 'rust' }}
-        uses: actions/cache/save@main
-        with:
-          path: ${{ env.top_dir }}/rust
-          key: rust-${{ github.run_id }}
