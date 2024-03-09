@@ -38,11 +38,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/amf-headers-dev-1.4.32-1-x86_64.pkg.tar.zst
@@ -121,11 +120,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
@@ -161,11 +159,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
@@ -195,11 +192,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev/angle-headers-dev-1.0.772-1-x86_64.pkg.tar.zst
@@ -292,11 +288,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading gcc-mcf-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: gcc-mcf-${{ inputs.build_target }}-ucrt-
+          key: gcc-mcf-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
