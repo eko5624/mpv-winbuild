@@ -37,11 +37,10 @@ jobs:
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading llvm-clang-${{ inputs.build_target }} cache
-        uses: actions/cache/restore@main
+        uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt-${{ github.run_id }}
-          restore-keys: llvm-clang-${{ inputs.build_target }}-ucrt-
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
