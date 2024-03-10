@@ -4,6 +4,7 @@ pkgrel=1
 pkgdesc='High quality software library for audio time-stretching and pitch-shifting'
 arch=('x86_64')
 url="https://breakfastquay.com/rubberband/"
+makedepends=('libsamplerate-dev')
 license=('GPL')
 source=("git+https://github.com/breakfastquay/rubberband.git")
 md5sums=('SKIP')
@@ -17,7 +18,7 @@ build() {
     --buildtype=release \
     --default-library=static \
     -Dfft=builtin \
-    -Dresampler=builtin \
+    -Dresampler=libsamplerate \
     -Djni=disabled
   meson compile -C build
 }
