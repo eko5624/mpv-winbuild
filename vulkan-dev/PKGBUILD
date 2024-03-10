@@ -11,10 +11,6 @@ source=("git+https://github.com/KhronosGroup/Vulkan-Headers#tag=vulkan-sdk-$pkgv
 md5sums=('SKIP' 'SKIP')
 
 build() {
-  export PATH="${TOP_DIR}/cross/bin:$PATH"
-  export PKG_CONFIG_LIBDIR="${MINGW_PREFIX}/lib/pkgconfig"
-  export PKG_CONFIG="pkgconf --static"
-
   export CFLAGS="${CFLAGS} -D__STDC_FORMAT_MACROS -Wno-unused-function"
   export CPPFLAGS="${CPPFLAGS} -D__STDC_FORMAT_MACROS"
   export CXXFLAGS="${CXXFLAGS} -D__USE_MINGW_ANSI_STDIO -D__STDC_FORMAT_MACROS -fpermissive -Wno-unused-function"
@@ -22,6 +18,7 @@ build() {
   cd $srcdir/Vulkan-Headers
   rm -rf build && mkdir build && cd build
   cmake .. \
+    -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release
@@ -36,6 +33,7 @@ build() {
 
   rm -rf build && mkdir build && cd build
   cmake .. \
+    -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
@@ -43,13 +41,13 @@ build() {
     -DBUILD_TESTS=OFF \
     -DUSE_MASM=OFF \
     -DENABLE_WERROR=OFF
-  make
+  cmake --build .
 }
 
 package() {
   cd $srcdir/Vulkan-Headers/build
-  make DESTDIR=$pkgdir install
+  DESTDIR=$pkgdir cmake --install .
   cd $srcdir/Vulkan-Loader/build
-  make DESTDIR=$pkgdir install
+  DESTDIR=$pkgdir cmake --install .
   strip $pkgdir${MINGW_PREFIX}/bin/vulkan*.dll
 }
