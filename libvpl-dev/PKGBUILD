@@ -9,7 +9,7 @@ source=("git+https://github.com/intel/libvpl.git")
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/oneVPL
+  cd $srcdir/libvpl
   rm -rf build && mkdir build && cd build
   NO_CONFLTO=1 cmake .. -G Ninja \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
@@ -27,7 +27,7 @@ build() {
 }  
   
 package() {
-  cd $srcdir/oneVPL/build
+  cd $srcdir/libvpl/build
   DESTDIR=$pkgdir ninja install
   rm -rf $pkgdir${MINGW_PREFIX}/etc
   rm -rf $pkgdir${MINGW_PREFIX}/share

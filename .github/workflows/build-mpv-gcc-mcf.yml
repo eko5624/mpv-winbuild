@@ -1901,6 +1901,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libopenmpt-dev-0.7.4-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libplacebo-dev-6.338.2-1-x86_64.pkg.tar.zst        
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libpng-dev-1.6.43-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libsamplerate-dev-1.4.33-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libsdl2-dev-2.30.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libsixel-dev-1.10.3-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-mcf-$BIT/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
