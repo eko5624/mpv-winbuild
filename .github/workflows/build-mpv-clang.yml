@@ -220,6 +220,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libjpeg-dev-3.0.2-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libplacebo-shared-dev-6.338.2-1-x86_64.pkg.tar.zst        
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libpng-dev-1.6.43-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libsamplerate-dev-1.4.33-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libsdl2-dev-2.30.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libsixel-dev-1.10.3-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst         
