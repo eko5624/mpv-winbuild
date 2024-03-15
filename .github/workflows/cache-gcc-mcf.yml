@@ -57,7 +57,7 @@ jobs:
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/gcc-mcf-latest-ucrt-x86_64.7z
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-gcc-mcf-latest-ucrt-x86_64.7z
             7z x gcc*.7z
             rm gcc*.7z
           fi
@@ -67,7 +67,7 @@ jobs:
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/gcc-mcf-latest-ucrt-x86_64_v3.7z
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-gcc-mcf-latest-ucrt-x86_64_v3.7z
             7z x gcc*.7z
             rm gcc*.7z
           fi
