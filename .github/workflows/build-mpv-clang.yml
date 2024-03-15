@@ -1196,7 +1196,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd rubberband; sudo -H -u builder makepkg-cross -sLf
+          cd libsamplerate-dev; sudo -H -u builder makepkg-cross -sLf
       - name: Release    
         run: ./release-dev.sh libsamplerate-dev libsamplerate-dev
         
