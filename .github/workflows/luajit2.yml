@@ -1,0 +1,82 @@
+name: luajit2
+defaults:
+  run:
+    shell: bash
+on:
+  workflow_dispatch:
+    inputs:
+      build_target:
+        description: "Build target"
+        required: false
+        default: "x86_64"
+        type: choice
+        options:
+        - x86_64
+        - x86_64_v3
+
+  #schedule:
+  #- cron: '30 0 * * MON'
+
+jobs:
+  libiconv:
+    runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading llvm-clang-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libiconv-dev; sudo -H -u builder makepkg-cross -sLf
+      - name: Release    
+        run: ./release-dev.sh libiconv-dev libiconv-dev
+        
+  luajit2:
+    needs: [libiconv]
+    runs-on: ubuntu-latest
+    env:
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross.conf /etc
+          sudo cp pacman-config/makepkg-cross /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading llvm-clang-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: llvm-clang-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst      
+          pacman -U *.zst --noconfirm          
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd luajit2; sudo -H -u builder makepkg-cross -sLf
+      - name: Release    
+        run: ./release-dev.sh luajit2-dev luajit2 
