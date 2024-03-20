@@ -11,10 +11,9 @@ md5sums=('SKIP')
 package() {
   cd $srcdir
   set -x
-  gendef VSScript.dll
-  gendef VapourSynth.dll
+  cp ../*.def ./
   ${TARGET_ARCH}-dlltool -m i386:x86-64 -d VSScript.def -l VSScript.lib
-  ${TARGET_ARCH}-dlltool -m i386:x86-64 -d VapourSynth.def -l VapourSynth.lib 
+  ${TARGET_ARCH}-dlltool -m i386:x86-64 -d VapourSynth.def -l VapourSynth.lib
   mkdir -p $pkgdir${MINGW_PREFIX}/lib/pkgconfig
   mkdir -p $pkgdir${MINGW_PREFIX}/include
   mv sdk/include/VapourSynth.h $pkgdir${MINGW_PREFIX}/include
