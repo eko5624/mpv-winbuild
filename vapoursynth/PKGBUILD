@@ -11,7 +11,11 @@ md5sums=('SKIP')
 package() {
   cd $srcdir
   set -x
-  cp ../*.def ./
+  #cp ../*.def ./
+  7z x wheel/*cp312*
+  find . -type f -name "vapoursynth.dll" -print0 | xargs -0 -I {} cp {} ./VapourSynth.dll
+  gendef VSScript.dll
+  gendef VapourSynth.dll
   ${TARGET_ARCH}-dlltool -m i386:x86-64 -d VSScript.def -l VSScript.lib
   ${TARGET_ARCH}-dlltool -m i386:x86-64 -d VapourSynth.def -l VapourSynth.lib
   mkdir -p $pkgdir${MINGW_PREFIX}/lib/pkgconfig
