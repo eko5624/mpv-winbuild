@@ -66,6 +66,7 @@ for p in [
   'rav1e',
   'shaderc',
   'spirv-cross',
+  'svtav1',
   'uavs3d',
   'vulkan',
   'xxhash',
