@@ -13,6 +13,8 @@ on:
         options:
         - llvm-clang-x86_64
         - llvm-clang-x86_64_v3
+        - llvm-clang-pgo-x86_64
+        - llvm-clang-pgo-x86_64_v3        
         - llvm-mingw
   
 jobs:
@@ -42,6 +44,22 @@ jobs:
         if: ${{ inputs.toolchain == 'llvm-clang-x86_64_v3' }}
         uses: actions/cache@main
         id: llvm-clang-x86_64_v3-ucrt
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: llvm-clang-x86_64_v3-ucrt
+
+      - name: Cache llvm-clang-pgo-x86_64
+        if: ${{ inputs.toolchain == 'llvm-clang-pgo-x86_64' }}
+        uses: actions/cache@main
+        id: llvm-clang-pgo-x86_64-ucrt
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: llvm-clang-x86_64-ucrt
+
+      - name: Cache llvm-clang-pgo-x86_64_v3
+        if: ${{ inputs.toolchain == 'llvm-clang-pgo-x86_64_v3' }}
+        uses: actions/cache@main
+        id: llvm-clang-pgo-x86_64_v3-ucrt
         with:
           path: ${{ env.top_dir }}/cross
           key: llvm-clang-x86_64_v3-ucrt
@@ -81,6 +99,26 @@ jobs:
             rm llvm*.7z
           fi
 
+      - name: Setup llvm-clang-pgo-x86_64 Toolchain
+        if: ${{ inputs.toolchain == 'llvm-clang-pgo-x86_64' && steps.llvm-clang-pgo-x86_64-ucrt.outputs.cache-hit != 'true' }} 
+        run: |
+          cd ${{ env.top_dir }}
+          if [[ ! -d "cross/bin" ]]; then
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-clang-pgo-latest-ucrt-x86_64.7z
+            7z x llvm*.7z
+            rm llvm*.7z
+          fi
+
+      - name: Setup llvm-clang-pgo-x86_64_v3 Toolchain
+        if: ${{ inputs.toolchain == 'llvm-clang-pgo-x86_64_v3' && steps.llvm-clang-pgo-x86_64_v3-ucrt.outputs.cache-hit != 'true' }}
+        run: |
+          cd ${{ env.top_dir }}
+          if [[ ! -d "cross/bin" ]]; then
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-clang-pgo-latest-ucrt-x86_64_v3.7z
+            7z x llvm*.7z
+            rm llvm*.7z
+          fi
+
       - name: Setup llvm-mingw Toolchain
         if: ${{ inputs.toolchain == 'llvm-mingw' && steps.llvm-mingw.outputs.cache-hit != 'true' }}
         run: |
@@ -100,4 +138,4 @@ jobs:
             curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/rustup-latest.7z
             7z x rustup*.7z
             rm rustup*.7z
-          fi 
+          fi
