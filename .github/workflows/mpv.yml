@@ -45,12 +45,12 @@ jobs:
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/amf-headers-dev-1.4.33-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/angle-headers-dev-1.0.772-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/aom-dev-3.8.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/aom-dev-8.4-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/avisynth-dev-3.7.3-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/dav1d-dev-1.4.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/davs2-dev-1.7-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/ffmpeg-dev-6.1.1-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/ffmpeg-dev-7.0-1-x86_64.pkg.tar.zst        
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/ffnvcodec-dev-12.2.72.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/fribidi-dev-1.0.13-1-x86_64.pkg.tar.zst
@@ -97,7 +97,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/luajit2-dev-2.1_20240314-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/mujs-dev-1.3.4-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/openal-soft-dev-1.23.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/openssl-dev-3.2.1-1-x86_64.pkg.tar.zst      
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/openssl-dev-3.3.0-1-x86_64.pkg.tar.zst      
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/opus-dev-1.5.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/rav1e-dev-0.7.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/rubberband-dev-3.3.0-1-x86_64.pkg.tar.zst
@@ -136,7 +136,7 @@ jobs:
       - name: Setup Packages
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/latest-llvm-clang-$BIT/config-1.0-1-x86_64.pkg.tar.xz        
-          curl -OL https://github.com/${{ github.repository }}/releases/download/latest-llvm-clang-$BIT/ffmpeg-git-6.1.1-1-x86_64.pkg.tar.xz
+          curl -OL https://github.com/${{ github.repository }}/releases/download/latest-llvm-clang-$BIT/ffmpeg-git-7.0-1-x86_64.pkg.tar.xz
           curl -OL https://github.com/${{ github.repository }}/releases/download/latest-llvm-clang-$BIT/libmpv-git-0.37.0-1-x86_64.pkg.tar.xz
           curl -OL https://github.com/${{ github.repository }}/releases/download/latest-llvm-clang-$BIT/mpv-git-0.37.0-1-x86_64.pkg.tar.xz
           pacman -U *.xz --noconfirm
@@ -146,7 +146,7 @@ jobs:
         run: echo "date=$(date +%Y%m%d)" >> $GITHUB_ENV
       - name: Zip Packages    
         run: |
-          curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2024.03.10/yt-dlp.exe
+          curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2024.04.09/yt-dlp.exe
           mv yt-dlp.exe ${{ env.top_dir }}/opt/mpv
           7z a static-mpv-$BIT.7z ${{ env.top_dir }}/opt/mpv/*
           7z a git-libmpv-$BIT.7z ${{ env.top_dir }}/opt/libmpv/*
