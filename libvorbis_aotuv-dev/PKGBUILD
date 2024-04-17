@@ -6,11 +6,11 @@ arch=('x86_64')
 url="https://ao-yumi.github.io/aotuv_web/"
 makedepends=('libogg-dev')
 license=('BSD')
-source=("https://downloads.xiph.org/releases/vorbis/libvorbis-$pkgver.tar.xz")
+source=("git+https://github.com/xiph/vorbis.git")
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/libvorbis-$pkgver
+  cd $srcdir/vorbis
   NO_CONFLTO=1 ./configure \
     --host=${TARGET_ARCH} \
     --prefix=${MINGW_PREFIX} \
@@ -21,7 +21,7 @@ build() {
 }
 
 package() {
-  cd $srcdir/libvorbis-$pkgver
+  cd $srcdir/vorbis
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir${MINGW_PREFIX}/share
 }
