@@ -11,6 +11,7 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/vorbis
+  ./autogen.sh
   NO_CONFLTO=1 ./configure \
     --host=${TARGET_ARCH} \
     --prefix=${MINGW_PREFIX} \
