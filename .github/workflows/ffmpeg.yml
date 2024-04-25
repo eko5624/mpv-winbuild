@@ -44,7 +44,7 @@ jobs:
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/amf-headers-dev-1.4.33-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/aom-dev-3.9.0_rc1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/aom-dev-3.9.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/avisynth-dev-3.7.3-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/dav1d-dev-1.4.1-1-x86_64.pkg.tar.zst
