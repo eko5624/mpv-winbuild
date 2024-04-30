@@ -13,15 +13,16 @@ build() {
   git submodule update --init --recursive
   rm -rf build && mkdir build && cd build
   NO_CONFLTO=1 cmake .. \
+    -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
     -DHEADERS_ONLY=ON
-  cmake --build . VersionGen  
+  ninja VersionGen
 }
 
 package() {
   cd $srcdir/AviSynthPlus/build
-  DESTDIR=$pkgdir cmake --install .
+  DESTDIR=$pkgdir ninja install
 } 
