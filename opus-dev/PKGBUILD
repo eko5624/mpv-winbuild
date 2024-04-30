@@ -10,21 +10,24 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/opus
-  ./autogen.sh
-  NO_CONFLTO=1 ./configure \
-    --host=${TARGET_ARCH} \
-    --prefix=${MINGW_PREFIX} \
-    --disable-shared \
-    --disable-doc \
-    --disable-extra-programs \
-    --enable-dred \
-    --enable-deep-plc \
-    --enable-osce
-  make
+  ./autogen.sh #just for downloading latest model
+  NO_CONFLTO=1 meson setup build \
+    --prefix="${MINGW_PREFIX}" \
+    --libdir=${MINGW_PREFIX}/lib \
+    --cross-file=../../../cross.meson \
+    --buildtype=release \
+    --default-library=static \
+    -Dhardening=false \
+    -Ddeep-plc=enabled \
+    -Ddred=enabled  \
+    -Dosce=enabled \
+    -Dextra-programs=disabled \
+    -Dtests=disabled \
+    -Ddocs=disabled
+  meson compile -C build
 }
 
 package() {
   cd $srcdir/opus
-  make DESTDIR=$pkgdir install
-  rm -rf $pkgdir${MINGW_PREFIX}/share
+  DESTDIR=$pkgdir meson install -C build
 }
