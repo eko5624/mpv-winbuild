@@ -17,10 +17,11 @@ build() {
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_SHARED_LIBS=OFF \
-    -DHEADERS_ONLY=ON 
+    -DHEADERS_ONLY=ON
+  cmake --build . VersionGen  
 }
 
 package() {
   cd $srcdir/AviSynthPlus/build
-  make DESTDIR=$pkgdir VersionGen install
+  DESTDIR=$pkgdir cmake --install .
 } 
