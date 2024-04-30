@@ -9,26 +9,22 @@ source=("git+https://github.com/xiph/opus.git")
 md5sums=('SKIP')
 
 build() {
-  export CFLAGS+=" -D_FORTIFY_SOURCE=0"
   cd $srcdir/opus
-  rm -rf build && mkdir build && cd build
-  NO_CONFLTO=1 cmake .. \
-    -G "Ninja" \
-    -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
-    -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DBUILD_SHARED_LIBS=OFF \
-    -DOPUS_STACK_PROTECTOR=OFF \
-    -DOPUS_BUILD_PROGRAMS=OFF \
-    -DBUILD_TESTING=OFF \
-    -DOPUS_HARDENING=OFF \
-    -DOPUS_DEEP_PLC=ON \
-    -DOPUS_DRED=ON \
-    -DOPUS_OSCE=ON
-  cmake --build .
+  ./autogen.sh
+  NO_CONFLTO=1 ./configure \
+    --host=${TARGET_ARCH} \
+    --prefix=${MINGW_PREFIX} \
+    --disable-shared \
+    --disable-doc \
+    --disable-extra-programs \
+    --enable-dred \
+    --enable-deep-plc \
+    --enable-osce
+  make
 }
 
 package() {
-  cd $srcdir/opus/build
-  DESTDIR=$pkgdir cmake --install .
+  cd $srcdir/opus
+  make DESTDIR=$pkgdir install
+  rm -rf $pkgdir${MINGW_PREFIX}/share
 }
