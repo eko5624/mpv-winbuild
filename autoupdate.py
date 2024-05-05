@@ -4,6 +4,7 @@ import in_place
 
 resp = request.urlopen('https://github.com/eko5624/nginx-nosni/raw/master/old.json')
 x = json.loads(resp.read().decode('utf-8'))
+x = dict(map(lambda p: (p, x['data'][p]['version']), x['data'].keys()))
 
 pkgs = {}
 for p in ['mpv', 'ffmpeg', 'luajit2']:
