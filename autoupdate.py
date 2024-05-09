@@ -38,6 +38,7 @@ for p in [
   'libdvdnav',
   'libdvdread',
   'libiconv',
+  'libjpeg',
   'libjxl',
   'libudfread',
   'libunibreak',
