@@ -45,7 +45,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd amf-dev; sudo -H -u builder makepkg-cross -sLf
+          cd amf-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release
         run: ./release-dev.sh amf-headers-dev amf-dev
 
@@ -76,7 +76,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd angle-dev; sudo -H -u builder makepkg-cross -sLf
+          cd angle-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release
         run: ./release-dev.sh angle-headers-dev angle-dev
 
@@ -107,7 +107,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd aom-dev; sudo -H -u builder makepkg-cross -sLf
+          cd aom-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release
         run: ./release-dev.sh aom-dev aom-dev
 
@@ -138,7 +138,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd avisynth-dev; sudo -H -u builder makepkg-cross -sLf
+          cd avisynth-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release
         run: ./release-dev.sh avisynth-dev avisynth-dev
 
@@ -169,7 +169,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd brotli-dev; sudo -H -u builder makepkg-cross -sLf
+          cd brotli-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release
         run: ./release-dev.sh brotli-dev brotli-dev
 
@@ -200,7 +200,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd mpv-config; sudo -H -u builder makepkg-cross -sLf
+          cd mpv-config; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release
         run: ./release-latest.sh config mpv-config
 
@@ -282,7 +282,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd ffmpeg; sudo -H -u builder makepkg-cross -sLf
+          cd ffmpeg; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release
         run: |
           ./release-latest.sh ffmpeg-git ffmpeg
@@ -318,7 +318,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd dav1d-dev; sudo -H -u builder makepkg-cross -sLf
+          cd dav1d-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release
         run: ./release-dev.sh dav1d-dev dav1d-dev
 
@@ -349,7 +349,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd davs2-dev; sudo -H -u builder makepkg-cross -sLf
+          cd davs2-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh davs2-dev davs2-dev
 
@@ -380,7 +380,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd ffnvcodec-dev; sudo -H -u builder makepkg-cross -sLf
+          cd ffnvcodec-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh ffnvcodec-dev ffnvcodec-dev
 
@@ -415,7 +415,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm 
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd freetype2-dev; sudo -H -u builder makepkg-cross -sLf
+          cd freetype2-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh freetype2-dev freetype2-dev
 
@@ -446,7 +446,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd fribidi-dev; sudo -H -u builder makepkg-cross -sLf
+          cd fribidi-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh fribidi-dev fribidi-dev     
 
@@ -482,7 +482,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst   
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd harfbuzz-dev; sudo -H -u builder makepkg-cross -sLf
+          cd harfbuzz-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh harfbuzz-dev harfbuzz-dev 
 
@@ -513,7 +513,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd highway-dev; sudo -H -u builder makepkg-cross -sLf
+          cd highway-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh highway-dev highway-dev 
 
@@ -544,7 +544,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd lame-dev; sudo -H -u builder makepkg-cross -sLf
+          cd lame-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh lame-dev lame-dev 
 
@@ -579,7 +579,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd lcms2-dev; sudo -H -u builder makepkg-cross -sLf 
+          cd lcms2-dev; sudo -H -u builder makepkg-cross-gcc -sLf 
       - name: Release    
         run: ./release-dev.sh lcms2-dev lcms2-dev 
 
@@ -618,7 +618,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst       
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libass-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libass-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libass-dev libass-dev
 
@@ -655,7 +655,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libaribcaption-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libaribcaption-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libaribcaption-dev libaribcaption-dev        
 
@@ -692,7 +692,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst        
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libbluray-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libbluray-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release
         run: ./release-dev.sh libbluray-dev libbluray-dev
 
@@ -723,7 +723,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libbs2b-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libbs2b-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release
         run: ./release-dev.sh libbs2b-dev libbs2b-dev
 
@@ -754,7 +754,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libcaca-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libcaca-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libcaca-dev libcaca-dev
 
@@ -790,7 +790,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libdovi-dev; sudo -H -u builder makepkg-cross -sLf    
+          cd libdovi-dev; sudo -H -u builder makepkg-cross-gcc -sLf    
       - name: Release    
         run: ./release-dev.sh libdovi-dev libdovi-dev
 
@@ -821,7 +821,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libdvdcss-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libdvdcss-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libdvdcss-dev libdvdcss-dev
 
@@ -856,7 +856,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libdvdnav-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libdvdnav-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libdvdnav-dev libdvdnav-dev
 
@@ -890,7 +890,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libdvdread-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libdvdread-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libdvdread-dev libdvdread-dev
 
@@ -921,7 +921,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libiconv-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libiconv-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libiconv-dev libiconv-dev
 
@@ -952,7 +952,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libjpeg-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libjpeg-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libjpeg-dev libjpeg-dev
         
@@ -991,7 +991,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst 
           pacman -U *.zst --noconfirm        
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libjxl-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libjxl-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libjxl-dev libjxl-dev         
 
@@ -1022,7 +1022,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libmodplug-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libmodplug-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libmodplug-dev libmodplug-dev 
 
@@ -1056,7 +1056,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm                   
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libmysofa-dev; sudo -H -u builder makepkg-cross -sLf 
+          cd libmysofa-dev; sudo -H -u builder makepkg-cross-gcc -sLf 
       - name: Release    
         run: ./release-dev.sh libmysofa-dev libmysofa-dev                           
 
@@ -1087,7 +1087,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libogg-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libogg-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libogg-dev libogg-dev 
         
@@ -1124,7 +1124,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm         
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libopenmpt-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libopenmpt-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libopenmpt-dev libopenmpt-dev                
 
@@ -1165,7 +1165,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm 
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libplacebo-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libplacebo-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libplacebo-dev libplacebo-dev
         
@@ -1199,7 +1199,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst     
           pacman -U *.zst --noconfirm         
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libpng-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libpng-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libpng-dev libpng-dev      
 
@@ -1230,7 +1230,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libsamplerate-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libsamplerate-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libsamplerate-dev libsamplerate-dev
 
@@ -1261,7 +1261,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libsdl2-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libsdl2-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libsdl2-dev libsdl2-dev 
 
@@ -1297,7 +1297,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst 
           pacman -U *.zst --noconfirm        
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libsixel; sudo -H -u builder makepkg-cross -sLf
+          cd libsixel; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libsixel-dev libsixel 
 
@@ -1328,7 +1328,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libsoxr-dev; sudo -H -u builder makepkg-cross -sLf 
+          cd libsoxr-dev; sudo -H -u builder makepkg-cross-gcc -sLf 
       - name: Release    
         run: ./release-dev.sh libsoxr-dev libsoxr-dev                   
 
@@ -1359,7 +1359,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libspeex-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libspeex-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libspeex-dev libspeex-dev 
 
@@ -1394,7 +1394,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm                   
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libsrt-dev; sudo -H -u builder makepkg-cross -sLf 
+          cd libsrt-dev; sudo -H -u builder makepkg-cross-gcc -sLf 
       - name: Release    
         run: ./release-dev.sh libsrt-dev libsrt-dev 
 
@@ -1429,7 +1429,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm                   
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libssh-dev; sudo -H -u builder makepkg-cross -sLf 
+          cd libssh-dev; sudo -H -u builder makepkg-cross-gcc -sLf 
       - name: Release    
         run: ./release-dev.sh libssh-dev libssh-dev 
 
@@ -1460,7 +1460,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libudfread-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libudfread-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libudfread-dev libudfread-dev
 
@@ -1491,7 +1491,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libunibreak-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libunibreak-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libunibreak-dev libunibreak-dev                             
 
@@ -1522,7 +1522,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libva-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libva-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release
         run: ./release-dev.sh libva-dev libva-dev
 
@@ -1556,7 +1556,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libvorbis_aotuv-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libvorbis_aotuv-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libvorbis_aotuv-dev libvorbis_aotuv-dev
 
@@ -1587,7 +1587,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libvpl-dev; sudo -H -u builder makepkg-cross -sLf 
+          cd libvpl-dev; sudo -H -u builder makepkg-cross-gcc -sLf 
       - name: Release    
         run: ./release-dev.sh libvpl-dev libvpl-dev         
 
@@ -1618,7 +1618,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libvpx-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libvpx-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libvpx-dev libvpx-dev
 
@@ -1649,7 +1649,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libwebp-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libwebp-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libwebp-dev libwebp-dev
 
@@ -1684,7 +1684,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst   
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libxml2-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libxml2-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libxml2-dev libxml2-dev
         
@@ -1715,7 +1715,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libxvid-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libxvid-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libxvid-dev libxvid-dev  
         
@@ -1746,7 +1746,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libzimg-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libzimg-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libzimg-dev libzimg-dev  
 
@@ -1782,7 +1782,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst        
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libzvbi-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libzvbi-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh libzvbi-dev libzvbi-dev
 
@@ -1816,7 +1816,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm          
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd luajit2; sudo -H -u builder makepkg-cross -sLf
+          cd luajit2; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh luajit2-dev luajit2               
 
@@ -1915,7 +1915,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd mpv; sudo -H -u builder makepkg-cross -sLf
+          cd mpv; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release mpv and libmpv  
         run: ./release-latest.sh mpv mpv
 
@@ -1946,7 +1946,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd mujs; sudo -H -u builder makepkg-cross -sLf
+          cd mujs; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh mujs-dev mujs
 
@@ -1977,7 +1977,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd openal-soft-dev; sudo -H -u builder makepkg-cross -sLf
+          cd openal-soft-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh openal-soft-dev openal-soft-dev              
 
@@ -2011,7 +2011,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst       
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd openssl-dev; sudo -H -u builder makepkg-cross -sLf
+          cd openssl-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh openssl-dev openssl-dev
 
@@ -2042,7 +2042,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd opus-dev; sudo -H -u builder makepkg-cross -sLf
+          cd opus-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh opus-dev opus-dev
 
@@ -2113,7 +2113,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd rav1e-dev; sudo -H -u builder makepkg-cross -sLf    
+          cd rav1e-dev; sudo -H -u builder makepkg-cross-gcc -sLf    
       - name: Release    
         run: ./release-dev.sh rav1e-dev rav1e-dev
 
@@ -2147,7 +2147,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-gcc-$BIT/libsamplerate-dev-0.2.2-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm          
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd rubberband; sudo -H -u builder makepkg-cross -sLf
+          cd rubberband; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh rubberband-dev rubberband        
   
@@ -2178,7 +2178,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd shaderc-dev; sudo -H -u builder makepkg-cross -sLf
+          cd shaderc-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh shaderc-dev shaderc-dev
 
@@ -2209,7 +2209,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd spirv-cross-dev; sudo -H -u builder makepkg-cross -sLf
+          cd spirv-cross-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh spirv-cross-dev spirv-cross-dev
 
@@ -2240,7 +2240,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd svtav1-dev; sudo -H -u builder makepkg-cross -sLf
+          cd svtav1-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh svtav1-dev svtav1-dev
 
@@ -2271,7 +2271,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd uavs3d-dev; sudo -H -u builder makepkg-cross -sLf
+          cd uavs3d-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh uavs3d-dev uavs3d-dev        
 
@@ -2302,7 +2302,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd vapoursynth; sudo -H -u builder makepkg-cross -sLf
+          cd vapoursynth; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh vapoursynth-dev vapoursynth
 
@@ -2333,7 +2333,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd vulkan-dev; sudo -H -u builder makepkg-cross -sLf
+          cd vulkan-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh vulkan-dev vulkan-dev
 
@@ -2364,7 +2364,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd xxhash-dev; sudo -H -u builder makepkg-cross -sLf
+          cd xxhash-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh xxhash-dev xxhash-dev 
 
@@ -2395,6 +2395,6 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd zlib-dev; sudo -H -u builder makepkg-cross -sLf
+          cd zlib-dev; sudo -H -u builder makepkg-cross-gcc -sLf
       - name: Release    
         run: ./release-dev.sh zlib-dev zlib-dev
