@@ -38,7 +38,7 @@ jobs:
         id: llvm-clang-x86_64-ucrt
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-x86_64-ucrt
+          key: clang-x86_64-ucrt
 
       - name: Cache llvm-clang-x86_64_v3
         if: ${{ inputs.toolchain == 'llvm-clang-x86_64_v3' }}
@@ -46,7 +46,7 @@ jobs:
         id: llvm-clang-x86_64_v3-ucrt
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-x86_64_v3-ucrt
+          key: clang-x86_64_v3-ucrt
 
       - name: Cache llvm-clang-pgo-x86_64
         if: ${{ inputs.toolchain == 'llvm-clang-pgo-x86_64' }}
@@ -54,7 +54,7 @@ jobs:
         id: llvm-clang-pgo-x86_64-ucrt
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-x86_64-ucrt
+          key: clang-x86_64-ucrt
 
       - name: Cache llvm-clang-pgo-x86_64_v3
         if: ${{ inputs.toolchain == 'llvm-clang-pgo-x86_64_v3' }}
@@ -62,7 +62,7 @@ jobs:
         id: llvm-clang-pgo-x86_64_v3-ucrt
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-x86_64_v3-ucrt
+          key: clang-x86_64_v3-ucrt
 
       - name: Cache llvm-mingw
         if: ${{ inputs.toolchain == 'llvm-mingw' }}
@@ -70,7 +70,7 @@ jobs:
         id: llvm-mingw
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-x86_64-ucrt
+          key: clang-x86_64-ucrt
 
       - name: Cache rust
         uses: actions/cache@main

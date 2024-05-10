@@ -22,7 +22,8 @@ jobs:
       run: |
         git checkout
         chmod +x *.sh
-        chmod +x pacman-config/makepkg-cross
+        chmod +x pacman-config/makepkg-cross-clang
+        chmod +x pacman-config/makepkg-cross-gcc
         git add -A
         git commit -am "Executable-flag-setting" || echo "nothing updated"
         git push  

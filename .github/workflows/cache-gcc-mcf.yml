@@ -35,7 +35,7 @@ jobs:
         id: gcc-mcf-x86_64
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-x86_64-ucrt
+          key: gcc-x86_64-ucrt
 
       - name: Cache gcc-mcf-x86_64_v3 cache
         if: ${{ inputs.toolchain == 'gcc-mcf-x86_64_v3' }}
@@ -43,7 +43,7 @@ jobs:
         id: gcc-mcf-x86_64_v3
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-mcf-x86_64_v3-ucrt
+          key: gcc-x86_64_v3-ucrt
       
       - name: Cache rust cache
         uses: actions/cache/restore@main
