@@ -6,5 +6,5 @@ Description: Library for interfacing VapourSynth with Python
 Version: _ver
 
 Requires: vapoursynth
-Libs: -L${libdir} -lVSScript -Wl,-delayload=VSScript.dll
+Libs: -L${libdir} @vapoursynth_script_pkgconfig_libs@
 Cflags: -I${includedir}

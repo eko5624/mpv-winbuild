@@ -36,14 +36,14 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading llvm-clang-${{ inputs.build_target }} cache
+      - name: Loading clang-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt
+          key: clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst      
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm          
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd luajit2; sudo -H -u builder makepkg-cross -sLf

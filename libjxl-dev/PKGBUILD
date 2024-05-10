@@ -11,6 +11,7 @@ source=("git+https://github.com/libjxl/libjxl.git"
 md5sums=('SKIP' 'SKIP')
 
 build() {
+  eval "${libjxl_unaligned_vector}"
   cd $srcdir/libjxl
   rm -rf third_party/libjpeg-turbo
   mv $srcdir/libjpeg-turbo third_party/libjpeg-turbo

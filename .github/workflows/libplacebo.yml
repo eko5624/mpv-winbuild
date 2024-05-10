@@ -33,21 +33,21 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading llvm-clang-${{ inputs.build_target }} cache
+      - name: Loading clang-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt
+          key: clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libdovi-dev-3.3.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libjpeg-dev-3.0.3-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/shaderc-dev-2024.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/vulkan-dev-1.3.280.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libdovi-dev-3.3.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libjpeg-dev-3.0.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/shaderc-dev-2024.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/vulkan-dev-1.3.280.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm 
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libplacebo-dev; sudo -H -u builder makepkg-cross -sLf

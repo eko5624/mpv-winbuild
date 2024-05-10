@@ -1,4 +1,4 @@
-name: Build All-in-One-MPV(GCC With MCF)
+name: Build All-in-One-MPV(GCC)
 defaults:
   run:
     shell: bash
@@ -21,15 +21,14 @@ jobs:
   amf:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
-      GH_TOKEN: ${{ secrets.BOT }} 
+      GH_TOKEN: ${{ secrets.BOT }}
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
         uses: actions/checkout@main
-        with:
-          ref: gcc
       - name: Add builder user
         run: |
           useradd builder -m
@@ -53,15 +52,14 @@ jobs:
   angle:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -85,15 +83,14 @@ jobs:
   aom:  
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -117,15 +114,14 @@ jobs:
   avisynth:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -149,15 +145,14 @@ jobs:
   brotli:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -181,15 +176,14 @@ jobs:
   config:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -214,15 +208,14 @@ jobs:
     needs: [amf, aom, avisynth, dav1d, davs2, ffnvcodec, lame, libaribcaption, libbs2b, libjxl, libvpl, libmodplug, libmysofa, libogg, libopenmpt, libplacebo, libsdl2, libsoxr, libspeex, libsrt, libssh, libva, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, libzvbi, openal-soft, openssl, opus, rav1e, svtav1, uavs3d, vapoursynth, zlib]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -299,15 +292,14 @@ jobs:
     needs: [xxhash]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -333,15 +325,14 @@ jobs:
   davs2:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -365,15 +356,14 @@ jobs:
   ffnvcodec:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -398,15 +388,14 @@ jobs:
     needs: [libpng, zlib]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -433,15 +422,14 @@ jobs:
   fribidi:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -466,15 +454,14 @@ jobs:
     needs: [freetype2, libpng]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -502,15 +489,14 @@ jobs:
   highway:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -534,15 +520,14 @@ jobs:
   lame:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -567,15 +552,14 @@ jobs:
     needs: [libjpeg, zlib]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -603,15 +587,14 @@ jobs:
     needs: [freetype2, fribidi, harfbuzz, libunibreak]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -643,15 +626,14 @@ jobs:
     needs: [freetype2, openssl]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -681,15 +663,14 @@ jobs:
     needs: [freetype2, libpng, libudfread, zlib]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -718,15 +699,14 @@ jobs:
   libbs2b:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -750,15 +730,14 @@ jobs:
   libcaca:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -782,15 +761,14 @@ jobs:
   libdovi:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -819,15 +797,14 @@ jobs:
   libdvdcss:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -852,15 +829,14 @@ jobs:
     needs: [libdvdread]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -888,15 +864,14 @@ jobs:
     needs: [libdvdcss]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -922,15 +897,14 @@ jobs:
   libiconv:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -954,15 +928,14 @@ jobs:
   libjpeg:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -987,15 +960,14 @@ jobs:
     needs: [brotli, highway, lcms2, libjpeg, libpng, zlib]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1026,15 +998,14 @@ jobs:
   libmodplug:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1059,15 +1030,14 @@ jobs:
     needs: [zlib]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1093,15 +1063,14 @@ jobs:
   libogg:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1126,15 +1095,14 @@ jobs:
     needs: [zlib, libogg, libsdl2, libvorbis_aotuv]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1164,15 +1132,14 @@ jobs:
     needs: [lcms2, libdovi, shaderc, spirv-cross, xxhash, vulkan]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1206,15 +1173,14 @@ jobs:
     needs: [zlib]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1240,15 +1206,14 @@ jobs:
   libsamplerate:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1272,15 +1237,14 @@ jobs:
   libsdl2:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1305,15 +1269,14 @@ jobs:
     needs: [libjpeg, libpng]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1341,15 +1304,14 @@ jobs:
   libsoxr:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1373,15 +1335,14 @@ jobs:
   libspeex:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1406,15 +1367,14 @@ jobs:
     needs: [openssl]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1442,15 +1402,14 @@ jobs:
     needs: [openssl, zlib]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1477,15 +1436,14 @@ jobs:
   libudfread:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1509,15 +1467,14 @@ jobs:
   libunibreak:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1541,15 +1498,14 @@ jobs:
   libva:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1574,15 +1530,14 @@ jobs:
     needs: [libogg]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1608,15 +1563,14 @@ jobs:
   libvpl:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1640,15 +1594,14 @@ jobs:
   libvpx:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1672,15 +1625,14 @@ jobs:
   libwebp:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1705,15 +1657,14 @@ jobs:
     needs: [libiconv, zlib]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1740,15 +1691,14 @@ jobs:
   libxvid:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1772,15 +1722,14 @@ jobs:
   libzimg:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1805,15 +1754,14 @@ jobs:
     needs: [libiconv, libpng]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1842,15 +1790,14 @@ jobs:
     needs: [libiconv]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1877,15 +1824,14 @@ jobs:
     needs: [libcaca, libjpeg, libpng, libsdl2, libsixel, ffmpeg, luajit2, libass, lcms2, libbluray, libudfread, libdvdnav, libplacebo, angle, mujs, rubberband, spirv-cross, vulkan]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -1976,15 +1922,14 @@ jobs:
   mujs:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2008,15 +1953,14 @@ jobs:
   openal-soft:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2041,15 +1985,14 @@ jobs:
     needs: [zlib]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2075,15 +2018,14 @@ jobs:
   opus:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2108,6 +2050,7 @@ jobs:
     needs: [mpv, config]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
@@ -2115,8 +2058,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@main
-        with:
-          ref: gcc
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Setup Packages
@@ -2143,15 +2084,14 @@ jobs:
   rav1e:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2181,15 +2121,14 @@ jobs:
     needs: [libsamplerate]
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2215,15 +2154,14 @@ jobs:
   shaderc:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2247,15 +2185,14 @@ jobs:
   spirv-cross:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2279,15 +2216,14 @@ jobs:
   svtav1:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2311,15 +2247,14 @@ jobs:
   uavs3d:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2343,15 +2278,14 @@ jobs:
   vapoursynth:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2375,15 +2309,14 @@ jobs:
   vulkan:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2407,15 +2340,14 @@ jobs:
   xxhash:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m
@@ -2439,15 +2371,14 @@ jobs:
   zlib:
     runs-on: ubuntu-latest
     env:
+      COMPILER: gcc
       BIT: ${{ inputs.build_target }}
       GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
-        with:
-          ref: gcc      
+        uses: actions/checkout@main      
       - name: Add builder user
         run: |
           useradd builder -m

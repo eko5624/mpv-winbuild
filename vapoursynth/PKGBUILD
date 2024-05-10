@@ -16,17 +16,20 @@ package() {
   find . -type f -name "vapoursynth.dll" -print0 | xargs -0 -I {} cp {} ./VapourSynth.dll
   gendef VSScript.dll
   gendef VapourSynth.dll
-  ${TARGET_ARCH}-dlltool -m i386:x86-64 -d VSScript.def -l VSScript.lib
-  ${TARGET_ARCH}-dlltool -m i386:x86-64 -d VapourSynth.def -l VapourSynth.lib
+  eval "${vapoursynth_generate_lib}"
   mkdir -p $pkgdir${MINGW_PREFIX}/lib/pkgconfig
   mkdir -p $pkgdir${MINGW_PREFIX}/include
   mv sdk/include/vapoursynth/VapourSynth.h $pkgdir${MINGW_PREFIX}/include
   mv sdk/include/vapoursynth/VSScript.h $pkgdir${MINGW_PREFIX}/include
   mv sdk/include/vapoursynth/VSHelper.h $pkgdir${MINGW_PREFIX}/include
-  cp VSScript.lib $pkgdir${MINGW_PREFIX}/lib
-  cp VapourSynth.lib $pkgdir${MINGW_PREFIX}/lib
+  cp ${vsscript_lib} $pkgdir${MINGW_PREFIX}/lib
+  cp ${vapoursynth_lib} $pkgdir${MINGW_PREFIX}/lib
   cp ../*.pc $pkgdir${MINGW_PREFIX}/lib/pkgconfig
-  sed -i "s,@MINGW_PREFIX@,${MINGW_PREFIX}," $pkgdir${MINGW_PREFIX}/lib/pkgconfig/*.pc
-  sed -i "s/_ver/$pkgver/" $pkgdir${MINGW_PREFIX}/lib/pkgconfig/vapoursynth.pc
-  sed -i "s/_ver/$pkgver/" $pkgdir${MINGW_PREFIX}/lib/pkgconfig/vapoursynth-script.pc
+  for i in $pkgdir${MINGW_PREFIX}/lib/pkgconfig/*.pc; do
+    sed -e "s|@MINGW_PREFIX@|${MINGW_PREFIX}|g" \
+        -e "s|_ver|$pkgver|g" \
+        -e "s|@vapoursynth_pkgconfig_libs@|${vapoursynth_pkgconfig_libs}|g" \
+        -e "s|@vapoursynth_script_pkgconfig_libs@|${vapoursynth_script_pkgconfig_libs}|g" \
+        -i "$i"
+  done      
 }

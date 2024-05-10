@@ -10,6 +10,7 @@ source=("https://lib.openmpt.org/files/libopenmpt/src/libopenmpt-$pkgver+release
 md5sums=('SKIP')
 
 build() {
+  eval "${libopenmpt_cxxflags}"
   cd $srcdir/libopenmpt-$pkgver+release.autotools
   NO_CONFLTO=1 ./configure \
     --host=${TARGET_ARCH} \

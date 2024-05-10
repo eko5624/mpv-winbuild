@@ -36,62 +36,62 @@ jobs:
           sudo cp pacman-config/makepkg-cross /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading llvm-clang-${{ inputs.build_target }} cache
+      - name: Loading clang-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: llvm-clang-${{ inputs.build_target }}-ucrt
+          key: clang-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/amf-headers-dev-1.4.33-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/aom-dev-3.9.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/avisynth-dev-3.7.3-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/dav1d-dev-1.4.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/davs2-dev-1.7-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/ffnvcodec-dev-12.2.72.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/highway-dev-1.1.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/lame-dev-3.100-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libaribcaption-dev-1.1.1-1-x86_64.pkg.tar.zst                
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libbs2b-dev-3.1.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libdovi-dev-3.3.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libjpeg-dev-3.0.3-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libjxl-dev-0.10.2-1-x86_64.pkg.tar.zst                
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libmysofa-dev-1.3.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libopenmpt-dev-0.7.6-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libplacebo-dev-6.338.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libpng-dev-1.6.43-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libsdl2-dev-2.30.3-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libspeex-dev-1.2.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libsrt-dev-1.5.3-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libssh-dev-0.10.6-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libva-dev-2.21.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libvpl-dev-2023.4.0-1-x86_64.pkg.tar.zst         
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libvpx-dev-1.12.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libwebp-dev-1.4.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libxml2-dev-2.12.6-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libxvid-dev-1.3.7-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libzimg-dev-3.0.5-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/libzvbi-dev-0.2.42-1-x86_64.pkg.tar.zst        
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/openal-soft-dev-1.23.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/openssl-dev-3.3.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/opus-dev-1.5.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/rav1e-dev-0.7.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/shaderc-dev-2024.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/vapoursynth-dev-68-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/vulkan-dev-1.3.280.0-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
-          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
-          curl -OL -f https://github.com/${{ github.repository }}/releases/download/dev-llvm-clang-$BIT/ffmpeg-thinlto-7.0-1-x86_64.pkg.tar.zst || true
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/amf-headers-dev-1.4.33-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/aom-dev-3.9.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/avisynth-dev-3.7.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/dav1d-dev-1.4.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/davs2-dev-1.7-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/ffnvcodec-dev-12.2.72.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/highway-dev-1.1.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/lame-dev-3.100-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libaribcaption-dev-1.1.1-1-x86_64.pkg.tar.zst                
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libbs2b-dev-3.1.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libdovi-dev-3.3.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libjpeg-dev-3.0.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libjxl-dev-0.10.2-1-x86_64.pkg.tar.zst                
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libmysofa-dev-1.3.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libopenmpt-dev-0.7.6-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libplacebo-dev-6.338.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libpng-dev-1.6.43-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libsdl2-dev-2.30.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libspeex-dev-1.2.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libsrt-dev-1.5.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libssh-dev-0.10.6-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libva-dev-2.21.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libvpl-dev-2023.4.0-1-x86_64.pkg.tar.zst         
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libvpx-dev-1.12.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libwebp-dev-1.4.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libxml2-dev-2.12.6-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libxvid-dev-1.3.7-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libzimg-dev-3.0.5-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/libzvbi-dev-0.2.42-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/openal-soft-dev-1.23.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/openssl-dev-3.3.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/opus-dev-1.5.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/rav1e-dev-0.7.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/shaderc-dev-2024.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/vapoursynth-dev-68-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/vulkan-dev-1.3.280.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
+          curl -OL -f https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/ffmpeg-thinlto-7.0-1-x86_64.pkg.tar.zst || true
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd ffmpeg; sudo -H -u builder makepkg-cross -sLf
