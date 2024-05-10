@@ -1,0 +1,83 @@
+name: Cache GCC With win32 Toolchain
+defaults:
+  run:
+    shell: bash
+on:
+  workflow_dispatch:
+    inputs:
+      toolchain:
+        description: "toolchain"
+        required: false
+        default: "gcc-win32-x86_64"
+        type: choice
+        options:
+        - gcc-win32-x86_64
+        - gcc-win32-x86_64_v3  
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux/archlinux:base-devel
+    steps:    
+      - name: Install Dependencies
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm --needed git unzip p7zip curl jq
+      
+      - name: Setting top_dir env
+        run: |
+          echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      
+      - name: Cache gcc-win32-x86_64 cache
+        if: ${{ inputs.toolchain == 'gcc-win32-x86_64' }}
+        uses: actions/cache@main
+        id: gcc-win32-x86_64
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: gcc-x86_64-ucrt
+
+      - name: Cache gcc-win32-x86_64_v3 cache
+        if: ${{ inputs.toolchain == 'gcc-win32-x86_64_v3' }}
+        uses: actions/cache@main
+        id: gcc-win32-x86_64_v3
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: gcc-x86_64_v3-ucrt
+      
+      - name: Cache rust cache
+        uses: actions/cache/restore@main
+        id: rust
+        with:
+          path: ${{ env.top_dir }}/rust
+          key: rust
+
+      - name: Setup gcc-win32-x86_64 Toolchain
+        if: ${{ inputs.toolchain == 'gcc-win32-x86_64' && steps.gcc-win32-x86_64.outputs.cache-hit != 'true' }}
+        run: |
+          cd ${{ env.top_dir }}
+          if [[ ! -d "cross/bin" ]]; then
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-gcc-win32-latest-ucrt-x86_64.7z
+            7z x cross*.7z
+            rm cross*.7z
+          fi
+
+      - name: Setup gcc-win32-x86_64_v3 Toolchain
+        if: ${{ inputs.toolchain == 'gcc-win32-x86_64_v3' && steps.gcc-win32-x86_64_v3.outputs.cache-hit != 'true' }}
+        run: |
+          cd ${{ env.top_dir }}
+          if [[ ! -d "cross/bin" ]]; then
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-gcc-win32-latest-ucrt-x86_64_v3.7z
+            7z x cross*.7z
+            rm cross*.7z
+          fi
+
+      - name: Setup Rust Toolchain
+        if: ${{ steps.rust.outputs.cache-hit != 'true' }}
+        run: |
+          cd ${{ env.top_dir }}
+          if [[ ! -d "rust" ]]; then
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/rustup-latest.7z
+            7z x rustup*.7z
+            rm rustup*.7z
+          fi
