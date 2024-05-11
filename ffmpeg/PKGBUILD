@@ -72,8 +72,7 @@ package_ffmpeg-dev() {
     --disable-mediafoundation \
     --enable-amf \
     --enable-avisynth \
-    --enable-cuda-llvm \
-    --enable-cuvid \
+    --enable-cuvid${ffmpeg_cuda_llvm} \
     --enable-lcms2 \
     --enable-libaom \
     --enable-libaribcaption \
