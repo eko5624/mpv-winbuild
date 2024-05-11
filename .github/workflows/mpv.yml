@@ -5,7 +5,6 @@ defaults:
 on:
   workflow_dispatch:
     inputs:
-    inputs:
       compiler:
         description: "Compiler"
         required: false
