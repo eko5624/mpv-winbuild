@@ -42,7 +42,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -73,7 +73,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -104,7 +104,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -135,7 +135,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -166,7 +166,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -197,7 +197,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -229,7 +229,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -314,7 +314,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -347,7 +347,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -378,7 +378,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -410,7 +410,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -444,7 +444,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -476,7 +476,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -511,7 +511,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -542,7 +542,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -574,7 +574,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -609,7 +609,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -648,7 +648,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -685,7 +685,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -721,7 +721,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -752,7 +752,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -783,7 +783,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -819,7 +819,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -851,7 +851,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -886,7 +886,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -919,7 +919,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -950,7 +950,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -982,7 +982,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1020,7 +1020,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1052,7 +1052,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1085,7 +1085,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1117,7 +1117,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1154,7 +1154,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1195,7 +1195,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1228,7 +1228,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1259,7 +1259,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1291,7 +1291,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1326,7 +1326,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1357,7 +1357,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1389,7 +1389,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1424,7 +1424,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1458,7 +1458,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1489,7 +1489,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1520,7 +1520,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1552,7 +1552,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1585,7 +1585,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1616,7 +1616,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1647,7 +1647,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1679,7 +1679,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1713,7 +1713,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1744,7 +1744,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1776,7 +1776,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1812,7 +1812,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1846,7 +1846,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1949,7 +1949,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -1980,7 +1980,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -2012,7 +2012,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -2045,7 +2045,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -2111,7 +2111,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -2148,7 +2148,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -2181,7 +2181,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -2216,7 +2216,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -2247,7 +2247,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -2278,7 +2278,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -2309,7 +2309,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -2340,7 +2340,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -2371,7 +2371,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -2402,7 +2402,7 @@ jobs:
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
           sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
