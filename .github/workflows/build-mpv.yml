@@ -2089,9 +2089,9 @@ jobs:
         run: |
           curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2024.04.09/yt-dlp.exe
           mv yt-dlp.exe ${{ env.top_dir }}/opt/mpv
-          7z a mpv-$BIT-clang.7z ${{ env.top_dir }}/opt/mpv/*
-          7z a libmpv-$BIT-clang.7z ${{ env.top_dir }}/opt/libmpv/*
-          7z a ffmpeg-$BIT-${{ env.ffmpeg_sha }}-clang.7z ${{ env.top_dir }}/opt/ffmpeg/*
+          7z a mpv-$BIT-$COMPILER.7z ${{ env.top_dir }}/opt/mpv/*
+          7z a libmpv-$BIT-$COMPILER.7z ${{ env.top_dir }}/opt/libmpv/*
+          7z a ffmpeg-$BIT-${{ env.ffmpeg_sha }}-$COMPILER.7z ${{ env.top_dir }}/opt/ffmpeg/*
       - name: Release
         run: ./release-package.sh
 
