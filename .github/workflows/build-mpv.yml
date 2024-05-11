@@ -1,0 +1,2418 @@
+name: Build All-in-One-MPV
+defaults:
+  run:
+    shell: bash
+on:
+  workflow_dispatch:
+    inputs:
+      compiler:
+        description: "Compiler"
+        required: false
+        default: "clang"
+        type: choice
+        options:
+        - clang
+        - gcc      
+      build_target:
+        description: "Build target"
+        required: false
+        default: "x86_64"
+        type: choice
+        options:
+        - x86_64
+        - x86_64_v3
+
+  #schedule:
+  #- cron: '30 0 * * MON'
+
+jobs:
+  amf:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }}
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd amf-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release
+        run: ./release-dev.sh amf-headers-dev amf-dev
+
+  angle:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd angle-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release
+        run: ./release-dev.sh angle-headers-dev angle-dev
+
+  aom:  
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd aom-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release
+        run: ./release-dev.sh aom-dev aom-dev
+
+  avisynth:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd avisynth-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release
+        run: ./release-dev.sh avisynth-dev avisynth-dev
+
+  brotli:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd brotli-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release
+        run: ./release-dev.sh brotli-dev brotli-dev
+
+  config:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd mpv-config; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release
+        run: ./release-latest.sh config mpv-config
+
+  ffmpeg:
+    needs: [amf, aom, avisynth, dav1d, davs2, ffnvcodec, lame, libaribcaption, libbs2b, libjxl, libvpl, libmodplug, libmysofa, libogg, libopenmpt, libplacebo, libsdl2, libsoxr, libspeex, libsrt, libssh, libva, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, libzvbi, openal-soft, openssl, opus, rav1e, svtav1, uavs3d, vapoursynth, zlib]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/amf-headers-dev-1.4.33-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/aom-dev-3.9.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/avisynth-dev-3.7.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/dav1d-dev-1.4.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/davs2-dev-1.7-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/ffnvcodec-dev-12.2.72.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/highway-dev-1.1.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lame-dev-3.100-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libaribcaption-dev-1.1.1-1-x86_64.pkg.tar.zst                
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libbs2b-dev-3.1.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdovi-dev-3.3.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjpeg-dev-3.0.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjxl-dev-0.10.2-1-x86_64.pkg.tar.zst                
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libmysofa-dev-1.3.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libopenmpt-dev-0.7.6-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libplacebo-dev-6.338.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.43-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsdl2-dev-2.30.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libspeex-dev-1.2.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsrt-dev-1.5.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libssh-dev-0.10.6-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libva-dev-2.21.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvpl-dev-2023.4.0-1-x86_64.pkg.tar.zst         
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvpx-dev-1.12.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libwebp-dev-1.4.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libxml2-dev-2.12.6-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libxvid-dev-1.3.7-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libzimg-dev-3.0.5-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libzvbi-dev-0.2.42-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openal-soft-dev-1.23.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openssl-dev-3.3.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/opus-dev-1.5.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/rav1e-dev-0.7.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/shaderc-dev-2024.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/svtav1-dev-2.0.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vapoursynth-dev-68-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vulkan-dev-1.3.280.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
+          curl -OL -f https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/ffmpeg-thinlto-7.0-1-x86_64.pkg.tar.zst || true
+          pacman -U *.zst --noconfirm
+          mkdir -p ${{ env.top_dir }}/ccache && cp ccache.conf ${{ env.top_dir }}/ccache
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd ffmpeg; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release
+        run: |
+          ./release-latest.sh ffmpeg-git ffmpeg
+          ./release-dev.sh ffmpeg ffmpeg || true
+  dav1d:
+    needs: [xxhash]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
+          pacman -U *.zst --noconfirm
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd dav1d-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release
+        run: ./release-dev.sh dav1d-dev dav1d-dev
+
+  davs2:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd davs2-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh davs2-dev davs2-dev
+
+  ffnvcodec:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }}
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd ffnvcodec-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh ffnvcodec-dev ffnvcodec-dev
+
+  freetype2:
+    needs: [libpng, zlib]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.43-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst      
+          pacman -U *.zst --noconfirm 
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd freetype2-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh freetype2-dev freetype2-dev
+
+  fribidi:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd fribidi-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh fribidi-dev fribidi-dev     
+
+  harfbuzz:
+    needs: [freetype2, libpng]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst 
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.43-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst   
+          pacman -U *.zst --noconfirm
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd harfbuzz-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh harfbuzz-dev harfbuzz-dev 
+
+  highway:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd highway-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh highway-dev highway-dev 
+
+  lame:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd lame-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh lame-dev lame-dev 
+
+  lcms2:
+    needs: [libjpeg, zlib]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjpeg-dev-3.0.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
+          pacman -U *.zst --noconfirm
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd lcms2-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf 
+      - name: Release    
+        run: ./release-dev.sh lcms2-dev lcms2-dev 
+
+  libass:
+    needs: [freetype2, fribidi, harfbuzz, libunibreak]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/fribidi-dev-1.0.14-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/harfbuzz-dev-8.4.0-1-x86_64.pkg.tar.zst 
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.43-1-x86_64.pkg.tar.zst       
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libunibreak-dev-6_1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst       
+          pacman -U *.zst --noconfirm
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libass-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libass-dev libass-dev
+
+  libaribcaption:
+    needs: [freetype2, openssl]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.43-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openssl-dev-3.3.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
+          pacman -U *.zst --noconfirm
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libaribcaption-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libaribcaption-dev libaribcaption-dev        
+
+  libbluray:
+    needs: [freetype2, libpng, libudfread, zlib]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.43-1-x86_64.pkg.tar.zst         
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst        
+          pacman -U *.zst --noconfirm
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libbluray-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release
+        run: ./release-dev.sh libbluray-dev libbluray-dev
+
+  libbs2b:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libbs2b-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release
+        run: ./release-dev.sh libbs2b-dev libbs2b-dev
+
+  libcaca:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libcaca-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libcaca-dev libcaca-dev
+
+  libdovi:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Loading rust cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/rust
+          key: rust
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libdovi-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf    
+      - name: Release    
+        run: ./release-dev.sh libdovi-dev libdovi-dev
+
+  libdvdcss:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libdvdcss-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libdvdcss-dev libdvdcss-dev
+
+  libdvdnav:
+    needs: [libdvdread]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
+          pacman -U *.zst --noconfirm
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libdvdnav-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libdvdnav-dev libdvdnav-dev
+
+  libdvdread:
+    needs: [libdvdcss]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+          pacman -U *.zst --noconfirm
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libdvdread-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libdvdread-dev libdvdread-dev
+
+  libiconv:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libiconv-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libiconv-dev libiconv-dev
+
+  libjpeg:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libjpeg-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libjpeg-dev libjpeg-dev
+
+  libjxl:
+    needs: [brotli, highway, lcms2, libjpeg, libpng, zlib]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/highway-dev-1.1.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjpeg-dev-3.0.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.43-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst 
+          pacman -U *.zst --noconfirm        
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libjxl-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libjxl-dev libjxl-dev         
+
+  libmodplug:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libmodplug-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libmodplug-dev libmodplug-dev 
+
+  libmysofa:
+    needs: [zlib]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst      
+          pacman -U *.zst --noconfirm                   
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libmysofa-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf 
+      - name: Release    
+        run: ./release-dev.sh libmysofa-dev libmysofa-dev                           
+
+  libogg:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libogg-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libogg-dev libogg-dev 
+
+  libopenmpt:
+    needs: [zlib, libogg, libsdl2, libvorbis_aotuv]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsdl2-dev-2.30.3-1-x86_64.pkg.tar.zst 
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst      
+          pacman -U *.zst --noconfirm         
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libopenmpt-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libopenmpt-dev libopenmpt-dev                
+
+  libplacebo:
+    needs: [lcms2, libdovi, shaderc, spirv-cross, xxhash, vulkan]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdovi-dev-3.3.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjpeg-dev-3.0.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/shaderc-dev-2024.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vulkan-dev-1.3.280.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
+          pacman -U *.zst --noconfirm 
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libplacebo-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libplacebo-dev libplacebo-dev
+
+  libpng:
+    needs: [zlib]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst     
+          pacman -U *.zst --noconfirm         
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libpng-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libpng-dev libpng-dev      
+
+  libsamplerate:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt      
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libsamplerate-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libsamplerate-dev libsamplerate-dev
+
+  libsdl2:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libsdl2-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libsdl2-dev libsdl2-dev 
+
+  libsixel:
+    needs: [libjpeg, libpng]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjpeg-dev-3.0.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.43-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst 
+          pacman -U *.zst --noconfirm        
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libsixel; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libsixel-dev libsixel 
+
+  libsoxr:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libsoxr-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf 
+      - name: Release    
+        run: ./release-dev.sh libsoxr-dev libsoxr-dev                   
+
+  libspeex:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libspeex-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libspeex-dev libspeex-dev 
+
+  libsrt:
+    needs: [openssl]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openssl-dev-3.3.0-1-x86_64.pkg.tar.zst      
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
+          pacman -U *.zst --noconfirm                   
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libsrt-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf 
+      - name: Release    
+        run: ./release-dev.sh libsrt-dev libsrt-dev 
+
+  libssh:
+    needs: [openssl, zlib]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openssl-dev-3.3.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
+          pacman -U *.zst --noconfirm                   
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libssh-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf 
+      - name: Release    
+        run: ./release-dev.sh libssh-dev libssh-dev 
+
+  libudfread:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libudfread-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libudfread-dev libudfread-dev
+
+  libunibreak:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libunibreak-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libunibreak-dev libunibreak-dev                             
+
+  libva:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libva-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release
+        run: ./release-dev.sh libva-dev libva-dev
+
+  libvorbis_aotuv:
+    needs: [libogg]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
+          pacman -U *.zst --noconfirm
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libvorbis_aotuv-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libvorbis_aotuv-dev libvorbis_aotuv-dev
+
+  libvpl:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libvpl-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf 
+      - name: Release    
+        run: ./release-dev.sh libvpl-dev libvpl-dev         
+
+  libvpx:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libvpx-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libvpx-dev libvpx-dev
+
+  libwebp:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libwebp-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libwebp-dev libwebp-dev
+
+  libxml2:
+    needs: [libiconv, zlib]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst   
+          pacman -U *.zst --noconfirm
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libxml2-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libxml2-dev libxml2-dev
+
+  libxvid:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libxvid-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libxvid-dev libxvid-dev  
+
+  libzimg:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libzimg-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libzimg-dev libzimg-dev  
+
+  libzvbi:
+    needs: [libiconv, libpng]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.43-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst        
+          pacman -U *.zst --noconfirm
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libzvbi-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libzvbi-dev libzvbi-dev
+
+  luajit2:
+    needs: [libiconv]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst      
+          pacman -U *.zst --noconfirm          
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd luajit2; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh luajit2-dev luajit2               
+
+  mpv:
+    needs: [libcaca, libjpeg, libpng, libsdl2, libsixel, ffmpeg, luajit2, libass, lcms2, libbluray, libudfread, libdvdnav, libplacebo, angle, mujs, rubberband, spirv-cross, vulkan]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/amf-headers-dev-1.4.33-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/angle-headers-dev-1.0.772-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/aom-dev-3.9.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/avisynth-dev-3.7.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/dav1d-dev-1.4.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/davs2-dev-1.7-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/ffmpeg-dev-7.0-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/ffnvcodec-dev-12.2.72.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_13_2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/fribidi-dev-1.0.14-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/highway-dev-1.1.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/harfbuzz-dev-8.4.0-1-x86_64.pkg.tar.zst      
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lame-dev-3.100-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lcms2-dev-2.16-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libaribcaption-dev-1.1.1-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libass-dev-0.17.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libbluray-dev-1.3.4-1-x86_64.pkg.tar.zst                        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libbs2b-dev-3.1.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libcaca-dev-0.99.beta20-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdovi-dev-3.3.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdvdnav-dev-6.1.1-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjpeg-dev-3.0.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjxl-dev-0.10.2-1-x86_64.pkg.tar.zst                
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libmodplug-dev-0.8.9.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libmysofa-dev-1.3.2-1-x86_64.pkg.tar.zst               
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libogg-dev-1.3.5-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libopenmpt-dev-0.7.6-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libplacebo-dev-6.338.2-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.43-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsamplerate-dev-0.2.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsdl2-dev-2.30.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsixel-dev-1.10.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsoxr-dev-0.1.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libspeex-dev-1.2.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsrt-dev-1.5.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libssh-dev-0.10.6-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libudfread-dev-1.1.2-1-x86_64.pkg.tar.zst         
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libunibreak-dev-6_1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libva-dev-2.21.0-1-x86_64.pkg.tar.zst               
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvpl-dev-2023.4.0-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvpx-dev-1.12.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libwebp-dev-1.4.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libxml2-dev-2.12.6-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libxvid-dev-1.3.7-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libzimg-dev-3.0.5-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libzvbi-dev-0.2.42-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/luajit2-dev-2.1_20240314-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/mujs-dev-1.3.4-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openal-soft-dev-1.23.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openssl-dev-3.3.0-1-x86_64.pkg.tar.zst      
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/opus-dev-1.5.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/rav1e-dev-0.7.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/rubberband-dev-3.3.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/shaderc-dev-2024.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/spirv-cross-dev-1.3.261.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/svtav1-dev-2.0.0-1-x86_64.pkg.tar.zst               
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vapoursynth-dev-68-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vulkan-dev-1.3.280.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
+          curl -OL -f https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/mpv-thinlto-0.38.0-1-x86_64.pkg.tar.zst || true
+          pacman -U *.zst --noconfirm
+          mkdir -p ${{ env.top_dir }}/ccache && cp ccache.conf ${{ env.top_dir }}/ccache
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd mpv; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release mpv and libmpv
+        env:
+          GH_TOKEN: ${{ secrets.BOT }}    
+        run: |
+          ./release-latest.sh mpv mpv
+          ./release-dev.sh mpv-thinlto mpv || true
+  mujs:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd mujs; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh mujs-dev mujs
+
+  openal-soft:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd openal-soft-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh openal-soft-dev openal-soft-dev              
+
+  openssl:
+    needs: [zlib]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst       
+          pacman -U *.zst --noconfirm
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd openssl-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh openssl-dev openssl-dev
+
+  opus:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd opus-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh opus-dev opus-dev
+
+  package:
+    needs: [mpv, config]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Setup Packages
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/config-1.0-1-x86_64.pkg.tar.xz        
+          curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/ffmpeg-git-7.0-1-x86_64.pkg.tar.xz
+          curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/libmpv-git-0.38.0-1-x86_64.pkg.tar.xz
+          curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/mpv-git-0.38.0-1-x86_64.pkg.tar.xz
+          pacman -U *.xz --noconfirm
+      - name: Get ffmpeg latest commit sha
+        run: echo "ffmpeg_sha=$(cat ${{ env.top_dir }}/opt/ffmpeg/SHORT_SHA)" >> $GITHUB_ENV
+      - name: Get current timestamp
+        run: echo "date=$(date +%Y%m%d)" >> $GITHUB_ENV
+      - name: Zip Packages    
+        run: |
+          curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2024.04.09/yt-dlp.exe
+          mv yt-dlp.exe ${{ env.top_dir }}/opt/mpv
+          7z a mpv-$BIT-clang.7z ${{ env.top_dir }}/opt/mpv/*
+          7z a libmpv-$BIT-clang.7z ${{ env.top_dir }}/opt/libmpv/*
+          7z a ffmpeg-$BIT-${{ env.ffmpeg_sha }}-clang.7z ${{ env.top_dir }}/opt/ffmpeg/*
+      - name: Release
+        run: ./release-package.sh
+
+  rav1e:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Loading rust cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/rust
+          key: rust
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd rav1e-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf    
+      - name: Release    
+        run: ./release-dev.sh rav1e-dev rav1e-dev
+
+  rubberband:
+    needs: [libsamplerate]
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt      
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsamplerate-dev-0.2.2-1-x86_64.pkg.tar.zst
+          pacman -U *.zst --noconfirm
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd rubberband; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh rubberband-dev rubberband        
+
+  shaderc:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL -f https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/shaderc-thinlto-2024.1-1-x86_64.pkg.tar.zst || true
+          pacman -U *.zst --noconfirm || true
+          mkdir -p ${{ env.top_dir }}/ccache && cp ccache.conf ${{ env.top_dir }}/ccache
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd shaderc-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: |
+          ./release-dev.sh shaderc-dev shaderc-dev
+          ./release-dev.sh shaderc-thinlto shaderc-dev || true
+  spirv-cross:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd spirv-cross-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh spirv-cross-dev spirv-cross-dev
+
+  svtav1:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd svtav1-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh svtav1-dev svtav1-dev
+
+  uavs3d:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd uavs3d-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh uavs3d-dev uavs3d-dev        
+
+  vapoursynth:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd vapoursynth; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh vapoursynth-dev vapoursynth
+
+  vulkan:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd vulkan-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh vulkan-dev vulkan-dev
+
+  xxhash:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd xxhash-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh xxhash-dev xxhash-dev 
+
+  zlib:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd zlib-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh zlib-dev zlib-dev
