@@ -64,8 +64,11 @@ package_ffmpeg-dev() {
     --disable-ffplay \
     --disable-ffprobe \
     --disable-avdevice \
+    --disable-pthreads \
+    --enable-w32threads \
     --extra-cflags="-Wno-error=int-conversion" \
     --extra-libs="${ffmpeg_extra_libs}" \
+    --extra-ldflags="${ffmpeg_extra_ldflags}" \
     --disable-mediafoundation \
     --enable-amf \
     --enable-avisynth \

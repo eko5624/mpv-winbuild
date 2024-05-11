@@ -21,8 +21,9 @@ jobs:
   zstd:
     runs-on: ubuntu-latest
     env:
+      COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
-      GH_TOKEN: ${{ secrets.BOT }} 
+      GH_TOKEN: ${{ secrets.BOT }}
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -32,18 +33,18 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          sudo cp pacman-config/makepkg_cross.conf /etc
-          sudo cp pacman-config/makepkg-cross /usr/bin
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
-      - name: Loading clang-${{ inputs.build_target }} cache
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: clang-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd zstd-dev; sudo -H -u builder makepkg-cross -sLf
+          cd zstd-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
       - name: Release  
         run: ./release-dev.sh zstd-dev zstd-dev
