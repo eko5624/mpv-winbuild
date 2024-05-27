@@ -45,8 +45,8 @@ jobs:
           path: ${{ env.top_dir }}/cross
           key: gcc-x86_64_v3-ucrt
       
-      - name: Cache rust cache
-        uses: actions/cache/restore@main
+      - name: Cache rust
+        uses: actions/cache@main
         id: rust
         with:
           path: ${{ env.top_dir }}/rust
