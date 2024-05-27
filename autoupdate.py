@@ -96,7 +96,7 @@ pkgs['mpv-git'] = x['mpv']
 pkgs['mpv-thinlto'] = x['mpv']
 pkgs['shaderc-thinlto'] = x['shaderc']
 
-for t in ['build-mpv.yml', 'build-mpv-gcc.yml', 'ffmpeg.yml', 'mpv.yml', 'libplacebo.yml', 'shaderc.yml', 'vulkan.yml']:
+for t in ['build-mpv.yml', 'ffmpeg.yml', 'mpv.yml', 'libplacebo.yml', 'shaderc.yml', 'vulkan.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
     for l in f:
       if (i:=l.find('/dev-$COMPILER-$BIT/')) > -1:
