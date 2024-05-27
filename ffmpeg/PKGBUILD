@@ -67,12 +67,14 @@ package_ffmpeg-shared-dev() {
     --disable-ffplay \
     --disable-ffprobe \
     --disable-avdevice \
-    --extra-cflags="-Wno-error=int-conversion" \
-    --extra-libs="-lc++" \
+    --disable-pthreads \
+    --enable-w32threads \
+    --extra-libs="${ffmpeg_extra_libs}" \
+    --extra-ldflags="${ffmpeg_extra_ldflags}" \
     --disable-mediafoundation \
     --enable-amf \
     --enable-avisynth \
-    --enable-cuda-llvm \
+    --enable-cuvid${ffmpeg_cuda_llvm} \
     --enable-cuvid \
     --enable-lcms2 \
     --enable-libaom \
@@ -127,4 +129,6 @@ package_ffmpeg-shared() {
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir${MINGW_PREFIX}/bin/*.lib $pkgdir${MINGW_PREFIX}/share $pkgdir${MINGW_PREFIX}/include $pkgdir${MINGW_PREFIX}/lib
   strip $pkgdir${MINGW_PREFIX}/bin/*
+  mv ${MINGW_PREFIX}/bin/vulkan*.dll $pkgdir/opt/bin
+  mv ${MINGW_PREFIX}/bin/libplacebo*.dll $pkgdir/opt/bin
 }
