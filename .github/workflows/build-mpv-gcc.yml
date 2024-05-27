@@ -2073,7 +2073,7 @@ jobs:
         run: echo "date=$(date +%Y%m%d)" >> $GITHUB_ENV
       - name: Zip Packages    
         run: |
-          curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2024.04.09/yt-dlp.exe
+          curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2024.05.26/yt-dlp.exe
           mv yt-dlp.exe ${{ env.top_dir }}/opt/mpv
           7z a mpv-$BIT-gcc.7z ${{ env.top_dir }}/opt/mpv/*
           7z a libmpv-$BIT-gcc.7z ${{ env.top_dir }}/opt/libmpv/*
