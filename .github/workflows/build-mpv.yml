@@ -1,4 +1,4 @@
-name: Build All-in-One-MPV-shared(CLANG)
+name: Build All-in-One-MPV
 defaults:
   run:
     shell: bash
