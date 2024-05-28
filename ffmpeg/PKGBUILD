@@ -39,7 +39,7 @@ makedepends=("amf-headers-dev"
              "opus-dev"
              "rav1e-dev"
              "shaderc-dev"
-             "svtav1"
+             "svtav1-dev"
              "uavs3d-dev"
              "vapoursynth-dev")
 license=('LGPL')
