@@ -53,6 +53,6 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd vulkan-dev; sudo -H -u builder makepkg-cross -sLf
+          cd vulkan-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
       - name: Release   
         run: ./release-dev.sh vulkan-shared-dev vulkan-dev

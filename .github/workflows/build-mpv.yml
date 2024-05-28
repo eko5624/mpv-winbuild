@@ -104,7 +104,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd ffmpeg; sudo -H -u builder makepkg-cross -sLf
+          cd ffmpeg; sudo -H -u builder makepkg-cross-$COMPILER -sLf
       - name: Release
         run: |
           ./release-latest.sh ffmpeg-shared ffmpeg
@@ -147,7 +147,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm 
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libplacebo-dev; sudo -H -u builder makepkg-cross -sLf
+          cd libplacebo-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
       - name: Release  
         run: ./release-dev.sh libplacebo-shared-dev libplacebo-dev
 
@@ -178,7 +178,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd luajit2; sudo -H -u builder makepkg-cross -sLf
+          cd luajit2; sudo -H -u builder makepkg-cross-$COMPILER -sLf
       - name: Release    
         run: |
           ./release-latest.sh luajit2-shared luajit2
@@ -247,7 +247,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd mpv; sudo -H -u builder makepkg-cross -sLf
+          cd mpv; sudo -H -u builder makepkg-cross-$COMPILER -sLf
       - name: Release
         run: ./release-latest.sh mpv-shared mpv
 
@@ -321,7 +321,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd vulkan-dev; sudo -H -u builder makepkg-cross -sLf
+          cd vulkan-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
       - name: Release   
         run: ./release-dev.sh vulkan-shared-dev vulkan-dev
     

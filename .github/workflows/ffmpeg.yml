@@ -103,7 +103,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd ffmpeg; sudo -H -u builder makepkg-cross -sLf
+          cd ffmpeg; sudo -H -u builder makepkg-cross-$COMPILER -sLf
       - name: Release
         run: |
           ./release-latest.sh ffmpeg-shared ffmpeg
