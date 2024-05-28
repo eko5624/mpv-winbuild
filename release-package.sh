@@ -10,7 +10,7 @@ date=$(date +%Y-%m-%d)
 
 # Release note
 body="Bump to mpv-player/mpv@${short_sha}\n"
-body+="**Compiler**: clang"
+body+="**Compiler**: $COMPILER"
 
 curl -u $GITHUB_ACTOR:$GH_TOKEN $CURL_RETRIES \
   -X POST \
