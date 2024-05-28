@@ -129,6 +129,6 @@ package_ffmpeg-shared() {
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir${MINGW_PREFIX}/bin/*.lib $pkgdir${MINGW_PREFIX}/share $pkgdir${MINGW_PREFIX}/include $pkgdir${MINGW_PREFIX}/lib
   strip $pkgdir${MINGW_PREFIX}/bin/*
-  mv ${MINGW_PREFIX}/bin/vulkan*.dll $pkgdir/opt/bin
-  mv ${MINGW_PREFIX}/bin/libplacebo*.dll $pkgdir/opt/bin
+  mv ${MINGW_PREFIX}/bin/vulkan*.dll $pkgdir${MINGW_PREFIX}/bin
+  mv ${MINGW_PREFIX}/bin/libplacebo*.dll $pkgdir${MINGW_PREFIX}/bin
 }
