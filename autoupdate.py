@@ -19,8 +19,10 @@ for p in [
   'angle',
   'avisynth',
   'brotli',
+  'bzip2',
   'dav1d',
   'davs2',
+  'expat',
   'ffnvcodec',
   'freetype2',
   'fribidi',
@@ -28,6 +30,7 @@ for p in [
   'highway',
   'lame',
   'lcms2',
+  'libarchive',
   'libaribcaption',
   'libass',
   'libbluray',
@@ -61,6 +64,7 @@ for p in [
   'libxvid',
   'libzimg',
   'libzvbi',
+  'lzo',
   'mbedtls',
   'openal-soft',
   'openssl',
@@ -72,7 +76,9 @@ for p in [
   'uavs3d',
   'vulkan',
   'xxhash',
+  'xz',
   'zlib',
+  'zstd',
   ]:
   pkgs['%s-dev' % p] = x[p]
 for p in pkgs:

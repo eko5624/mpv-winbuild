@@ -19,6 +19,7 @@ package() {
   git sparse-checkout set dolby_vision
   cd dolby_vision
   mkdir build
+  export LD_PRELOAD=""
   export CARGO_BUILD_TARGET_DIR=build
   export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
   eval "$RUST_LTO"

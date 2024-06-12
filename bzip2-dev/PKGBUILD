@@ -1,0 +1,31 @@
+pkgname=bzip2-dev
+pkgver=1.0.8
+pkgrel=1
+pkgdesc='A high-quality data compression program'
+arch=('x86_64')
+url="https://sourceware.org/bzip2/"
+license=("custom")
+source=("git+https://gitlab.com/bzip2/bzip2.git")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/bzip2
+  rm -rf out && mkdir out && cd out
+  NO_CONFLTO=1 cmake .. \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
+    -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DENABLE_LIB_ONLY=ON \
+    -DENABLE_SHARED_LIB=OFF \
+    -DENABLE_STATIC_LIB=ON \
+    -DENABLE_TESTS=OFF
+  cmake --build .
+}  
+  
+package() {
+  cd $srcdir/bzip2/out
+  DESTDIR=$pkgdir cmake --install .
+  mv $pkgdir${MINGW_PREFIX}/lib/libbz2_static.a $pkgdir${MINGW_PREFIX}/lib/libbz2.a
+}  

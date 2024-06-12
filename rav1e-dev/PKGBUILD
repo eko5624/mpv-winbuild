@@ -11,6 +11,7 @@ md5sums=('SKIP')
 package() {
   cd $srcdir/rav1e
   mkdir build
+  export LD_PRELOAD=""
   export CARGO_BUILD_TARGET_DIR=build
   export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
   export CARGO_PROFILE_RELEASE_DEBUG=false
