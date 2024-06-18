@@ -4,7 +4,7 @@ pkgrel=1
 pkgdesc='The Open Source toolkit for Secure Sockets Layer and Transport Layer Security'
 arch=('x86_64')
 url="https://www.openssl.org/"
-makedepends=('zlib-dev')
+makedepends=('brotli-dev' 'zlib-dev' 'zstd-dev')
 license=('spdx:Apache-2.0')
 source=("git+https://github.com/openssl/openssl.git")
 md5sums=('SKIP')
@@ -18,9 +18,11 @@ build() {
     --release \
     no-autoload-config \
     no-ssl3-method \
+    enable-brotli \
     no-whirlpool \
     no-filenames \
     no-camellia \
+    enable-zstd \
     no-capieng \
     no-shared \
     no-rmd160 \
