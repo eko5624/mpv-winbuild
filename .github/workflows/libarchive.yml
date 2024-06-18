@@ -1,0 +1,69 @@
+name: libarchive
+defaults:
+  run:
+    shell: bash
+on:
+  workflow_dispatch:
+    inputs:
+      compiler:
+        description: "Compiler"
+        required: false
+        default: "clang"
+        type: choice
+        options:
+        - clang
+        - gcc      
+      build_target:
+        description: "Build target"
+        required: false
+        default: "x86_64"
+        type: choice
+        options:
+        - x86_64
+        - x86_64_v3
+
+  #schedule:
+  #- cron: '30 0 * * MON'
+
+jobs:
+  libarchive:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/bzip2-dev-1.0.8-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/expat-dev-2_6_2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libiconv-dev-1.17-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libxml2-dev-2.13.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lzo-dev-2.10-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/openssl-dev-3.3.1-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xz-dev-5.6.2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.1.6-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.6-1-x86_64.pkg.tar.zst
+          pacman -U *.zst --noconfirm
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd libarchive-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh libarchive-dev libarchive-dev
