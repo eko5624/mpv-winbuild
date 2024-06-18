@@ -13,8 +13,10 @@ for p in [
   'aom',
   'avisynth',
   'brotli',
+  'bzip2',
   'dav1d',
   'davs2',
+  'expat',
   'ffnvcodec',
   'freetype2',
   'fribidi',
@@ -22,6 +24,7 @@ for p in [
   'highway',
   'lame',
   'lcms2',
+  'libarchive',
   'libaribcaption',
   'libass',
   'libbluray',
@@ -55,6 +58,7 @@ for p in [
   'libxvid',
   'libzimg',
   'libzvbi',
+  'lzo',
   'mbedtls',
   'mujs',
   'openal-soft',
@@ -68,7 +72,9 @@ for p in [
   'uavs3d',
   'vulkan',
   'xxhash',
+  'xz',
   'zlib',
+  'zstd',
   ]:
   pkgs['%s-dev' % p] = x[p]
 
@@ -107,4 +113,4 @@ for t in ['ffmpeg.yml', 'libplacebo.yml', 'vulkan.yml', 'mpv.yml', 'build-mpv.ym
           l = '%s%s-%s%s' % (l[:i+23], p, pkgs[p], l[r:])
       elif (i:=l.find('/yt-dlp/releases/download/')) > -1:
         l = '%s%s/yt-dlp.exe\n' % (l[:i+26], x['yt-dlp'])                 
-      f.write(l)    
+      f.write(l)
