@@ -38,6 +38,7 @@ build() {
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DVULKAN_HEADERS_INSTALL_DIR="${srcdir}/opt" \
+    -DUSE_GAS=ON \
     -DBUILD_TESTS=OFF \
     -DUSE_MASM=OFF \
     -DENABLE_WERROR=OFF
