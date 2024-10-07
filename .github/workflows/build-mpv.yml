@@ -2060,6 +2060,10 @@ jobs:
         with:
           path: ${{ env.top_dir }}/cross
           key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Remove cppwinrt
+        run: |
+          rm ${{ env.top_dir }}/cross/bin/cppwinrt
+          rm -rf ${{ env.top_dir }}/cross/x86_64-w64-mingw32/include/winrt 
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/amf-headers-dev-1.4.35-1-x86_64.pkg.tar.zst
