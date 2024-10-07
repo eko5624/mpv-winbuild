@@ -28,7 +28,7 @@ makedepends=("libjpeg-dev"
              "vulkan-dev"
              "zlib-dev")
 license=('GPL3')
-source=("git+https://github.com/mpv-player/mpv.git"
+source=("git+https://github.com/mpv-player/mpv.git#commit=c6a8b6852c06ed064109712b9e6fdd70df76bcc6"
         "0001-for-win7.patch")
 md5sums=('SKIP' 'SKIP')
 
