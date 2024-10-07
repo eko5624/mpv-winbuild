@@ -244,7 +244,47 @@ jobs:
         run: ./release-latest.sh config mpv-config
 
   ffmpeg:
-    needs: [amf, aom, avisynth, bzip2, dav1d, davs2, ffnvcodec, lame, libaribcaption, libbs2b, libjxl, libvpl, libmodplug, libmysofa, libogg, libopenmpt, libplacebo, libsdl2, libsoxr, libspeex, libsrt, libssh, libva, libvorbis_aotuv, libvpx, libwebp, libxml2, libxvid, libzimg, libzvbi, openal-soft, openssl, opus, svtav1, uavs3d, vapoursynth, xz, zlib, zstd]
+    needs:
+      - amf
+      - aom
+      - avisynth
+      - bzip2
+      - dav1d
+      - davs2
+      - ffnvcodec
+      - lame
+      - libaribcaption
+      - libbs2b
+      - libjxl
+      - libvpl
+      - libmodplug
+      - libmysofa
+      - libogg
+      - libopenmpt
+      - libplacebo
+      - libsdl2
+      - libsoxr
+      - libspeex
+      - libsrt
+      - libssh
+      - libva
+      - libvorbis_aotuv
+      - libvpx
+      - libwebp
+      - libxml2
+      - libxvid
+      - libzimg
+      - libzvbi
+      - openal-soft
+      - openssl
+      - opus
+      - svtav1
+      - uavs3d
+      - vapoursynth
+      - vvdec
+      - xz
+      - zlib
+      - zstd
     runs-on: ubuntu-latest
     env:
       COMPILER: ${{ inputs.compiler }}
@@ -317,6 +357,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vapoursynth-dev-69-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vulkan-dev-1.3.290.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vvdec-dev-2.3.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xz-dev-5.6.2-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.1-1-x86_64.pkg.tar.zst
@@ -901,18 +942,18 @@ jobs:
         with:
           path: ${{ env.top_dir }}/cross
           key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
-      - name: Loading rust cache
-        uses: actions/cache@main
-        with:
-          path: ${{ env.top_dir }}/rust
-          key: rust
+      - name: Setup rust toolchain
+        run: |
+          curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/rust-for-win7-1.77.2.7z
+          7z x rust-for-win7-1.77.2.7z -o${{ env.top_dir }}
+          rm rust-for-win7-1.77.2.7z
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd libdovi-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf    
       - name: Release    
         run: ./release-dev.sh libdovi-dev libdovi-dev
-
+        
   libdvdcss:
     runs-on: ubuntu-latest
     env:
@@ -1976,7 +2017,26 @@ jobs:
         run: ./release-dev.sh lzo-dev lzo-dev          
 
   mpv:
-    needs: [libarchive, libcaca, libjpeg, libpng, libsdl2, libsixel, ffmpeg, luajit2, libass, lcms2, libbluray, libudfread, libdvdnav, libplacebo, angle, mujs, rubberband, spirv-cross, vulkan]
+    needs:
+      - libarchive
+      - libcaca
+      - libjpeg
+      - libpng
+      - libsdl2
+      - libsixel
+      - ffmpeg
+      - luajit2
+      - libass
+      - lcms2
+      - libbluray
+      - libudfread
+      - libdvdnav
+      - libplacebo
+      - angle
+      - mujs
+      - rubberband
+      - spirv-cross
+      - vulkan
     runs-on: ubuntu-latest
     env:
       COMPILER: ${{ inputs.compiler }}
@@ -2069,6 +2129,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/uavs3d-dev-1.1-1-x86_64.pkg.tar.zst        
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vapoursynth-dev-69-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vulkan-dev-1.3.290.0-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/vvdec-dev-2.3.0-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xxhash-dev-0.8.2-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xz-dev-5.6.2-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.1-1-x86_64.pkg.tar.zst
@@ -2471,6 +2532,37 @@ jobs:
           cd vulkan-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
       - name: Release    
         run: ./release-dev.sh vulkan-dev vulkan-dev
+
+  vvdec:
+    runs-on: ubuntu-latest
+    env:
+      COMPILER: ${{ inputs.compiler }}
+      BIT: ${{ inputs.build_target }}
+      GH_TOKEN: ${{ secrets.BOT }} 
+    container:
+      image: docker://ghcr.io/eko5624/archlinux:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main      
+      - name: Add builder user
+        run: |
+          useradd builder -m
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
+          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
+      - name: Setting top_dir env
+        run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+      - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
+        uses: actions/cache@main
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+      - name: Build
+        run: |
+          sudo chmod 777 -R ${{ env.top_dir }} .
+          cd vvdec-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+      - name: Release    
+        run: ./release-dev.sh vvdec-dev vvdec-dev
 
   xxhash:
     runs-on: ubuntu-latest

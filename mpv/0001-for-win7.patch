@@ -1,0 +1,28 @@
+From ca4f117dbb9f6fbe46f526ea95c1c94a95251499 Mon Sep 17 00:00:00 2001
+From: eko5624 <562433403@qq.com>
+Date: Wed, 11 Sep 2024 23:14:36 +0800
+Subject: [PATCH 3/3] meson: remove defines of Windows build avoiding warnings
+
+---
+ meson.build | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
+
+diff --git a/meson.build b/meson.build
+index aae869c551da9..6bf8c914e17da 100644
+--- a/meson.build
++++ b/meson.build
+@@ -307,11 +307,9 @@ features += {'darwin': darwin}
+ features += {'posix': posix}
+ features += {'dos-paths': win32, 'win32': win32}
+ 
+-mswin_flags = ['-D_WIN32_WINNT=0x0A00', '-DWINVER=0x0A00', '-DUNICODE',
+-               '-DCOBJMACROS', '-DINITGUID', '-DNOMINMAX',
+-               '-D_USE_MATH_DEFINES', '-DWIN32_LEAN_AND_MEAN',
+-               '-D_CRT_DECLARE_NONSTDC_NAMES', '-D_CRT_NONSTDC_NO_WARNINGS',
+-               '-D_CRT_SECURE_NO_WARNINGS', '-DWINRT_NO_SOURCE_LOCATION']
++mswin_flags = ['-D_WIN32_WINNT=0x0602', '-DWINVER=0x0602', '-DUNICODE',
++               '-DCOBJMACROS', '-DINITGUID', '-U__STRICT_ANSI__', '-DNOMINMAX',
++               '-D_USE_MATH_DEFINES', '-DWIN32_LEAN_AND_MEAN']
+ 
+ if host_machine.system() == 'windows'
+     flags += [mswin_flags]
