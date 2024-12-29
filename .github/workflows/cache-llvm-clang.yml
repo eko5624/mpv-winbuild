@@ -85,7 +85,7 @@ jobs:
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
             curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-clang-latest-ucrt-x86_64.7z
-            7z x llvm*.7z
+            7z x -snld llvm*.7z
             rm llvm*.7z
           fi
 
@@ -95,7 +95,7 @@ jobs:
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
             curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-clang-latest-ucrt-x86_64_v3.7z
-            7z x llvm*.7z
+            7z x -snld llvm*.7z
             rm llvm*.7z
           fi
 
@@ -105,7 +105,7 @@ jobs:
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
             curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-clang-pgo-latest-ucrt-x86_64.7z
-            7z x cross*.7z
+            7z x -snld cross*.7z
             rm cross*.7z
           fi
 
@@ -115,7 +115,7 @@ jobs:
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
             curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-clang-pgo-latest-ucrt-x86_64_v3.7z
-            7z x cross*.7z
+            7z x -snld cross*.7z
             rm cross*.7z
           fi
 
@@ -125,7 +125,7 @@ jobs:
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
             curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-mingw-latest-ucrt-x86_64.7z
-            7z x cross*.7z
+            7z x -snld cross*.7z
             find cross/x86_64-w64-mingw32/lib -maxdepth 1 -type f -name "*.dll.a" -print0 | xargs -0 -I {} rm {}
             rm cross*.7z
           fi
