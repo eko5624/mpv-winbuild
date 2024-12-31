@@ -1,0 +1,29 @@
+pkgname=vvdec-dev
+pkgver=3.0.0
+pkgrel=1
+pkgdesc='the Fraunhofer Versatile Video Decoder'
+arch=('x86_64')
+url="https://github.com/fraunhoferhhi/vvdec"
+license=('BSD')
+source=("git+https://github.com/fraunhoferhhi/vvdec.git")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/vvdec
+  rm -rf build && mkdir build && cd build
+  cmake .. \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
+    -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DCCACHE_FOUND=OFF \
+    -DVVDEC_ENABLE_LINK_TIME_OPT=OFF \
+    -DVVDEC_ENABLE_WARNINGS_AS_WERROR=OFF
+  cmake --build .
+}
+
+package() {
+  cd $srcdir/vvdec/build
+  DESTDIR=$pkgdir cmake --install .
+}
