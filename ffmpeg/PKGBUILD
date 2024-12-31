@@ -47,17 +47,17 @@ md5sums=('SKIP')
 
 package_ffmpeg-dev() {
   cd $srcdir/FFmpeg
-# fix checks for small buffers
-curl -OL https://patch-diff.githubusercontent.com/raw/eko5624/FFmpeg/pull/2.patch
-patch -p1 -i 2.patch
+  # fix checks for small buffers
+  curl -OL https://patch-diff.githubusercontent.com/raw/eko5624/FFmpeg/pull/2.patch
+  patch -p1 -i 2.patch
 
-# --enable-libvvdec
-curl -OL https://raw.githubusercontent.com/wiki/fraunhoferhhi/vvdec/data/patch/v6-0001-avcodec-add-external-dec-libvvdec-for-H266-VVC.patch
-patch -p1 -i v6-0001-avcodec-add-external-dec-libvvdec-for-H266-VVC.patch
+  # --enable-libvvdec
+  curl -OL https://raw.githubusercontent.com/wiki/fraunhoferhhi/vvdec/data/patch/v6-0001-avcodec-add-external-dec-libvvdec-for-H266-VVC.patch
+  patch -p1 -i v6-0001-avcodec-add-external-dec-libvvdec-for-H266-VVC.patch
 
-# support hevc flv
-curl -OL https://raw.githubusercontent.com/yt-dlp/FFmpeg-Builds/master/patches/ffmpeg/master/0001-Nonstandard-HEVC-over-FLV.patch
-patch -p1 -i 0001-Nonstandard-HEVC-over-FLV.patch
+  # support hevc flv
+  curl -OL https://raw.githubusercontent.com/yt-dlp/FFmpeg-Builds/master/patches/ffmpeg/master/0001-Nonstandard-HEVC-over-FLV.patch
+  patch -p1 -i 0001-Nonstandard-HEVC-over-FLV.patch
 
   NO_CONFLTO=1 ./configure$FFMPEG_LTO \
     --cross-prefix=${TARGET_ARCH}- \
