@@ -119,10 +119,10 @@ jobs:
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-mingw-latest-ucrt-x86_64.tar.xz
-            tar -xvf cross*.tar.xz
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-mingw-latest-ucrt-x86_64.zip
+            unzip cross*.zip
             find cross/x86_64-w64-mingw32/lib -maxdepth 1 -type f -name "*.dll.a" -print0 | xargs -0 -I {} rm {}
-            rm cross*.tar.xz
+            rm cross*.zip
           fi
 
       - name: Setup Rust Toolchain
