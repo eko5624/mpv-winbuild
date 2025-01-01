@@ -21,8 +21,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: docker://ghcr.io/eko5624/archlinux:latest
-    steps:                   
+      image: archlinux/archlinux:base-devel
+    steps:    
+      - name: Install Dependencies
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm --needed git unzip p7zip curl jq                   
       - name: Setting top_dir env
         run: |
            echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
