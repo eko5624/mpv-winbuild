@@ -2501,7 +2501,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd angle-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+          cd vvdec-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
       - name: Release
         run: ./release-dev.sh vvdec-dev vvdec-dev
 
