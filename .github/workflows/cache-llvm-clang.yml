@@ -105,7 +105,7 @@ jobs:
           if [[ ! -d "cross/bin" ]]; then
             curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-clang-pgo-latest-ucrt-x86_64.tar.xz
             tar -xvf cross*.tar.xz 2>/dev/null >/dev/null
-            rm cross*.7z
+            rm cross*.tar.xz
           fi
 
       - name: Setup llvm-clang-pgo-x86_64_v3 Toolchain
