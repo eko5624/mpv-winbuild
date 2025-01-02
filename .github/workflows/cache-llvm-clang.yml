@@ -83,9 +83,9 @@ jobs:
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-clang-latest-ucrt-x86_64.7z
-            7z x llvm*.7z
-            rm llvm*.7z
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-clang-latest-ucrt-x86_64.tar.xz
+            tar -xvf cross*.tar.xz 2>/dev/null >/dev/null
+            rm cross*.tar.xz
           fi
 
       - name: Setup llvm-clang-x86_64_v3 Toolchain
@@ -93,9 +93,9 @@ jobs:
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-clang-latest-ucrt-x86_64_v3.7z
-            7z x llvm*.7z
-            rm llvm*.7z
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-clang-latest-ucrt-x86_64_v3.tar.xz
+            tar -xvf cross*.tar.xz 2>/dev/null >/dev/null
+            rm cross*.tar.xz
           fi
 
       - name: Setup llvm-clang-pgo-x86_64 Toolchain
@@ -103,8 +103,8 @@ jobs:
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-clang-pgo-latest-ucrt-x86_64.7z
-            7z x cross*.7z
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-clang-pgo-latest-ucrt-x86_64.tar.xz
+            tar -xvf cross*.tar.xz 2>/dev/null >/dev/null
             rm cross*.7z
           fi
 
@@ -113,9 +113,9 @@ jobs:
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-clang-pgo-latest-ucrt-x86_64_v3.7z
-            7z x cross*.7z
-            rm cross*.7z
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-clang-pgo-latest-ucrt-x86_64_v3.tar.xz
+            tar -xvf cross*.tar.xz 2>/dev/null >/dev/null
+            rm cross*.tar.xz
           fi
 
       - name: Setup llvm-mingw Toolchain
@@ -123,10 +123,10 @@ jobs:
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-mingw-latest-ucrt-x86_64.zip
-            unzip cross*.zip 2>/dev/null >/dev/null
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-mingw-latest-ucrt-x86_64.tar.xz
+            tar -xvf cross*.tar.xz 2>/dev/null >/dev/null
             find cross/x86_64-w64-mingw32/lib -maxdepth 1 -type f -name "*.dll.a" -print0 | xargs -0 -I {} rm {}
-            rm cross*.zip
+            rm cross*.tar.xz
           fi
 
       - name: Setup Rust Toolchain
