@@ -59,6 +59,8 @@ jobs:
           if [[ ! -d "cross/bin" ]]; then
             curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-gcc-posix-latest-ucrt-x86_64.tar.xz
             tar -xvf cross*.tar.xz
+            find cross/x86_64-w64-mingw32/lib -type f -name "*.la" -print0 | xargs -0 -I {} rm {}
+            find cross/x86_64-w64-mingw32/lib -type f -name "*.dll.a" -print0 | xargs -0 -I {} rm {}
             rm cross*.tar.xz
           fi
 
@@ -69,6 +71,8 @@ jobs:
           if [[ ! -d "cross/bin" ]]; then
             curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-gcc-posix-latest-ucrt-x86_64_v3.tar.xz
             tar -xvf cross*.tar.xz
+            find cross/x86_64-w64-mingw32/lib -type f -name "*.la" -print0 | xargs -0 -I {} rm {}
+            find cross/x86_64-w64-mingw32/lib -type f -name "*.dll.a" -print0 | xargs -0 -I {} rm {}
             rm cross*.tar.xz
           fi
 
