@@ -5,7 +5,7 @@ pkgdesc='the Fraunhofer Versatile Video Decoder'
 arch=('x86_64')
 url="https://github.com/fraunhoferhhi/vvdec"
 license=('BSD')
-source=("git+https://github.com/fraunhoferhhi/vvdec.git")
+source=("git+https://github.com/fraunhoferhhi/vvdec.git#tag=v$pkgver")
 md5sums=('SKIP')
 
 build() {
