@@ -20,7 +20,7 @@ build() {
     -DCCACHE_FOUND=OFF \
     -DVVDEC_ENABLE_LINK_TIME_OPT=OFF \
     -DVVDEC_ENABLE_WARNINGS_AS_WERROR=OFF
-  cmake --build .
+  CLANG_FLAGS="-Wno-nontrivial-memcall" cmake --build .
 }
 
 package() {
