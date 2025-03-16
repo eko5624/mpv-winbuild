@@ -69,10 +69,10 @@ package_libmpv-git() {
   ${TARGET_ARCH}-strip -s libmpv-2.dll
   mv libmpv-2.dll $pkgdir${MINGW_PREFIX}/libmpv
   mv libmpv.dll.a $pkgdir${MINGW_PREFIX}/libmpv
-  mv ../libmpv/client.h $pkgdir${MINGW_PREFIX}/libmpv/include/mpv
-  mv ../libmpv/stream_cb.h $pkgdir${MINGW_PREFIX}/libmpv/include/mpv
-  mv ../libmpv/render.h $pkgdir${MINGW_PREFIX}/libmpv/include/mpv
-  mv ../libmpv/render_gl.h $pkgdir${MINGW_PREFIX}/libmpv/include/mpv
+  mv ../include/mpv/client.h $pkgdir${MINGW_PREFIX}/libmpv/include/mpv
+  mv ../include/mpv/stream_cb.h $pkgdir${MINGW_PREFIX}/libmpv/include/mpv
+  mv ../include/mpv/render.h $pkgdir${MINGW_PREFIX}/libmpv/include/mpv
+  mv ../include/mpv/render_gl.h $pkgdir${MINGW_PREFIX}/libmpv/include/mpv
 }
 
 package_mpv-git() {
