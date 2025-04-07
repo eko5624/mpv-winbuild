@@ -59,6 +59,9 @@ package_ffmpeg-dev() {
   #curl -OL https://raw.githubusercontent.com/yt-dlp/FFmpeg-Builds/master/patches/ffmpeg/master/0001-Nonstandard-HEVC-over-FLV.patch
   #patch -p1 -i 0001-Nonstandard-HEVC-over-FLV.patch
 
+  # ffmpeg 8224327698 changed all defines of FF_PROFILES_* to AV_PROFILES_*
+  sed -i "" 's/FF_PROFILE/AV_PROFILE/g' libavcodec/libvvdec.c
+
   NO_CONFLTO=1 ./configure$FFMPEG_LTO \
     --cross-prefix=${TARGET_ARCH}- \
     --prefix=${MINGW_PREFIX} \
