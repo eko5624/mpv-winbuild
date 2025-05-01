@@ -1,4 +1,4 @@
-name: vvdec
+name: openal-soft
 defaults:
   run:
     shell: bash
@@ -26,7 +26,7 @@ on:
   #- cron: '30 0 * * MON'
 
 jobs:
-  vvdec:
+  openal-soft:
     runs-on: ubuntu-latest
     env:
       COMPILER: ${{ inputs.compiler }}
@@ -53,6 +53,6 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd vvdec-dev; sudo -H -u builder makepkg-cross-$COMPILER
-      - name: Release
-        run: ./release-dev.sh vvdec-dev vvdec-dev
+          cd openal-soft-dev; sudo -H -u builder makepkg-cross-$COMPILER
+      - name: Release    
+        run: ./release-dev.sh openal-soft-dev openal-soft-dev              
