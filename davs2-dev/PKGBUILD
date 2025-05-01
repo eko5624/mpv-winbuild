@@ -5,7 +5,7 @@ pkgdesc='An open-source decoder of AVS2-P2/IEEE1857.4 video coding standard'
 arch=('x86_64')
 url="https://github.com/pkuvcl/davs2"
 license=('GPL')
-source=("git+https://github.com/pkuvcl/davs2.git")
+source=("git+https://github.com/saindriches/davs2.git")
 md5sums=('SKIP')
 
 build() {
@@ -14,7 +14,8 @@ build() {
     --host=${TARGET_ARCH} \
     --cross-prefix=x86_64-w64-mingw32- \
     --prefix="${MINGW_PREFIX}" \
-    --disable-cli
+    --disable-cli \
+    --bit-depth=10
   make
 }
 
