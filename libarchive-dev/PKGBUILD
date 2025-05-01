@@ -29,7 +29,8 @@ build() {
     --with-openssl \
     --with-xml2 \
     --with-zlib \
-    --with-zstd
+    --with-zstd \
+    -DCMAKE_POLICY_VERSION_MINIMUM=3.5
   make
 }
   
