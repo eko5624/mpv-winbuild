@@ -41,7 +41,8 @@ makedepends=("amf-headers-dev"
              "shaderc-dev"
              "svtav1-dev"
              "uavs3d-dev"
-             "vapoursynth-dev")
+             "vapoursynth-dev"
+             "vvdec-dev")
 license=('LGPL')
 source=("git+https://github.com/FFmpeg/FFmpeg")
 md5sums=('SKIP')
@@ -109,6 +110,7 @@ package_ffmpeg-shared-dev() {
     --enable-libuavs3d \
     --enable-libvorbis \
     --enable-libvpx \
+    --enable-libvvdec \
     --enable-libwebp \
     --enable-libxml2 \
     --enable-libxvid \
