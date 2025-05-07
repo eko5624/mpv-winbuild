@@ -34,13 +34,15 @@ makedepends=("amf-headers-dev"
              "libxml2-dev"
              "libxvid-dev"
              "libzimg-dev"
+             "libzvbi-dev"
              "openal-soft-dev"
              "openssl-dev"
              "opus-dev"
              "shaderc-dev"
              "svtav1-dev"
              "uavs3d-dev"
-             "vapoursynth-dev")
+             "vapoursynth-dev"
+             "vvdec-dev")
 license=('LGPL')
 source=("git+https://github.com/FFmpeg/FFmpeg")
 md5sums=('SKIP')
