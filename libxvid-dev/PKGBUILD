@@ -10,6 +10,7 @@ source=("https://downloads.xvid.com/downloads/xvidcore-$pkgver.tar.bz2"
 md5sums=('SKIP' 'SKIP')
 
 build() {
+  CFLAGS+=" -std=gnu99"
   cd $srcdir/xvidcore
   patch -p1 -i $srcdir/0001-remove-dll-option-clang.patch
   cd build/generic
