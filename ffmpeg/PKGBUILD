@@ -77,7 +77,6 @@ package_ffmpeg-dev() {
     --disable-doc \
     --enable-gpl \
     --enable-version3 \
-    --enable-postproc \
     --disable-ffplay \
     --disable-ffprobe \
     --disable-avdevice \
