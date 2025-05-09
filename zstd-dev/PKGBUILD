@@ -5,7 +5,7 @@ pkgdesc='Zstandard - Fast real-time compression algorithm'
 arch=('x86_64')
 url="https://facebook.github.io/zstd/"
 license=('BSD')
-source=("git+https://github.com/facebook/zstd.git")
+source=("git+https://github.com/facebook/zstd.git#tag=v$pkgver")
 md5sums=('SKIP')
 
 build() {  
