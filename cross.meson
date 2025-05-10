@@ -1,11 +1,14 @@
 [binaries]
 c = 'x86_64-w64-mingw32-gcc'
 cpp = 'x86_64-w64-mingw32-g++'
+as = 'x86_64-w64-mingw32-gcc'
 ar = 'x86_64-w64-mingw32-ar'
+ranlib = 'x86_64-w64-mingw32-ranlib'
 strip = 'x86_64-w64-mingw32-strip'
 windres = 'x86_64-w64-mingw32-windres'
 pkgconfig = 'x86_64-w64-mingw32-pkgconf'
 dlltool = 'x86_64-w64-mingw32-dlltool'
+nasm = 'nasm'
 # exe_wrapper = 'wine'
 
 [host_machine]
