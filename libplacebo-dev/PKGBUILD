@@ -13,6 +13,7 @@ source=("git+https://github.com/haasn/libplacebo.git"
 md5sums=('SKIP' 'SKIP' 'SKIP')
 
 build() {
+  LDFLAGS+=' -static-libgcc'
   cd $srcdir/libplacebo
   rm -rf 3rdparty/glad
   rm -rf 3rdparty/fast_float
