@@ -35,7 +35,7 @@ build() {
   eval "${mpv_pkgconf}"
   eval "${mpv_ldflags}"
   #fix undefined symbol errors when linking libarchive
-  export LDFLAGS+=' -lbz2 -llzma -lzstd'
+  export LDFLAGS+=' -static-libgcc -lbz2 -llzma -lzstd'
   cd $srcdir/mpv
   NO_CONFLTO=1 meson setup build \
     --prefix="${MINGW_PREFIX}" \
