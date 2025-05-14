@@ -5,30 +5,27 @@ pkgdesc='Zstandard - Fast real-time compression algorithm'
 arch=('x86_64')
 url="https://facebook.github.io/zstd/"
 license=('BSD')
-source=("git+https://github.com/facebook/zstd.git#tag=v$pkgver")
+source=("git+https://github.com/facebook/zstd.git")
 md5sums=('SKIP')
 
 build() {  
   cd $srcdir/zstd
-  rm -rf out && mkdir out && cd out
-  cmake ../build/cmake \
-    -G "Ninja" \
-    -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
-    -DCMAKE_TOOLCHAIN_FILE=../../../../toolchain.cmake \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DBUILD_SHARED_LIBS=OFF \
-    -DZSTD_BUILD_CONTRIB=OFF \
-    -DZSTD_BUILD_TESTS=OFF \
-    -DZSTD_LEGACY_SUPPORT=OFF \
-    -DZSTD_BUILD_PROGRAMS=OFF \
-    -DZSTD_PROGRAMS_LINK_SHARED=OFF \
-    -DZSTD_BUILD_SHARED=OFF \
-    -DZSTD_BUILD_STATIC=ON \
-    -DZSTD_MULTITHREAD_SUPPORT=ON
-  cmake --build .
+  NO_CONFLTO=1 meson setup work build/meson \
+    --prefix="${MINGW_PREFIX}" \
+    --libdir=${MINGW_PREFIX}/lib \
+    --cross-file=../../../cross.meson \
+    --buildtype=release \
+    --default-library=static \
+    -Dlegacy_level=0 \
+    -Ddebug_level=0 \
+    -Dbin_programs=false \
+    -Dzlib=disabled \
+    -Dlzma=disabled \
+    -Dlz4=disabled
+  meson compile -C work      
 }
 
 package() {
-  cd $srcdir/zstd/out
-  DESTDIR=$pkgdir cmake --install .
+  cd $srcdir/zstd
+  DESTDIR=$pkgdir meson install -C work
 }
