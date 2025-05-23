@@ -18,5 +18,5 @@ package() {
   export CARGO_PROFILE_RELEASE_INCREMENTAL=false
   export CARGO_PROFILE_RELEASE_LTO=off
   eval "$RUST_LTO"
-  cargo cinstall --manifest-path=Cargo.toml --prefix=${MINGW_PREFIX} --destdir=$pkgdir --release --target x86_64-pc-windows-gnu --crt-static --library-type staticlib
+  cargo cinstall --manifest-path=Cargo.toml --prefix=${MINGW_PREFIX} --destdir=$pkgdir --release --target x86_64-pc-windows-${rust_target} --crt-static --library-type staticlib
 }

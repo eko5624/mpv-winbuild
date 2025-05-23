@@ -23,5 +23,5 @@ package() {
   export CARGO_BUILD_TARGET_DIR=build
   export CARGO_PROFILE_RELEASE_CODEGEN_UNITS=1
   eval "$RUST_LTO"
-  cargo cinstall --manifest-path=Cargo.toml --prefix=${MINGW_PREFIX} --destdir=$pkgdir --target=x86_64-pc-windows-gnu --release --library-type staticlib
+  cargo cinstall --manifest-path=Cargo.toml --prefix=${MINGW_PREFIX} --destdir=$pkgdir --target=x86_64-pc-windows-${rust_target} --release --library-type staticlib
 }

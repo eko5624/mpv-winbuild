@@ -71,12 +71,21 @@ jobs:
           path: ${{ env.top_dir }}/cross
           key: clang-x86_64-ucrt
 
-      - name: Cache rust
+      - name: Cache rust-x86_64 cache
+        if: (inputs.toolchain == 'llvm-clang-x86_64') || (inputs.toolchain == 'llvm-clang-pgo-x86_64')
         uses: actions/cache@main
-        id: rust
+        id: rust-x86_64
         with:
           path: ${{ env.top_dir }}/rust
-          key: rust
+          key: rust-x86_64
+
+      - name: Cache rust-x86_64_v3 cache
+        if: (inputs.toolchain == 'llvm-clang-x86_64_v3') || (inputs.toolchain == 'llvm-clang-pgo-x86_64_v3')
+        uses: actions/cache@main
+        id: rust-x86_64_v3
+        with:
+          path: ${{ env.top_dir }}/rust
+          key: rust-x86_64_v3
 
       - name: Setup llvm-clang-x86_64 Toolchain
         if: ${{ inputs.toolchain == 'llvm-clang-x86_64' && steps.llvm-clang-x86_64-ucrt.outputs.cache-hit != 'true' }} 
@@ -129,12 +138,22 @@ jobs:
             rm cross*.tar.xz
           fi
 
-      - name: Setup Rust Toolchain
-        if: ${{ steps.rust.outputs.cache-hit != 'true' }}
+      - name: Setup rust-x86_64 Toolchain
+        if: (inputs.toolchain == 'llvm-clang-x86_64' || inputs.toolchain == 'llvm-clang-pgo-x86_64') && (steps.rust-x86_64.outputs.cache-hit != 'true')
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "rust" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/rust-latest.7z
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/rust-x86_64-latest.7z
+            7z x rust*.7z
+            rm rust*.7z
+          fi
+
+      - name: Setup rust-x86_64_v3 Toolchain
+        if: (inputs.toolchain == 'llvm-clang-x86_64_v3' || inputs.toolchain == 'llvm-clang-pgo-x86_64_v3') && (steps.rust-x86_64_v3.outputs.cache-hit != 'true')
+        run: |
+          cd ${{ env.top_dir }}
+          if [[ ! -d "rust" ]]; then
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/rust-x86_64_v3-latest.7z
             7z x rust*.7z
             rm rust*.7z
           fi
