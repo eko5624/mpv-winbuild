@@ -906,7 +906,7 @@ jobs:
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/rust
-          key: rust
+          key: rust-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
