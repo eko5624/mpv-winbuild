@@ -72,7 +72,7 @@ jobs:
           key: clang-x86_64-ucrt
 
       - name: Cache rust-x86_64 cache
-        if: (inputs.toolchain == 'llvm-clang-x86_64') || (inputs.toolchain == 'llvm-clang-pgo-x86_64')
+        if: (inputs.toolchain == 'llvm-clang-x86_64') || (inputs.toolchain == 'llvm-clang-pgo-x86_64') || (inputs.toolchain == 'llvm-mingw')
         uses: actions/cache@main
         id: rust-x86_64
         with:
@@ -139,7 +139,7 @@ jobs:
           fi
 
       - name: Setup rust-x86_64 Toolchain
-        if: (inputs.toolchain == 'llvm-clang-x86_64' || inputs.toolchain == 'llvm-clang-pgo-x86_64') && (steps.rust-x86_64.outputs.cache-hit != 'true')
+        if: (inputs.toolchain == 'llvm-clang-x86_64' || inputs.toolchain == 'llvm-clang-pgo-x86_64' || inputs.toolchain == 'llvm-mingw') && (steps.rust-x86_64.outputs.cache-hit != 'true')
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "rust" ]]; then
