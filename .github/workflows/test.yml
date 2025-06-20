@@ -1,4 +1,4 @@
-name: shaderc
+name: test
 defaults:
   run:
     shell: bash
