@@ -1,4 +1,4 @@
-name: Cache GCC With win32 Toolchain
+name: Cache GCC With Win32 Toolchain
 defaults:
   run:
     shell: bash
