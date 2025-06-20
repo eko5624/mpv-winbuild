@@ -1,4 +1,4 @@
-name: Reset commit
+name: reset commit
 on: 
   workflow_dispatch:
     inputs:
