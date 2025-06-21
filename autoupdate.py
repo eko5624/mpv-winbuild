@@ -97,7 +97,7 @@ pkgs['mpv-shared'] = x['mpv']
 pkgs['vapoursynth-dev'] = x['VapourSynth'][1:]
 pkgs['vulkan-shared-dev'] = x['vulkan']
 
-for t in ['ffmpeg.yml', 'libplacebo.yml', 'vulkan.yml', 'mpv.yml', 'build-mpv.yml']:
+for t in ['ffmpeg.yml', 'test.yml', 'mpv.yml', 'build-mpv.yml']:
   with in_place.InPlace('.github/workflows/%s' % t, newline='') as f:
     for l in f:
       if (i:=l.find('/dev-$COMPILER-$BIT/')) > -1:
