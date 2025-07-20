@@ -96,7 +96,6 @@ jobs:
             tar -xvf cross*.tar.xz 2>/dev/null >/dev/null
             rm cross*.tar.xz
           fi
-
       - name: Setup llvm-clang-x86_64_v3 Toolchain
         if: ${{ inputs.toolchain == 'llvm-clang-x86_64_v3' && steps.llvm-clang-x86_64_v3-ucrt.outputs.cache-hit != 'true' }}
         run: |
@@ -106,7 +105,6 @@ jobs:
             tar -xvf cross*.tar.xz 2>/dev/null >/dev/null
             rm cross*.tar.xz
           fi
-
       - name: Setup llvm-clang-pgo-x86_64 Toolchain
         if: ${{ inputs.toolchain == 'llvm-clang-pgo-x86_64' && steps.llvm-clang-pgo-x86_64-ucrt.outputs.cache-hit != 'true' }} 
         run: |
@@ -116,7 +114,6 @@ jobs:
             tar -xvf cross*.tar.xz 2>/dev/null >/dev/null
             rm cross*.tar.xz
           fi
-
       - name: Setup llvm-clang-pgo-x86_64_v3 Toolchain
         if: ${{ inputs.toolchain == 'llvm-clang-pgo-x86_64_v3' && steps.llvm-clang-pgo-x86_64_v3-ucrt.outputs.cache-hit != 'true' }}
         run: |
@@ -126,18 +123,23 @@ jobs:
             tar -xvf cross*.tar.xz 2>/dev/null >/dev/null
             rm cross*.tar.xz
           fi
-
       - name: Setup llvm-mingw Toolchain
         if: ${{ inputs.toolchain == 'llvm-mingw' && steps.llvm-mingw.outputs.cache-hit != 'true' }}
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
-            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-mingw-latest-ucrt-x86_64.tar.xz
-            tar -xvf cross*.tar.xz 2>/dev/null >/dev/null
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-mingw-latest-ucrt-linux-x86_64.tar.xz
+            tar -xvf llvm-mingw*.tar.xz 2>/dev/null >/dev/null
+            mv llvm-mingw cross
             find cross/x86_64-w64-mingw32/lib -maxdepth 1 -type f -name "*.dll.a" -print0 | xargs -0 -I {} rm {}
-            rm cross*.tar.xz
+            pushd cross/bin
+            for arch in armv7 aarch64 x86_64; do
+              ln -s $(which pkgconf) $arch-w64-mingw32-pkg-config
+              ln -s $(which pkgconf) $arch-w64-mingw32-pkgconf
+            done
+            popd
+            rm llvm-mingw*.tar.xz
           fi
-
       - name: Setup rust-x86_64 Toolchain
         if: (inputs.toolchain == 'llvm-clang-x86_64' || inputs.toolchain == 'llvm-clang-pgo-x86_64' || inputs.toolchain == 'llvm-mingw') && (steps.rust-x86_64.outputs.cache-hit != 'true')
         run: |
@@ -147,7 +149,6 @@ jobs:
             7z x rust*.7z
             rm rust*.7z
           fi
-
       - name: Setup rust-x86_64_v3 Toolchain
         if: (inputs.toolchain == 'llvm-clang-x86_64_v3' || inputs.toolchain == 'llvm-clang-pgo-x86_64_v3') && (steps.rust-x86_64_v3.outputs.cache-hit != 'true')
         run: |
