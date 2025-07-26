@@ -93,7 +93,7 @@ jobs:
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
             curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-clang-latest-ucrt-x86_64.tar.xz
-            tar -xvf cross*.tar.xz 2>/dev/null >/dev/null
+            tar -Jxf cross*.tar.xz
             rm cross*.tar.xz
           fi
       - name: Setup llvm-clang-x86_64_v3 Toolchain
@@ -102,7 +102,7 @@ jobs:
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
             curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-clang-latest-ucrt-x86_64_v3.tar.xz
-            tar -xvf cross*.tar.xz 2>/dev/null >/dev/null
+            tar -Jxf cross*.tar.xz
             rm cross*.tar.xz
           fi
       - name: Setup llvm-clang-pgo-x86_64 Toolchain
@@ -111,7 +111,7 @@ jobs:
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
             curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-clang-pgo-latest-ucrt-x86_64.tar.xz
-            tar -xvf cross*.tar.xz 2>/dev/null >/dev/null
+            tar -Jxf cross*.tar.xz
             rm cross*.tar.xz
           fi
       - name: Setup llvm-clang-pgo-x86_64_v3 Toolchain
@@ -120,7 +120,7 @@ jobs:
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
             curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-clang-pgo-latest-ucrt-x86_64_v3.tar.xz
-            tar -xvf cross*.tar.xz 2>/dev/null >/dev/null
+            tar -Jxf cross*.tar.xz
             rm cross*.tar.xz
           fi
       - name: Setup llvm-mingw Toolchain
@@ -129,8 +129,7 @@ jobs:
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
             curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-mingw-latest-ucrt-linux-x86_64.tar.xz
-            tar -xvf llvm-mingw*.tar.xz 2>/dev/null >/dev/null
-            mv llvm-mingw cross
+            tar -Jxf llvm-mingw*.tar.xz
             find cross/x86_64-w64-mingw32/lib -maxdepth 1 -type f -name "*.dll.a" -print0 | xargs -0 -I {} rm {}
             pushd cross/bin
             for arch in armv7 aarch64 x86_64; do
