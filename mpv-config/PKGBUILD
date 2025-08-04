@@ -15,5 +15,4 @@ package() {
   cd $srcdir/mpv-config
   mv portable_config $pkgdir${MINGW_PREFIX}/mpv
   mv installer $pkgdir${MINGW_PREFIX}/mpv
-  mv d3dcompiler_43.dll $pkgdir${MINGW_PREFIX}/mpv
 }
