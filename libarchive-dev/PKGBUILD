@@ -15,6 +15,7 @@ build() {
   NO_CONFLTO=1 ./configure \
     --host=${TARGET_ARCH} \
     --prefix=${MINGW_PREFIX} \
+    --enable-static \
     --disable-bsdtar \
     --disable-bsdcat \
     --disable-bsdcpio \
