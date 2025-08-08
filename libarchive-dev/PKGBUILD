@@ -36,4 +36,6 @@ build() {
 package() {
   cd $srcdir/libarchive
   make DESTDIR=$pkgdir install
+  rm $pkgdir${MINGW_PREFIX}/lib/libarchive.dll.a
+  rm $pkgdir${MINGW_PREFIX}/bin/libarchive*.dll
 }  
