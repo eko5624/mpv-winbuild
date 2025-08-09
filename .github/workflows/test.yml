@@ -2,10 +2,6 @@ name: test
 defaults:
   run:
     shell: bash
-strategy:
-  fail-fast: false
-  matrix:
-    arch: [x86_64, x86_64_v3]
 on:
   workflow_dispatch:
     inputs:
@@ -24,6 +20,10 @@ on:
 jobs:
   amf:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{matrix.arch}}
