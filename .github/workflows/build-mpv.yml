@@ -12,15 +12,7 @@ on:
         type: choice
         options:
         - clang
-        - gcc      
-      build_target:
-        description: "Build target"
-        required: false
-        default: "x86_64"
-        type: choice
-        options:
-        - x86_64
-        - x86_64_v3
+        - gcc
 
   #schedule:
   #- cron: '30 0 * * MON'
