@@ -28,6 +28,10 @@ on:
 jobs:
   amf:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -59,6 +63,10 @@ jobs:
 
   angle:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -90,6 +98,10 @@ jobs:
 
   aom:  
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -121,6 +133,10 @@ jobs:
 
   avisynth:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -152,6 +168,10 @@ jobs:
 
   brotli:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -183,6 +203,10 @@ jobs:
 
   bzip2:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -214,6 +238,10 @@ jobs:
 
   config:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -286,6 +314,10 @@ jobs:
       - zlib
       - zstd
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -375,6 +407,10 @@ jobs:
   dav1d:
     needs: [xxhash]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -408,6 +444,10 @@ jobs:
 
   davs2:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -439,6 +479,10 @@ jobs:
 
   expat:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -470,6 +514,10 @@ jobs:
 
   ffnvcodec:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -502,6 +550,10 @@ jobs:
   freetype2:
     needs: [libpng, zlib]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -536,6 +588,10 @@ jobs:
 
   fribidi:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -568,6 +624,10 @@ jobs:
   harfbuzz:
     needs: [freetype2, libpng]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -603,6 +663,10 @@ jobs:
 
   highway:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -634,6 +698,10 @@ jobs:
 
   lame:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -666,6 +734,10 @@ jobs:
   lcms2:
     needs: [libjpeg, zlib]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -701,6 +773,10 @@ jobs:
   libass:
     needs: [freetype2, fribidi, harfbuzz, libunibreak]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -740,6 +816,10 @@ jobs:
   libarchive:
     needs: [bzip2, expat, libxml2, lzo, openssl, xz, zlib, zstd]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -783,6 +863,10 @@ jobs:
   libaribcaption:
     needs: [freetype2, openssl]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -822,6 +906,10 @@ jobs:
   libbluray:
     needs: [freetype2, libpng, libudfread, zlib]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -858,6 +946,10 @@ jobs:
 
   libbs2b:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -889,6 +981,10 @@ jobs:
 
   libcaca:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -920,6 +1016,10 @@ jobs:
 
   libdovi:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -956,6 +1056,10 @@ jobs:
 
   libdvdcss:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -988,6 +1092,10 @@ jobs:
   libdvdnav:
     needs: [libdvdread]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1023,6 +1131,10 @@ jobs:
   libdvdread:
     needs: [libdvdcss]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1056,6 +1168,10 @@ jobs:
 
   libiconv:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1087,6 +1203,10 @@ jobs:
 
   libjpeg:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1119,6 +1239,10 @@ jobs:
   libjxl:
     needs: [brotli, highway, lcms2, libjpeg, libpng, zlib]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1157,6 +1281,10 @@ jobs:
 
   libmodplug:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1189,6 +1317,10 @@ jobs:
   libmysofa:
     needs: [zlib]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1222,6 +1354,10 @@ jobs:
 
   libogg:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1254,6 +1390,10 @@ jobs:
   libopenmpt:
     needs: [zlib, libogg, libsdl2, libvorbis_aotuv]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1291,6 +1431,10 @@ jobs:
   libplacebo:
     needs: [lcms2, libdovi, shaderc, spirv-cross, xxhash, vulkan]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1332,6 +1476,10 @@ jobs:
   libpng:
     needs: [zlib]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1365,6 +1513,10 @@ jobs:
 
   libsamplerate:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1396,6 +1548,10 @@ jobs:
 
   libsdl2:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1428,6 +1584,10 @@ jobs:
   libsixel:
     needs: [libjpeg, libpng]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1463,6 +1623,10 @@ jobs:
 
   libsoxr:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1494,6 +1658,10 @@ jobs:
 
   libspeex:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1526,6 +1694,10 @@ jobs:
   libsrt:
     needs: [openssl]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1563,6 +1735,10 @@ jobs:
   libssh:
     needs: [openssl, zlib]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1599,6 +1775,10 @@ jobs:
 
   libudfread:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1630,6 +1810,10 @@ jobs:
 
   libunibreak:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1661,6 +1845,10 @@ jobs:
 
   libva:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1693,6 +1881,10 @@ jobs:
   libvorbis_aotuv:
     needs: [libogg]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1726,6 +1918,10 @@ jobs:
 
   libvpl:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1757,6 +1953,10 @@ jobs:
 
   libvpx:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1788,6 +1988,10 @@ jobs:
 
   libwebp:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1820,6 +2024,10 @@ jobs:
   libxml2:
     needs: [libiconv, xz, zlib]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1855,6 +2063,10 @@ jobs:
 
   libxvid:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1886,6 +2098,10 @@ jobs:
 
   libzimg:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1918,6 +2134,10 @@ jobs:
   libzvbi:
     needs: [libiconv, libpng]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1954,6 +2174,10 @@ jobs:
   luajit2:
     needs: [libiconv]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -1987,6 +2211,10 @@ jobs:
 
   lzo:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -2038,6 +2266,10 @@ jobs:
       - spirv-cross
       - vulkan
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -2147,6 +2379,10 @@ jobs:
           ./release-dev.sh mpv-thinlto mpv || true
   mujs:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -2178,6 +2414,10 @@ jobs:
 
   openal-soft:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -2210,6 +2450,10 @@ jobs:
   openssl:
     needs: [brotli, zlib, zstd]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -2245,6 +2489,10 @@ jobs:
 
   opus:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -2277,6 +2525,10 @@ jobs:
   package:
     needs: [mpv, config]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -2312,6 +2564,10 @@ jobs:
   rubberband:
     needs: [libsamplerate]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -2345,6 +2601,10 @@ jobs:
 
   shaderc:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -2380,6 +2640,10 @@ jobs:
           ./release-dev.sh shaderc-thinlto shaderc-dev || true
   spirv-cross:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -2411,6 +2675,10 @@ jobs:
 
   svtav1:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -2442,6 +2710,10 @@ jobs:
 
   uavs3d:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -2473,6 +2745,10 @@ jobs:
 
   vapoursynth:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -2504,6 +2780,10 @@ jobs:
 
   vulkan:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -2535,6 +2815,10 @@ jobs:
 
   vvdec:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -2566,6 +2850,10 @@ jobs:
 
   xxhash:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -2597,6 +2885,10 @@ jobs:
 
   xz:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -2628,6 +2920,10 @@ jobs:
 
   zlib:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
@@ -2659,6 +2955,10 @@ jobs:
 
   zstd:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [x86_64, x86_64_v3]
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
