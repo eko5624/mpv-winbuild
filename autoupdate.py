@@ -118,18 +118,6 @@ for t in ['build-mpv.yml', 'ffmpeg.yml', 'mpv.yml']:
         p = l[i+23:rr]
         if p in pkgs:
           l = '%s%s-%s%s' % (l[:i+23], p, pkgs[p], l[r:])
-      elif (i:=l.find('/dev-$COMPILER-$BIT/')) > -1:
-        r = l.find('-1-x86_64')
-        rr = l.rfind('-', i, r)
-        p = l[i+20:rr]
-        if p in pkgs:
-          l = '%s%s-%s%s' % (l[:i+20], p, pkgs[p], l[r:])
-      elif (i:=l.find('/latest-$COMPILER-$BIT/')) > -1:
-        r = l.find('-1-x86_64')
-        rr = l.rfind('-', i, r)
-        p = l[i+23:rr]
-        if p in pkgs:
-          l = '%s%s-%s%s' % (l[:i+23], p, pkgs[p], l[r:])
       elif (i:=l.find('/yt-dlp/releases/download/')) > -1:
         l = '%s%s/yt-dlp.exe\n' % (l[:i+26], x['yt-dlp'])               
       f.write(l)
