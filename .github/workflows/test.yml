@@ -26,12 +26,12 @@ on:
   #- cron: '30 0 * * MON'
     
 jobs:
-  shaderc:
+  libudfread:
     runs-on: ubuntu-latest
     env:
       COMPILER: ${{ inputs.compiler }}
       BIT: ${{ inputs.build_target }}
-      GH_TOKEN: ${{ secrets.BOT }}
+      GH_TOKEN: ${{ secrets.BOT }} 
     container:
       image: docker://ghcr.io/eko5624/archlinux:latest
     steps:
@@ -41,8 +41,8 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
+          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
+          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -52,12 +52,7 @@ jobs:
           key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
       - name: Build
         run: |
-          curl -OL -f https://github.com/${{ github.repository }}/releases/download/dev-clang-$BIT/shaderc-thinlto-2024.1-1-x86_64.pkg.tar.zst || true
-          pacman -U *.zst --noconfirm || true
-          mkdir -p ${{ env.top_dir }}/ccache && cp ccache.conf ${{ env.top_dir }}/ccache
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd shaderc-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+          cd libudfread-dev; sudo -H -u builder makepkg-cross-$COMPILER
       - name: Release    
-        run: |
-          ./release-dev.sh shaderc-dev shaderc-dev
-          ./release-dev.sh shaderc-thinlto shaderc-dev || true
+        run: ./release-dev.sh libudfread-dev libudfread-dev

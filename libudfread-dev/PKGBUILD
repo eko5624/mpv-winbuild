@@ -10,16 +10,17 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/libudfread
-  autoreconf -ivf
-  NO_CONFLTO=1 ./configure \
-    --host=${TARGET_ARCH} \
-    --prefix=${MINGW_PREFIX} \
-    --disable-shared 
-  make
+  NO_CONFLTO=1 meson setup build \
+    --prefix="${MINGW_PREFIX}" \
+    --libdir=${MINGW_PREFIX}/lib \
+    --cross-file=./package/crossfiles/x86_64-w64-mingw32.meson \
+    --buildtype=release \
+    --default-library=static \
+    -Denable_examples=false
+  meson compile -C build
 }
 
 package() {
   cd $srcdir/libudfread
-  make DESTDIR=$pkgdir install
-  rm -rf $pkgdir${MINGW_PREFIX}/share $pkgdir${MINGW_PREFIX}/bin
+  DESTDIR=$pkgdir meson install -C build
 }
