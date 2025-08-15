@@ -11,8 +11,10 @@ on:
         default: "clang"
         type: choice
         options:
-        - clang
-        - gcc      
+        - gcc-mcf
+        - gcc-win32
+        - clang-static
+        - clang-llvm-mingw      
       build_target:
         description: "Build target"
         required: false

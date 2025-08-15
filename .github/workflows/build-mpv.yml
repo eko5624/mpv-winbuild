@@ -8,11 +8,13 @@ on:
       compiler:
         description: "Compiler"
         required: false
-        default: "clang"
+        default: "clang-static"
         type: choice
         options:
-        - clang
-        - gcc      
+        - gcc-mcf
+        - gcc-win32
+        - clang-static
+        - clang-llvm-mingw      
       build_target:
         description: "Build target"
         required: false
@@ -42,8 +44,8 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
+          sudo cp pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc
+          sudo cp pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -107,7 +109,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd ffmpeg; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+          cd ffmpeg; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release
         run: |
           ./release-latest.sh ffmpeg-shared ffmpeg
@@ -129,8 +131,8 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
+          sudo cp pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc
+          sudo cp pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -150,7 +152,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm 
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libplacebo-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+          cd libplacebo-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release  
         run: ./release-dev.sh libplacebo-shared-dev libplacebo-dev
 
@@ -169,8 +171,8 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
+          sudo cp pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc
+          sudo cp pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -181,7 +183,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd luajit2; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+          cd luajit2; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: |
           ./release-latest.sh luajit2-shared luajit2
@@ -203,8 +205,8 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
+          sudo cp pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc
+          sudo cp pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -261,7 +263,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd mpv; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+          cd mpv; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release
         run: ./release-latest.sh mpv-shared mpv
 
@@ -281,8 +283,8 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
+          sudo cp pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc
+          sudo cp pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -323,8 +325,8 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
+          sudo cp pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc
+          sudo cp pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
@@ -335,7 +337,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd vulkan-dev; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+          cd vulkan-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release   
         run: ./release-dev.sh vulkan-shared-dev vulkan-dev
     
