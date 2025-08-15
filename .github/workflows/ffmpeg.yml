@@ -11,8 +11,10 @@ on:
         default: "clang"
         type: choice
         options:
-        - clang
-        - gcc      
+        - gcc-mcf
+        - gcc-win32
+        - clang-static
+        - clang-llvm-mingw      
       build_target:
         description: "Build target"
         required: false
@@ -41,15 +43,15 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          sudo cp pacman-config/makepkg_cross_$COMPILER.conf /etc
-          sudo cp pacman-config/makepkg-cross-$COMPILER /usr/bin
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/amf-headers-dev-1.4.36-1-x86_64.pkg.tar.zst
@@ -108,7 +110,7 @@ jobs:
           pacman -U *.zst --noconfirm
           mkdir -p ${{ env.top_dir }}/ccache && cp ccache.conf ${{ env.top_dir }}/ccache
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd ffmpeg; sudo -H -u builder makepkg-cross-$COMPILER -sLf
+          cd ffmpeg; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release
         run: |
           ./release-latest.sh ffmpeg-git ffmpeg

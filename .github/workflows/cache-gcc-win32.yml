@@ -29,13 +29,13 @@ jobs:
         run: |
           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       
-      - name: Cache gcc-win32-x86_64 cache
+      - name: Cache GCC with the Win32(x86_64) Toolchain
         if: ${{ inputs.toolchain == 'gcc-win32-x86_64' }}
         uses: actions/cache@main
         id: gcc-win32-x86_64
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-x86_64-ucrt
+          key: gcc-win32-x86_64
 
       - name: Cache rust-x86_64 cache
         if: ${{ inputs.toolchain == 'gcc-win32-x86_64' }}
@@ -45,13 +45,13 @@ jobs:
           path: ${{ env.top_dir }}/rust
           key: rust-x86_64
 
-      - name: Cache gcc-win32-x86_64_v3 cache
+      - name: Cache GCC with the Win32(x86_64_v3) Toolchain
         if: ${{ inputs.toolchain == 'gcc-win32-x86_64_v3' }}
         uses: actions/cache@main
         id: gcc-win32-x86_64_v3
         with:
           path: ${{ env.top_dir }}/cross
-          key: gcc-x86_64_v3-ucrt
+          key: gcc-win32-x86_64_v3
       
       - name: Cache rust-x86_64_v3 cache
         if: ${{ inputs.toolchain == 'gcc-win32-x86_64_v3' }}
@@ -61,7 +61,7 @@ jobs:
           path: ${{ env.top_dir }}/rust
           key: rust-x86_64_v3
 
-      - name: Setup gcc-win32-x86_64 Toolchain
+      - name: Setup GCC with the Win32(x86_64) Toolchain
         if: ${{ inputs.toolchain == 'gcc-win32-x86_64' && steps.gcc-win32-x86_64.outputs.cache-hit != 'true' }}
         run: |
           cd ${{ env.top_dir }}
@@ -83,7 +83,7 @@ jobs:
             rm rust*.7z
           fi
 
-      - name: Setup gcc-win32-x86_64_v3 Toolchain
+      - name: Setup GCC with the Win32(x86_64_v3) Toolchain
         if: ${{ inputs.toolchain == 'gcc-win32-x86_64_v3' && steps.gcc-win32-x86_64_v3.outputs.cache-hit != 'true' }}
         run: |
           cd ${{ env.top_dir }}

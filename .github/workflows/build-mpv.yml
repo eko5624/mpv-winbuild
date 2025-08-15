@@ -11,8 +11,10 @@ on:
         default: "clang"
         type: choice
         options:
-        - clang
-        - gcc      
+        - gcc-mcf
+        - gcc-win32
+        - clang-static
+        - clang-llvm-mingw      
       build_target:
         description: "Build target"
         required: false
@@ -41,19 +43,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd amf-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd amf-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release
         run: ./release-dev.sh amf-headers-dev amf-dev
 
@@ -72,19 +74,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd angle-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd angle-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release
         run: ./release-dev.sh angle-headers-dev angle-dev
 
@@ -103,19 +105,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd aom-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd aom-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release
         run: ./release-dev.sh aom-dev aom-dev
 
@@ -134,19 +136,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd avisynth-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd avisynth-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release
         run: ./release-dev.sh avisynth-dev avisynth-dev
 
@@ -165,19 +167,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd brotli-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd brotli-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release
         run: ./release-dev.sh brotli-dev brotli-dev
 
@@ -196,19 +198,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd bzip2-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd bzip2-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release
         run: ./release-dev.sh bzip2-dev bzip2-dev
 
@@ -227,19 +229,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd mpv-config; sudo -H -u builder makepkg-cross-$COMPILER
+          cd mpv-config; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release
         run: ./release-latest.sh config mpv-config
 
@@ -299,15 +301,15 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/amf-headers-dev-1.4.36-1-x86_64.pkg.tar.zst
@@ -366,7 +368,7 @@ jobs:
           pacman -U *.zst --noconfirm
           mkdir -p ${{ env.top_dir }}/ccache && cp ccache.conf ${{ env.top_dir }}/ccache
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd ffmpeg; sudo -H -u builder makepkg-cross-$COMPILER
+          cd ffmpeg; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release
         run: |
           ./release-latest.sh ffmpeg-git ffmpeg
@@ -388,21 +390,21 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xxhash-dev-0.8.3-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd dav1d-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd dav1d-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release
         run: ./release-dev.sh dav1d-dev dav1d-dev
 
@@ -421,19 +423,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd davs2-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd davs2-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh davs2-dev davs2-dev
 
@@ -452,19 +454,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd expat-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd expat-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release
         run: ./release-dev.sh expat-dev expat-dev
 
@@ -483,19 +485,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd ffnvcodec-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd ffnvcodec-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh ffnvcodec-dev ffnvcodec-dev
 
@@ -515,22 +517,22 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.50-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm 
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd freetype2-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd freetype2-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh freetype2-dev freetype2-dev
 
@@ -549,19 +551,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd fribidi-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd fribidi-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh fribidi-dev fribidi-dev     
 
@@ -581,15 +583,15 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_13_3-1-x86_64.pkg.tar.zst 
@@ -597,7 +599,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst   
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd harfbuzz-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd harfbuzz-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh harfbuzz-dev harfbuzz-dev 
 
@@ -616,19 +618,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd highway-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd highway-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh highway-dev highway-dev 
 
@@ -647,19 +649,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd lame-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd lame-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh lame-dev lame-dev 
 
@@ -679,22 +681,22 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjpeg-dev-3.1.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd lcms2-dev; sudo -H -u builder makepkg-cross-$COMPILER 
+          cd lcms2-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*} 
       - name: Release    
         run: ./release-dev.sh lcms2-dev lcms2-dev 
 
@@ -714,15 +716,15 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_13_3-1-x86_64.pkg.tar.zst
@@ -733,7 +735,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst       
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libass-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libass-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libass-dev libass-dev
 
@@ -753,15 +755,15 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
@@ -776,7 +778,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libarchive-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libarchive-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libarchive-dev libarchive-dev
 
@@ -796,15 +798,15 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
@@ -815,7 +817,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libaribcaption-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libaribcaption-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libaribcaption-dev libaribcaption-dev        
 
@@ -835,15 +837,15 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_13_3-1-x86_64.pkg.tar.zst
@@ -852,7 +854,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst        
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libbluray-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libbluray-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release
         run: ./release-dev.sh libbluray-dev libbluray-dev
 
@@ -871,19 +873,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libbs2b-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libbs2b-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release
         run: ./release-dev.sh libbs2b-dev libbs2b-dev
 
@@ -902,19 +904,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libcaca-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libcaca-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libcaca-dev libcaca-dev
 
@@ -933,15 +935,15 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Loading rust cache
         uses: actions/cache@main
         with:
@@ -950,7 +952,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libdovi-dev; sudo -H -u builder makepkg-cross-$COMPILER    
+          cd libdovi-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}    
       - name: Release    
         run: ./release-dev.sh libdovi-dev libdovi-dev
 
@@ -969,19 +971,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libdvdcss-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libdvdcss-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libdvdcss-dev libdvdcss-dev
 
@@ -1001,22 +1003,22 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdvdread-dev-6.1.3-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libdvdnav-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libdvdnav-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libdvdnav-dev libdvdnav-dev
 
@@ -1036,21 +1038,21 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libdvdcss-dev-1.4.3-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libdvdread-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libdvdread-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libdvdread-dev libdvdread-dev
 
@@ -1069,19 +1071,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libiconv-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libiconv-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libiconv-dev libiconv-dev
 
@@ -1100,19 +1102,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libjpeg-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libjpeg-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libjpeg-dev libjpeg-dev
 
@@ -1132,15 +1134,15 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
@@ -1151,7 +1153,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst 
           pacman -U *.zst --noconfirm        
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libjxl-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libjxl-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libjxl-dev libjxl-dev         
 
@@ -1170,19 +1172,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libmodplug-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libmodplug-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libmodplug-dev libmodplug-dev 
 
@@ -1202,21 +1204,21 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm                   
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libmysofa-dev; sudo -H -u builder makepkg-cross-$COMPILER 
+          cd libmysofa-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*} 
       - name: Release    
         run: ./release-dev.sh libmysofa-dev libmysofa-dev                           
 
@@ -1235,19 +1237,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libogg-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libogg-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libogg-dev libogg-dev 
 
@@ -1267,15 +1269,15 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
@@ -1284,7 +1286,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libvorbis_aotuv-dev-1.3.7-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm         
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libopenmpt-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libopenmpt-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libopenmpt-dev libopenmpt-dev                
 
@@ -1304,15 +1306,15 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/lcms2-dev-2.17-1-x86_64.pkg.tar.zst
@@ -1325,7 +1327,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm 
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libplacebo-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libplacebo-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libplacebo-dev libplacebo-dev
 
@@ -1345,21 +1347,21 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst     
           pacman -U *.zst --noconfirm         
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libpng-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libpng-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libpng-dev libpng-dev      
 
@@ -1378,19 +1380,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt      
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}      
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libsamplerate-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libsamplerate-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libsamplerate-dev libsamplerate-dev
 
@@ -1409,19 +1411,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libsdl2-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libsdl2-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libsdl2-dev libsdl2-dev 
 
@@ -1441,15 +1443,15 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libjpeg-dev-3.1.1-1-x86_64.pkg.tar.zst
@@ -1457,7 +1459,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst 
           pacman -U *.zst --noconfirm        
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libsixel; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libsixel; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libsixel-dev libsixel 
 
@@ -1476,19 +1478,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libsoxr-dev; sudo -H -u builder makepkg-cross-$COMPILER 
+          cd libsoxr-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*} 
       - name: Release    
         run: ./release-dev.sh libsoxr-dev libsoxr-dev                   
 
@@ -1507,19 +1509,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libspeex-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libspeex-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libspeex-dev libspeex-dev 
 
@@ -1539,15 +1541,15 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
@@ -1556,7 +1558,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm                   
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libsrt-dev; sudo -H -u builder makepkg-cross-$COMPILER 
+          cd libsrt-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*} 
       - name: Release    
         run: ./release-dev.sh libsrt-dev libsrt-dev 
 
@@ -1576,15 +1578,15 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
@@ -1593,7 +1595,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm                   
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libssh-dev; sudo -H -u builder makepkg-cross-$COMPILER 
+          cd libssh-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*} 
       - name: Release    
         run: ./release-dev.sh libssh-dev libssh-dev 
 
@@ -1612,19 +1614,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libudfread-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libudfread-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libudfread-dev libudfread-dev
 
@@ -1643,19 +1645,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libunibreak-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libunibreak-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libunibreak-dev libunibreak-dev                             
 
@@ -1674,19 +1676,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libva-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libva-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release
         run: ./release-dev.sh libva-dev libva-dev
 
@@ -1706,21 +1708,21 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libogg-dev-1.3.6-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libvorbis_aotuv-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libvorbis_aotuv-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libvorbis_aotuv-dev libvorbis_aotuv-dev
 
@@ -1739,19 +1741,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libvpl-dev; sudo -H -u builder makepkg-cross-$COMPILER 
+          cd libvpl-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*} 
       - name: Release    
         run: ./release-dev.sh libvpl-dev libvpl-dev         
 
@@ -1770,19 +1772,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libvpx-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libvpx-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libvpx-dev libvpx-dev
 
@@ -1801,19 +1803,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libwebp-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libwebp-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libwebp-dev libwebp-dev
 
@@ -1833,15 +1835,15 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libiconv-dev-1.18-1-x86_64.pkg.tar.zst
@@ -1849,7 +1851,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst   
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libxml2-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libxml2-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libxml2-dev libxml2-dev
 
@@ -1868,19 +1870,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libxvid-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libxvid-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libxvid-dev libxvid-dev  
 
@@ -1899,19 +1901,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libzimg-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libzimg-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libzimg-dev libzimg-dev  
 
@@ -1931,15 +1933,15 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libiconv-dev-1.18-1-x86_64.pkg.tar.zst
@@ -1947,7 +1949,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst        
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libzvbi-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd libzvbi-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh libzvbi-dev libzvbi-dev
 
@@ -1967,21 +1969,21 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libiconv-dev-1.18-1-x86_64.pkg.tar.zst      
           pacman -U *.zst --noconfirm          
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd luajit2; sudo -H -u builder makepkg-cross-$COMPILER
+          cd luajit2; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh luajit2-dev luajit2
 
@@ -2000,19 +2002,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd lzo-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd lzo-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release
         run: ./release-dev.sh lzo-dev lzo-dev          
 
@@ -2051,15 +2053,15 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/amf-headers-dev-1.4.36-1-x86_64.pkg.tar.zst
@@ -2138,7 +2140,7 @@ jobs:
           pacman -U *.zst --noconfirm
           mkdir -p ${{ env.top_dir }}/ccache && cp ccache.conf ${{ env.top_dir }}/ccache
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd mpv; sudo -H -u builder makepkg-cross-$COMPILER
+          cd mpv; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release mpv and libmpv
         env:
           GH_TOKEN: ${{ secrets.BOT }}    
@@ -2160,19 +2162,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd mujs; sudo -H -u builder makepkg-cross-$COMPILER
+          cd mujs; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh mujs-dev mujs
 
@@ -2191,19 +2193,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd openal-soft-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd openal-soft-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh openal-soft-dev openal-soft-dev              
 
@@ -2223,15 +2225,15 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/brotli-dev-1.1.0-1-x86_64.pkg.tar.zst
@@ -2239,7 +2241,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst 
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd openssl-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd openssl-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh openssl-dev openssl-dev
 
@@ -2258,19 +2260,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd opus-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd opus-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh opus-dev opus-dev
 
@@ -2325,21 +2327,21 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt      
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}      
       - name: Build
         run: |
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libsamplerate-dev-0.2.2-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd rubberband; sudo -H -u builder makepkg-cross-$COMPILER
+          cd rubberband; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh rubberband-dev rubberband        
 
@@ -2358,22 +2360,22 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           curl -OL -f https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/shaderc-thinlto-2025.3-1-x86_64.pkg.tar.zst || true
           pacman -U *.zst --noconfirm || true
           mkdir -p ${{ env.top_dir }}/ccache && cp ccache.conf ${{ env.top_dir }}/ccache
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd shaderc-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd shaderc-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: |
           ./release-dev.sh shaderc-dev shaderc-dev
@@ -2393,19 +2395,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd spirv-cross-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd spirv-cross-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh spirv-cross-dev spirv-cross-dev
 
@@ -2424,19 +2426,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd svtav1-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd svtav1-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh svtav1-dev svtav1-dev
 
@@ -2455,19 +2457,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd uavs3d-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd uavs3d-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh uavs3d-dev uavs3d-dev        
 
@@ -2486,19 +2488,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd vapoursynth; sudo -H -u builder makepkg-cross-$COMPILER
+          cd vapoursynth; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh vapoursynth-dev vapoursynth
 
@@ -2517,19 +2519,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd vulkan-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd vulkan-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh vulkan-dev vulkan-dev
 
@@ -2548,19 +2550,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd vvdec-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd vvdec-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release
         run: ./release-dev.sh vvdec-dev vvdec-dev
 
@@ -2579,19 +2581,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd xxhash-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd xxhash-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh xxhash-dev xxhash-dev 
 
@@ -2610,19 +2612,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd xz-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd xz-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh xz-dev xz-dev
 
@@ -2641,19 +2643,19 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd zlib-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd zlib-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh zlib-dev zlib-dev
 
@@ -2672,18 +2674,18 @@ jobs:
         run: |
           useradd builder -m
           echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          install -m644 pacman-config/makepkg_cross_$COMPILER.conf /etc/
-          install -m755 pacman-config/makepkg-cross-$COMPILER /usr/bin/
+          install -m644 pacman-config/makepkg_cross_${COMPILER%%-*}.conf /etc/
+          install -m755 pacman-config/makepkg-cross-${COMPILER%%-*} /usr/bin/
       - name: Setting top_dir env
         run: echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
       - name: Loading ${{ inputs.compiler }}-${{ inputs.build_target }} cache
         uses: actions/cache@main
         with:
           path: ${{ env.top_dir }}/cross
-          key: ${{ inputs.compiler }}-${{ inputs.build_target }}-ucrt
+          key: ${{ inputs.compiler }}-${{ inputs.build_target }}
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd zstd-dev; sudo -H -u builder makepkg-cross-$COMPILER
+          cd zstd-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: ./release-dev.sh zstd-dev zstd-dev
