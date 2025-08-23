@@ -11,21 +11,24 @@ md5sums=('SKIP')
 
 build() {
   cd $srcdir/libbluray-$pkgver
-  NO_CONFLTO=1 ./configure \
-    --host=${TARGET_ARCH} \
-    --prefix=${MINGW_PREFIX} \
-    --disable-shared \
-    --disable-examples \
-    --disable-doxygen-doc \
-    --disable-bdjava-jar \
-    --without-libxml2 \
-    --without-fontconfig
-  make
+  sed -i '/find_library/d' meson.build
+  NO_CONFLTO=1 meson setup build \
+    --prefix="${MINGW_PREFIX}" \
+    --libdir=${MINGW_PREFIX}/lib \
+    --cross-file=../../../cross.meson \
+    --buildtype=release \
+    --default-library=static \
+    -Denable_tools=false \
+    -Dbdj_jar=disabled \
+    -Djava9=false \
+    -Dfreetype=enabled \
+    -Dlibxml2=enabled \
+    -Dc_args="-Ddec_init=libbluray_dec_init"
+  meson compile -C build
 }
 
 package() {
   cd $srcdir/libbluray-$pkgver
-  make DESTDIR=$pkgdir install
-  sed -i 's/Requires.private/Requires/' $pkgdir${MINGW_PREFIX}/lib/pkgconfig/*.pc
-  rm -rf $pkgdir${MINGW_PREFIX}/share $pkgdir${MINGW_PREFIX}/bin
+  DESTDIR=$pkgdir meson install -C build
+  sed -i 's/-lbluray/-lbluray -lgdi32/' $pkgdir${MINGW_PREFIX}/lib/pkgconfig/*.pc
 }
