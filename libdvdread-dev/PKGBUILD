@@ -6,22 +6,23 @@ arch=('x86_64')
 url="https://www.videolan.org/developers/libdvdnav.html"
 makedepends=('libdvdcss-dev')
 license=('GPL')
-source=("https://download.videolan.org/pub/videolan/libdvdread/$pkgver/libdvdread-$pkgver.tar.bz2")
+source=("git+https://code.videolan.org/videolan/libdvdread.git")
 md5sums=('SKIP')
 
 build() { 
-  cd $srcdir/libdvdread-$pkgver
-  NO_CONFLTO=1 ./configure \
-    --host=${TARGET_ARCH} \
-    --prefix=${MINGW_PREFIX} \
-    --disable-shared \
-    --with-libdvdcss
-  make
+  cd $srcdir/libdvdread
+  sed -i '/^if import/,/^endif/d' meson.build
+  NO_CONFLTO=1 meson setup build \
+    --prefix="${MINGW_PREFIX}" \
+    --libdir=${MINGW_PREFIX}/lib \
+    --cross-file=../../../cross.meson \
+    --buildtype=release \
+    --default-library=static \
+    -Dlibdvdcss=enabled
+  meson compile -C build
 }
 
 package() {
-  cd $srcdir/libdvdread-$pkgver
-  make DESTDIR=$pkgdir install
-  sed -i 's/Requires.private/Requires/' $pkgdir${MINGW_PREFIX}/lib/pkgconfig/*.pc
-  rm -rf $pkgdir${MINGW_PREFIX}/share
+  cd $srcdir/libdvdread
+  DESTDIR=$pkgdir meson install -C build
 }
