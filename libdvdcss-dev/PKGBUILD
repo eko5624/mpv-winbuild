@@ -5,21 +5,21 @@ pkgdesc='Portable abstraction library for DVD decryption'
 arch=('x86_64')
 url="https://www.videolan.org/developers/libdvdcss.html"
 license=('GPL')
-source=("https://download.videolan.org/pub/libdvdcss/$pkgver/libdvdcss-$pkgver.tar.bz2")
+source=("git+https://code.videolan.org/videolan/libdvdcss.git")
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/libdvdcss-$pkgver
-  NO_CONFLTO=1 ./configure \
-    --host=${TARGET_ARCH} \
-    --prefix=${MINGW_PREFIX} \
-    --disable-shared \
-    --disable-doc
-  make
+  cd $srcdir/libdvdcss
+  NO_CONFLTO=1 meson setup build \
+    --prefix="${MINGW_PREFIX}" \
+    --libdir=${MINGW_PREFIX}/lib \
+    --cross-file=../../../cross.meson \
+    --buildtype=release \
+    --default-library=static
+  meson compile -C build
 }
 
 package() {
-  cd $srcdir/libdvdcss-$pkgver
-  make DESTDIR=$pkgdir install
-  rm -rf $pkgdir${MINGW_PREFIX}/share
+  cd $srcdir/libdvdcss
+  DESTDIR=$pkgdir meson install -C build
 }
