@@ -55,7 +55,7 @@ jobs:
           key: clang-llvm-mingw-x86_64
 
       - name: Cache llvm-mingw-x86_64_v3
-        if: ${{ inputs.toolchain == 'clang-llvm-mingw-x86_64' }}
+        if: ${{ inputs.toolchain == 'clang-llvm-mingw-x86_64_v3' }}
         uses: actions/cache@main
         id: clang-llvm-mingw-x86_64_v3
         with:
