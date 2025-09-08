@@ -14,6 +14,7 @@ on:
         - clang-static-x86_64
         - clang-static-x86_64_v3        
         - clang-llvm-mingw-x86_64
+        - clang-llvm-mingw-x86_64_v3
   
 jobs:
   build:
@@ -70,7 +71,7 @@ jobs:
           key: rust-x86_64
 
       - name: Cache rust-x86_64_v3 cache
-        if: (inputs.toolchain == 'clang-static-x86_64_v3') || (inputs.toolchain == 'clang-llvm-mingw-x86_64_v3') || (inputs.toolchain == 'clang-llvm-mingw-x86_64')
+        if: (inputs.toolchain == 'clang-static-x86_64_v3') || (inputs.toolchain == 'clang-llvm-mingw-x86_64_v3')
         uses: actions/cache@main
         id: rust-x86_64_v3
         with:
@@ -96,7 +97,7 @@ jobs:
             rm cross*.tar.xz
           fi
       - name: Setup llvm-mingw-x86_64 Toolchain
-        if: ${{ inputs.toolchain == 'clang-llvm-mingw-x86_64' && steps.clang-llvm-mingw-x86_64.outputs.cache-hit != 'true' }}
+        if: (inputs.toolchain == 'clang-llvm-mingw-x86_64' && steps.clang-llvm-mingw-x86_64.outputs.cache-hit != 'true') || (inputs.toolchain == 'clang-llvm-mingw-x86_64_v3' && steps.clang-llvm-mingw-x86_64_v3.outputs.cache-hit != 'true')
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "cross/bin" ]]; then
@@ -121,7 +122,7 @@ jobs:
             rm rust*.7z
           fi
       - name: Setup rust-x86_64_v3 Toolchain
-        if: (inputs.toolchain == 'clang-static-x86_64_v3' || inputs.toolchain == 'clang-llvm-mingw-x86_64') && (steps.rust-x86_64_v3.outputs.cache-hit != 'true')
+        if: (inputs.toolchain == 'clang-static-x86_64_v3' || inputs.toolchain == 'clang-llvm-mingw-x86_64_v3') && (steps.rust-x86_64_v3.outputs.cache-hit != 'true')
         run: |
           cd ${{ env.top_dir }}
           if [[ ! -d "rust" ]]; then
