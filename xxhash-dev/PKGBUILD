@@ -5,7 +5,7 @@ pkgdesc='Extremely fast non-cryptographic hash algorithm'
 arch=('x86_64')
 url="https://github.com/Cyan4973/xxHash"
 license=('BSD')
-source=("git+https://github.com/Cyan4973/xxHash.git")
+source=("git+https://github.com/Cyan4973/xxHash.git#tag=v$pkgver")
 md5sums=('SKIP')
 
 build() {
