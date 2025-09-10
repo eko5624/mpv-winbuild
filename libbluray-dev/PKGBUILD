@@ -28,7 +28,7 @@ build() {
 }
 
 package() {
-  cd $srcdir/libbluray-$pkgver
+  cd $srcdir/libbluray
   DESTDIR=$pkgdir meson install -C build
   sed -i 's/-lbluray/-lbluray -lgdi32/' $pkgdir${MINGW_PREFIX}/lib/pkgconfig/*.pc
 }
