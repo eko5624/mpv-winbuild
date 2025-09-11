@@ -20,7 +20,8 @@ build() {
     -DALSOFT_UTILS=OFF \
     -DALSOFT_EXAMPLES=OFF \
     -DALSOFT_TESTS=OFF \
-    -DALSOFT_BACKEND_PIPEWIRE=OFF 
+    -DALSOFT_BACKEND_PIPEWIRE=OFF \
+    -DCMAKE_CXX_FLAGS='-include cstdlib
   cmake --build .
 }
 
