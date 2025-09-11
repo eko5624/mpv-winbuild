@@ -4,13 +4,13 @@ pkgrel=1
 pkgdesc='Library to access Blu-Ray disks for video playback'
 arch=('x86_64')
 url="https://www.videolan.org/developers/libbluray.html"
-makedepends=('freetype2-dev' 'libpng-dev' 'libudfread-dev' 'zlib-dev')
+makedepends=('freetype2-dev' 'libpng-dev' 'libudfread-dev' 'libxml2-dev' 'zlib-dev')
 license=('GPL')
-source=("https://download.videolan.org/pub/videolan/libbluray/$pkgver/libbluray-$pkgver.tar.bz2")
+source=("git+https://code.videolan.org/videolan/libbluray.git")
 md5sums=('SKIP')
 
 build() {
-  cd $srcdir/libbluray-$pkgver
+  cd $srcdir/libbluray
   sed -i '/find_library/d' meson.build
   NO_CONFLTO=1 meson setup build \
     --prefix="${MINGW_PREFIX}" \
@@ -28,7 +28,7 @@ build() {
 }
 
 package() {
-  cd $srcdir/libbluray-$pkgver
+  cd $srcdir/libbluray
   DESTDIR=$pkgdir meson install -C build
   sed -i 's/-lbluray/-lbluray -lgdi32/' $pkgdir${MINGW_PREFIX}/lib/pkgconfig/*.pc
 }
