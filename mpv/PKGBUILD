@@ -1,4 +1,4 @@
-pkgname=(libmpv-git mpv-git $([[ "$CLANG_PACKAGES_LTO" == "ON" ]] && echo "mpv-thinlto"))
+pkgname=(mpv-dev libmpv-git mpv-git)
 pkgver=0.40.0
 pkgrel=1
 pkgdesc='a free, open source, and cross-platform media player'
@@ -44,7 +44,6 @@ build() {
     -Dlibmpv=true \
     -Dlua=enabled \
     -Djavascript=enabled \
-    -Dsdl2=enabled \
     -Dlibarchive=enabled \
     -Dlibbluray=enabled \
     -Ddvdnav=enabled \
@@ -60,6 +59,11 @@ build() {
   # get latest commit sha
   short_sha=$(git rev-parse --short HEAD)
   echo $short_sha > SHORT_SHA
+}
+
+package_mpv-dev() {
+  cd $srcdir/mpv
+  DESTDIR=$pkgdir meson install -C build
 }
 
 package_libmpv-git() {
@@ -83,10 +87,4 @@ package_mpv-git() {
   mv mpv.com $pkgdir${MINGW_PREFIX}/mpv
   ${TARGET_ARCH}-strip -s $pkgdir${MINGW_PREFIX}/mpv/mpv.*
   mv ../SHORT_SHA $pkgdir${MINGW_PREFIX}/mpv
-}
-
-package_mpv-thinlto() {
-  export PKGEXT='.pkg.tar.zst'
-  mkdir -p $pkgdir${TOP_DIR}
-  mv ${TOP_DIR}/thinlto $pkgdir${TOP_DIR}
 }

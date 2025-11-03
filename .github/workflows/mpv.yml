@@ -126,9 +126,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/xz-dev-5.8.1-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.2.5-1-x86_64.pkg.tar.zst
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
-          curl -OL -f https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/mpv-thinlto-0.40.0-1-x86_64.pkg.tar.zst || true
           pacman -U *.zst --noconfirm
-          mkdir -p ${{ env.top_dir }}/ccache && cp ccache.conf ${{ env.top_dir }}/ccache
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd mpv; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release mpv and libmpv
@@ -136,7 +134,6 @@ jobs:
           GH_TOKEN: ${{ secrets.BOT }}    
         run: |
           ./release-latest.sh mpv mpv
-          ./release-dev.sh mpv-thinlto mpv || true
 
   package:
     needs: [mpv]
@@ -158,6 +155,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/ffmpeg-git-8.0-1-x86_64.pkg.tar.xz
           curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/libmpv-git-0.40.0-1-x86_64.pkg.tar.xz
           curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/mpv-git-0.40.0-1-x86_64.pkg.tar.xz
+          curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/mpv-menu-plugin-2.4.1-1-x86_64.pkg.tar.xz
           pacman -U *.xz --noconfirm
       - name: Get ffmpeg latest commit sha
         run: echo "ffmpeg_sha=$(cat ${{ env.top_dir }}/opt/ffmpeg/SHORT_SHA)" >> $GITHUB_ENV
@@ -167,8 +165,16 @@ jobs:
         run: |
           curl -OL https://github.com/yt-dlp/yt-dlp/releases/download/2025.09.05/yt-dlp.exe
           mv yt-dlp.exe ${{ env.top_dir }}/opt/mpv
+          mkdir -p ${{ env.top_dir }}/opt/mpv-menu-plugin
+          mv ${{ env.top_dir }}/opt/dialog.lua ${{ env.top_dir }}/opt/mpv-menu-plugin
+          mv ${{ env.top_dir }}/opt/dyn_menu.lua ${{ env.top_dir }}/opt/mpv-menu-plugin
+          mv ${{ env.top_dir }}/opt/menu.dll ${{ env.top_dir }}/opt/mpv-menu-plugin
+          cp ${{ env.top_dir }}/opt/mpv-menu-plugin/dialog.lua ${{ env.top_dir }}/opt/mpv/portable_config/scripts
+          cp ${{ env.top_dir }}/opt/mpv-menu-plugin/dyn_menu.lua ${{ env.top_dir }}/opt/mpv/portable_config/scripts
+          cp ${{ env.top_dir }}/opt/mpv-menu-plugin/menu.dll ${{ env.top_dir }}/opt/mpv/portable_config/scripts
           7z a mpv-$COMPILER-$BIT.7z ${{ env.top_dir }}/opt/mpv/*
           7z a libmpv-$COMPILER-$BIT.7z ${{ env.top_dir }}/opt/libmpv/*
           7z a ffmpeg-$COMPILER-$BIT-${{ env.ffmpeg_sha }}.7z ${{ env.top_dir }}/opt/ffmpeg/*
+          7z a mpv-menu-plugin-$BIT.7z ${{ env.top_dir }}/opt/mpv-menu-plugin/*
       - name: Release
         run: ./release-package.sh

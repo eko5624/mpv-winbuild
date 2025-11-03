@@ -1,4 +1,4 @@
-pkgname=(shaderc-dev $([[ "$CLANG_PACKAGES_LTO" == "ON" ]] && echo "shaderc-thinlto"))
+pkgname=shaderc-dev
 pkgver=2025.3
 pkgrel=1
 pkgdesc='Collection of tools, libraries and tests for shader compilation'
@@ -49,9 +49,4 @@ package_shaderc-dev () {
   cp -r libshaderc_util/include/libshaderc_util $pkgdir${MINGW_PREFIX}/include
   cp build/libshaderc/libshaderc_combined.a $pkgdir${MINGW_PREFIX}/lib
   cp build/shaderc_combined.pc $pkgdir${MINGW_PREFIX}/lib/pkgconfig/shaderc.pc
-}
-
-package_shaderc-thinlto() {
-  mkdir -p $pkgdir${TOP_DIR}
-  mv ${TOP_DIR}/thinlto $pkgdir${TOP_DIR}
 }

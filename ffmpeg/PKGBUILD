@@ -1,4 +1,4 @@
-pkgname=(ffmpeg-dev ffmpeg-git $([[ "$CLANG_PACKAGES_LTO" == "ON" ]] && echo "ffmpeg-thinlto"))
+pkgname=(ffmpeg-dev ffmpeg-git)
 pkgver=8.0
 pkgrel=1
 pkgdesc='Complete and free Internet live audio and video solution'
@@ -149,10 +149,4 @@ package_ffmpeg-git() {
   short_sha=$(git rev-parse --short HEAD)
   echo $short_sha > SHORT_SHA
   mv SHORT_SHA $pkgdir${MINGW_PREFIX}/ffmpeg
-}
-
-package_ffmpeg-thinlto() {
-  export PKGEXT='.pkg.tar.zst'
-  mkdir -p $pkgdir${TOP_DIR}
-  mv ${TOP_DIR}/thinlto $pkgdir${TOP_DIR}
 }

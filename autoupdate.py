@@ -6,11 +6,9 @@ resp = request.urlopen('https://github.com/eko5624/nginx-nosni/raw/master/old.js
 x = json.loads(resp.read().decode('utf-8'))
 x = dict(map(lambda p: (p, x['data'][p]['version']), x['data'].keys()))
     
-pkgs = {} 
-curl = x['curl']
-pkgs['libsixel'] = x['libsixel']     
+pkgs = {}   
 pkgs['vapoursynth'] = x['VapourSynth'][1:]
-for p in ['curl', 'mpv', 'ffmpeg', 'luajit2', 'mujs', 'rubberband']:
+for p in ['curl', 'mpv', 'ffmpeg', 'libsixel', 'luajit2', 'mpv-menu-plugin', 'mujs', 'rubberband']:
   pkgs['%s' % p] = x[p]
 pkgs['libvorbis_aotuv-dev'] = x['libvorbis']
 for p in [
@@ -99,6 +97,7 @@ pkgs['ffmpeg-dev'] = x['ffmpeg']
 pkgs['ffmpeg-git'] = x['ffmpeg']
 pkgs['ffmpeg-thinlto'] = x['ffmpeg']
 pkgs['libmpv-git'] = x['mpv']
+pkgs['mpv-dev'] = x['mpv']
 pkgs['mpv-git'] = x['mpv']
 pkgs['mpv-thinlto'] = x['mpv']
 pkgs['shaderc-thinlto'] = x['shaderc']

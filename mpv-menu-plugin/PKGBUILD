@@ -1,0 +1,29 @@
+pkgname=mpv-menu-plugin
+pkgver=2.4.1
+pkgrel=1
+pkgdesc='context menu, file dialog, clipboard support for mpv'
+arch=('x86_64')
+url="https://github.com/tsl0922/mpv-menu-plugin"
+makedepends=("mpv-dev")
+license=('MIT')
+source=("git+https://github.com/tsl0922/mpv-menu-plugin")
+md5sums=('SKIP')
+
+build() {
+  cd $srcdir/mpv-menu-plugin
+  rm -rf build && mkdir build && cd build
+  NO_CONFLTO=1 cmake .. \
+    -G "Ninja" \
+    -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
+    -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_SHARED_LIBS=OFF \
+    -DBUILD_TESTING=OFF
+  cmake --build .
+}  
+  
+package() {
+  export PKGEXT='.pkg.tar.xz'
+  cd $srcdir/mpv-menu-plugin/build
+  DESTDIR=$pkgdir cmake --install .
+  cp ../src/lua/* "${MINGW_PREFIX}"
