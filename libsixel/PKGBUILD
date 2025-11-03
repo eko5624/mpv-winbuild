@@ -10,6 +10,7 @@ source=("git+https://github.com/libsixel/libsixel")
 md5sums=('SKIP')
 
 build() {
+  CFLAGS+=" -Wno-implicit-function-declaration"
   cd $srcdir/libsixel   
   NO_CONFLTO=1 meson setup build \
     --prefix="${MINGW_PREFIX}" \
