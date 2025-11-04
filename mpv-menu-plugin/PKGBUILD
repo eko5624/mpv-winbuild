@@ -26,4 +26,5 @@ package() {
   export PKGEXT='.pkg.tar.xz'
   cd $srcdir/mpv-menu-plugin/build
   DESTDIR=$pkgdir cmake --install .
-  cp ../src/lua/* "${MINGW_PREFIX}"
+  cp ../src/lua/* $pkgdir${MINGW_PREFIX}
+}
