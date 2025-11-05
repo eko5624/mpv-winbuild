@@ -43,7 +43,7 @@ build() {
     --cross-file=../../../cross.meson \
     -Dlua=enabled \
     -Djavascript=enabled \
-    -Dsdl2=enabled \
+    -Dsdl2-gamepad=enabled \
     -Dlibarchive=enabled \
     -Dlibbluray=enabled \
     -Ddvdnav=enabled \
