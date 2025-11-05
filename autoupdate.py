@@ -7,7 +7,7 @@ x = json.loads(resp.read().decode('utf-8'))
 x = dict(map(lambda p: (p, x['data'][p]['version']), x['data'].keys()))
 
 pkgs = {}
-for p in ['mpv', 'ffmpeg', 'luajit2']:
+for p in ['mpv-menu-plugin', 'mpv', 'ffmpeg', 'luajit2']:
   pkgs['%s' % p] = x[p]
 for p in [
   'aom',

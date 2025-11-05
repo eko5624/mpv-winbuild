@@ -295,6 +295,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/ffmpeg-shared-7.1.1-1-x86_64.pkg.tar.xz
           curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/luajit2-shared-2.1_20250529-1-x86_64.pkg.tar.xz
           curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/mpv-shared-0.40.0-1-x86_64.pkg.tar.xz
+          curl -OL https://github.com/${{ github.repository }}/releases/download/latest-$COMPILER-$BIT/mpv-menu-plugin-2.4.1-1-x86_64.pkg.tar.xz
           pacman -U *.xz --noconfirm
       - name: Get current timestamp
         run: echo "date=$(date +%Y%m%d)" >> $GITHUB_ENV
@@ -303,6 +304,9 @@ jobs:
           curl -OL https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe
           mv ${{ env.top_dir }}/opt/mpv/* ${{ env.top_dir }}/opt/bin
           mv yt-dlp.exe ${{ env.top_dir }}/opt/bin
+          mv ${{ env.top_dir }}/opt/dialog.lua ${{ env.top_dir }}/opt/bin/portable_config/scripts
+          mv ${{ env.top_dir }}/opt/dyn_menu.lua ${{ env.top_dir }}/opt/bin/portable_config/scripts
+          mv ${{ env.top_dir }}/opt/menu.dll ${{ env.top_dir }}/opt/bin/portable_config/scripts
           7z a shared-mpv-$BIT-$COMPILER.7z ${{ env.top_dir }}/opt/bin/*
       - name: Release
         run: ./release-package.sh
