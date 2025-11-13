@@ -5,12 +5,12 @@ pkgdesc='A high quality MPEG Audio Layer III (MP3) encoder'
 arch=('x86_64')
 url="http://lame.sourceforge.net/"
 license=('LGPL')
-source=("http://downloads.sourceforge.net/lame/lame-$pkgver.tar.gz")
+source=("git+https://github.com/eko5624/lame.git")
 md5sums=('SKIP')
 
 build() {
   export CFLAGS+=" -msse2"
-  cd $srcdir/lame-$pkgver
+  cd $srcdir/lame
   NO_CONFLTO=1 ./configure \
     --host=${TARGET_ARCH} \
     --prefix=${MINGW_PREFIX} \
@@ -20,7 +20,7 @@ build() {
 }
 
 package() {
-  cd $srcdir/lame-$pkgver
+  cd $srcdir/lame
   make DESTDIR=$pkgdir install
   rm -rf $pkgdir${MINGW_PREFIX}/share
 }
