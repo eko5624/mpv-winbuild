@@ -24,6 +24,7 @@ makedepends=("libjpeg-dev"
              "libplacebo-dev"
              "shaderc-dev"
              "spirv-cross-dev"
+             "subrandr-dev"
              "vapoursynth-dev"
              "vulkan-dev"
              "zlib-dev")
@@ -45,6 +46,7 @@ build() {
     -Dlua=enabled \
     -Djavascript=enabled \
     -Dsdl2-gamepad=enabled \
+    -Dsubrandr=enabled \
     -Dlibarchive=enabled \
     -Dlibbluray=enabled \
     -Ddvdnav=enabled \
