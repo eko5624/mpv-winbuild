@@ -6,11 +6,13 @@ arch=('x86_64')
 url="https://www.openssl.org/"
 makedepends=('brotli-dev' 'zlib-dev' 'zstd-dev')
 license=('spdx:Apache-2.0')
-source=("git+https://github.com/openssl/openssl.git")
-md5sums=('SKIP')
+source=("git+https://github.com/openssl/openssl.git"
+        "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/refs/heads/master/packages/openssl-0001-workaround-missing-flag-in-mingw.patch")
+md5sums=('SKIP' 'SKIP')
 
 build() {
   cd $srcdir/openssl
+  patch -p1 -i $srcdir/openssl-0001-workaround-missing-flag-in-mingw.patch
   NO_CONFLTO=1 ./Configure \
     --cross-compile-prefix=${TARGET_ARCH}- \
     --prefix=${MINGW_PREFIX} \
