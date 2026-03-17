@@ -2489,6 +2489,7 @@ jobs:
         run: ./release-dev.sh spirv-cross-dev spirv-cross-dev
 
   subrandr:
+    needs: [freetype2, harfbuzz]
     runs-on: ubuntu-latest
     env:
       COMPILER: ${{ inputs.compiler }}
@@ -2519,6 +2520,11 @@ jobs:
           key: rust-${{ inputs.build_target }}
       - name: Build
         run: |
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/libpng-dev-1.6.55-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/freetype2-dev-2_14_2-1-x86_64.pkg.tar.zst
+          curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/harfbuzz-dev-13.1.1-1-x86_64.pkg.tar.zst
+          pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
           cd subrandr-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
