@@ -6,7 +6,7 @@ arch=('x86_64')
 url="https://www.openssl.org/"
 makedepends=('brotli-dev' 'zlib-dev' 'zstd-dev')
 license=('spdx:Apache-2.0')
-source=("git+https://github.com/openssl/openssl.git"
+source=("git+https://github.com/openssl/openssl.git#tag=openssl-$pkgver"
         "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/refs/heads/master/packages/openssl-0001-workaround-missing-flag-in-mingw.patch")
 md5sums=('SKIP' 'SKIP')
 
