@@ -33,7 +33,7 @@ source=("git+https://github.com/mpv-player/mpv.git")
 md5sums=('SKIP')
 
 build() {
-  LDFLAGS+=" -static"
+  LDFLAGS+=" -luserenv"
   cd $srcdir/mpv
   NO_CONFLTO=1 meson setup build \
     --prefix="${MINGW_PREFIX}" \
