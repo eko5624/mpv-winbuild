@@ -24,6 +24,7 @@ makedepends=("libjpeg-dev"
              "libplacebo-shared-dev"
              "shaderc-dev"
              "spirv-cross-dev"
+             "subrandr-dev"
              "vapoursynth-dev"
              "vulkan-shared-dev"
              "zlib-dev")
@@ -35,7 +36,7 @@ build() {
   eval "${mpv_pkgconf}"
   eval "${mpv_ldflags}"
   #fix undefined symbol errors when linking libarchive
-  export LDFLAGS+=' -static-libgcc -lbz2 -llzma -lzstd'
+  export LDFLAGS+=' -static-libgcc -lbz2 -llzma -lzstd -luserenv -lws2_32'
   cd $srcdir/mpv
   NO_CONFLTO=1 meson setup build \
     --prefix="${MINGW_PREFIX}" \
@@ -51,6 +52,7 @@ build() {
     -Dlcms2=enabled \
     -Dopenal=enabled \
     -Dspirv-cross=enabled \
+    -Dsubrandr=enabled \
     -Dvulkan=enabled \
     -Dvapoursynth=enabled \
     -Degl-angle=enabled
