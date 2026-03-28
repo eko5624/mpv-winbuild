@@ -17,6 +17,7 @@ build() {
     --cross-file=../../../cross.meson \
     --buildtype=release \
     --default-library=static \
+    -Dutilities=disabled \
     -Dtests=disabled \
     -Ddocs=disabled \
     -Dbenchmark=disabled
