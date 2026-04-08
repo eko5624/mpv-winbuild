@@ -1,5 +1,5 @@
 pkgname=vapoursynth-dev
-pkgver=73
+pkgver=74
 pkgrel=1
 pkgdesc='A video processing framework with the future in mind'
 arch=('x86_64')
@@ -13,13 +13,14 @@ package() {
   set -x
   #cp ../*.def ./
   7z x wheel/*cp312*
-  find . -type f -name "vapoursynth.dll" -print0 | xargs -0 -I {} cp {} ./VapourSynth.dll
+  find . -type f -name "libvapoursynth.dll" -print0 | xargs -0 -I {} cp {} ./VapourSynth.dll
+  find . -type f -name "vsscript.dll" -print0 | xargs -0 -I {} cp {} ./VSScript.dll
   gendef VSScript.dll
   gendef VapourSynth.dll
   eval "${vapoursynth_generate_lib}"
   mkdir -p $pkgdir${MINGW_PREFIX}/lib/pkgconfig
   mkdir -p $pkgdir${MINGW_PREFIX}/include/vapoursynth
-  mv sdk/include/vapoursynth $pkgdir${MINGW_PREFIX}/include
+  find . -type f -name "*.h" -print0 | xargs -0 -I {} cp {} $pkgdir${MINGW_PREFIX}/include/vapoursynth
   cp ${vsscript_lib} $pkgdir${MINGW_PREFIX}/lib
   cp ${vapoursynth_lib} $pkgdir${MINGW_PREFIX}/lib
   cp ../*.pc $pkgdir${MINGW_PREFIX}/lib/pkgconfig
