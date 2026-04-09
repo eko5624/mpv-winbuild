@@ -108,7 +108,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd ffmpeg; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
+          cd ffmpeg; sudo -H -E -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release
         run: |
           ./release-latest.sh ffmpeg-shared ffmpeg
@@ -150,7 +150,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zlib-dev-2.3.3-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm 
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd libplacebo-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
+          cd libplacebo-dev; sudo -H -E -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release  
         run: ./release-dev.sh libplacebo-shared-dev libplacebo-dev
 
@@ -181,7 +181,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd luajit2; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
+          cd luajit2; sudo -H -E -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release    
         run: |
           ./release-latest.sh luajit2-shared luajit2
@@ -261,7 +261,7 @@ jobs:
           curl -OL https://github.com/${{ github.repository }}/releases/download/dev-$COMPILER-$BIT/zstd-dev-1.5.7-1-x86_64.pkg.tar.zst
           pacman -U *.zst --noconfirm
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd mpv; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
+          cd mpv; sudo -H -E -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release
         run: ./release-latest.sh mpv-shared mpv
 
@@ -335,7 +335,7 @@ jobs:
       - name: Build
         run: |
           sudo chmod 777 -R ${{ env.top_dir }} .
-          cd vulkan-dev; sudo -H -u builder makepkg-cross-${COMPILER%%-*}
+          cd vulkan-dev; sudo -H -E -u builder makepkg-cross-${COMPILER%%-*}
       - name: Release   
         run: ./release-dev.sh vulkan-shared-dev vulkan-dev
     
