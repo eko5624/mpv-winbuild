@@ -1,0 +1,132 @@
+name: Cache Clang Toolchain
+defaults:
+  run:
+    shell: bash
+on:
+  workflow_dispatch:
+    inputs:
+      toolchain:
+        description: "toolchain"
+        required: false
+        default: "clang-static-x86_64"
+        type: choice
+        options:
+        - clang-static-x86_64
+        - clang-static-x86_64_v3        
+        - clang-llvm-mingw-x86_64
+        - clang-llvm-mingw-x86_64_v3
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux/archlinux:base-devel
+    steps:    
+      - name: Install Dependencies
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm --needed git unzip p7zip curl jq                   
+      - name: Setting top_dir env
+        run: |
+           echo "top_dir=$(cd ~ && pwd)" >> $GITHUB_ENV
+
+      - name: Cache clang-static-x86_64
+        if: ${{ inputs.toolchain == 'clang-static-x86_64' }}
+        uses: actions/cache@main
+        id: clang-static-x86_64
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: clang-static-x86_64
+
+      - name: Cache clang-static-x86_64_v3
+        if: ${{ inputs.toolchain == 'clang-static-x86_64_v3' }}
+        uses: actions/cache@main
+        id: clang-static-x86_64_v3
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: clang-static-x86_64_v3
+
+      - name: Cache llvm-mingw-x86_64
+        if: (inputs.toolchain == 'clang-llvm-mingw-x86_64') || (inputs.toolchain == 'clang-llvm-mingw-x86_64_v3')
+        uses: actions/cache@main
+        id: clang-llvm-mingw-x86_64
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: clang-llvm-mingw-x86_64
+
+      - name: Cache llvm-mingw-x86_64_v3
+        if: (inputs.toolchain == 'clang-llvm-mingw-x86_64') || (inputs.toolchain == 'clang-llvm-mingw-x86_64_v3')
+        uses: actions/cache@main
+        id: clang-llvm-mingw-x86_64_v3
+        with:
+          path: ${{ env.top_dir }}/cross
+          key: clang-llvm-mingw-x86_64_v3
+
+      - name: Cache rust-x86_64 cache
+        if: (inputs.toolchain == 'clang-static-x86_64') || (inputs.toolchain == 'clang-llvm-mingw-x86_64')
+        uses: actions/cache@main
+        id: rust-x86_64
+        with:
+          path: ${{ env.top_dir }}/rust
+          key: rust-x86_64
+
+      - name: Cache rust-x86_64_v3 cache
+        if: (inputs.toolchain == 'clang-static-x86_64_v3') || (inputs.toolchain == 'clang-llvm-mingw-x86_64_v3')
+        uses: actions/cache@main
+        id: rust-x86_64_v3
+        with:
+          path: ${{ env.top_dir }}/rust
+          key: rust-x86_64_v3
+
+      - name: Setup clang-static-x86_64 Toolchain
+        if: ${{ inputs.toolchain == 'clang-static-x86_64' && steps.clang-static-x86_64.outputs.cache-hit != 'true' }} 
+        run: |
+          cd ${{ env.top_dir }}
+          if [[ ! -d "cross/bin" ]]; then
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-clang-pgo-latest-ucrt-x86_64.tar.xz
+            tar -Jxf cross*.tar.xz
+            rm cross*.tar.xz
+          fi
+      - name: Setup clang-static-x86_64_v3 Toolchain
+        if: ${{ inputs.toolchain == 'clang-static-x86_64_v3' && steps.clang-static-x86_64_v3.outputs.cache-hit != 'true' }}
+        run: |
+          cd ${{ env.top_dir }}
+          if [[ ! -d "cross/bin" ]]; then
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/cross-llvm-clang-pgo-latest-ucrt-x86_64_v3.tar.xz
+            tar -Jxf cross*.tar.xz
+            rm cross*.tar.xz
+          fi
+      - name: Setup llvm-mingw-x86_64 Toolchain
+        if: (inputs.toolchain == 'clang-llvm-mingw-x86_64' && steps.clang-llvm-mingw-x86_64.outputs.cache-hit != 'true') || (inputs.toolchain == 'clang-llvm-mingw-x86_64_v3' && steps.clang-llvm-mingw-x86_64_v3.outputs.cache-hit != 'true')
+        run: |
+          cd ${{ env.top_dir }}
+          if [[ ! -d "cross/bin" ]]; then
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/llvm-mingw-latest-ucrt-linux-x86_64.tar.xz
+            tar -Jxf llvm-mingw*.tar.xz
+            find cross/x86_64-w64-mingw32/lib -maxdepth 1 -type f -name "*.dll.a" -print0 | xargs -0 -I {} rm {}
+            pushd cross/bin
+            for arch in armv7 aarch64 x86_64; do
+              ln -s $(which pkgconf) $arch-w64-mingw32-pkg-config
+              ln -s $(which pkgconf) $arch-w64-mingw32-pkgconf
+            done
+            popd
+            rm llvm-mingw*.tar.xz
+          fi
+      - name: Setup rust-x86_64 Toolchain
+        if: (inputs.toolchain == 'clang-static-x86_64' || inputs.toolchain == 'clang-llvm-mingw-x86_64') && (steps.rust-x86_64.outputs.cache-hit != 'true')
+        run: |
+          cd ${{ env.top_dir }}
+          if [[ ! -d "rust" ]]; then
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/rust-x86_64-latest.7z
+            7z x rust*.7z
+            rm rust*.7z
+          fi
+      - name: Setup rust-x86_64_v3 Toolchain
+        if: (inputs.toolchain == 'clang-static-x86_64_v3' || inputs.toolchain == 'clang-llvm-mingw-x86_64_v3') && (steps.rust-x86_64_v3.outputs.cache-hit != 'true')
+        run: |
+          cd ${{ env.top_dir }}
+          if [[ ! -d "rust" ]]; then
+            curl -OL https://github.com/eko5624/toolchain/releases/download/toolchain/rust-x86_64_v3-latest.7z
+            7z x rust*.7z
+            rm rust*.7z
+          fi
