@@ -1,5 +1,4 @@
-# Maintainer: nyfair <nyfair2012@gmail.com>
-pkgname=vulkan-shared-dev
+pkgname=vulkan-dev
 pkgver=1.4.309.0
 pkgrel=1
 pkgdesc='Vulkan Header and Loader'
@@ -7,13 +6,14 @@ arch=('x86_64')
 url="https://www.khronos.org/vulkan/"
 license=('APACHE')
 source=("git+https://github.com/KhronosGroup/Vulkan-Headers"
-        "git+https://github.com/KhronosGroup/Vulkan-Loader")
-md5sums=('SKIP' 'SKIP')
+        "git+https://github.com/KhronosGroup/Vulkan-Loader"
+        "https://raw.githubusercontent.com/shinchiro/mpv-winbuild-cmake/master/packages/vulkan-0001-cross-compile-static-linking-hacks.patch")
+md5sums=('SKIP' 'SKIP' 'SKIP')
 
 build() {
-  export CFLAGS+=" -D__STDC_FORMAT_MACROS -Wno-unused-function"
+  export CFLAGS+=" -D__STDC_FORMAT_MACROS -DSTRSAFE_NO_DEPRECATE -Dparse_number=cjson_parse_number"
   export CPPFLAGS+=" -D__STDC_FORMAT_MACROS"
-  export CXXFLAGS+=" -D__USE_MINGW_ANSI_STDIO -D__STDC_FORMAT_MACROS -fpermissive -Wno-unused-function"
+  export CXXFLAGS+=" -D__STDC_FORMAT_MACROS -fpermissive"
 
   cd $srcdir/Vulkan-Headers
   rm -rf build && mkdir build && cd build
@@ -21,16 +21,12 @@ build() {
     -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
-    -DCMAKE_BUILD_TYPE=Release
+    -DCMAKE_BUILD_TYPE=Release \
+    -DVULKAN_HEADERS_ENABLE_MODULE=OFF
   cmake --install . --prefix=$srcdir/opt
 
   cd $srcdir/Vulkan-Loader
-
-  # skip rc info and use vulkan-1.dll from your graphic driver
-  sed -i "/loader.rc/d" loader/CMakeLists.txt
-  sed -i "/RC_FILE_LOCATION/d" loader/CMakeLists.txt
-  sed -i "s/-1.def/-1.def)/" loader/CMakeLists.txt
-
+  patch -p1 -i $srcdir/vulkan-0001-cross-compile-static-linking-hacks.patch
   rm -rf build && mkdir build && cd build
   NO_CONFLTO=1 cmake .. \
     -G "Ninja" \
@@ -38,17 +34,19 @@ build() {
     -DCMAKE_TOOLCHAIN_FILE=../../../toolchain.cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DVULKAN_HEADERS_INSTALL_DIR="${srcdir}/opt" \
-    -DUSE_GAS=ON \
     -DBUILD_TESTS=OFF \
+    -DENABLE_WERROR=OFF \
     -DUSE_MASM=OFF \
-    -DENABLE_WERROR=OFF
+    -DUSE_GAS=ON \
+    -DBUILD_STATIC_LOADER=ON
   cmake --build .
 }
 
 package() {
+  mkdir -p $pkgdir${MINGW_PREFIX}/lib/pkgconfig
   cd $srcdir/Vulkan-Headers/build
   DESTDIR=$pkgdir cmake --install .
   cd $srcdir/Vulkan-Loader/build
-  DESTDIR=$pkgdir cmake --install .
-  strip $pkgdir${MINGW_PREFIX}/bin/vulkan*.dll
+  cp loader/libvulkan.a $pkgdir${MINGW_PREFIX}/lib
+  cp loader/vulkan_own.pc $pkgdir${MINGW_PREFIX}/lib/pkgconfig/vulkan.pc
 }
