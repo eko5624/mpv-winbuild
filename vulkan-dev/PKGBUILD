@@ -51,19 +51,4 @@ package() {
   cd $srcdir/Vulkan-Loader/build
   DESTDIR=$pkgdir cmake --install .
   strip $pkgdir${MINGW_PREFIX}/bin/vulkan*.dll
-}    -DBUILD_TESTS=OFF \
-    -DENABLE_WERROR=OFF \
-    -DUSE_MASM=OFF \
-    -DUSE_GAS=ON \
-    -DBUILD_STATIC_LOADER=ON
-  cmake --build .
-}
-
-package() {
-  mkdir -p $pkgdir${MINGW_PREFIX}/lib/pkgconfig
-  cd $srcdir/Vulkan-Headers/build
-  DESTDIR=$pkgdir cmake --install .
-  cd $srcdir/Vulkan-Loader/build
-  cp loader/libvulkan.a $pkgdir${MINGW_PREFIX}/lib
-  cp loader/vulkan_own.pc $pkgdir${MINGW_PREFIX}/lib/pkgconfig/vulkan.pc
 }
