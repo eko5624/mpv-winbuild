@@ -15,7 +15,7 @@ build() {
     -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX="${MINGW_PREFIX}" \
     -DCMAKE_FIND_ROOT_PATH="${MINGW_PREFIX}" \
-    -DCMAKE_TOOLCHAIN_FILE=../build/cmake/toolchains/x86_64-mingw-gcc.cmake \
+    -DCMAKE_TOOLCHAIN_FILE=../cmake/toolchains/x86_64-mingw-gcc.cmake \
     -DBUILD_SHARED_LIBS=OFF \
     -DENABLE_EXAMPLES=OFF \
     -DENABLE_DOCS=OFF \
