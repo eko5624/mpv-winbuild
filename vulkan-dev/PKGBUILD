@@ -36,7 +36,6 @@ build() {
     -DVULKAN_HEADERS_INSTALL_DIR="${srcdir}/opt" \
     -DBUILD_TESTS=OFF \
     -DENABLE_WERROR=OFF \
-    -DUSE_MASM=OFF \
     -DUSE_GAS=ON \
     -DBUILD_STATIC_LOADER=ON
   cmake --build .
