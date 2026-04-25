@@ -2001,6 +2001,7 @@ jobs:
       - mujs
       - rubberband
       - spirv-cross
+      - subrandr
       - vulkan
     runs-on: ubuntu-latest
     env:
