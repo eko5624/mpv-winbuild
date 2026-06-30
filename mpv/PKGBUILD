@@ -34,7 +34,7 @@ md5sums=('SKIP')
 
 build() {
   eval "${mpv_ldflags}"
-  LDFLAGS+=" -luserenv"
+  LDFLAGS+=" -Wl,--allow-multiple-definition -luserenv"
   cd $srcdir/mpv
   NO_CONFLTO=1 meson setup build \
     --prefix="${MINGW_PREFIX}" \
