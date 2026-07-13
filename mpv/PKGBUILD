@@ -68,7 +68,7 @@ build() {
 package_mpv-dev() {
   cd $srcdir/mpv
   # fix unable to view large images
-  curl-OL https://patch-diff.githubusercontent.com/raw/mpv-player/mpv/pull/17826.patch
+  curl -OL https://patch-diff.githubusercontent.com/raw/mpv-player/mpv/pull/17826.patch
   patch -p1 -i 17826.patch
   DESTDIR=$pkgdir meson install -C build
 }
