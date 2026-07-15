@@ -103,7 +103,6 @@ package_ffmpeg-dev() {
     --enable-libopus \
     --enable-libplacebo \
     --enable-libsvtav1 \
-    --enable-libshaderc \
     --enable-libsoxr \
     --enable-libspeex \
     --enable-libsrt \
