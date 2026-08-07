@@ -140,6 +140,7 @@ package_ffmpeg-git() {
   rm -rf $pkgdir${MINGW_PREFIX}/bin/*.lib $pkgdir${MINGW_PREFIX}/share $pkgdir${MINGW_PREFIX}/include $pkgdir${MINGW_PREFIX}/lib
   strip $pkgdir${MINGW_PREFIX}/bin/*
   mv $pkgdir${MINGW_PREFIX}/bin/ffmpeg.exe $pkgdir${MINGW_PREFIX}/ffmpeg
+  mv ${MINGW_PREFIX}/bin/vulkan*.dll $pkgdir${MINGW_PREFIX}/ffmpeg
   rm -rf $pkgdir${MINGW_PREFIX}/bin
 
   # get latest commit sha
