@@ -32,7 +32,6 @@ makedepends=("amf-headers-dev"
              "libvpx-dev"
              "libwebp-dev"
              "libxml2-dev"
-             "libxvid-dev"
              "libzimg-dev"
              "libzvbi-dev"
              "openal-soft-dev"
@@ -113,7 +112,6 @@ package_ffmpeg-dev() {
     --enable-libvvdec \
     --enable-libwebp \
     --enable-libxml2 \
-    --enable-libxvid \
     --enable-libzimg \
     --enable-libzvbi \
     --enable-openal \
