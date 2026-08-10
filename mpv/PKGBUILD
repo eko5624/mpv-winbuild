@@ -89,6 +89,7 @@ package_mpv-git() {
   cd $srcdir/mpv/build
   mv mpv.exe $pkgdir${MINGW_PREFIX}/mpv
   mv mpv.com $pkgdir${MINGW_PREFIX}/mpv
+  mv ${MINGW_PREFIX}/bin/vulkan*.dll $pkgdir${MINGW_PREFIX}/mpv
   ${TARGET_ARCH}-strip -s $pkgdir${MINGW_PREFIX}/mpv/mpv.*
   mv ../SHORT_SHA $pkgdir${MINGW_PREFIX}/mpv
 }
