@@ -31,7 +31,7 @@ build() {
     -DBUILD_SHARED_LIBS=OFF \
     -DBUILD_TESTS=OFF \
     -DENABLE_WERROR=OFF \
-    -DUSE_GAS=ON \
+    -DUSE_GAS=ON
   cmake --build .
 }
 
